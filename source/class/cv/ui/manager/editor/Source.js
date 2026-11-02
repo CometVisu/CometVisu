@@ -262,7 +262,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
               allowComments: true,
               schemas: [
                 {
-                  uri: 'https://www.cometvisu.org/CometVisu/schemas/' + baseVersion + '/hidden-schema.json',
+                  uri: 'https://www.cometvisu.org/schemas/' + baseVersion + '/hidden-schema.json',
                   fileMatch: ['hidden.php'],
                   schema: schema
                 }

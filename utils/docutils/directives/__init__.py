@@ -25,14 +25,13 @@ import json
 import re
 import os
 import configparser
+from settings import config
 
 root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..', '..'))
 
 class Version:
     _source_version = None
-    config = configparser.ConfigParser()
-    config.read(os.path.join(root_dir, 'utils', 'config.ini'))
-
+    
     @classmethod
     def get_doc_version(cls):
         git = sh.Command("git")
@@ -40,9 +39,9 @@ class Version:
             else os.environ.get('GITHUB_REF').split("/")[-1]
 
         if branch == "develop":
-            return cls.config.get("DEFAULT", "develop-version-mapping")
+            return config.get("DEFAULT", "develop-version-mapping")
         elif branch == "master":
-            return cls.config.get("DEFAULT", "most-recent-version-mapping")
+            return config.get("DEFAULT", "most-recent-version-mapping")
         else:
             # read version
             return cls.get_source_version()
@@ -59,7 +58,7 @@ class Version:
     def get_doc_target_path(cls):
         """ returns the target sub directory where the documentation should be stored."""
         ver = cls.get_doc_version()
-        match = re.match("([0-9]+.[0-9]+).[0-9]+.*", ver)
+        match = re.match(r"([0-9]+\.[0-9]+)\.[0-9]+.*", ver)
         if match:
             return match.group(1)
         else:

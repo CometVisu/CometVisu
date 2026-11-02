@@ -19,7 +19,7 @@ jobs:
       - name: Merge develop into master (develop wins on conflicts)
         run: |
           git checkout master
-          git merge develop --no-ff -X theirs -m "Merge branch 'develop' into master for release"
+          git merge origin/develop --no-ff -X theirs -m "Merge branch 'develop' into master for release"
           git push origin master
       - name: Remove -dev suffix from version on master
         run: |

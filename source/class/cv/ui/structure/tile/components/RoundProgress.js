@@ -92,8 +92,10 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       const element = this._element;
       const style = document.querySelector(':root').style;
       const hasFixedRadius = element.hasAttribute('radius');
+      const cellHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tileCellHeight'));
+      const getRadius = cellWidth => Math.min(cellWidth, cellHeight || cellWidth);
       const radius = (this.__radius =
-        element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56);
+        element.getAttribute('radius') || getRadius(parseFloat(style.getPropertyValue('--tileCellWidth')) || 56));
       const strokeWidth = element.getAttribute('stroke') || 8;
       const normalizedRadius = (this.__normalizedRadius = radius - strokeWidth / 2);
       this.__circumference = normalizedRadius * 2 * Math.PI;
@@ -185,9 +187,10 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
 
       if (!hasFixedRadius) {
         qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', ev => {
-          this.__radius = ev.getData();
+          this.__radius = getRadius(ev.getData());
           this.__normalizedRadius = this.__radius - strokeWidth / 2;
           this.__circumference = this.__normalizedRadius * 2 * Math.PI;
+          this.__availableLabelWidth = this.__radius * 2 - strokeWidth * 2 - 24;
           height = type === 'semiCircle' ? this.__radius : this.__radius * 2;
           const svg = element.querySelector(':scope > svg');
           svg.setAttribute('height', '' + height);
@@ -214,6 +217,9 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
             }
           }
           this._applyProgress(this.isPropertyInitialized('progress') ? this.getProgress() : 0);
+          if (this.__label && this.__label.textContent) {
+            this._fitText();
+          }
         });
       }
       // Apply any progress value that was set before _init() created the SVG

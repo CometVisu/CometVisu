@@ -3,6 +3,39 @@
 1.0.0
 =====
 
+### v1.0.0-RC4
+
+- [#1503](https://github.com/CometVisu/CometVisu/pull/1503) docs: fix screenshots, layout and styling problems… (@peuter)
+- [#1502](https://github.com/CometVisu/CometVisu/pull/1502) Fix rounding error creating nasty long numbers (@ChristianMayer)
+- [#1500](https://github.com/CometVisu/CometVisu/pull/1500) build(deps-dev): bump brace-expansion from 1.1.18 to 1.1.21 (@dependabot[bot])
+- [#1499](https://github.com/CometVisu/CometVisu/pull/1499) build(deps): bump fast-uri from 3.1.7 to 3.1.8 (@dependabot[bot])
+- [#1498](https://github.com/CometVisu/CometVisu/pull/1498) build(deps-dev): bump ip-address from 10.4.0 to 10.7.2 (@dependabot[bot])
+- [#1501](https://github.com/CometVisu/CometVisu/pull/1501) Demo changes (@peuter)
+- [#1497](https://github.com/CometVisu/CometVisu/pull/1497) Fix standalone plugin loading when structure is already loaded (@manuelm)
+- [#1496](https://github.com/CometVisu/CometVisu/pull/1496) Fix timeout after reloading the visu (@ChristianMayer)
+
+### v1.0.0-RC3
+
+- [#1495](https://github.com/CometVisu/CometVisu/pull/1495) Update minimum browser versions (@ChristianMayer)
+- [#1494](https://github.com/CometVisu/CometVisu/pull/1494) fix(startup): await the config cache restore before the backend client… (@joltcoke)
+- [#1488](https://github.com/CometVisu/CometVisu/pull/1488) fix(build): ship ttf and woff2 fonts so icons work in Safari (@joltcoke)
+- [#1485](https://github.com/CometVisu/CometVisu/pull/1485) Show already received values while other addresses are still missing (@joltcoke)
+- [#1490](https://github.com/CometVisu/CometVisu/pull/1490) fix(build): guard the Monaco clipboard workaround in insecure contexts (@joltcoke)
+- [#1493](https://github.com/CometVisu/CometVisu/pull/1493) build(deps-dev): bump morgan from 1.11.0 to 1.12.0 (@dependabot[bot])
+- [#1492](https://github.com/CometVisu/CometVisu/pull/1492) build(deps-dev): bump sharp from 0.35.0 to 0.35.4 (@dependabot[bot])
+- [#1491](https://github.com/CometVisu/CometVisu/pull/1491) build(deps): bump js-yaml and grunt (@dependabot[bot])
+- [#1487](https://github.com/CometVisu/CometVisu/pull/1487) Fix sentry and version issue (@ChristianMayer)
+- [#1486](https://github.com/CometVisu/CometVisu/pull/1486) Inset the popup close button in the designs as well (@joltcoke)
+- [#1484](https://github.com/CometVisu/CometVisu/pull/1484) build(deps): bump browserslist from 4.28.2 to 4.28.8 (@dependabot[bot])
+- [#1483](https://github.com/CometVisu/CometVisu/pull/1483) build(deps): bump @xmldom/xmldom from 0.8.13 to 0.8.15 (@dependabot[bot])
+- [#1482](https://github.com/CometVisu/CometVisu/pull/1482) build(deps): bump fast-uri from 3.1.5 to 3.1.7 (@dependabot[bot])
+- [#1479](https://github.com/CometVisu/CometVisu/pull/1479) Fix icon size and position after the icon font migration (@joltcoke)
+- [#1478](https://github.com/CometVisu/CometVisu/pull/1478) Fix the diagram popup being clipped, too small and not evenly spaced (@joltcoke)
+- [#1477](https://github.com/CometVisu/CometVisu/pull/1477) build(deps): bump socket.io-parser from 4.2.6 to 4.2.7 (@dependabot[bot])
+- [#1476](https://github.com/CometVisu/CometVisu/pull/1476) build(deps): bump fast-uri from 3.1.4 to 3.1.5 (@dependabot[bot])
+- [#1475](https://github.com/CometVisu/CometVisu/pull/1475) build(deps-dev): bump brace-expansion from 1.1.15 to 1.1.18 (@dependabot[bot])
+- [#1474](https://github.com/CometVisu/CometVisu/pull/1474) build(deps-dev): bump ip-address from 10.2.0 to 10.4.0 (@dependabot[bot])
+
 ### v1.0.0-RC2
 
 - [#1473](https://github.com/CometVisu/CometVisu/pull/1473) Fix resource access (@ChristianMayer)

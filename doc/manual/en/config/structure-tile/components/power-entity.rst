@@ -19,31 +19,31 @@ There are the following Power entity types:
 
 .. list-table::
 
-    * - .. figure:: _static/cv-power-entity-pv.png
+    * - .. figure:: _static/cv-power-entity-pv.webp
 
         ``type="pv"``
 
-      - .. figure:: _static/cv-power-entity-battery.png
+      - .. figure:: _static/cv-power-entity-battery.webp
 
         ``type="battery"``
 
-      - .. figure:: _static/cv-power-entity-grid.png
+      - .. figure:: _static/cv-power-entity-grid.webp
 
         ``type="grid"``
 
-    * - .. figure:: _static/cv-power-entity-charger.png
+    * - .. figure:: _static/cv-power-entity-charger.webp
 
         ``type="charger"``
 
-      - .. figure:: _static/cv-power-entity-consumer.png
+      - .. figure:: _static/cv-power-entity-consumer.webp
 
         ``type="consumer"``
 
-      - .. figure:: _static/cv-power-entity-heatpump.png
+      - .. figure:: _static/cv-power-entity-heatpump.webp
 
         ``type="heatpump"``
 
-    * - .. figure:: _static/cv-power-entity-house.png
+    * - .. figure:: _static/cv-power-entity-house.webp
 
         ``type="house"``
 

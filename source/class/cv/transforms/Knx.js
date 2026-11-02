@@ -468,7 +468,7 @@ qx.Class.define('cv.transforms.Knx', {
           if (sign !== 0) {
             mant = -(~(mant - 1) & 0x7ff);
           }
-          return (1 << exp) * 0.01 * mant;
+          return (1 << exp) * mant / 100.0;
         }
       },
 

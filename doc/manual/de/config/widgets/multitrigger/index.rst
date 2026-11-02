@@ -19,7 +19,7 @@ Der Multitrigger fügt der Visu beliebig Schaltflächen hinzu, mit denen z.B. Sz
 .. hint::
     Ab Version 0.12.0 sind beliebig viele Schaltflächen möglich, in älteren Versionen waren nicht mehr als 4 möglich.
 
-.. figure:: _static/multitrigger_simple.png
+.. figure:: _static/multitrigger_simple.webp
 
 Einstellungen
 -------------

@@ -234,42 +234,42 @@ or operating a roller shutter.
     :widths: 30 70
 
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-switch-on.png              | :ref:`tile-switch`                                        |
+    | .. image:: widgets/_static/cv-switch-on.webp             | :ref:`tile-switch`                                        |
     |     :width: 150                                          | simple switch, button or trigger                          |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-dimmer.png                 | :ref:`tile-dimmer`                                        |
+    | .. image:: widgets/_static/cv-dimmer.webp                | :ref:`tile-dimmer`                                        |
     |     :width: 150                                          | Switch with additional slider to set a percentage         |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-shutter.png                | :ref:`tile-shutter`                                       |
+    | .. image:: widgets/_static/cv-shutter.webp               | :ref:`tile-shutter`                                       |
     |     :width: 150                                          | Button for up/down/stop to control a shutter              |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-info.png                   | :ref:`tile-info`                                          |
+    | .. image:: widgets/_static/cv-info.webp                  | :ref:`tile-info`                                          |
     |     :width: 150                                          | Representation of a value in different ways               |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-status.png                 | :ref:`tile-status`                                        |
+    | .. image:: widgets/_static/cv-status.webp                | :ref:`tile-status`                                        |
     |     :width: 150                                          | Status display at half tile height                        |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-small-status.png           | :ref:`tile-small-status`                                  |
+    | .. image:: widgets/_static/cv-small-status.webp          | :ref:`tile-small-status`                                  |
     |     :width: 60                                           | Status display in button size                             |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-status-chart.png           | :ref:`tile-status-chart`                                  |
+    | .. image:: widgets/_static/cv-status-chart.webp          | :ref:`tile-status-chart`                                  |
     |     :width: 150                                          | Status widget with chart in the background                |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-rtc.png                    | :ref:`tile-rtc`                                           |
+    | .. image:: widgets/_static/cv-rtc.webp                   | :ref:`tile-rtc`                                           |
     |     :width: 150                                          | Room temperature control with settings for HVAC and       |
     |                                                          | a set point temperature                                   |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-media-player.png           | :ref:`tile-media-player`                                  |
+    | .. image:: widgets/_static/cv-media-player.webp          | :ref:`tile-media-player`                                  |
     |     :width: 150                                          | Control a media player with start/stop,                   |
     |                                                          | next & previous and a volume control                      |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-widget-pair.png            | :ref:`tile-widget-pair`                                   |
+    | .. image:: widgets/_static/cv-widget-pair.webp           | :ref:`tile-widget-pair`                                   |
     |    :width: 150                                           | Allows two tiles to be displayed at half height           |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-energy-full.png            | :ref:`tile-energy`                                        |
+    | .. image:: widgets/_static/cv-energy-full.webp           | :ref:`tile-energy`                                        |
     |    :width: 150                                           | Visualizes energy flow inside a house                     |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-link.png                   | :ref:`tile-link`                                          |
+    | .. image:: widgets/_static/cv-link.webp                  | :ref:`tile-link`                                          |
     |    :width: 150                                           | Opens a website                                           |
     +----------------------------------------------------------+-----------------------------------------------------------+
     |                                                          | :ref:`tile-web`                                           |

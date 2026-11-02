@@ -12,7 +12,7 @@ Mit dem PageJump-Widget lassen sich Seiten der Visu verknüpfen. Von der Funktio
 vergleichbar mit Hyperlinks. Man kann sie z.B. nutzen um über die :ref:`Navbar <navbar>`
 ein permanent sichtbares Navigationsmenü zu erstellen.
 
-.. figure:: _static/pagejump_komplex.png
+.. figure:: _static/pagejump_komplex.webp
 
 Zusätzlich kann ein PageJump-Widget in einem Page-Element platziert werden.
 

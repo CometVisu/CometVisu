@@ -22,7 +22,7 @@ ein Lautstärkeregler (+1 / -1 oder auch +5 / -5). Im zweiten Szenario wird imme
 gesendete Wert berechnet (Raumtemperatur per +/- Tasten in 4 Schritten von 18° auf 22°
 geregelt -> gesendet wird 19,20,21,22°).
 
-.. figure:: _static/infotrigger_simple.png
+.. figure:: _static/infotrigger_simple.webp
 
 Einstellungen
 -------------

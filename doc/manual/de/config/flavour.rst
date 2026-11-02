@@ -15,8 +15,8 @@ im Design "metal"
 
 .. raw:: html
 
-    <ul><li> <span style="color:#000000"> black </span></li>
-    <li> <span style="color:#ffffff"> white </span>  &lt;--- da steht white&nbsp;:)</li>
+    <ul><li> <span style="color:#000000"> black </span>  &lt;--- da steht black&nbsp;:)</li>
+    <li> <span style="color:#ffffff"> white </span></li>
     <li> <span style="color:#00ddff"> antimony </span></li>
     <li> <span style="color:#00ff11"> boron </span></li>
     <li> <span style="color:#ff0000"> lithium </span></li>
@@ -28,8 +28,8 @@ im Design "pure"
 
 .. raw:: html
 
-    <ul><li> <span style="color:#000000"> black </span></li>
-    <li> <span style="color:#ffffff"> white </span>  &lt;--- da steht white&nbsp;:)</li>
+    <ul><li> <span style="color:#000000"> black </span>  &lt;--- da steht black&nbsp;:)</li>
+    <li> <span style="color:#ffffff"> white </span></li>
     <li> <span style="color:#00ddff"> antimony </span></li>
     <li> <span style="color:#00ff11"> boron </span></li>
     <li> <span style="color:#ff0000"> lithium </span></li>

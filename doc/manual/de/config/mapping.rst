@@ -39,12 +39,12 @@ Dies würde bei Benutzung mit z.B. einem :doc:`Switch-Widget <widgets/switch/ind
 
 Statt 0 und 1:
 
-.. figure:: widgets/switch/_static/switch.png
+.. figure:: widgets/switch/_static/switch.webp
    :alt: Einfacher Switch
 
 An und Aus anzeigen:
 
-.. figure:: widgets/switch/_static/switch_mapping.png
+.. figure:: widgets/switch/_static/switch_mapping.webp
    :alt: Switch mit mapping
 
 Die Farbe kann durch die Definition des :doc:`Styling <styling>` bestimmt werden.
@@ -79,7 +79,7 @@ So würde bei Benutzung mit z.B. einem :doc:`Switch-Widget <widgets/switch/index
 
 statt 0 und 1:
 
-.. figure:: widgets/switch/_static/switch.png
+.. figure:: widgets/switch/_static/switch.webp
     :alt: switch.png
 
     Einfacher Switch

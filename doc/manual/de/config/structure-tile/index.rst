@@ -236,43 +236,43 @@ oder die Bedienung einer Rolllade (Shutter).
     :widths: 30 70
 
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-switch-on.png              | :ref:`tile-switch`                                        |
+    | .. image:: widgets/_static/cv-switch-on.webp             | :ref:`tile-switch`                                        |
     |     :width: 150                                          | Einfacher Schalter, Taster oder Trigger                   |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-dimmer.png                 | :ref:`tile-dimmer`                                        |
+    | .. image:: widgets/_static/cv-dimmer.webp                | :ref:`tile-dimmer`                                        |
     |     :width: 150                                          | Schalter mit zusätzlichem Slider zur Einstellung eines    |
     |                                                          | Prozentwerts.                                             |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-shutter.png                | :ref:`tile-shutter`                                       |
+    | .. image:: widgets/_static/cv-shutter.webp               | :ref:`tile-shutter`                                       |
     |     :width: 150                                          | Taster für hoch/runter/stop zur Bedienung einer Jalousie  |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-info.png                   | :ref:`tile-info`                                          |
+    | .. image:: widgets/_static/cv-info.webp                  | :ref:`tile-info`                                          |
     |     :width: 150                                          | Darstellung eines Werts in verschiedenen Arten.           |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-status.png                 | :ref:`tile-status`                                        |
+    | .. image:: widgets/_static/cv-status.webp                | :ref:`tile-status`                                        |
     |     :width: 150                                          | Status Anzeige in halber Kachel-Höhe                      |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-small-status.png           | :ref:`tile-small-status`                                  |
+    | .. image:: widgets/_static/cv-small-status.webp          | :ref:`tile-small-status`                                  |
     |     :width: 60                                           | Status Anzeige in Button-Größe                            |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-status-chart.png           | :ref:`tile-status-chart`                                  |
+    | .. image:: widgets/_static/cv-status-chart.webp          | :ref:`tile-status-chart`                                  |
     |     :width: 150                                          | Status-Widget mit Chart im Hintergrund                    |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-rtc.png                    | :ref:`tile-rtc`                                           |
+    | .. image:: widgets/_static/cv-rtc.webp                   | :ref:`tile-rtc`                                           |
     |     :width: 150                                          | Raumtemperatursteuerung mit Einstellungen für HVAC und    |
     |                                                          | einer Solltemperatur                                      |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-media-player.png           | :ref:`tile-media-player`                                  |
+    | .. image:: widgets/_static/cv-media-player.webp          | :ref:`tile-media-player`                                  |
     |     :width: 150                                          | Steuerung eines Medien-Abspielers mit Start/Stop          |
     |                                                          | vor & zurück und einer Lautstärkeregelung                 |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-widget-pair.png            | :ref:`tile-widget-pair`                                   |
+    | .. image:: widgets/_static/cv-widget-pair.webp           | :ref:`tile-widget-pair`                                   |
     |    :width: 150                                           | Ermöglicht es zwei Kacheln in halber Höhe darzustellen    |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-energy-full.png            | :ref:`tile-energy`                                        |
+    | .. image:: widgets/_static/cv-energy-full.webp           | :ref:`tile-energy`                                        |
     |    :width: 150                                           | Zeigt Energieflüsse innerhalb eines Hauses an             |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-link.png                   | :ref:`tile-link`                                          |
+    | .. image:: widgets/_static/cv-link.webp                  | :ref:`tile-link`                                          |
     |    :width: 150                                           | Öffnet eine Webseite                                      |
     +----------------------------------------------------------+-----------------------------------------------------------+
     |                                                          | :ref:`tile-web`                                           |

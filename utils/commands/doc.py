@@ -184,6 +184,9 @@ class DocGenerator(Command):
 
         sphinx_build = sh.Command("sphinx-build")
         build_env = os.environ.copy()
+        # propagate a possibly overridden doc-dir (--doc-dir) to the sphinx subprocess,
+        # as it re-reads utils/config.ini from disk and would otherwise lose the override
+        build_env["CV_DOC_DIR"] = self.config.get("DEFAULT", "doc-dir")
 
         # check if sources exist for this language
         section = "manual-%s" % language
@@ -399,7 +402,7 @@ class DocGenerator(Command):
                                         if len(nodes) > 0:
                                             for screenshot in nodes:
                                                 screenshot_name = screenshot.get("name")
-                                                screenshot_file = os.path.join(api_screenshot_dir, "%s.png" % screenshot_name)
+                                                screenshot_file = os.path.join(api_screenshot_dir, "%s.webp" % screenshot_name)
                                                 #print("looking for screenshot %s" % screenshot_file)
                                                 if os.path.exists(screenshot_file):
                                                     screenshot_target_dir = os.path.join(os.path.dirname(parser.file), "_static")
@@ -407,7 +410,7 @@ class DocGenerator(Command):
                                                         os.makedirs(screenshot_target_dir)
                                                     # copy
                                                     shutil.copy(screenshot_file, screenshot_target_dir)
-                                                    content[section].append(".. figure:: _static/%s.png\n" % screenshot_name)
+                                                    content[section].append(".. figure:: _static/%s.webp\n" % screenshot_name)
 
                                                     # check for screenshot caption
                                                     caption = screenshot.find("caption")
@@ -562,7 +565,7 @@ class DocGenerator(Command):
                         return match.group(1)
                 else:
                     if name in match.group(1):
-                        return "%s.png" % match.group(1)
+                        return "%s.webp" % match.group(1)
 
         return None
 
@@ -648,9 +651,14 @@ class DocGenerator(Command):
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
         parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
         parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
+        parser.add_argument("--doc-dir", dest="doc_dir", help="directory for documentation output")
         parser.add_argument("--verbose", "-v", dest="verbose", action="store_true", help="verbose output")
 
+
         options = parser.parse_args(args)
+
+        if options.doc_dir is not None:
+            self.config.set("DEFAULT", "doc-dir", options.doc_dir)
 
         if options.features:
             widgets = {}

@@ -67,7 +67,48 @@ async function bundle() {
     console.log('  ' + nlsFile);
   }
 
+  patchWebKitClipboardWorkaround(path.join(outDir, 'editor.main.js'));
+
   console.log('Monaco bundles created in source/resource/monaco/');
+}
+
+/**
+ * Monaco calls navigator.clipboard.write() in its WebKit workaround without checking that the
+ * async clipboard API is there. Outside a secure context - plain http on anything but localhost -
+ * it is not, and the handler runs on every click and keydown, so Safari throws on each of them.
+ * Worse, the handler sets webKitPendingClipboardWritePromise before that call, which makes
+ * writeText() take its early exit and skip the execCommand fallback - copying then silently does
+ * nothing. Returning early leaves that promise untouched and keeps copying working.
+ *
+ * Proposed upstream in https://github.com/microsoft/vscode/pull/334878, so this can go once the
+ * fix reaches a monaco-editor release.
+ *
+ * @param {string} file the bundled editor.main.js
+ */
+function patchWebKitClipboardWorkaround(file) {
+  const anchor =
+    'installWebKitWriteTextWorkaround() {\n' +
+    '        const handler = () => {\n' +
+    '          const currentWritePromise = new DeferredPromise();';
+  const guard =
+    'installWebKitWriteTextWorkaround() {\n' +
+    '        const handler = () => {\n' +
+    '          if (!getActiveWindow().navigator.clipboard) {\n' +
+    '            return;\n' +
+    '          }\n' +
+    '          const currentWritePromise = new DeferredPromise();';
+
+  const code = fs.readFileSync(file, 'utf8');
+  const found = code.split(anchor).length - 1;
+  if (found !== 1) {
+    throw new Error(
+      `cannot patch the WebKit clipboard workaround: expected the anchor once, found it ${found} times. ` +
+        'Monaco has changed - check whether the fix has landed upstream and drop this patch, or adjust it.'
+    );
+  }
+
+  fs.writeFileSync(file, code.replace(anchor, guard));
+  console.log('  patched the WebKit clipboard workaround for insecure contexts');
 }
 
 bundle().catch(err => {

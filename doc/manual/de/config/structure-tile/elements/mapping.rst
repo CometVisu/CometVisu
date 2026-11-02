@@ -120,10 +120,10 @@ unterschiedliche Icons angezeigt:
 .. list-table::
     :class: image-float
 
-    * - .. figure:: _static/cv-switch-mapping-off.png
+    * - .. figure:: _static/cv-switch-mapping-off.webp
             :alt: Switch off
 
-      - .. figure:: _static/cv-switch-mapping-on.png
+      - .. figure:: _static/cv-switch-mapping-on.webp
             :alt: Switch on
 
 Die Farbe der Icons wird hierbei über das Styling gesteuert.

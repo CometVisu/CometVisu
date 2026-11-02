@@ -42,7 +42,7 @@ und Videoformat zu bekommen, nutzen Sie bitte die untenstehende Tabelle:
 
 **Legende:** X = unterstützt, O = nicht unterstützt
 
-.. figure:: _static/video_simple.png
+.. figure:: _static/video_simple.webp
 
 Einstellungen
 -------------

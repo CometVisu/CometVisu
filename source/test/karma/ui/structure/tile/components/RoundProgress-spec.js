@@ -108,6 +108,35 @@ describe('testing the <cv-round-progress> component of the tile structure', () =
       expect(svg.getAttribute('width')).toBe('' + 40*2);
     });
 
+    it('should constrain its radius to the smaller tile cell dimension', function() {
+      const style = document.documentElement.style;
+      const oldWidth = style.getPropertyValue('--tileCellWidth');
+      const oldHeight = style.getPropertyValue('--tileCellHeight');
+      const cellHeightStyle = document.createElement('style');
+      cellHeightStyle.textContent = ':root { --tileCellHeight: 64px; }';
+      style.setProperty('--tileCellWidth', '112px');
+      style.removeProperty('--tileCellHeight');
+      document.head.appendChild(cellHeightStyle);
+
+      try {
+        const element = this.createTileWidgetWithComponent('cv-round-progress', {
+          type: type
+        }, '');
+        const svg = element.querySelector('svg');
+
+        expect(svg.getAttribute('width')).toBe('128');
+        expect(svg.getAttribute('height')).toBe(type === 'circle' ? '128' : '64');
+
+        qx.event.message.Bus.dispatchByName('cv.design.tile.cellWidthChanged', 120);
+        expect(svg.getAttribute('width')).toBe('128');
+        expect(svg.getAttribute('height')).toBe(type === 'circle' ? '128' : '64');
+      } finally {
+        style.setProperty('--tileCellWidth', oldWidth);
+        style.setProperty('--tileCellHeight', oldHeight);
+        cellHeightStyle.remove();
+      }
+    });
+
     it('should create a '+type+' round-progress that set its progress', function() {
       const element = this.createTileWidgetWithComponent('cv-round-progress', {
         type: type

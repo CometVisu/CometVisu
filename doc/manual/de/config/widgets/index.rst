@@ -174,6 +174,10 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Diagram_Info <plugins/diagram_info/index>`         | Informations-Anzeige, die beim Klick ein Diagramm öffnet            |
 +----------------------------------------------------------+---------------------------------------------------------------------+
+| :doc:`Diagram2 <plugins/diagram2/index>`                 | Diagramme auf D3-Basis, Nachfolger von Diagram                      |
++----------------------------------------------------------+---------------------------------------------------------------------+
+| :doc:`Diagram2_Info <plugins/diagram2_info/index>`       | Informations-Anzeige, die beim Klick ein Diagram2 öffnet            |
++----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Gauge <plugins/gauge/index>`                       | Zeigerinstrument                                                    |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Link <plugins/link/index>`                         | Fügt der Visu einen einfachen anklickbaren Link hinzu               |

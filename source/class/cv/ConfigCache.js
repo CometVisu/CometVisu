@@ -98,10 +98,16 @@ qx.Class.define('cv.ConfigCache', {
       });
     },
 
+    /**
+     * Restore the cached config. The caller must wait for the returned promise, everything
+     * that reads cv.Config.configSettings (e.g. the backend client initialization) races
+     * against it otherwise.
+     * @return {Promise}
+     */
     restore() {
       const body = document.querySelector('body');
       const model = cv.data.Model.getInstance();
-      this.getData().then(cache => {
+      return this.getData().then(cache => {
         cv.Config.configSettings = cache.configSettings;
 
         // restore icons

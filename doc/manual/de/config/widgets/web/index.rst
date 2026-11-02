@@ -41,7 +41,7 @@ Erlaubte Attribute im Web-Element
     :align: center
 
     <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
-    <web src="http://www.google.de" width="320px" height="300px" frameborder="false" background="black" refresh="20">
+    <web src="https://www.google.de" width="320px" height="300px" frameborder="false" background="black" refresh="20">
         <layout colspan="4"/>
         <label>Web-Suche</label>
     </web>
@@ -58,7 +58,7 @@ Erlaubte Kind-Elemente und deren Attribute
     :align: center
 
     <caption>Elemente im Editor</caption>
-    <web src="http://www.google.de" width="320px" height="300px" frameborder="false" background="black" refresh="20">
+    <web src="https://www.google.de" width="320px" height="300px" frameborder="false" background="black" refresh="20">
         <layout colspan="4"/>
         <label>Web-Suche</label>
     </web>
