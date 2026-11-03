@@ -14,8 +14,8 @@ darstellt. Es ist der Nachfolger von :ref:`diagram_info` und zeichnet mit D3.
 
 Der angezeigte Wert kommt aus dem ``<address>``-Element und wird über ``format`` aufbereitet — wie
 bei jedem anderen Info-Widget. Das Diagramm im Popup wird genauso konfiguriert wie bei
-:ref:`diagram2`: über ``<axis>`` und die Datenquellen ``<rrd>``, ``<influx>``, ``<openhab>`` und
-``<demo>``. Auch die Bedienung im Popup — verschieben, zoomen, Nachladen des
+:ref:`diagram2`: über ``<axis>`` und die Datenquellen ``<iobroker>``, ``<rrd>``, ``<influx>``,
+``<openhab>`` und ``<demo>``. Auch die Bedienung im Popup — verschieben, zoomen, Nachladen des
 sichtbaren Bereichs — ist dieselbe.
 
 Ohne ``popup="true"`` bleibt es bei der reinen Wertanzeige; das Widget ist dann nicht anklickbar.
@@ -28,7 +28,7 @@ Soll das Diagramm selbst als Widget erscheinen, ist :ref:`diagram2` das passende
       <layout colspan="3"/>
       <label>Aussentemperatur</label>
       <axis unit=" °C" decimals="1">temperature</axis>
-      <influx measurement="haus/temperatur" color="#FF0000"/>
+      <iobroker instance="influxdb.0" color="#FF0000">hm-rpc.0.LEQ123456.1.TEMPERATURE</iobroker>
       <address transform="DPT:9.001">4/2/0</address>
     </diagram2_info>
 

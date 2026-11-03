@@ -60,9 +60,9 @@ describe('testing the diagram2 plugin', function () {
       '<diagram2>' +
         '<axis unit=" °C" decimals="1" min="10" max="30" label="Temperatur">temp</axis>' +
         '<axis unit=" %" position="right">percent</axis>' +
-        '<rrd yaxis="percent">ventil</rrd>' +
-        '<rrd yaxis="temp">temperatur</rrd>' +
-        '<rrd yaxis="unbekannt">sonstiges</rrd>' +
+        '<iobroker yaxis="percent">knx.0.Ventil</iobroker>' +
+        '<iobroker yaxis="temp">knx.0.Temperatur</iobroker>' +
+        '<iobroker yaxis="unbekannt">knx.0.Sonstiges</iobroker>' +
         '</diagram2>'
     );
 
@@ -84,38 +84,40 @@ describe('testing the diagram2 plugin', function () {
   });
 
   it('should apply the defaults of a data set', function () {
-    const res = content('<diagram2><rrd>temperatur</rrd></diagram2>');
+    const res = content('<diagram2><iobroker>knx.0.Temperatur</iobroker></diagram2>');
     const ts = res.ts[0];
 
     expect(res.tsnum).toBe(1);
-    expect(ts.tsType).toBe('rrd');
-    expect(ts.src).toBe('temperatur');
+    expect(ts.tsType).toBe('iobroker');
+    expect(ts.src).toBe('knx.0.Temperatur');
     // without a label the name of the data is shown
-    expect(ts.label).toBe('temperatur');
+    expect(ts.label).toBe('knx.0.Temperatur');
     expect(ts.axisIndex).toBe(1);
     expect(ts.steps).toBe(false);
     expect(ts.fill).toBe(false);
     expect(ts.scaling).toBe(1.0);
-    // everything but influx falls back to the average
-    expect(ts.cFunc).toBe('AVERAGE');
+    // ioBroker aggregates with minmax unless the configuration says otherwise
+    expect(ts.cFunc).toBe('MINMAX');
     expect(ts.fillTs).toBe('linear');
     expect(ts.style).toBe('lines');
     expect(ts.align).toBe('center');
     expect(ts.barWidth).toBe(1);
     expect(ts.backend).toBeNull();
+    expect(ts.instance).toBeNull();
   });
 
   it('should read every attribute of a data set', function () {
     const res = content(
       '<diagram2>' +
-        '<influx backend="haus" measurement="kueche" color="#ff0000" label="Küche" steps="true" fill="true"' +
+        '<iobroker backend="haus" instance="sql.0" color="#ff0000" label="Küche" steps="true" fill="true"' +
         ' scaling="0.001" offset="-3600" resolution="900" consolidationFunction="AVERAGE"' +
-        ' fillMissing="none" style="bars" barWidth="1800000" align="left"/>' +
+        ' fillMissing="none" style="bars" barWidth="1800000" align="left">knx.0.Küche</iobroker>' +
         '</diagram2>'
     );
     const ts = res.ts[0];
 
     expect(ts.backend).toBe('haus');
+    expect(ts.instance).toBe('sql.0');
     expect(ts.color).toBe('#ff0000');
     expect(ts.label).toBe('Küche');
     expect(ts.steps).toBe(true);
@@ -132,8 +134,8 @@ describe('testing the diagram2 plugin', function () {
 
   it('should default the gap handling to the shape of the graph', function () {
     // a step graph holds its value, a line is drawn through the gap
-    const steps = content('<diagram2><rrd steps="true">a</rrd></diagram2>');
-    const lines = content('<diagram2><rrd>a</rrd></diagram2>');
+    const steps = content('<diagram2><iobroker steps="true">knx.0.A</iobroker></diagram2>');
+    const lines = content('<diagram2><iobroker>knx.0.A</iobroker></diagram2>');
 
     expect(steps.ts[0].fillTs).toBe('previous');
     expect(lines.ts[0].fillTs).toBe('linear');
@@ -152,12 +154,14 @@ describe('testing the diagram2 plugin', function () {
     expect(res.ts[0].src).toBe('local-sine.json');
     expect(res.ts[1].src).toBe('generator@wind');
     expect(res.ts[1].label).toBe('Wind');
+    // only ioBroker defaults to minmax, everything else keeps the old default
     expect(res.ts[0].cFunc).toBe('AVERAGE');
   });
 
   it('should read every source type with the defaults of its backend', function () {
     const res = content(
       '<diagram2>' +
+        '<iobroker>knx.0.A</iobroker>' +
         '<rrd datasourceIndex="1">eib_traffic</rrd>' +
         '<influx measurement="db/messungen" field="value" authentication="token"><tag key="room" operator="=" value="bad"/></influx>' +
         '<openhab>Temperatur_Bad</openhab>' +
@@ -165,23 +169,24 @@ describe('testing the diagram2 plugin', function () {
         '</diagram2>'
     );
 
-    expect(res.tsnum).toBe(4);
-    expect(res.ts.map(ts => ts.tsType)).toEqual(['rrd', 'influx', 'openhab', 'demo']);
+    expect(res.tsnum).toBe(5);
+    expect(res.ts.map(ts => ts.tsType)).toEqual(['iobroker', 'rrd', 'influx', 'openhab', 'demo']);
 
-    // influx brings its own default, the others keep the average
-    expect(res.ts[0].cFunc).toBe('AVERAGE');
-    expect(res.ts[1].cFunc).toBe('MEAN');
-    expect(res.ts[2].cFunc).toBe('AVERAGE');
+    // every vocabulary brings its own default
+    expect(res.ts[0].cFunc).toBe('MINMAX');
+    expect(res.ts[1].cFunc).toBe('AVERAGE');
+    expect(res.ts[2].cFunc).toBe('MEAN');
+    expect(res.ts[3].cFunc).toBe('AVERAGE');
 
     // rrd rows carry one value per data source
-    expect(res.ts[0].dsIndex).toBe(1);
-    expect(res.ts[0].src).toBe('eib_traffic');
+    expect(res.ts[1].dsIndex).toBe(1);
+    expect(res.ts[1].src).toBe('eib_traffic');
 
     // influx keeps its query parts
-    expect(res.ts[1].src).toBe('db/messungen');
-    expect(res.ts[1].field).toBe('value');
-    expect(res.ts[1].authentication).toBe('token');
-    expect(res.ts[1].filter).toBe('(room = \'bad\')');
+    expect(res.ts[2].src).toBe('db/messungen');
+    expect(res.ts[2].field).toBe('value');
+    expect(res.ts[2].authentication).toBe('token');
+    expect(res.ts[2].filter).toBe('(room = \'bad\')');
   });
 
   it('should read an rrd of an openHAB backend from its persistence', function () {
@@ -249,13 +254,15 @@ describe('testing the diagram2 plugin', function () {
     const xml =
       '<%NAME%>' +
       '<axis unit=" °C" decimals="1">temp</axis>' +
-      '<rrd color="#00ff00" label="Bad" steps="true" fill="true"' +
+      '<iobroker backend="haus" instance="sql.0" color="#00ff00" label="Bad" steps="true" fill="true"' +
       ' scaling="2" offset="60" resolution="300" consolidationFunction="MAX" style="points"' +
-      ' yaxis="temp">bad</rrd>' +
+      ' yaxis="temp">knx.0.Bad</iobroker>' +
       '</%NAME%>';
     const shared = [
       'tsType',
       'src',
+      'backend',
+      'instance',
       'color',
       'label',
       'axisIndex',
@@ -284,18 +291,20 @@ describe('testing the diagram2 plugin', function () {
   it('should build a source for every data set type', function () {
     const res = content(
       '<diagram2>' +
-        '<openhab backend="haus">Temperatur_Wohnzimmer</openhab>' +
+        '<iobroker backend="haus">knx.0.Wohnzimmer#Temperatur</iobroker>' +
         '<demo>local-sine.json</demo>' +
         '<unbekannt>x</unbekannt>' +
         '</diagram2>'
     );
     const statics = cv.plugins.diagram2.AbstractDiagram2;
 
-    const openhab = statics.getTimeSeriesSource(res.ts[0]);
+    const iobroker = statics.getTimeSeriesSource(res.ts[0]);
 
-    expect(openhab instanceof cv.io.timeseries.OpenhabPersistenceSource).toBeTrue();
+    expect(iobroker instanceof cv.io.timeseries.IoBrokerSource).toBeTrue();
+    // characters that are structural in the url have to survive the round trip
+    expect(iobroker.getStateId()).toBe('knx.0.Wohnzimmer#Temperatur');
     // the source is created once and kept
-    expect(statics.getTimeSeriesSource(res.ts[0])).toBe(openhab);
+    expect(statics.getTimeSeriesSource(res.ts[0])).toBe(iobroker);
 
     expect(statics.getTimeSeriesSource(res.ts[1]) instanceof cv.io.timeseries.DemoSource).toBeTrue();
 
@@ -343,9 +352,10 @@ describe('testing the diagram2 plugin', function () {
     const statics = cv.plugins.diagram2.AbstractDiagram2;
     const calls = {};
     const ts = {
-      tsType: 'openhab',
-      src: 'Temperatur_Bad',
+      tsType: 'iobroker',
+      src: 'knx.0.A',
       cFunc: 'AVERAGE',
+      instance: 'sql.0',
       fillTs: 'previous',
       source: {
         setHistoryOptions(options) {
@@ -370,8 +380,9 @@ describe('testing the diagram2 plugin', function () {
     const data = await statics.fetchSeries(ts, { start: 'end-3day', end: 'now', res: 300 }, 'day', 3, 300, 60, false);
 
     expect(calls.options.aggregate).toBe('AVERAGE');
+    expect(calls.options.instance).toBe('sql.0');
     expect(calls.options.fill).toBe('previous');
-    // the resolution is configured in seconds, the source wants milliseconds
+    // the resolution is configured in seconds, ioBroker wants milliseconds
     expect(calls.options.step).toBe(300000);
     expect(calls.fetch).toEqual(['end-3day', 'now', 'day', 3]);
     expect(calls.processed).toEqual([{ ts: 1, val: 2 }]);
