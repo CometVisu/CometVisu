@@ -161,7 +161,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         fetch(qxLibUri)
           .then(r => r.text())
           .then(qxLib => {
-            window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
+            // since monaco 0.56 the language namespaces are top level
+            const ts = window.monaco.typescript || window.monaco.languages.typescript;
+            ts.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
 
             const completionProvider = new cv.ui.manager.editor.completion.Config();
             const cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
@@ -184,7 +186,10 @@ qx.Class.define('cv.ui.manager.editor.Source', {
       if (lang !== 'en') {
         code += 'await import(\'' + toUri('monaco/nls.messages.' + lang + '.js') + '\').catch(function(){});\n';
       }
-      code += 'await import(\'' + toUri('monaco/editor.main.js') + '\');\n';
+      // since monaco 0.56 the language services are exports of editor.main, not part of the global API
+      code += 'const m = await import(\'' + toUri('monaco/editor.main.js') + '\');\n';
+      code += 'if (m.typescript) { window.monaco.typescript = m.typescript; }\n';
+      code += 'if (m.json) { window.monaco.json = m.json; }\n';
       code += 'document.dispatchEvent(new CustomEvent(\'cv-monaco-loaded\'));\n';
 
       const script = document.createElement('script');
@@ -257,7 +262,9 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           xhr.addListenerOnce('success', e => {
             const req = e.getTarget();
             const schema = req.getResponse();
-            window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+            // since monaco 0.56 the language namespaces are top level
+            const json = window.monaco.json || window.monaco.languages.json;
+            json.jsonDefaults.setDiagnosticsOptions({
               validate: true,
               allowComments: true,
               schemas: [
