@@ -8,7 +8,7 @@ if [ "$CV_BROWSER" = "" ]; then
     exit 0
 fi
 
-SELENIUM_MANAGER=./node_modules/selenium-webdriver/bin/linux/selenium-manager
+SELENIUM_MANAGER=./node_modules/selenium-webdriver/bin/linux-x86_64/selenium-manager
 $SELENIUM_MANAGER --version
 
 if [ $CV_BROWSER = Firefox ]; then
