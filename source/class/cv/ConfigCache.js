@@ -128,33 +128,13 @@ qx.Class.define('cv.ConfigCache', {
         if (cv.Config.configSettings.mappings) {
           Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
             const mapping = cv.Config.configSettings.mappings[name];
-            if (mapping && mapping.formulaSource) {
-              mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
-            } else {
-              Object.keys(mapping).forEach(key => {
-                if (key === 'range') {
-                  Object.keys(mapping.range).forEach(rangeMin => {
-                    mapping.range[rangeMin][1].forEach((valueElement, i) => {
-                      const iconDefinition = valueElement.definition;
-                      if (iconDefinition) {
-                        let icon = cv.IconHandler.getInstance().getIconElement(
-                          iconDefinition.name,
-                          iconDefinition.type,
-                          iconDefinition.flavour,
-                          iconDefinition.color,
-                          iconDefinition.styling,
-                          iconDefinition['class']
-                        );
-
-                        icon.definition = iconDefinition;
-                        mapping.range[rangeMin][1][i] = icon;
-                      }
-                    });
-                  });
-                } else if (Array.isArray(mapping[key])) {
-                  const contents = mapping[key];
-                  for (let i = 0; i < contents.length; i++) {
-                    const iconDefinition = contents[i].definition;
+            Object.keys(mapping).forEach(key => {
+              if (key === 'formulaSource') {
+                mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
+              } else if (key === 'range') {
+                Object.keys(mapping.range).forEach(rangeMin => {
+                  mapping.range[rangeMin][1].forEach((valueElement, i) => {
+                    const iconDefinition = valueElement.definition;
                     if (iconDefinition) {
                       let icon = cv.IconHandler.getInstance().getIconElement(
                         iconDefinition.name,
@@ -166,11 +146,14 @@ qx.Class.define('cv.ConfigCache', {
                       );
 
                       icon.definition = iconDefinition;
-                      contents[i] = icon;
+                      mapping.range[rangeMin][1][i] = icon;
                     }
-                  }
-                } else {
-                  const iconDefinition = mapping[key].definition;
+                  });
+                });
+              } else if (Array.isArray(mapping[key])) {
+                const contents = mapping[key];
+                for (let i = 0; i < contents.length; i++) {
+                  const iconDefinition = contents[i].definition;
                   if (iconDefinition) {
                     let icon = cv.IconHandler.getInstance().getIconElement(
                       iconDefinition.name,
@@ -182,11 +165,26 @@ qx.Class.define('cv.ConfigCache', {
                     );
 
                     icon.definition = iconDefinition;
-                    mapping[key] = icon;
+                    contents[i] = icon;
                   }
                 }
-              });
-            }
+              } else {
+                const iconDefinition = mapping[key].definition;
+                if (iconDefinition) {
+                  let icon = cv.IconHandler.getInstance().getIconElement(
+                    iconDefinition.name,
+                    iconDefinition.type,
+                    iconDefinition.flavour,
+                    iconDefinition.color,
+                    iconDefinition.styling,
+                    iconDefinition['class']
+                  );
+
+                  icon.definition = iconDefinition;
+                  mapping[key] = icon;
+                }
+              }
+            });
           }, this);
         }
         model.setWidgetDataModel(cache.data);
