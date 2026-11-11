@@ -642,7 +642,7 @@ class FsApi extends AbstractFsApi
         $mountKey = array_search($path, $this->mounts);
         if ($mountKey === false) {
             foreach ($this->mounts as $index => $mountPoint) {
-                if (substr($path, 0, strlen($mountPoint)) === $mountPoint) {
+                if (strncmp($path, $mountPoint . "/", strlen($mountPoint) + 1) === 0) {
                     $mountKey = $index;
                     break;
                 }

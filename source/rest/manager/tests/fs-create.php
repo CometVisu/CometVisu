@@ -90,7 +90,14 @@ try {
     $status($create(".", "file", "x", ["filename" => ".hidden"]), 403, "hidden filename");
     $status($create(".", "file", "x", ["filename" => "readonly"]), 403, "read-only mount");
     $status($create("readonly", "file", "x"), 403, "read-only mount directory");
+    $status($create("readonly/subdirectory", "file", "x"), 403, "read-only mount descendant");
     $status($create("./readonly", "file", "x"), 403, "normalized read-only mount directory");
+
+    foreach (["readonly.txt", "readonlysuffix.xml"] as $name) {
+        $files[] = $base . "/" . $name;
+        $status($create(".", "file", "content", ["filename" => $name]), 200, "mount prefix filename " . $name);
+        $check(file_get_contents($base . "/" . $name) === "content", "mount prefix filename content");
+    }
 
     $files[] = $base . "/hash.txt";
     $hash = sprintf("%u", crc32("hash content"));
