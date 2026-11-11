@@ -2309,7 +2309,8 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           this._client.createSync(
             {
               path: previewFile.getFullPath(),
-              hash: 'ignore'
+              hash: 'ignore',
+              type: 'file'
             },
             content,
             err => {
