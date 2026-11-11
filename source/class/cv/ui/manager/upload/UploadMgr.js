@@ -74,7 +74,7 @@ qx.Class.define('cv.ui.manager.upload.UploadMgr', {
     _updateUploadUrl() {
       const folder = this.getFolder();
       const path = folder ? folder.getFullPath() : '.';
-      const url = cv.io.rest.Client.getBaseUrl() + '/fs?type=file&path=' + path;
+      const url = cv.io.rest.Client.getBaseUrl() + '/fs?type=file&path=' + encodeURIComponent(path);
       this.setUploadUrl(url);
     },
 
@@ -84,6 +84,11 @@ qx.Class.define('cv.ui.manager.upload.UploadMgr', {
         const filename = this.getFilename();
         if (filename) {
           file.setParam('filename', filename);
+        }
+        if (file.getParam('filename') &&
+            this.getUploadHandler() instanceof com.zenesis.qx.upload.XhrHandler &&
+            (typeof FormData === 'function' || typeof FormData === 'object')) {
+          file.setParam('filenameEncoding', 'uri');
         }
         if (this.isForce()) {
           file.setParam('force', true);
@@ -117,7 +122,7 @@ qx.Class.define('cv.ui.manager.upload.UploadMgr', {
               // something went wrong
               switch (file.getStatus()) {
                 case 406:
-                  if (this.isForce()) {
+                  if (this.isForce() || file.getParam('force') === 'true') {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Replacing the file failed.'));
                   } else {
                     qxl.dialog.Dialog.confirm(
@@ -159,7 +164,7 @@ qx.Class.define('cv.ui.manager.upload.UploadMgr', {
 
               qx.event.message.Bus.dispatchByName('cv.manager.file', {
                 action: 'uploaded',
-                path: this.getFolder().getFullPath() + '/' + file.getFilename()
+                path: this.getFolder().getFullPath() + '/' + (file.getParam('filename') || file.getFilename())
               });
             }
           } else if (state === 'cancelled') {
@@ -188,7 +193,6 @@ qx.Class.define('cv.ui.manager.upload.UploadMgr', {
      * @param file {com.zenesis.qx.upload.File}
      */
     forceUpload(file) {
-      this.setForce(true);
       const newFile = new com.zenesis.qx.upload.File(file.getBrowserObject(), file.getFilename(), file.getId());
 
       newFile.set({
@@ -197,6 +201,9 @@ qx.Class.define('cv.ui.manager.upload.UploadMgr', {
       });
 
       newFile.setParam('force', true);
+      if (file.getParam('filename')) {
+        newFile.setParam('filename', file.getParam('filename'));
+      }
       this.getUploadHandler()._addFile(newFile);
       if (this.getAutoUpload()) {
         this.getUploadHandler().beginUploads();

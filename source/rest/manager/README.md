@@ -37,6 +37,12 @@ $ php -S localhost:8888 -t php-slim-server/public
 
 ## Tests
 
+Run the filesystem creation regression tests with:
+
+```bash
+php tests/fs-create.php
+```
+
 ### PHPUnit
 
 This package uses PHPUnit 8 or 9(depends from your PHP version) for unit testing.
@@ -157,6 +163,5 @@ Class | Method | HTTP request | Description
 
 
 ## Models
-
 
 

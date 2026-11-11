@@ -154,17 +154,42 @@ qx.Class.define('cv.io.rest.Client', {
 
         this.__dirClient = new qx.io.rest.Resource(config);
         this.__dirClient.setBaseUrl(this.getBaseUrl());
-        this.__dirClient.configureRequest(function (req, action, params) {
+        this.__dirClient.configureRequest(function (req, action, params, content) {
           if (cv.Config.transactionId) {
             req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
           }
+          if (action === 'create') {
+            if (params.type !== 'file' && params.type !== 'dir') {
+              throw new Error('File creation requires type "file" or "dir"');
+            }
+            const data = new FormData();
+            let path = params.path;
+            if (params.type === 'file') {
+              const separator = path.lastIndexOf('/');
+              const filename = path.substring(separator + 1);
+              path = separator < 0 ? '.' : path.substring(0, separator) || '.';
+              data.append(
+                'file',
+                new Blob([content === null || content === undefined ? '' : content], { type: 'text/plain' }),
+                filename
+              );
+            }
+            req.setUrl(
+              cv.io.rest.Client.getBaseUrl() +
+                '/fs?path=' +
+                encodeURIComponent(path) +
+                '&type=' +
+                encodeURIComponent(params.type)
+            );
+            req.setRequestData(data);
+          }
           if (params.hash) {
-            req.setUrl(req.getUrl() + '&hash=' + params.hash);
+            req.setUrl(req.getUrl() + '&hash=' + encodeURIComponent(params.hash));
           }
           if (params.recursive === true && action === 'read') {
             req.setUrl(req.getUrl() + '&recursive=true');
           }
-          if (action === 'update' || action === 'create') {
+          if (action === 'update') {
             const parts = params.path.split('.');
             if (parts.length > 1) {
               const type = parts.pop();
@@ -173,6 +198,8 @@ qx.Class.define('cv.io.rest.Client', {
             } else {
               req.setRequestHeader('Content-Type', 'text/plain');
             }
+          }
+          if (action === 'update' || action === 'create') {
             req.setAccept('application/json');
           }
           cv.io.rest.Client.checkAuth(req);

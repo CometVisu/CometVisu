@@ -83,24 +83,42 @@ class FsApi extends AbstractFsApi
             },
             function ($request, $response, $fsPath, $mount) {
                 $uploadedFiles = $request->getUploadedFiles();
-                if (sizeof($uploadedFiles) > 0) {
-                    // upload file mode, get the information from the uploaded file
-                    $options = $request->getParsedBody();
-                    if ($options == null) {
-                      $options = [];
+                $contentType = strtolower(trim(explode(";", $request->getHeaderLine("Content-Type"))[0]));
+                if ($contentType === "multipart/form-data" || count($uploadedFiles) > 0) {
+                    if (!isset($uploadedFiles["file"])) {
+                        return Helper::withJson($response, ["message" => "Missing file upload"], 400);
                     }
-                    if (!array_key_exists("filename", $options)) {
-                        $options["filename"] = $uploadedFiles[
-                            "file"
-                        ]->getClientFileName();
-                    } else {
-                        $options["filename"] = urldecode($options["filename"]);
+                    $body = $request->getParsedBody();
+                    $body = is_array($body) ? $body : [];
+                    $filename = $body["filename"] ?? $uploadedFiles["file"]->getClientFileName();
+                    if (isset($body["filenameEncoding"])) {
+                        if ($body["filenameEncoding"] !== "uri" || !is_string($filename)) {
+                            return Helper::withJson($response, ["message" => "Invalid filename encoding"], 400);
+                        }
+                        $filename = rawurldecode($filename);
                     }
+                    if (!is_string($filename) || $filename === "" || $filename === "." || $filename === ".." ||
+                        strpos($filename, "/") !== false || strpos($filename, "\\") !== false ||
+                        strpos($filename, "\0") !== false) {
+                        return Helper::withJson($response, ["message" => "Invalid filename"], 400);
+                    }
+                    $force = filter_var($body["force"] ?? false, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+                    if ($force === null) {
+                        return Helper::withJson($response, ["message" => "Invalid force value"], 400);
+                    }
+                    $directory = $this->__sanitize(Helper::getQueryParam($request, "path"));
+                    $targetPath = ($directory === "" || $directory === "." ? "" : $directory . "/") . $filename;
+                    $targetMount = $this->getMount($targetPath);
+                    $target = $this->getAbsolutePath($targetPath, $targetMount);
+                    if (!$this->checkAccess($target) || ($targetMount && $targetMount["writeable"] === false)) {
+                        return Helper::withJson($response, ["message" => "Forbidden"], 403);
+                    }
+                    $options = ["filename" => basename($target), "force" => $force];
                     return $this->createFile(
                         $response,
-                        $fsPath,
+                        dirname($target),
                         $uploadedFiles,
-                      Helper::getQueryParam($request, "hash"),
+                        Helper::getQueryParam($request, "hash"),
                         $options
                     );
                 } else {
@@ -543,12 +561,6 @@ class FsApi extends AbstractFsApi
                 $uploadedFile = $content["file"];
                 if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
                     $content = $uploadedFile->getStream()->getContents();
-                    if (!$content) {
-                        throw new Exception(
-                            "Uploaded file could not be read",
-                            406
-                        );
-                    }
                 } else {
                     throw new Exception(
                         "File upload failed with error code: " .

@@ -186,7 +186,8 @@ qx.Class.define('cv.ui.manager.control.FileController', {
                 this.__fsClient.createSync(
                   {
                     path: targetFileName,
-                    hash: 'ignore'
+                    hash: 'ignore',
+                    type: 'file'
                   },
 
                   res,
