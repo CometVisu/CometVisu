@@ -34,7 +34,7 @@ class FileHandler
      */
     public static function createFile($file, $content, $hash, $options = null)
     {
-        if (file_exists($file) && (!$options || !$options["force"])) {
+        if (file_exists($file) && empty($options["force"])) {
             throw new Exception("File already exists", 406);
         } else {
             FileHandler::saveFile($file, $content, $hash);
