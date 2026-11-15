@@ -62,6 +62,14 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * when the tab is backgrounded for extended periods. */
     MAX_RETRY_COUNTER: 10,
 
+    /** Delay in ms before the next read request is sent while knxd is
+     * unavailable. The backend answers immediately in that state, so a
+     * long-poll timeout cannot throttle the requests. */
+    KNXD_DOWN_RETRY_DELAY: 5000,
+
+    /** timer of the pending read request while knxd is not available */
+    __knxdRetryTimer: null,
+
     /**
      * This function gets called once the communication is established
      * and this.client information is available.
@@ -140,6 +148,63 @@ qx.Class.define('cv.io.transport.LongPolling', {
       };
 
       this.xhr = this.client.doRequest(this.client.getResourcePath('read'), data, callback, this, options);
+    },
+
+    /**
+     * Handle a response that reports a lost connection of the backend to knxd.
+     * The backend itself is reachable, so the connection must stay alive, only
+     * the read requests have to be repeated until knxd is back. As there is no
+     * long-poll wait while knxd is gone (nothing can arrive), the requests are
+     * throttled here.
+     *
+     * @param response {Object|String} body of the failed response
+     */
+    __handleKnxdOutage(response) {
+      let json = response;
+      if (typeof json === 'string') {
+        try {
+          json = JSON.parse(json);
+        } catch (e) {
+          json = null;
+        }
+      }
+      const isNewOutage = this.client.reportKnxdStatus(json) === 'outage';
+      // the backend is reachable, therefore this is no connection loss
+      this.client.setConnected(true);
+      this.client.setDataReceived(true);
+      if (json && typeof json === 'object') {
+        if (typeof json.i === 'number') {
+          this.lastIndex = json.i;
+        }
+        if (isNewOutage && json.d && typeof json.d === 'object') {
+          // the backend sends the values it has received last, keep them
+          this.client.update(json.d);
+        }
+      }
+      this.retryServerErrorCounter = 0; // this is no server error
+      this.doRestart = false;
+      if (this.running) {
+        this.info(`knxd is not available, retrying in ${this.KNXD_DOWN_RETRY_DELAY} ms`);
+        this.watchdog.ping();
+        if (!this.watchdog.isActive()) {
+          this.watchdog.start(5);
+        }
+        this.__knxdRetryTimer = qx.event.Timer.once(
+          function () {
+            this.__knxdRetryTimer = null;
+            if (this.running && !this.isDisposed()) {
+              // only ask for new values, the backend keeps the last ones anyway
+              const data = this.client.buildRequest();
+              if (this.lastIndex >= 0) {
+                data.i = this.lastIndex;
+              }
+              this.__startReading(data);
+            }
+          },
+          this,
+          this.KNXD_DOWN_RETRY_DELAY
+        );
+      }
     },
 
     /**
@@ -239,6 +304,12 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
           return;
         }
+        if (this.client.reportKnxdStatus(json) === 'recovery') {
+          // knxd is back, the values might have changed while the backend
+          // was not able to reach the bus -> reload all data
+          this.restart(true);
+          return;
+        }
         this.lastIndex = json.i;
         data = json.d;
         this.readResendHeaderValues();
@@ -278,6 +349,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
       }
       if (json && !this.doRestart) {
         this.readResendHeaderValues();
+        this.client.reportKnxdStatus(json);
         this.client.update(json.d);
         this.client.setDataReceived(true);
         this.client.setConnected(true);
@@ -305,6 +377,18 @@ qx.Class.define('cv.io.transport.LongPolling', {
     },
 
     /**
+     * Stop and dispose a pending read retry that was scheduled during a knxd
+     * outage.
+     */
+    __clearKnxdRetryTimer() {
+      if (this.__knxdRetryTimer) {
+        this.__knxdRetryTimer.stop();
+        this.__knxdRetryTimer.dispose();
+        this.__knxdRetryTimer = null;
+      }
+    },
+
+    /**
      * This function gets called on an error
      *
      *
@@ -323,6 +407,15 @@ qx.Class.define('cv.io.transport.LongPolling', {
           this.info('Connection timeout (status 0) detected - restarting');
           req.serverErrorHandled = true;
           this.restart();
+          return;
+        }
+
+        // The backend is reachable but has lost the connection to knxd. That
+        // is not a problem of the connection to the backend itself, so keep
+        // the connection alive and continue reading when knxd is back.
+        if (this.running && cv.io.Client.getKnxdStatus(req.getResponse())) {
+          req.serverErrorHandled = true;
+          this.__handleKnxdOutage(req.getResponse());
           return;
         }
 
@@ -349,6 +442,13 @@ qx.Class.define('cv.io.transport.LongPolling', {
         if (xhr.status === 0 && this.running && !this.doRestart) {
           this.info('Connection timeout (status 0) detected - restarting');
           this.restart();
+          return;
+        }
+
+        // The backend is reachable but has lost the connection to knxd, see
+        // the qooxdoo variant above.
+        if (this.running && cv.io.Client.getKnxdStatus(xhr.responseJSON ?? xhr.responseText)) {
+          this.__handleKnxdOutage(xhr.responseJSON ?? xhr.responseText);
           return;
         }
 
@@ -440,6 +540,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      */
     abort() {
       this.watchdog.stop();
+      this.__clearKnxdRetryTimer();
       if (this.xhr && this.xhr.abort) {
         this.xhr.abort();
         this.xhr = null;
@@ -464,6 +565,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     }
 
     this.watchdog.stop();
+    this.__clearKnxdRetryTimer();
     if (this.xhr && this.xhr.abort) {
       this.xhr.abort();
       this.xhr = null;

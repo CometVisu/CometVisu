@@ -155,6 +155,8 @@ The following *Topics* are currently used:
 * ``cv.error``: generic errors
 * ``cv.config.error``: Errors that occurred while reading in the config file
 * ``cv.state.*``: Namespace for all in the :ref:`notifications <notifications>` messages used
+* ``cv.client.connection.<backend>``: The connection to the backend is lost
+* ``cv.client.knxd.<backend>``: The backend has lost the connection to knxd (the KNX bus)
 
 A message receiver (``NotificationHandler``) can now register for one or more such topics:
 

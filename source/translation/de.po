@@ -1148,6 +1148,30 @@ msgstr "Der Icon-Name wurde in die Zwischenablage kopiert"
 msgid "Connection to backend \"%1\" is lost."
 msgstr "Verbindung zum Backend \"%1\" verloren."
 
+#: cv/io/Client.js
+msgid "KNX bus connection lost"
+msgstr "Verbindung zum KNX-Bus verloren"
+
+#: cv/io/Client.js
+msgid "The backend \"%1\" has lost the connection to the KNX bus (knxd). The values shown are the last ones that have been received."
+msgstr "Das Backend \"%1\" hat die Verbindung zum KNX-Bus (knxd) verloren. Die angezeigten Werte sind die zuletzt empfangenen."
+
+#: cv/io/Client.js
+msgid "No connection to knxd since %1 (%2 ago)."
+msgstr "Keine Verbindung zu knxd seit %1 (vor %2)."
+
+#: cv/io/Client.js
+msgid "%1 h"
+msgstr "%1 h"
+
+#: cv/io/Client.js
+msgid "%1 min"
+msgstr "%1 min"
+
+#: cv/io/Client.js
+msgid "%1 s"
+msgstr "%1 s"
+
 #: cv/ui/manager/control/FileController.js
 msgid "File \"%1\" has been renamed to \"%2\""
 msgstr "Datei \"%1\" wurde umbenannt in \"%2\""
