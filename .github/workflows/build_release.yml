@@ -29,6 +29,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
       - run: npm install
+      - name: Install grunt
+        run: npm install -g grunt-cli     
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
