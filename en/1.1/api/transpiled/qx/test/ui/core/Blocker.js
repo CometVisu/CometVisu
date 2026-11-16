@@ -38,85 +38,85 @@
   qx.Class.define("qx.test.ui.core.Blocker", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_399_0: null,
+      __P_400_0: null,
       setUp: function setUp() {
         qx.test.ui.core.Blocker.superclass.prototype.setUp.call(this);
-        this.__P_399_0 = new qx.ui.core.Blocker(this.getRoot());
-        this.__P_399_0.setColor("green");
-        this.__P_399_0.setOpacity(0.5);
+        this.__P_400_0 = new qx.ui.core.Blocker(this.getRoot());
+        this.__P_400_0.setColor("green");
+        this.__P_400_0.setOpacity(0.5);
       },
       tearDown: function tearDown() {
         qx.test.ui.core.Blocker.superclass.prototype.tearDown.call(this);
-        this.__P_399_0.dispose();
+        this.__P_400_0.dispose();
       },
       testBlocker: function testBlocker() {
-        var blockerElement = this.__P_399_0.getBlockerElement();
-        this.__P_399_0.block();
+        var blockerElement = this.__P_400_0.getBlockerElement();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.unblock();
+        this.__P_400_0.unblock();
         this.flush();
-        this.assertFalse(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertFalse(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertFalse(blockerElement.isIncluded(), "isIncluded()");
       },
       testBlockerThrice: function testBlockerThrice() {
-        var blockerElement = this.__P_399_0.getBlockerElement();
-        this.__P_399_0.block();
+        var blockerElement = this.__P_400_0.getBlockerElement();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.block();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.block();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.unblock();
+        this.__P_400_0.unblock();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.unblock();
+        this.__P_400_0.unblock();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.unblock();
+        this.__P_400_0.unblock();
         this.flush();
-        this.assertFalse(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertFalse(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertFalse(blockerElement.isIncluded(), "isIncluded()");
       },
       testForceUnblock: function testForceUnblock() {
-        var blockerElement = this.__P_399_0.getBlockerElement();
-        this.__P_399_0.block();
+        var blockerElement = this.__P_400_0.getBlockerElement();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.block();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
-        this.__P_399_0.forceUnblock();
+        this.__P_400_0.forceUnblock();
         this.flush();
-        this.assertFalse(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertFalse(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertFalse(blockerElement.isIncluded(), "isIncluded()");
       },
       testBlockedEvent: function testBlockedEvent() {
         var _this = this;
-        this.__P_399_1 = false;
-        this.__P_399_2 = false;
-        this.__P_399_0.addListenerOnce("blocked", function (e) {
-          _this.__P_399_1 = true;
+        this.__P_400_1 = false;
+        this.__P_400_2 = false;
+        this.__P_400_0.addListenerOnce("blocked", function (e) {
+          _this.__P_400_1 = true;
         });
-        this.__P_399_0.addListenerOnce("unblocked", function (e) {
-          _this.__P_399_2 = true;
+        this.__P_400_0.addListenerOnce("unblocked", function (e) {
+          _this.__P_400_2 = true;
         });
-        this.__P_399_0.block();
-        this.__P_399_0.unblock();
+        this.__P_400_0.block();
+        this.__P_400_0.unblock();
         this.wait(100, function () {
-          this.assertTrue(this.__P_399_1, "'blocked' event was not fired, after block() was executed!");
-          this.assertTrue(this.__P_399_2, "'unblocked' event was not fired, after unblock() was executed!");
+          this.assertTrue(this.__P_400_1, "'blocked' event was not fired, after block() was executed!");
+          this.assertTrue(this.__P_400_2, "'unblocked' event was not fired, after unblock() was executed!");
         }, this);
       },
       testRestoreActiveAndFocusedWidgets: function testRestoreActiveAndFocusedWidgets() {
@@ -133,18 +133,18 @@
         // set active widget after focusing a widget, because focus() sets the same widget as active one.
         txt1.activate();
         this.flush();
-        var blockerElement = this.__P_399_0.getBlockerElement();
-        this.__P_399_0.block();
+        var blockerElement = this.__P_400_0.getBlockerElement();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
         activeWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getActive());
         this.assertFalse(activeWidget === txt1, "text field 1 must not be active");
         focusedWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getFocus());
         this.assertFalse(focusedWidget === txt2, "text field 2 must not be focused");
-        this.__P_399_0.unblock();
+        this.__P_400_0.unblock();
         this.flush();
-        this.assertFalse(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertFalse(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertFalse(blockerElement.isIncluded(), "isIncluded()");
         activeWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getActive());
         this.assertTrue(activeWidget === txt1, "text field 1 must be active");
@@ -163,18 +163,18 @@
         this.getRoot().add(txt);
         txt.focus();
         this.flush();
-        var blockerElement = this.__P_399_0.getBlockerElement();
-        this.__P_399_0.block();
+        var blockerElement = this.__P_400_0.getBlockerElement();
+        this.__P_400_0.block();
         this.flush();
-        this.assertTrue(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertTrue(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertTrue(blockerElement.isIncluded(), "isIncluded()");
 
         // destroy text field
         txt.destroy();
         this.flush();
-        this.__P_399_0.unblock();
+        this.__P_400_0.unblock();
         this.flush();
-        this.assertFalse(this.__P_399_0.isBlocked(), "isBlocked()");
+        this.assertFalse(this.__P_400_0.isBlocked(), "isBlocked()");
         this.assertFalse(blockerElement.isIncluded(), "isIncluded()");
 
         // text field must not be focused
@@ -309,4 +309,4 @@
   qx.test.ui.core.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1792082783315
+//# sourceMappingURL=Blocker.js.map?dt=1794845767044

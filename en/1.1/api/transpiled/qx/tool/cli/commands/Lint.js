@@ -132,7 +132,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   files[i] = path.join(process.cwd(), files[i]);
                 }
                 _context.n = 1;
-                return _this.__P_481_0(files);
+                return _this.__P_482_0(files);
               case 1:
                 helperFilePath = require.main.path;
               case 2:
@@ -159,7 +159,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _t = Object;
                 _t2 = lintOptions.globals || {};
                 _context.n = 6;
-                return _this.__P_481_1(config);
+                return _this.__P_482_1(config);
               case 6:
                 lintOptions.globals = _t.assign.call(_t, _t2, _context.v);
                 lintOptions.parser = "@babel/eslint-parser";
@@ -279,7 +279,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {Object} data
        * @return {Promise<void>}
        */
-      __P_481_1: function __P_481_1(data) {
+      __P_482_1: function __P_482_1(data) {
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
           var result;
           return _regenerator().w(function (_context3) {
@@ -324,7 +324,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_481_0: function __P_481_0(files) {
+      __P_482_0: function __P_482_0(files) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
           var fixParams, regex, replaceInFiles;
@@ -355,4 +355,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Lint.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Lint.js.map?dt=1792082788326
+//# sourceMappingURL=Lint.js.map?dt=1794845771761

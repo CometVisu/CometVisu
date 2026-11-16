@@ -11,7 +11,7 @@ function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new T
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
@@ -73,37 +73,37 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_89_0: null,
-      __P_89_1: null,
-      __P_89_2: null,
-      __P_89_3: null,
-      __P_89_4: null,
+      __P_90_0: null,
+      __P_90_1: null,
+      __P_90_2: null,
+      __P_90_3: null,
+      __P_90_4: null,
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.components.Select.superclass.prototype._init.call(this);
         var element = this._element;
-        this.__P_89_0 = new Map();
-        if (!this.__P_89_3) {
-          this.__P_89_3 = function (ev) {
+        this.__P_90_0 = new Map();
+        if (!this.__P_90_3) {
+          this.__P_90_3 = function (ev) {
             return _this.handleEvent(ev);
           };
         }
         var popup = element.querySelector(':scope > .popup');
         if (!popup) {
-          popup = this.__P_89_2 = document.createElement('div');
+          popup = this.__P_90_2 = document.createElement('div');
           popup.classList.add('popup');
           element.querySelectorAll(':scope > cv-option').forEach(function (option, i) {
             popup.appendChild(option);
             if (!option.hasAttribute('key')) {
               option.setAttribute('key', '' + i);
             }
-            _this.__P_89_0.set(option.getAttribute('key'), option);
+            _this.__P_90_0.set(option.getAttribute('key'), option);
           });
         } else {
           // restore from existing popup
-          this.__P_89_2 = popup;
+          this.__P_90_2 = popup;
           element.querySelectorAll(':scope > cv-option').forEach(function (option, i) {
-            _this.__P_89_0.set(option.getAttribute('key'), option);
+            _this.__P_90_0.set(option.getAttribute('key'), option);
           });
         }
         var value = element.querySelector(':scope > .value');
@@ -113,7 +113,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           element.appendChild(value);
         }
         element.appendChild(popup);
-        this.__P_89_1 = value;
+        this.__P_90_1 = value;
         var handle = element.querySelector(':scope > .dropdown');
         if (!handle) {
           handle = document.createElement('cv-icon');
@@ -130,26 +130,26 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _toggleOptions: function _toggleOptions(close) {
         var _this2 = this;
         // open popup
-        if (!this.__P_89_2.classList.contains('open') && !close) {
-          this.__P_89_2.classList.add('open');
-          if (this.__P_89_4 !== null) {
-            window.cancelAnimationFrame(this.__P_89_4);
+        if (!this.__P_90_2.classList.contains('open') && !close) {
+          this.__P_90_2.classList.add('open');
+          if (this.__P_90_4 !== null) {
+            window.cancelAnimationFrame(this.__P_90_4);
           }
-          this.__P_89_4 = window.requestAnimationFrame(function () {
-            _this2.__P_89_4 = null;
+          this.__P_90_4 = window.requestAnimationFrame(function () {
+            _this2.__P_90_4 = null;
             if (!_this2.isConnected()) {
               return;
             }
             // delay adding this listener, otherwise it would fire immediately
-            document.body.addEventListener('click', _this2.__P_89_3, true);
+            document.body.addEventListener('click', _this2.__P_90_3, true);
           });
         } else {
-          this.__P_89_2.classList.remove('open');
-          if (this.__P_89_4 !== null) {
-            window.cancelAnimationFrame(this.__P_89_4);
-            this.__P_89_4 = null;
+          this.__P_90_2.classList.remove('open');
+          if (this.__P_90_4 !== null) {
+            window.cancelAnimationFrame(this.__P_90_4);
+            this.__P_90_4 = null;
           }
-          document.body.removeEventListener('click', this.__P_89_3, true);
+          document.body.removeEventListener('click', this.__P_90_3, true);
         }
       },
       handleEvent: function handleEvent(ev) {
@@ -187,9 +187,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       _updateValue: function _updateValue(mappedValue, value) {
         var key = typeof mappedValue !== 'undefined' ? '' + mappedValue : '';
-        if (this.__P_89_0.has(key)) {
-          this.__P_89_1.innerHTML = '';
-          var current = this.__P_89_0.get(key);
+        if (this.__P_90_0.has(key)) {
+          this.__P_90_1.innerHTML = '';
+          var current = this.__P_90_0.get(key);
           switch (this.getShow()) {
             case 'icon':
               // if we have non text children, we only use them (only icons no text)
@@ -199,7 +199,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 for (_iterator.s(); !(_step = _iterator.n()).done;) {
                   var child = _step.value;
                   if (child.nodeName.toLowerCase() === 'cv-icon') {
-                    this.__P_89_1.appendChild(child.cloneNode());
+                    this.__P_90_1.appendChild(child.cloneNode());
                   }
                 }
               } catch (err) {
@@ -215,7 +215,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
                   var _child = _step2.value;
                   if (_child.nodeType === Node.TEXT_NODE || _child.nodeType === Node.ELEMENT_NODE && _child.nodeName.toLowerCase() === 'label') {
-                    this.__P_89_1.appendChild(_child.cloneNode());
+                    this.__P_90_1.appendChild(_child.cloneNode());
                   }
                 }
               } catch (err) {
@@ -225,22 +225,22 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               }
               break;
             case 'both':
-              this.__P_89_1.innerHTML = current.innerHTML;
+              this.__P_90_1.innerHTML = current.innerHTML;
               break;
           }
         }
       },
       _disconnected: function _disconnected() {
-        if (this.__P_89_4 !== null) {
-          window.cancelAnimationFrame(this.__P_89_4);
-          this.__P_89_4 = null;
+        if (this.__P_90_4 !== null) {
+          window.cancelAnimationFrame(this.__P_90_4);
+          this.__P_90_4 = null;
         }
         cv.ui.structure.tile.components.Select.superclass.prototype._disconnected.call(this);
-        if (this.__P_89_3) {
-          document.body.removeEventListener('click', this.__P_89_3, true);
+        if (this.__P_90_3) {
+          document.body.removeEventListener('click', this.__P_90_3, true);
         }
-        if (this.__P_89_2) {
-          this.__P_89_2.style.display = 'none';
+        if (this.__P_90_2) {
+          this.__P_90_2.style.display = 'none';
         }
       },
       _applyShow: function _applyShow(show) {
@@ -266,4 +266,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Select.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Select.js.map?dt=1792082766165
+//# sourceMappingURL=Select.js.map?dt=1794845750592

@@ -58,7 +58,7 @@
       if (cellEditorFactoryFunction) {
         this.setCellEditorFactoryFunction(cellEditorFactoryFunction);
       }
-      this.__P_681_0 = {};
+      this.__P_682_0 = {};
     },
     /*
     *****************************************************************************
@@ -95,8 +95,8 @@
     */
 
     members: {
-      __P_681_1: null,
-      __P_681_0: null,
+      __P_682_1: null,
+      __P_682_0: null,
       /**
        * Creates the cell editor based on the cellEditorFactory instance
        * returned by the function stored in the cellEditorFactoryFunction
@@ -108,20 +108,20 @@
        */
       createCellEditor: function createCellEditor(cellInfo) {
         var cellEditorFactoryFunction = this.getCellEditorFactoryFunction();
-        this.__P_681_1 = cellEditorFactoryFunction(cellInfo);
-        var cellEditor = this.__P_681_1.createCellEditor(cellInfo);
+        this.__P_682_1 = cellEditorFactoryFunction(cellInfo);
+        var cellEditor = this.__P_682_1.createCellEditor(cellInfo);
 
         // save the cell info to the editor (needed for getting the value)
-        this.__P_681_0[cellEditor.toHashCode()] = cellInfo;
+        this.__P_682_0[cellEditor.toHashCode()] = cellInfo;
         return cellEditor;
       },
       // interface implementation
       getCellEditorValue: function getCellEditorValue(cellEditor) {
         var cellEditorFactoryFunction = this.getCellEditorFactoryFunction();
-        var cellInfo = this.__P_681_0[cellEditor.toHashCode()];
+        var cellInfo = this.__P_682_0[cellEditor.toHashCode()];
         // update the propper factory
-        this.__P_681_1 = cellEditorFactoryFunction(cellInfo);
-        var value = this.__P_681_1.getCellEditorValue(cellEditor);
+        this.__P_682_1 = cellEditorFactoryFunction(cellInfo);
+        var value = this.__P_682_1.getCellEditorValue(cellEditor);
         return value;
       }
     },
@@ -131,10 +131,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_681_1 = null;
+      this.__P_682_1 = null;
     }
   });
   qx.ui.table.celleditor.Dynamic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dynamic.js.map?dt=1792082798218
+//# sourceMappingURL=Dynamic.js.map?dt=1794845781590

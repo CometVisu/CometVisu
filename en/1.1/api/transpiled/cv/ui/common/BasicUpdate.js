@@ -77,7 +77,7 @@
     */
     statics: {
       /** cache for {@link replaceMissingFormatValues}, keyed by format string and missing positions */
-      __P_784_0: {},
+      __P_786_0: {},
       /**
        * Shown instead of a value that has not been received yet. It is the same marker
        * {@link cv.util.String#sprintf} already returns when formatting fails.
@@ -128,7 +128,7 @@
         if (missing.length === 0) {
           return format;
         }
-        var cache = cv.ui.common.BasicUpdate.__P_784_0;
+        var cache = cv.ui.common.BasicUpdate.__P_786_0;
         var key = JSON.stringify([format, placeholder, missing]);
         if (cache[key] === undefined) {
           cache[key] = format.replace(cv.ui.common.BasicUpdate.placeholderRegex(), function (found, position) {
@@ -384,4 +384,4 @@
   cv.ui.common.BasicUpdate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BasicUpdate.js.map?dt=1792082802597
+//# sourceMappingURL=BasicUpdate.js.map?dt=1794845785976

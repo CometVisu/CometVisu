@@ -150,7 +150,8 @@ a click on it opens a fullscreen diagram showing the history of that value. It i
 <code class="docutils literal notranslate"><span class="pre">diagram_info</span></code> and draws with D3.</p>
 <p>The displayed value comes from the <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code> element and is rendered through <code class="docutils literal notranslate"><span class="pre">format</span></code>, like
 in every other info widget. The diagram in the popup is configured exactly like <a class="reference internal" href="../diagram2/index.html#diagram2"><span class="std std-ref">The diagram2 plugin</span></a>:
-through <code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code> and the data sources <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;demo&gt;</span></code>. Interaction in the popup — panning, zooming, reloading the visible range — is the same
+through <code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code> and the data sources <code class="docutils literal notranslate"><span class="pre">&lt;iobroker&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> and
+<code class="docutils literal notranslate"><span class="pre">&lt;demo&gt;</span></code>. Interaction in the popup — panning, zooming, reloading the visible range — is the same
 as well.</p>
 <p>Without <code class="docutils literal notranslate"><span class="pre">popup=&quot;true&quot;</span></code> the widget stays a plain value display and is not clickable.</p>
 <p>To show the diagram itself as the widget, use <a class="reference internal" href="../diagram2/index.html#diagram2"><span class="std std-ref">The diagram2 plugin</span></a>.</p>
@@ -158,7 +159,7 @@ as well.</p>
 <span class="w">    </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"3"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;label&gt;</span>Outside<span class="w"> </span>temperature<span class="nt">&lt;/label&gt;</span>
 <span class="w">    </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">unit=</span><span class="s">" °C"</span><span class="w"> </span><span class="na">decimals=</span><span class="s">"1"</span><span class="nt">&gt;</span>temperature<span class="nt">&lt;/axis&gt;</span>
-<span class="w">    </span><span class="nt">&lt;influx</span><span class="w"> </span><span class="na">measurement=</span><span class="s">"house/temperature"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;iobroker</span><span class="w"> </span><span class="na">instance=</span><span class="s">"influxdb.0"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="nt">&gt;</span>hm-rpc.0.LEQ123456.1.TEMPERATURE<span class="nt">&lt;/iobroker&gt;</span>
 <span class="w">    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:9.001"</span><span class="nt">&gt;</span>4/2/0<span class="nt">&lt;/address&gt;</span>
 <span class="nt">&lt;/diagram2_info&gt;</span>
 </pre></div>
@@ -484,6 +485,102 @@ as well.</p>
 <tr class="row-odd"><td><dl class="simple">
 <dt>diagram2_info</dt><dd><ul class="simple">
 <li><p>axis</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="15"><dl class="simple">
+<dt>diagram2_info</dt><dd><ul class="simple">
+<li><p>iobroker</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>backend</p></td>
+<td><p>string</p></td>
+<td><p>Name of the backend connection the history is read from. Defaults to the default backend connection.</p></td>
+</tr>
+<tr class="row-even"><td><p>instance</p></td>
+<td><p>string</p></td>
+<td><p>Instance of the ioBroker history adapter that holds the data, e.g. sql.0. Without it ioBroker uses the instance configured on the state itself.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yaxis</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>label</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>scaling</p></td>
+<td><p>decimal</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>steps</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>fill</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>offset</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>resolution</p></td>
+<td><p>integer</p></td>
+<td><p>Resolution in seconds. Sets the aggregation step of the ioBroker history request.</p></td>
+</tr>
+<tr class="row-odd"><td><p>consolidationFunction</p></td>
+<td><p><em>AVERAGE</em>, <em>MIN</em>, <em>MAX</em>, <em>TOTAL</em>, <em>COUNT</em>, <em>INTEGRAL</em>, <em>MINMAX</em> or <em>NONE</em></p></td>
+<td><p>How the values are aggregated per step by the ioBroker history adapter. Not every adapter implements all of them, NONE returns the stored values unaggregated.</p></td>
+</tr>
+<tr class="row-even"><td><p>fillMissing</p></td>
+<td><p><em>previous</em>, <em>linear</em> or <em>none</em></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p><em>lines</em>, <em>bars</em> or <em>points</em></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>barWidth</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> or <em>center</em></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>diagram2_info</dt><dd><ul class="simple">
+<li><p>iobroker</p>
 <ul>
 <li><p>#text</p></li>
 </ul>
@@ -973,7 +1070,7 @@ as well.</p>
 </td>
 <td></td>
 <td><p>string</p></td>
-<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB / ioBroker backend or the MQTT topic</p></td>
 </tr>
 </tbody>
 </table>
@@ -1047,6 +1144,9 @@ as well.</p>
         </dd>
         
         <dd><a href="../../../../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

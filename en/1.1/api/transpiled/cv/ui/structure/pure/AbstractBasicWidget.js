@@ -89,7 +89,7 @@
     ******************************************************
     */
     members: {
-      __P_60_0: null,
+      __P_61_0: null,
       _domElement: null,
       /**
        * Can be overridden to modify props before they are applied in the constructor
@@ -107,17 +107,17 @@
         this._domElement = node;
       },
       setParentWidget: function setParentWidget(value) {
-        this.__P_60_0 = value;
+        this.__P_61_0 = value;
       },
       getParentWidget: function getParentWidget() {
-        if (cv.Config.lazyLoading === true && this.__P_60_0 === null && this.getPath() !== 'id_') {
+        if (cv.Config.lazyLoading === true && this.__P_61_0 === null && this.getPath() !== 'id_') {
           // creating parent widget on demand
           var parentData = cv.util.Tree.getParentData(this.getPath());
           // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
           var parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
           this.setParentWidget(parent);
         }
-        return this.__P_60_0;
+        return this.__P_61_0;
       },
       /**
        * Returns the DOMElement of this widget
@@ -169,4 +169,4 @@
   cv.ui.structure.pure.AbstractBasicWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1792082764049
+//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1794845748562

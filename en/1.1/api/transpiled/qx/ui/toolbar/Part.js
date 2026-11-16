@@ -119,10 +119,10 @@
             break;
           case "container":
             control = new qx.ui.toolbar.PartContainer();
-            control.addListener("syncAppearance", this.__P_704_0, this);
+            control.addListener("syncAppearance", this.__P_705_0, this);
             this._add(control);
             control.addListener("changeChildren", function () {
-              _this.__P_704_0();
+              _this.__P_705_0();
             });
             break;
         }
@@ -149,7 +149,7 @@
       /**
        * Helper which applies the left, right and middle states.
        */
-      __P_704_0: function __P_704_0() {
+      __P_705_0: function __P_705_0() {
         // check every child
         var children = this.getChildrenContainer().getChildren();
         children = children.filter(function (child) {
@@ -207,4 +207,4 @@
   qx.ui.toolbar.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1792082799336
+//# sourceMappingURL=Part.js.map?dt=1794845782735

@@ -71,36 +71,36 @@
     implement: [qx.core.IDisposable],
     construct: function construct() {
       qx.bom.History.constructor.call(this);
-      this.__P_130_0();
+      this.__P_131_0();
     },
     members: {
-      __P_130_1: null,
+      __P_131_1: null,
       /**
        * Attach hash change listeners
        */
-      __P_130_0: function __P_130_0() {
+      __P_131_0: function __P_131_0() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          var boundFunc = qx.lang.Function.bind(this.__P_130_2, this);
-          this.__P_130_1 = qx.event.GlobalError.observeMethod(boundFunc);
-          qx.bom.Event.addNativeListener(window, "hashchange", this.__P_130_1);
+          var boundFunc = qx.lang.Function.bind(this.__P_131_2, this);
+          this.__P_131_1 = qx.event.GlobalError.observeMethod(boundFunc);
+          qx.bom.Event.addNativeListener(window, "hashchange", this.__P_131_1);
         } else {
-          qx.event.Idle.getInstance().addListener("interval", this.__P_130_2, this);
+          qx.event.Idle.getInstance().addListener("interval", this.__P_131_2, this);
         }
       },
       /**
        * Remove hash change listeners
        */
-      __P_130_3: function __P_130_3() {
+      __P_131_3: function __P_131_3() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          qx.bom.Event.removeNativeListener(window, "hashchange", this.__P_130_1);
+          qx.bom.Event.removeNativeListener(window, "hashchange", this.__P_131_1);
         } else {
-          qx.event.Idle.getInstance().removeListener("interval", this.__P_130_2, this);
+          qx.event.Idle.getInstance().removeListener("interval", this.__P_131_2, this);
         }
       },
       /**
        * hash change event handler
        */
-      __P_130_2: function __P_130_2() {
+      __P_131_2: function __P_131_2() {
         var currentState = this._readState();
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
           this._onHistoryLoad(currentState);
@@ -131,10 +131,10 @@
       })
     },
     destruct: function destruct() {
-      this.__P_130_3();
+      this.__P_131_3();
     }
   });
   qx.bom.NativeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeHistory.js.map?dt=1792082768058
+//# sourceMappingURL=NativeHistory.js.map?dt=1794845752388

@@ -91,9 +91,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
       if (fontFamily) {
         this.setFontFamily(fontFamily);
-        this.__P_172_0 = this._getRequestedHelpers();
+        this.__P_173_0 = this._getRequestedHelpers();
       }
-      this.__P_172_1 = new qx.Promise();
+      this.__P_173_1 = new qx.Promise();
     },
     /*
     *****************************************************************************
@@ -133,20 +133,20 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * property.
        */
       COMPARISON_STRING: "WEei",
-      __P_172_2: null,
-      __P_172_3: null,
+      __P_173_2: null,
+      __P_173_3: null,
       /**
        * Removes the two common helper elements used for all size comparisons from
        * the DOM
        */
       removeDefaultHelperElements: function removeDefaultHelperElements() {
-        var defaultHelpers = qx.bom.webfonts.Validator.__P_172_3;
+        var defaultHelpers = qx.bom.webfonts.Validator.__P_173_3;
         if (defaultHelpers) {
           for (var prop in defaultHelpers) {
             document.body.removeChild(defaultHelpers[prop]);
           }
         }
-        delete qx.bom.webfonts.Validator.__P_172_3;
+        delete qx.bom.webfonts.Validator.__P_173_3;
       }
     },
     /*
@@ -213,10 +213,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     */
 
     members: {
-      __P_172_0: null,
-      __P_172_4: null,
-      __P_172_5: null,
-      __P_172_1: null,
+      __P_173_0: null,
+      __P_173_4: null,
+      __P_173_5: null,
+      __P_173_1: null,
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
@@ -227,22 +227,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       validate: function validate() {
         var _this = this;
-        if (this.__P_172_5) {
+        if (this.__P_173_5) {
           return;
         }
         var setValidImpl = function setValidImpl(valid) {
-          if (_this.__P_172_4) {
-            _this.__P_172_4.stop();
+          if (_this.__P_173_4) {
+            _this.__P_173_4.stop();
           }
           _this._reset();
-          _this.__P_172_1.resolve(valid);
+          _this.__P_173_1.resolve(valid);
           _this.fireDataEvent("changeStatus", {
             family: _this.getFontFamily(),
             valid: valid
           });
         };
         if (document.fonts && typeof document.fonts.load == "function") {
-          this.__P_172_5 = new Date().getTime();
+          this.__P_173_5 = new Date().getTime();
           var fontExpr = "".concat(this.getFontStyle() || "normal", " ").concat(this.getFontWeight() || "normal", " 14px ").concat(this.getFontFamily());
           var loadImpl = /*#__PURE__*/function () {
             var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
@@ -283,7 +283,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }();
           loadImpl();
         } else {
-          this.__P_172_5 = new Date().getTime();
+          this.__P_173_5 = new Date().getTime();
           var _fontExpr = "".concat(this.getFontStyle() || "normal", " ").concat(this.getFontWeight() || "normal", " 14px ").concat(this.getFontFamily());
           var timerCheck = function timerCheck() {
             if (_this._isFontValid()) {
@@ -297,7 +297,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               }
             } else {
               var now = new Date().getTime();
-              if (now - _this.__P_172_5 >= _this.getTimeout()) {
+              if (now - _this.__P_173_5 >= _this.getTimeout()) {
                 setValidImpl(false);
               }
             }
@@ -305,9 +305,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
           // Give the browser a chance to render the new elements
           qx.event.Timer.once(function () {
-            _this.__P_172_4 = new qx.event.Timer(100);
-            _this.__P_172_4.addListener("interval", timerCheck);
-            _this.__P_172_4.start();
+            _this.__P_173_4 = new qx.event.Timer(100);
+            _this.__P_173_4.addListener("interval", timerCheck);
+            _this.__P_173_4.start();
           }, this, 0);
         }
       },
@@ -323,7 +323,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context2.n) {
               case 0:
                 _context2.n = 1;
-                return _this2.__P_172_1;
+                return _this2.__P_173_1;
               case 1:
                 return _context2.a(2, _context2.v);
             }
@@ -339,12 +339,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Removes the helper elements from the DOM
        */
       _reset: function _reset() {
-        if (this.__P_172_0) {
-          for (var prop in this.__P_172_0) {
-            var elem = this.__P_172_0[prop];
+        if (this.__P_173_0) {
+          for (var prop in this.__P_173_0) {
+            var elem = this.__P_173_0[prop];
             document.body.removeChild(elem);
           }
-          this.__P_172_0 = null;
+          this.__P_173_0 = null;
         }
       },
       /**
@@ -356,22 +356,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * in size
        */
       _isFontValid: function _isFontValid() {
-        if (!qx.bom.webfonts.Validator.__P_172_2) {
-          this.__P_172_6();
+        if (!qx.bom.webfonts.Validator.__P_173_2) {
+          this.__P_173_6();
         }
-        if (!this.__P_172_0) {
-          this.__P_172_0 = this._getRequestedHelpers();
+        if (!this.__P_173_0) {
+          this.__P_173_0 = this._getRequestedHelpers();
         }
 
         // force rerendering for chrome
-        this.__P_172_0.sans.style.visibility = "visible";
-        this.__P_172_0.sans.style.visibility = "hidden";
-        this.__P_172_0.serif.style.visibility = "visible";
-        this.__P_172_0.serif.style.visibility = "hidden";
-        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_172_0.sans);
-        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_172_0.serif);
+        this.__P_173_0.sans.style.visibility = "visible";
+        this.__P_173_0.sans.style.visibility = "hidden";
+        this.__P_173_0.serif.style.visibility = "visible";
+        this.__P_173_0.serif.style.visibility = "hidden";
+        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_173_0.sans);
+        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_173_0.serif);
         var cls = qx.bom.webfonts.Validator;
-        if (requestedSans !== cls.__P_172_2.sans || requestedSerif !== cls.__P_172_2.serif) {
+        if (requestedSans !== cls.__P_173_2.sans || requestedSerif !== cls.__P_173_2.serif) {
           return true;
         }
         return false;
@@ -446,17 +446,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * Creates the default helper elements and gets their widths
        */
-      __P_172_6: function __P_172_6() {
+      __P_173_6: function __P_173_6() {
         var cls = qx.bom.webfonts.Validator;
-        if (!cls.__P_172_3) {
-          cls.__P_172_3 = {
+        if (!cls.__P_173_3) {
+          cls.__P_173_3 = {
             sans: this._getHelperElement(cls.COMPARISON_FONTS.sans),
             serif: this._getHelperElement(cls.COMPARISON_FONTS.serif)
           };
         }
-        cls.__P_172_2 = {
-          sans: qx.bom.element.Dimension.getWidth(cls.__P_172_3.sans),
-          serif: qx.bom.element.Dimension.getWidth(cls.__P_172_3.serif)
+        cls.__P_173_2 = {
+          sans: qx.bom.element.Dimension.getWidth(cls.__P_173_3.sans),
+          serif: qx.bom.element.Dimension.getWidth(cls.__P_173_3.serif)
         };
       }
     },
@@ -467,13 +467,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     */
     destruct: function destruct() {
       this._reset();
-      if (this.__P_172_4 != null) {
-        this.__P_172_4.stop();
+      if (this.__P_173_4 != null) {
+        this.__P_173_4.stop();
       }
-      this._disposeObjects("__P_172_4");
+      this._disposeObjects("__P_173_4");
     }
   });
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1792082769751
+//# sourceMappingURL=Validator.js.map?dt=1794845754004

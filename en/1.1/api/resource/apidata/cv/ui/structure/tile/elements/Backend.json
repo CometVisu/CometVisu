@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547845,
-  "lastModifiedIso": "2026-10-15T16:42:27.845Z",
+  "lastModified": 1794845538753,
+  "lastModifiedIso": "2026-11-16T16:12:18.753Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/elements/Backend.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 884
     },
     "end": {
-      "line": 189,
+      "line": 192,
       "column": 3,
-      "index": 6401
+      "index": 6503
     }
   },
   "className": "cv.ui.structure.tile.elements.Backend",
@@ -76,9 +76,9 @@
           "index": 1189
         },
         "end": {
-          "line": 163,
+          "line": 166,
           "column": 5,
-          "index": 5749
+          "index": 5851
         }
       },
       "type": "function",
@@ -93,14 +93,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 165,
+          "line": 168,
           "column": 4,
-          "index": 5756
+          "index": 5858
         },
         "end": {
-          "line": 176,
+          "line": 179,
           "column": 5,
-          "index": 6178
+          "index": 6280
         }
       },
       "type": "function",

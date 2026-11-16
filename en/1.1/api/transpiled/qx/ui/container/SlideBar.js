@@ -424,4 +424,4 @@
   qx.ui.container.SlideBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SlideBar.js.map?dt=1792082792853
+//# sourceMappingURL=SlideBar.js.map?dt=1794845776320

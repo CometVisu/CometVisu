@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547828,
-  "lastModifiedIso": "2026-10-15T16:42:27.828Z",
+  "lastModified": 1794845538736,
+  "lastModifiedIso": "2026-11-16T16:12:18.736Z",
   "classFilename": "../../source/class/cv/io/timeseries/AbstractTimeSeriesSource.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 181,
       "column": 3,
-      "index": 4935
+      "index": 4944
     }
   },
   "className": "cv.io.timeseries.AbstractTimeSeriesSource",
@@ -68,8 +68,8 @@
         },
         "end": {
           "line": 46,
-          "column": 106,
-          "index": 1579
+          "column": 115,
+          "index": 1588
         }
       },
       "appearsIn": []
@@ -81,12 +81,12 @@
         "start": {
           "line": 55,
           "column": 4,
-          "index": 1731
+          "index": 1740
         },
         "end": {
           "line": 59,
           "column": 5,
-          "index": 1831
+          "index": 1840
         }
       },
       "json": {
@@ -106,12 +106,12 @@
         "start": {
           "line": 68,
           "column": 4,
-          "index": 1977
+          "index": 1986
         },
         "end": {
           "line": 68,
           "column": 16,
-          "index": 1989
+          "index": 1998
         }
       },
       "appearsIn": []
@@ -123,12 +123,12 @@
         "start": {
           "line": 69,
           "column": 4,
-          "index": 1995
+          "index": 2004
         },
         "end": {
           "line": 69,
           "column": 22,
-          "index": 2013
+          "index": 2022
         }
       },
       "appearsIn": []
@@ -140,12 +140,12 @@
         "start": {
           "line": 70,
           "column": 4,
-          "index": 2019
+          "index": 2028
         },
         "end": {
           "line": 70,
           "column": 14,
-          "index": 2029
+          "index": 2038
         }
       },
       "appearsIn": []
@@ -157,12 +157,12 @@
         "start": {
           "line": 72,
           "column": 4,
-          "index": 2036
+          "index": 2045
         },
         "end": {
           "line": 77,
           "column": 5,
-          "index": 2146
+          "index": 2155
         }
       },
       "type": "function",
@@ -176,12 +176,12 @@
         "start": {
           "line": 79,
           "column": 4,
-          "index": 2153
+          "index": 2162
         },
         "end": {
           "line": 99,
           "column": 5,
-          "index": 2805
+          "index": 2814
         }
       },
       "type": "function",
@@ -199,12 +199,12 @@
         "start": {
           "line": 101,
           "column": 4,
-          "index": 2812
+          "index": 2821
         },
         "end": {
           "line": 101,
           "column": 14,
-          "index": 2822
+          "index": 2831
         }
       },
       "type": "function",
@@ -218,12 +218,12 @@
         "start": {
           "line": 102,
           "column": 4,
-          "index": 2828
+          "index": 2837
         },
         "end": {
           "line": 102,
           "column": 21,
-          "index": 2845
+          "index": 2854
         }
       },
       "type": "function",
@@ -298,12 +298,12 @@
         "start": {
           "line": 112,
           "column": 4,
-          "index": 3197
+          "index": 3206
         },
         "end": {
           "line": 118,
           "column": 5,
-          "index": 3331
+          "index": 3340
         }
       },
       "type": "function",
@@ -344,12 +344,12 @@
         "start": {
           "line": 120,
           "column": 4,
-          "index": 3338
+          "index": 3347
         },
         "end": {
           "line": 122,
           "column": 5,
-          "index": 3386
+          "index": 3395
         }
       },
       "type": "function",
@@ -367,12 +367,12 @@
         "start": {
           "line": 124,
           "column": 4,
-          "index": 3393
+          "index": 3402
         },
         "end": {
           "line": 168,
           "column": 5,
-          "index": 4682
+          "index": 4691
         }
       },
       "type": "function",
@@ -393,12 +393,12 @@
         "start": {
           "line": 170,
           "column": 4,
-          "index": 4689
+          "index": 4698
         },
         "end": {
           "line": 179,
           "column": 5,
-          "index": 4927
+          "index": 4936
         }
       },
       "type": "function",

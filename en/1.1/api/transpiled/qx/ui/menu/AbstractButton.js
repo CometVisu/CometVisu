@@ -273,10 +273,10 @@
         {
           var oldCommand = e.getOldData();
           if (!oldCommand) {
-            this.__P_620_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+            this.__P_621_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
           }
-          if (!command && this.__P_620_0) {
-            qx.locale.Manager.getInstance().removeListenerById(this.__P_620_0);
+          if (!command && this.__P_621_0) {
+            qx.locale.Manager.getInstance().removeListenerById(this.__P_621_0);
           }
         }
         var cmdString = command != null ? command.toString() : "";
@@ -376,12 +376,12 @@
           this.getMenu().destroy();
         }
       }
-      if (true && this.__P_620_0) {
-        qx.locale.Manager.getInstance().removeListenerById(this.__P_620_0);
+      if (true && this.__P_621_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_621_0);
       }
     }
   });
   qx.ui.menu.AbstractButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractButton.js.map?dt=1792082795944
+//# sourceMappingURL=AbstractButton.js.map?dt=1794845779459

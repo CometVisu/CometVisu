@@ -79,7 +79,7 @@
        * ID of the setInterval
        * @type {number|null}
        */
-      __P_823_0: null,
+      __P_827_0: null,
       /**
        * Check whether the watchdog was pinged recently enough.
        * If not, restart the connection. When the last data reading is older than
@@ -98,18 +98,18 @@
        * @param watchdogTimer {number} The interval in seconds.
        */
       start: function start(watchdogTimer) {
-        if (this.__P_823_0 !== null) {
+        if (this.__P_827_0 !== null) {
           this.stop();
         }
-        this.__P_823_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+        this.__P_827_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
       },
       /**
        * Stop the watchdog.
        */
       stop: function stop() {
-        if (this.__P_823_0 !== null) {
-          clearInterval(this.__P_823_0);
-          this.__P_823_0 = null;
+        if (this.__P_827_0 !== null) {
+          clearInterval(this.__P_827_0);
+          this.__P_827_0 = null;
         }
       },
       /**
@@ -117,7 +117,7 @@
        * @return {boolean}
        */
       isActive: function isActive() {
-        return this.__P_823_0 !== null;
+        return this.__P_827_0 !== null;
       },
       /**
        * Ping the watchdog to tell it that the function is still running.
@@ -136,4 +136,4 @@
   cv.io.Watchdog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watchdog.js.map?dt=1792082804586
+//# sourceMappingURL=Watchdog.js.map?dt=1794845787930

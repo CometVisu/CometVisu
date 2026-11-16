@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -105,7 +105,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } else if (summary) {
           qx.event.Registration.addListener(summary, 'click', this._toggleOpen, this);
         }
-        this.__P_105_0();
+        this.__P_106_0();
       },
       _toggleOpen: function _toggleOpen() {
         if (this._element.hasAttribute('open')) {
@@ -122,13 +122,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       onStateUpdate: function onStateUpdate(ev) {
         if (!cv.ui.structure.tile.widgets.Group.superclass.prototype.onStateUpdate.call(this, ev)) {
           if (ev.detail.target === 'summary') {
-            this.__P_105_1(ev.detail.state);
+            this.__P_106_1(ev.detail.state);
           } else {
             this.debug('unhandled address target', ev.detail.target);
           }
         }
       },
-      __P_105_1: function __P_105_1(state) {
+      __P_106_1: function __P_106_1(state) {
         var target = this._element.querySelector(':scope > summary > label.value');
         if (!target) {
           var summary = this._element.querySelector(':scope > summary');
@@ -141,7 +141,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
         target.textContent = state;
       },
-      __P_105_0: function __P_105_0() {
+      __P_106_0: function __P_106_0() {
         var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > cv-address[target="summary"], :scope > cv-address-group[target="summary"]')),
           _step;
         try {
@@ -154,7 +154,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               state = address.getInstance().getValue();
             }
             if (state !== undefined && state !== null) {
-              this.__P_105_1(state);
+              this.__P_106_1(state);
             }
           }
         } catch (err) {
@@ -180,4 +180,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.widgets.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1792082767056
+//# sourceMappingURL=Group.js.map?dt=1794845751446

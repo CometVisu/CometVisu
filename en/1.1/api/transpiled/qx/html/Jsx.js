@@ -178,7 +178,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               }
             } else if (prop === "dangerouslySetInnerHTML") {
               // eslint-disable-next-line no-underscore-dangle
-              innerHtml = attributes[prop].__P_261_0;
+              innerHtml = attributes[prop].__P_262_0;
             } else if (qx.html.Jsx.SYNTHETIC_EVENTS[prop]) {
               var eventName = prop.replace(/^on/, "").toLowerCase();
               eventHandlers[eventName] = attributes[prop];
@@ -322,4 +322,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.html.Jsx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsx.js.map?dt=1792082774571
+//# sourceMappingURL=Jsx.js.map?dt=1794845758592

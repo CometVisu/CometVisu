@@ -160,7 +160,7 @@
           qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
         }, this);
       },
-      __P_66_0: function __P_66_0(element) {
+      __P_67_0: function __P_67_0(element) {
         while (!element.classList.contains('actor')) {
           element = element.parentNode;
           if (element.classList.contains('widget')) {
@@ -171,12 +171,12 @@
         return element;
       },
       _onLongTap: function _onLongTap(event) {
-        this.__P_66_1(false, this.__P_66_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_67_1(false, this.__P_67_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
       _action: function _action(event) {
-        this.__P_66_1(true, this.__P_66_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_67_1(true, this.__P_67_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
-      __P_66_1: function __P_66_1(isShort, isDown) {
+      __P_67_1: function __P_67_1(isShort, isDown) {
         var value;
         if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
           value = isDown ? this.getShortDownValue() : this.getShortUpValue();
@@ -214,4 +214,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1792082764391
+//# sourceMappingURL=InfoTrigger.js.map?dt=1794845748874

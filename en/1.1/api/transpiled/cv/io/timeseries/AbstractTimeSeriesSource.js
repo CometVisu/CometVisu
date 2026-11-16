@@ -61,7 +61,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     ***********************************************
     */
     statics: {
-      urlRegex: /^(flux|openhab|rrd|demo|plugin)\+?(\w+)?:\/\/((\w+)@)?([^\/?#]+)(\/[^?]*)?\??([^#]*)#?(.*)/
+      urlRegex: /^(flux|openhab|rrd|demo|iobroker|plugin)\+?(\w+)?:\/\/((\w+)@)?([^\/?#]+)(\/[^?]*)?\??([^#]*)#?(.*)/
     },
     /*
     ***********************************************
@@ -193,4 +193,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.io.timeseries.AbstractTimeSeriesSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1792082759925
+//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1794845744624

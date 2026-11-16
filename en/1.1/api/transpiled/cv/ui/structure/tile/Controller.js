@@ -13,7 +13,7 @@ function _isNativeFunction(t) { try { return -1 !== Function.toString.call(t).in
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -132,13 +132,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_76_0 = '';
+      this.__P_77_0 = '';
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/tile-globals.scss').replace('.scss', '.css') + (cv.Config.forceReload === true ? '?' + Date.now() : ''));
       qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
-      this.__P_76_1 = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
+      this.__P_77_1 = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
       var prefetchLink = document.createElement('link');
       prefetchLink.rel = 'prefetch';
-      prefetchLink.href = this.__P_76_1;
+      prefetchLink.href = this.__P_77_1;
       document.head.appendChild(prefetchLink);
     },
     /*
@@ -149,20 +149,20 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     statics: {
       // prefix for all custom components uses/provided by this structure
       PREFIX: 'cv-',
-      __P_76_2: {},
-      __P_76_3: {},
+      __P_77_2: {},
+      __P_77_3: {},
       MAPPING_PARAM_REGEX: /^(.+)\(([^)]+)\)$/,
       register: function register(webComponentName, qxClass) {
-        this.__P_76_2[webComponentName] = qxClass;
+        this.__P_77_2[webComponentName] = qxClass;
       },
       onComponentCreated: function onComponentCreated(element) {
         var name = element.tagName.toLowerCase();
         if (Object.prototype.hasOwnProperty.call(this, name)) {
-          var QxClass = this.__P_76_2[name];
+          var QxClass = this.__P_77_2[name];
           if (!Object.prototype.hasOwnProperty.call(this, name)) {
-            this.__P_76_3[name] = [];
+            this.__P_77_3[name] = [];
           }
-          this.__P_76_3[name].push(new QxClass(element));
+          this.__P_77_3[name].push(new QxClass(element));
         } else {
           qx.log.Logger.error(this, 'no QxClass registered for custom element ' + name);
         }
@@ -200,24 +200,24 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_76_0: null,
-      __P_76_4: null,
-      __P_76_5: null,
+      __P_77_0: null,
+      __P_77_4: null,
+      __P_77_5: null,
       _templateWidgets: null,
-      __P_76_1: null,
-      __P_76_6: null,
-      __P_76_7: null,
-      __P_76_8: null,
-      __P_76_9: null,
-      __P_76_10: null,
+      __P_77_1: null,
+      __P_77_6: null,
+      __P_77_7: null,
+      __P_77_8: null,
+      __P_77_9: null,
+      __P_77_10: null,
       getHtmlStructure: function getHtmlStructure() {
-        return this.__P_76_0;
+        return this.__P_77_0;
       },
       supports: function supports(feature, subfeature) {
         return false;
       },
       initLayout: function initLayout() {},
-      __P_76_11: function __P_76_11() {
+      __P_77_11: function __P_77_11() {
         // open first page
         if (!document.location.hash) {
           this.scrollToPage(this.getInitialPageId());
@@ -304,7 +304,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
         this.translate(config, true);
         if (!cv.Config.cacheUsed) {
-          var ajaxRequest = new qx.io.request.Xhr(this.__P_76_1);
+          var ajaxRequest = new qx.io.request.Xhr(this.__P_77_1);
           ajaxRequest.set({
             accept: 'application/xml',
             cache: !cv.Config.forceReload
@@ -334,17 +334,17 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             _this.observeVisibility();
             qx.event.message.Bus.dispatchByName('setup.dom.append');
             _this.debug('pages created');
-            _this.__P_76_11();
+            _this.__P_77_11();
             _this.debug('setup.dom.finished');
             qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
             cv.TemplateEngine.getInstance().setDomFinished(true);
             var main = document.body.querySelector(':scope > main');
-            _this.__P_76_12();
+            _this.__P_77_12();
             if (main) {
               var shrinkHeight = -1;
               var canAnimate = false;
-              _this.__P_76_6 = main;
-              _this.__P_76_7 = function () {
+              _this.__P_77_6 = main;
+              _this.__P_77_7 = function () {
                 // we need to know the space that we gain in height, when the shrinked elements are not shown
                 // and must not start the effect before we reach that threshold, otherwise
                 // main.scrollTop would go back to 0 because we have more height available and do not have to scroll+
@@ -381,14 +381,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   shrinkHeight = -1;
                 }
               };
-              main.addEventListener('scroll', _this.__P_76_7);
+              main.addEventListener('scroll', _this.__P_77_7);
             }
             _this.enablePullToRefresh();
           });
           ajaxRequest.addListener('statusError', function (e) {
             var status = e.getTarget().getTransport().status;
             if (!qx.util.Request.isSuccessful(status)) {
-              _this.error('filenotfound', _this.__P_76_1);
+              _this.error('filenotfound', _this.__P_77_1);
             }
             document.body.classList.remove('loading-structure');
           });
@@ -435,7 +435,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           return _regenerator().w(function (_context) {
             while (1) switch (_context.n) {
               case 0:
-                _this2.__P_76_13();
+                _this2.__P_77_13();
                 if (xml.documentElement.hasAttribute('theme')) {
                   theme = xml.documentElement.getAttribute('theme');
                   data = {};
@@ -446,16 +446,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                       document.documentElement.setAttribute('data-theme', theme);
                       data['theme'] = theme;
                       cv.data.Model.getInstance().updateFrom('system', data);
-                      _this2.__P_76_8 = mediaQuery;
-                      _this2.__P_76_9 = function (e) {
+                      _this2.__P_77_8 = mediaQuery;
+                      _this2.__P_77_9 = function (e) {
                         document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
                         data['theme'] = e.matches ? 'dark' : 'light';
                         cv.data.Model.getInstance().updateFrom('system', data);
                       };
                       if (typeof mediaQuery.addEventListener === 'function') {
-                        mediaQuery.addEventListener('change', _this2.__P_76_9);
+                        mediaQuery.addEventListener('change', _this2.__P_77_9);
                       } else if (typeof mediaQuery.addListener === 'function') {
-                        mediaQuery.addListener(_this2.__P_76_9);
+                        mediaQuery.addListener(_this2.__P_77_9);
                       }
                     } else {
                       _this2.error('system theme detection not possible in this browser');
@@ -477,7 +477,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       createUI: function createUI(config) {},
       observeVisibility: function observeVisibility() {
-        this.__P_76_14();
+        this.__P_77_14();
         // find all pages with an iframe with attribute "data-src" and observe its parent page
         var observer = new IntersectionObserver(function (entries, observer) {
           entries.forEach(function (entry) {
@@ -490,7 +490,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }, {
           root: document.querySelector('body > main')
         });
-        this.__P_76_10 = observer;
+        this.__P_77_10 = observer;
         var _iterator6 = _createForOfIteratorHelper(document.querySelectorAll('iframe[data-src], img[data-src]')),
           _step6;
         try {
@@ -504,28 +504,28 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           _iterator6.f();
         }
       },
-      __P_76_12: function __P_76_12() {
-        if (this.__P_76_6 && this.__P_76_7) {
-          this.__P_76_6.removeEventListener('scroll', this.__P_76_7);
+      __P_77_12: function __P_77_12() {
+        if (this.__P_77_6 && this.__P_77_7) {
+          this.__P_77_6.removeEventListener('scroll', this.__P_77_7);
         }
-        this.__P_76_6 = null;
-        this.__P_76_7 = null;
+        this.__P_77_6 = null;
+        this.__P_77_7 = null;
       },
-      __P_76_13: function __P_76_13() {
-        if (this.__P_76_8 && this.__P_76_9) {
-          if (typeof this.__P_76_8.removeEventListener === 'function') {
-            this.__P_76_8.removeEventListener('change', this.__P_76_9);
-          } else if (typeof this.__P_76_8.removeListener === 'function') {
-            this.__P_76_8.removeListener(this.__P_76_9);
+      __P_77_13: function __P_77_13() {
+        if (this.__P_77_8 && this.__P_77_9) {
+          if (typeof this.__P_77_8.removeEventListener === 'function') {
+            this.__P_77_8.removeEventListener('change', this.__P_77_9);
+          } else if (typeof this.__P_77_8.removeListener === 'function') {
+            this.__P_77_8.removeListener(this.__P_77_9);
           }
         }
-        this.__P_76_8 = null;
-        this.__P_76_9 = null;
+        this.__P_77_8 = null;
+        this.__P_77_9 = null;
       },
-      __P_76_14: function __P_76_14() {
-        if (this.__P_76_10) {
-          this.__P_76_10.disconnect();
-          this.__P_76_10 = null;
+      __P_77_14: function __P_77_14() {
+        if (this.__P_77_10) {
+          this.__P_77_10.disconnect();
+          this.__P_77_10 = null;
         }
       },
       translate: function translate(doc, rememberKeys, useKeys) {
@@ -652,14 +652,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param mapping {cv.ui.structure.tile.elements.Mapping}
        */
       addMapping: function addMapping(name, mapping) {
-        if (!this.__P_76_4) {
-          this.__P_76_4 = {};
+        if (!this.__P_77_4) {
+          this.__P_77_4 = {};
         }
-        this.__P_76_4[name] = mapping;
+        this.__P_77_4[name] = mapping;
       },
       removeMapping: function removeMapping(name) {
-        if (this.__P_76_4) {
-          delete this.__P_76_4[name];
+        if (this.__P_77_4) {
+          delete this.__P_77_4[name];
         }
       },
       mapValue: function mapValue(mappingName, value, store) {
@@ -674,8 +674,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
           mappingName = match[1];
         }
-        if (this.__P_76_4 && Object.prototype.hasOwnProperty.call(this.__P_76_4, mappingName)) {
-          return this.__P_76_4[mappingName].mapValue(value, store, params);
+        if (this.__P_77_4 && Object.prototype.hasOwnProperty.call(this.__P_77_4, mappingName)) {
+          return this.__P_77_4[mappingName].mapValue(value, store, params);
         }
         return value;
       },
@@ -684,19 +684,19 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param styling {cv.ui.structure.tile.elements.Styling}
        */
       addStyling: function addStyling(name, styling) {
-        if (!this.__P_76_5) {
-          this.__P_76_5 = {};
+        if (!this.__P_77_5) {
+          this.__P_77_5 = {};
         }
-        this.__P_76_5[name] = styling;
+        this.__P_77_5[name] = styling;
       },
       removeStyling: function removeStyling(name) {
-        if (this.__P_76_5) {
-          delete this.__P_76_5[name];
+        if (this.__P_77_5) {
+          delete this.__P_77_5[name];
         }
       },
       styleValue: function styleValue(stylingName, value, store) {
-        if (this.__P_76_5 && Object.prototype.hasOwnProperty.call(this.__P_76_5, stylingName)) {
-          return this.__P_76_5[stylingName].mapValue(value, store);
+        if (this.__P_77_5 && Object.prototype.hasOwnProperty.call(this.__P_77_5, stylingName)) {
+          return this.__P_77_5[stylingName].mapValue(value, store);
         }
         return '';
       },
@@ -811,9 +811,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     destruct: function destruct() {
       qx.locale.Manager.getInstance().removeListener('changeLocale', this._onChangeLocale, this);
-      this.__P_76_12();
-      this.__P_76_13();
-      this.__P_76_14();
+      this.__P_77_12();
+      this.__P_77_13();
+      this.__P_77_14();
     }
   });
   var QxConnector = /*#__PURE__*/function (_HTMLElement) {
@@ -1122,4 +1122,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1792082765112
+//# sourceMappingURL=Controller.js.map?dt=1794845749557

@@ -47,7 +47,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.Mixin.define("qx.core.MEvent", {
     members: {
       /** @type {Class} Pointer to the regular event registration class */
-      __P_183_0: qx.event.Registration,
+      __P_184_0: qx.event.Registration,
       /**
        * Add event listener to this object.
        *
@@ -66,7 +66,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       addListener: function addListener(type, listener, self, capture) {
         if (!this.$$disposed) {
-          return this.__P_183_0.addListener(this, type, listener, self, capture);
+          return this.__P_184_0.addListener(this, type, listener, self, capture);
         }
         return null;
       },
@@ -121,7 +121,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             delete listener.$$wrapped_callback[type + this.$$hash];
             listener = callback;
           }
-          return this.__P_183_0.removeListener(this, type, listener, self, capture);
+          return this.__P_184_0.removeListener(this, type, listener, self, capture);
         }
         return false;
       },
@@ -134,7 +134,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       removeListenerById: function removeListenerById(id) {
         if (!this.$$disposed) {
-          return this.__P_183_0.removeListenerById(this, id);
+          return this.__P_184_0.removeListenerById(this, id);
         }
         return false;
       },
@@ -147,7 +147,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Boolean} Whether the object has a listener of the given type.
        */
       hasListener: function hasListener(type, capture) {
-        return this.__P_183_0.hasListener(this, type, capture);
+        return this.__P_184_0.hasListener(this, type, capture);
       },
       /**
        * Dispatch an event on this object
@@ -158,53 +158,53 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       dispatchEvent: function dispatchEvent(evt) {
         if (!this.$$disposed) {
-          return this.__P_183_0.dispatchEvent(this, evt);
+          return this.__P_184_0.dispatchEvent(this, evt);
         }
         return true;
       },
       /** @type{Object<String,qx.Promise>} list of pending events, indexed by hash code */
-      __P_183_1: null,
+      __P_184_1: null,
       /** @type{qx.Promise} promise that callers are waiting on, ready for when all events are finished */
-      __P_183_2: null,
+      __P_184_2: null,
       /**
        * Internal helper method to track promises returned from event handlers
        *
        * @param {var} result the result from the event handler
        * @returns {qx.Promise|var} the value to return
        */
-      __P_183_3: function __P_183_3(result) {
+      __P_184_3: function __P_184_3(result) {
         var _this = this;
         {
           if (!qx.Promise.isPromise(result)) {
             return result;
           }
-          if (!this.__P_183_1) {
-            this.__P_183_1 = {};
+          if (!this.__P_184_1) {
+            this.__P_184_1 = {};
           }
           if (!(result instanceof qx.Promise)) {
             result = qx.Promise.resolve(result);
           }
           var hashCode = result.toHashCode();
           var newPromise = result.then(function (result) {
-            delete _this.__P_183_1[hashCode];
-            var promise = _this.__P_183_2;
-            if (promise && Object.keys(_this.__P_183_1).length == 0) {
-              _this.__P_183_1 = null;
-              _this.__P_183_2 = null;
+            delete _this.__P_184_1[hashCode];
+            var promise = _this.__P_184_2;
+            if (promise && Object.keys(_this.__P_184_1).length == 0) {
+              _this.__P_184_1 = null;
+              _this.__P_184_2 = null;
               promise.resolve();
             }
             return result;
           })["catch"](function (err) {
-            delete _this.__P_183_1[hashCode];
-            var promise = _this.__P_183_2;
-            if (promise && Object.keys(_this.__P_183_1).length == 0) {
-              _this.__P_183_1 = null;
-              _this.__P_183_2 = null;
+            delete _this.__P_184_1[hashCode];
+            var promise = _this.__P_184_2;
+            if (promise && Object.keys(_this.__P_184_1).length == 0) {
+              _this.__P_184_1 = null;
+              _this.__P_184_2 = null;
               promise.reject(err);
             }
             throw err;
           });
-          this.__P_183_1[hashCode] = newPromise;
+          this.__P_184_1[hashCode] = newPromise;
           return newPromise;
         }
       },
@@ -218,16 +218,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context) {
             while (1) switch (_context.n) {
               case 0:
-                if (_this2.__P_183_1) {
+                if (_this2.__P_184_1) {
                   _context.n = 1;
                   break;
                 }
                 return _context.a(2);
               case 1:
-                if (!_this2.__P_183_2) {
-                  _this2.__P_183_2 = new qx.Promise();
+                if (!_this2.__P_184_2) {
+                  _this2.__P_184_2 = new qx.Promise();
                 }
-                promise = _this2.__P_183_2;
+                promise = _this2.__P_184_2;
                 _context.n = 2;
                 return promise;
               case 2:
@@ -248,7 +248,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       fireEvent: function fireEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__P_183_3(this.__P_183_0.fireEvent(this, type, clazz, args));
+          return this.__P_184_3(this.__P_184_0.fireEvent(this, type, clazz, args));
         }
         return true;
       },
@@ -265,7 +265,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       fireEventAsync: function fireEventAsync(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__P_183_3(this.__P_183_0.fireEventAsync(this, type, clazz, args));
+          return this.__P_184_3(this.__P_184_0.fireEventAsync(this, type, clazz, args));
         }
         return qx.Promise.resolve(true);
       },
@@ -283,7 +283,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__P_183_3(this.__P_183_0.fireNonBubblingEvent(this, type, clazz, args));
+          return this.__P_184_3(this.__P_184_0.fireNonBubblingEvent(this, type, clazz, args));
         }
         return true;
       },
@@ -303,7 +303,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       fireNonBubblingEventAsync: function fireNonBubblingEventAsync(type, clazz, args) {
         if (!this.$$disposed) {
-          return this.__P_183_3(this.__P_183_0.fireNonBubblingEventAsync(this, type, clazz, args));
+          return this.__P_184_3(this.__P_184_0.fireNonBubblingEventAsync(this, type, clazz, args));
         }
         return qx.Promise.resolve(true);
       },
@@ -327,7 +327,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           if (oldData === undefined) {
             oldData = null;
           }
-          return this.__P_183_3(this.__P_183_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]));
+          return this.__P_184_3(this.__P_184_0.fireEvent(this, type, qx.event.type.Data, [data, oldData, !!cancelable]));
         }
         return true;
       },
@@ -352,7 +352,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           if (oldData === undefined) {
             oldData = null;
           }
-          return this.__P_183_3(this.__P_183_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]));
+          return this.__P_184_3(this.__P_184_0.fireEventAsync(this, type, qx.event.type.Data, [data, oldData, !!cancelable]));
         }
         return qx.Promise.resolve(true);
       }
@@ -361,4 +361,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.core.MEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEvent.js.map?dt=1792082770074
+//# sourceMappingURL=MEvent.js.map?dt=1794845754316

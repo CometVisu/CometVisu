@@ -11,7 +11,7 @@ function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new T
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -113,15 +113,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     members: {
       _target: null,
       _svg: null,
-      __P_99_0: null,
+      __P_100_0: null,
       _radius: null,
       _iconSize: null,
       _iconOffset: null,
       _fixedRadius: null,
-      __P_99_1: null,
-      __P_99_2: null,
-      __P_99_3: null,
-      __P_99_4: null,
+      __P_100_1: null,
+      __P_100_2: null,
+      __P_100_3: null,
+      __P_100_4: null,
       getSvg: function getSvg() {
         return this._svg;
       },
@@ -137,7 +137,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         var strokeWidth = this.getStroke();
         this._findParentGridLayout();
         if (this._parentGridLayout && !this._fixedRadius) {
-          this._parentGridLayout.addListener('changeSize', this.__P_99_5, this);
+          this._parentGridLayout.addListener('changeSize', this.__P_100_5, this);
         }
         var parent = this._parentGridLayout ? this._parentGridLayout.getSvg() : element;
         var ns = 'http://www.w3.org/2000/svg';
@@ -164,8 +164,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         if (!element.hasAttribute('no-background')) {
           var bg = document.createElementNS(ns, 'circle');
           bg.classList.add('bg');
-          if (this.__P_99_0) {
-            bg.setAttribute('r', '' + this.__P_99_0);
+          if (this.__P_100_0) {
+            bg.setAttribute('r', '' + this.__P_100_0);
           }
           bg.setAttribute('cx', '50%');
           bg.setAttribute('cy', '50%');
@@ -206,17 +206,17 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         var sumGroup = element.querySelector(':scope > cv-address-group[operator="+"]');
         if (sumGroup) {
           if (!sumGroup._instance) {
-            this.__P_99_2 = window.requestAnimationFrame(function () {
-              _this.__P_99_2 = null;
+            this.__P_100_2 = window.requestAnimationFrame(function () {
+              _this.__P_100_2 = null;
               if (!_this.isConnected() || !sumGroup.isConnected || !sumGroup._instance) {
                 return;
               }
-              _this.__P_99_3 = sumGroup._instance;
-              _this.__P_99_4 = sumGroup._instance.bind('nonZeroValues', _this, 'amount');
+              _this.__P_100_3 = sumGroup._instance;
+              _this.__P_100_4 = sumGroup._instance.bind('nonZeroValues', _this, 'amount');
             });
           } else {
-            this.__P_99_3 = sumGroup._instance;
-            this.__P_99_4 = sumGroup._instance.bind('nonZeroValues', this, 'amount');
+            this.__P_100_3 = sumGroup._instance;
+            this.__P_100_4 = sumGroup._instance.bind('nonZeroValues', this, 'amount');
           }
         } else {
           this.setAmount(element.querySelectorAll(':scope > cv-address:not([target])').length);
@@ -225,34 +225,34 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         this._applyTitle(this.getTitle());
       },
       _disconnected: function _disconnected() {
-        this.__P_99_6();
+        this.__P_100_6();
         cv.ui.structure.tile.components.svg.RoundValue.superclass.prototype._disconnected.call(this);
       },
-      __P_99_6: function __P_99_6() {
+      __P_100_6: function __P_100_6() {
         if (this._parentGridLayout) {
-          this._parentGridLayout.removeListener('changeSize', this.__P_99_5, this);
+          this._parentGridLayout.removeListener('changeSize', this.__P_100_5, this);
         }
-        if (this.__P_99_1 !== null) {
-          window.clearTimeout(this.__P_99_1);
-          this.__P_99_1 = null;
+        if (this.__P_100_1 !== null) {
+          window.clearTimeout(this.__P_100_1);
+          this.__P_100_1 = null;
         }
-        if (this.__P_99_2 !== null) {
-          window.cancelAnimationFrame(this.__P_99_2);
-          this.__P_99_2 = null;
+        if (this.__P_100_2 !== null) {
+          window.cancelAnimationFrame(this.__P_100_2);
+          this.__P_100_2 = null;
         }
-        if (this.__P_99_3 && this.__P_99_4 !== null) {
-          this.__P_99_3.removeBinding(this.__P_99_4);
+        if (this.__P_100_3 && this.__P_100_4 !== null) {
+          this.__P_100_3.removeBinding(this.__P_100_4);
         }
-        this.__P_99_3 = null;
-        this.__P_99_4 = null;
+        this.__P_100_3 = null;
+        this.__P_100_4 = null;
       },
-      __P_99_5: function __P_99_5() {
+      __P_100_5: function __P_100_5() {
         var _this2 = this;
-        if (this.__P_99_1 !== null) {
-          window.clearTimeout(this.__P_99_1);
+        if (this.__P_100_1 !== null) {
+          window.clearTimeout(this.__P_100_1);
         }
-        this.__P_99_1 = window.setTimeout(function () {
-          _this2.__P_99_1 = null;
+        this.__P_100_1 = window.setTimeout(function () {
+          _this2.__P_100_1 = null;
           if (!_this2.isDisposed() && _this2.isConnected()) {
             _this2._updateRadius();
           }
@@ -279,7 +279,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             amount.classList.add('amount');
             amount.style.fontSize = "".concat(this._iconSize - 5, "px");
             this._target.appendChild(amount);
-            this.__P_99_7();
+            this.__P_100_7();
           }
           if (this._iconOffset !== 5) {
             this._iconOffset = 5;
@@ -294,10 +294,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           }
         }
         if (updateIconPosition) {
-          this.__P_99_8();
+          this.__P_100_8();
         }
       },
-      __P_99_7: function __P_99_7() {
+      __P_100_7: function __P_100_7() {
         var amount = this._target.querySelector('text.amount');
         if (amount) {
           var radius = this.getRadius();
@@ -308,7 +308,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           amount.setAttribute('y', "".concat(y));
         }
       },
-      __P_99_8: function __P_99_8() {
+      __P_100_8: function __P_100_8() {
         var icon = this._target.querySelector('cv-icon');
         if (icon) {
           icon.style.fontSize = this._iconSize + 'px';
@@ -329,12 +329,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         this._updateNormalizedRadius();
         this._iconSize = Math.round(radius / 2);
         if (this._target) {
-          this.__P_99_8();
+          this.__P_100_8();
           var value = this._target.querySelector('.value');
           if (value) {
             value.style.fontSize = "".concat(this._iconSize - 4, "px");
           }
-          this.__P_99_7();
+          this.__P_100_7();
         }
         if (this._svg) {
           this.setHeight(radius * 2);
@@ -350,15 +350,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       _updateNormalizedRadius: function _updateNormalizedRadius() {
         if (this._target) {
           var newValue = this.getRadius() - this.getStroke() / 2;
-          if (this.__P_99_0 !== newValue) {
-            this.__P_99_0 = newValue;
+          if (this.__P_100_0 !== newValue) {
+            this.__P_100_0 = newValue;
             var bg = this._target.querySelector('circle.bg');
             if (bg) {
-              bg.setAttribute('r', '' + this.__P_99_0);
+              bg.setAttribute('r', '' + this.__P_100_0);
             }
             var bar = this._target.querySelector('circle.bar');
             if (bar) {
-              bar.setAttribute('r', '' + this.__P_99_0);
+              bar.setAttribute('r', '' + this.__P_100_0);
             }
           }
         }
@@ -379,7 +379,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           if (!bar) {
             bar = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             bar.classList.add('bar');
-            bar.setAttribute('r', '' + this.__P_99_0);
+            bar.setAttribute('r', '' + this.__P_100_0);
             bar.setAttribute('cx', '50%');
             bar.setAttribute('cy', '50%');
             bar.setAttribute('pathLength', '100');
@@ -413,7 +413,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             icon.style.fontSize = this._iconSize + 'px';
             fo.appendChild(icon);
             this._target.appendChild(fo);
-            this.__P_99_8();
+            this.__P_100_8();
           }
         } else if (icon) {
           this._target.remove(icon);
@@ -469,7 +469,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }
     },
     destruct: function destruct() {
-      this.__P_99_6();
+      this.__P_100_6();
     },
     defer: function defer(QxClass) {
       var _Class;
@@ -488,4 +488,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   cv.ui.structure.tile.components.svg.RoundValue.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundValue.js.map?dt=1792082766750
+//# sourceMappingURL=RoundValue.js.map?dt=1794845751162

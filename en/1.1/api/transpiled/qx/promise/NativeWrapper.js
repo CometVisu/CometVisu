@@ -64,16 +64,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     construct: function construct(arg0) {
       qx.core.Object.constructor.call(this);
       if (typeof arg0 === "function") {
-        this.__P_312_0 = new Promise(arg0);
+        this.__P_313_0 = new Promise(arg0);
       } else if (_typeof(arg0) === "object" && arg0.constructor === Promise) {
-        this.__P_312_0 = arg0;
+        this.__P_313_0 = arg0;
       }
     },
     members: {
       /**
        * @type {Object} The context that this promise is bound to
        */
-      __P_312_1: null,
+      __P_313_1: null,
       /**
        * Creates a new promise just like this one, but with a context set
        * @see
@@ -81,27 +81,27 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @returns
        */
       bind: function bind(context) {
-        var promise = new qx.promise.NativeWrapper(this.__P_312_0);
-        return promise.__P_312_2(context);
+        var promise = new qx.promise.NativeWrapper(this.__P_313_0);
+        return promise.__P_313_2(context);
       },
       /**
        * Same as for Native Promise
        * @returns {qx.promise.NativeWrapper}
        */
       then: function then(onResolved, onRejected) {
-        onResolved = onResolved.bind(this.__P_312_1);
+        onResolved = onResolved.bind(this.__P_313_1);
         if (onRejected) {
-          onRejected = onRejected.bind(this.__P_312_1);
+          onRejected = onRejected.bind(this.__P_313_1);
         }
-        return qx.promise.NativeWrapper.__P_312_3(this.__P_312_0.then(onResolved, onRejected)).__P_312_2(this.__P_312_1);
+        return qx.promise.NativeWrapper.__P_313_3(this.__P_313_0.then(onResolved, onRejected)).__P_313_2(this.__P_313_1);
       },
       /**
        * Same as for Native Promise
        * @returns {qx.promise.NativeWrapper}
        */
       "catch": function _catch(handler) {
-        handler = handler.bind(this.__P_312_1);
-        return qx.promise.NativeWrapper.__P_312_3(this.__P_312_0["catch"](handler)).__P_312_2(this.__P_312_1);
+        handler = handler.bind(this.__P_313_1);
+        return qx.promise.NativeWrapper.__P_313_3(this.__P_313_0["catch"](handler)).__P_313_2(this.__P_313_1);
       },
       /**
        * Same as for Native Promise
@@ -117,8 +117,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @returns {qx.promise.NativeWrapper}
        */
       "finally": function _finally(handler) {
-        handler = handler.bind(this.__P_312_1);
-        return qx.promise.NativeWrapper.__P_312_3(this.__P_312_0["finally"](handler)).__P_312_2(this.__P_312_1);
+        handler = handler.bind(this.__P_313_1);
+        return qx.promise.NativeWrapper.__P_313_3(this.__P_313_0["finally"](handler)).__P_313_2(this.__P_313_1);
       },
       /**
        * Due to the high complexity of implementing this feature, it is not supported in qx.promise.NativeWrapper
@@ -262,8 +262,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param {Object} context
        * @returns {qx.promise.NativeWrapper} this object to support chaining
        */
-      __P_312_2: function __P_312_2(context) {
-        this.__P_312_1 = context;
+      __P_313_2: function __P_313_2(context) {
+        this.__P_313_1 = context;
         return this;
       }
     },
@@ -273,7 +273,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param {Promise} promise
        * @returns
        */
-      __P_312_3: function __P_312_3(promise) {
+      __P_313_3: function __P_313_3(promise) {
         return new qx.promise.NativeWrapper(promise);
       },
       /**
@@ -287,7 +287,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {qx.promise.NativeWrapper}
        */
       resolve: function resolve(value) {
-        return qx.promise.NativeWrapper.__P_312_3(Promise.resolve(value));
+        return qx.promise.NativeWrapper.__P_313_3(Promise.resolve(value));
       },
       /**
        * Returns a Promise object that is rejected with the given reason.
@@ -295,7 +295,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {qx.promise.NativeWrapper}
        */
       reject: function reject(reason) {
-        return qx.promise.NativeWrapper.__P_312_3(Promise.reject(reason));
+        return qx.promise.NativeWrapper.__P_313_3(Promise.reject(reason));
       },
       /**
        * Returns a promise that resolves when all of the promises in the object properties have resolved,
@@ -334,7 +334,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       all: function all(iterable) {
         return qx.promise.NativeWrapper.resolve(iterable).then(function (iterable) {
-          return qx.promise.NativeWrapper.__P_312_3(Promise.all(iterable));
+          return qx.promise.NativeWrapper.__P_313_3(Promise.all(iterable));
         });
       },
       /**
@@ -852,7 +852,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             args[_key2] = arguments[_key2];
           }
           return new qx.promise.NativeWrapper(function (resolve) {
-            return resolve(cb.call.apply(cb, [_this.__P_312_1].concat(args)));
+            return resolve(cb.call.apply(cb, [_this.__P_313_1].concat(args)));
           });
         };
       },
@@ -909,4 +909,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.promise.NativeWrapper.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeWrapper.js.map?dt=1792082777353
+//# sourceMappingURL=NativeWrapper.js.map?dt=1794845761266

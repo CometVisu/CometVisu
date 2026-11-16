@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547627,
-  "lastModifiedIso": "2026-10-15T16:42:27.627Z",
+  "lastModified": 1794845538528,
+  "lastModifiedIso": "2026-11-16T16:12:18.528Z",
   "classFilename": "../../client/source/class/cv/io/transport/LongPolling.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 832
     },
     "end": {
-      "line": 472,
+      "line": 574,
       "column": 3,
-      "index": 16176
+      "index": 20019
     }
   },
   "className": "cv.io.transport.LongPolling",
@@ -339,6 +339,62 @@
       },
       "appearsIn": []
     },
+    "KNXD_DOWN_RETRY_DELAY": {
+      "jsdoc": {
+        "raw": [
+          "* Delay in ms before the next read request is sent while knxd is",
+          "     * unavailable. The backend answers immediately in that state, so a",
+          "     * long-poll timeout cannot throttle the requests. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delay in ms before the next read request is sent while knxd is\n unavailable. The backend answers immediately in that state, so a\n long-poll timeout cannot throttle the requests.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2364
+        },
+        "end": {
+          "line": 68,
+          "column": 31,
+          "index": 2391
+        }
+      },
+      "appearsIn": []
+    },
+    "__knxdRetryTimer": {
+      "jsdoc": {
+        "raw": [
+          "* timer of the pending read request while knxd is not available "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>timer of the pending read request while knxd is not available</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2471
+        },
+        "end": {
+          "line": 71,
+          "column": 26,
+          "index": 2493
+        }
+      },
+      "appearsIn": []
+    },
     "handleSession": {
       "jsdoc": {
         "raw": [
@@ -376,14 +432,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 80,
           "column": 4,
-          "index": 2445
+          "index": 2782
         },
         "end": {
-          "line": 88,
+          "line": 96,
           "column": 5,
-          "index": 3099
+          "index": 3436
         }
       },
       "type": "function",
@@ -404,14 +460,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 98,
           "column": 4,
-          "index": 3106
+          "index": 3443
         },
         "end": {
-          "line": 117,
+          "line": 125,
           "column": 5,
-          "index": 4234
+          "index": 4571
         }
       },
       "type": "function",
@@ -437,14 +493,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 124,
+          "line": 132,
           "column": 4,
-          "index": 4473
+          "index": 4810
         },
         "end": {
-          "line": 129,
+          "line": 137,
           "column": 5,
-          "index": 4711
+          "index": 5048
         }
       },
       "type": "function",
@@ -456,14 +512,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 131,
+          "line": 139,
           "column": 4,
-          "index": 4718
+          "index": 5055
         },
         "end": {
-          "line": 143,
+          "line": 151,
           "column": 5,
-          "index": 5108
+          "index": 5445
         }
       },
       "type": "function",
@@ -473,6 +529,63 @@
         },
         {
           "name": "callback"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__handleKnxdOutage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle a response that reports a lost connection of the backend to knxd.",
+          "     * The backend itself is reachable, so the connection must stay alive, only",
+          "     * the read requests have to be repeated until knxd is back. As there is no",
+          "     * long-poll wait while knxd is gone (nothing can arrive), the requests are",
+          "     * throttled here.",
+          "     *",
+          "     * @param response {Object|String} body of the failed response",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle a response that reports a lost connection of the backend to knxd.\n The backend itself is reachable, so the connection must stay alive, only\n the read requests have to be repeated until knxd is back. As there is no\n long-poll wait while knxd is gone (nothing can arrive), the requests are\n throttled here.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "response {Object|String} body of the failed response",
+            "paramName": "response",
+            "description": " body of the failed response",
+            "type": [
+              "Object",
+              "String"
+            ]
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 5885
+        },
+        "end": {
+          "line": 208,
+          "column": 5,
+          "index": 7529
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response",
+          "type": [
+            "Object",
+            "String"
+          ]
         }
       ],
       "appearsIn": []
@@ -495,14 +608,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 149,
+          "line": 214,
           "column": 4,
-          "index": 5250
+          "index": 7671
         },
         "end": {
-          "line": 265,
+          "line": 336,
           "column": 5,
-          "index": 9654
+          "index": 12335
         }
       },
       "type": "function",
@@ -514,14 +627,46 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 267,
+          "line": 338,
           "column": 4,
-          "index": 9661
+          "index": 12342
         },
         "end": {
-          "line": 305,
+          "line": 377,
           "column": 5,
-          "index": 11098
+          "index": 13823
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__clearKnxdRetryTimer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop and dispose a pending read retry that was scheduled during a knxd",
+          "     * outage.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop and dispose a pending read retry that was scheduled during a knxd\n outage.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 13939
+        },
+        "end": {
+          "line": 389,
+          "column": 5,
+          "index": 14130
         }
       },
       "type": "function",
@@ -556,14 +701,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 313,
+          "line": 397,
           "column": 4,
-          "index": 11205
+          "index": 14237
         },
         "end": {
-          "line": 381,
+          "line": 481,
           "column": 6,
-          "index": 13804
+          "index": 17577
         }
       },
       "appearsIn": []
@@ -598,14 +743,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 390,
+          "line": 490,
           "column": 4,
-          "index": 13990
+          "index": 17763
         },
         "end": {
-          "line": 401,
+          "line": 501,
           "column": 5,
-          "index": 14409
+          "index": 18182
         }
       },
       "type": "function",
@@ -635,14 +780,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 407,
+          "line": 507,
           "column": 4,
-          "index": 14526
+          "index": 18299
         },
         "end": {
-          "line": 411,
+          "line": 511,
           "column": 5,
-          "index": 14700
+          "index": 18473
         }
       },
       "type": "function",
@@ -676,14 +821,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 418,
+          "line": 518,
           "column": 4,
-          "index": 14846
+          "index": 18619
         },
         "end": {
-          "line": 420,
+          "line": 520,
           "column": 5,
-          "index": 14911
+          "index": 18684
         }
       },
       "type": "function",
@@ -721,14 +866,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 427,
+          "line": 527,
           "column": 4,
-          "index": 15091
+          "index": 18864
         },
         "end": {
-          "line": 435,
+          "line": 535,
           "column": 5,
-          "index": 15317
+          "index": 19090
         }
       },
       "type": "function",
@@ -758,14 +903,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 441,
+          "line": 541,
           "column": 4,
-          "index": 15386
+          "index": 19159
         },
         "end": {
-          "line": 451,
+          "line": 552,
           "column": 5,
-          "index": 15667
+          "index": 19476
         }
       },
       "type": "function",
@@ -778,14 +923,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 459,
+        "line": 560,
         "column": 2,
-        "index": 15813
+        "index": 19622
       },
       "end": {
-        "line": 471,
+        "line": 573,
         "column": 3,
-        "index": 16172
+        "index": 20015
       }
     }
   },

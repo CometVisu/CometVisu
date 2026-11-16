@@ -237,23 +237,23 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     ******************************************************
     */
     members: {
-      __P_11_0: null,
+      __P_12_0: null,
       // cached access to the SVG in the DOM
-      __P_11_1: null,
+      __P_12_1: null,
       // cached access to the individual clock parts
-      __P_11_2: 0,
+      __P_12_2: 0,
       // is the handle currently dragged?
-      __P_11_3: null,
+      __P_12_3: null,
       // time to show on the clock
       /**
        *  to handle legacy mode, when a time string is used and not a `Date` object
        */
-      __P_11_4: false,
+      __P_12_4: false,
       _beforePropsApplied: function _beforePropsApplied(props) {
         props.value = new Date();
         props.value.setHours(0, 0, 0, 0);
-        this.__P_11_3 = [0, 0, 0];
-        this.__P_11_1 = [];
+        this.__P_12_3 = [0, 0, 0];
+        this.__P_12_1 = [];
         return props;
       },
       _getInnerDomString: function _getInnerDomString() {
@@ -262,7 +262,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       _onDomReady: function _onDomReady() {
         var _this = this;
         cv.plugins.Clock.superclass.prototype._onDomReady.call(this);
-        this.__P_11_5 = cv.util.Function.throttle(this.dragAction, 250, {
+        this.__P_12_5 = cv.util.Function.throttle(this.dragAction, 250, {
           trailing: true
         }, this);
         var uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
@@ -301,7 +301,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }
           svg.setAttribute('width', '100%');
           svg.setAttribute('height', '100%');
-          _this.__P_11_1 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
+          _this.__P_12_1 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
           if (texts.length > 1) {
             var popup = document.createElement('div');
             var title = _this.getTitlePopup();
@@ -324,7 +324,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             }
             svg.setAttribute('width', '100%');
             svg.setAttribute('height', '100%');
-            _this.__P_11_1.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
+            _this.__P_12_1.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
           }
           svg.setAttribute('style', 'touch-action: none'); // prevent scroll interference
 
@@ -340,7 +340,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           if (HotSpotSecond) {
             HotSpotSecond.addEventListener('pointerdown', _this);
           }
-          _this.__P_11_0 = svg;
+          _this.__P_12_0 = svg;
           _this._updateHands();
         })["catch"](function (error) {
           _this.error('There has been a problem with the reading of the clock SVG:', error);
@@ -352,17 +352,17 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       _update: function _update(address, data, isDataAlreadyHandled) {
         var value = isDataAlreadyHandled ? data : this.applyTransform(address, data);
         if (value instanceof Date) {
-          this.__P_11_4 = false;
-          this.__P_11_3 = [value.getHours(), value.getMinutes(), value.getSeconds()];
+          this.__P_12_4 = false;
+          this.__P_12_3 = [value.getHours(), value.getMinutes(), value.getSeconds()];
           this.setValue(value);
         } else {
-          this.__P_11_4 = true;
-          this.__P_11_3 = typeof value === 'string' ? value.split(':') : [0, 0, 0];
-          this.__P_11_3[0] = this.__P_11_3[0] >= 0 && this.__P_11_3[0] <= 23 ? this.__P_11_3[0] : 0;
-          this.__P_11_3[1] = this.__P_11_3[1] >= 0 && this.__P_11_3[1] <= 59 ? this.__P_11_3[1] : 0;
-          this.__P_11_3[2] = this.__P_11_3[2] >= 0 && this.__P_11_3[2] <= 59 ? this.__P_11_3[2] : 0;
+          this.__P_12_4 = true;
+          this.__P_12_3 = typeof value === 'string' ? value.split(':') : [0, 0, 0];
+          this.__P_12_3[0] = this.__P_12_3[0] >= 0 && this.__P_12_3[0] <= 23 ? this.__P_12_3[0] : 0;
+          this.__P_12_3[1] = this.__P_12_3[1] >= 0 && this.__P_12_3[1] <= 59 ? this.__P_12_3[1] : 0;
+          this.__P_12_3[2] = this.__P_12_3[2] >= 0 && this.__P_12_3[2] <= 59 ? this.__P_12_3[2] : 0;
           var date = new Date(); // assume today
-          date.setHours(this.__P_11_3[0], this.__P_11_3[1], this.__P_11_3[2], 0);
+          date.setHours(this.__P_12_3[0], this.__P_12_3[1], this.__P_12_3[2], 0);
           this.setValue(date);
         }
         this._updateHands();
@@ -378,16 +378,16 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           case 'pointerdown':
             switch (event.target.id) {
               case 'HotSpotHour':
-                this.__P_11_2 = dragMode.hour;
+                this.__P_12_2 = dragMode.hour;
                 break;
               case 'HotSpotMinute':
-                this.__P_11_2 = dragMode.minute;
+                this.__P_12_2 = dragMode.minute;
                 break;
               case 'HotSpotSecond':
-                this.__P_11_2 = dragMode.second;
+                this.__P_12_2 = dragMode.second;
                 break;
               default:
-                this.__P_11_2 = dragMode.none;
+                this.__P_12_2 = dragMode.none;
                 return;
               // early exit
             }
@@ -397,7 +397,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             event.stopPropagation();
             break;
           case 'pointermove':
-            if (this.__P_11_2 === dragMode.none) {
+            if (this.__P_12_2 === dragMode.none) {
               return;
             }
             event.preventDefault();
@@ -412,13 +412,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           case 'pointerup':
           case 'pointercancel':
             this.dragHelper(event);
-            this.__P_11_2 = dragMode.none;
+            this.__P_12_2 = dragMode.none;
             document.removeEventListener('pointermove', this);
             document.removeEventListener('pointerup', this);
             break;
         }
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_11_5.call();
+          this.__P_12_5.call();
         }
       },
       dragHelper: function dragHelper(event) {
@@ -428,13 +428,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           minute: 2,
           second: 3
         };
-        var CTM = this.__P_11_0.getScreenCTM(); // get the Current Transformation Matrix
+        var CTM = this.__P_12_0.getScreenCTM(); // get the Current Transformation Matrix
         var x = (event.clientX - CTM.e) / CTM.a - 60;
         var y = 60 - (event.clientY - CTM.f) / CTM.d;
         var angle = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
         var time = this.getValue();
         var minutes;
-        switch (this.__P_11_2) {
+        switch (this.__P_12_2) {
           case dragMode.hour:
             {
               var oldHours = time.getHours();
@@ -493,20 +493,20 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         if (this.getHideSeconds()) {
           time.setSeconds(0);
         }
-        this.__P_11_3 = [time.getHours(), time.getMinutes(), time.getSeconds()];
+        this.__P_12_3 = [time.getHours(), time.getMinutes(), time.getSeconds()];
         this._updateHands();
       },
       dragAction: function dragAction() {
-        var value = this.__P_11_4 ? this.getValue().toTimeString().split(' ')[0] : this.getValue();
-        this.__P_11_6 = this.sendToBackend(value, false, this.__P_11_6);
+        var value = this.__P_12_4 ? this.getValue().toTimeString().split(' ')[0] : this.getValue();
+        this.__P_12_6 = this.sendToBackend(value, false, this.__P_12_6);
       },
       _updateHands: function _updateHands() {
         var _this2 = this;
-        var _this$__P_11_ = _slicedToArray(this.__P_11_3, 3),
-          hour = _this$__P_11_[0],
-          minute = _this$__P_11_[1],
-          second = _this$__P_11_[2];
-        Array.isArray(this.__P_11_1) && this.__P_11_1.forEach(function (e) {
+        var _this$__P_12_ = _slicedToArray(this.__P_12_3, 3),
+          hour = _this$__P_12_[0],
+          minute = _this$__P_12_[1],
+          second = _this$__P_12_[2];
+        Array.isArray(this.__P_12_1) && this.__P_12_1.forEach(function (e) {
           var showSeconds = true;
           if (e.hour !== null) {
             if (showSeconds) {
@@ -552,4 +552,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1792082760758
+//# sourceMappingURL=Clock.js.map?dt=1794845745501

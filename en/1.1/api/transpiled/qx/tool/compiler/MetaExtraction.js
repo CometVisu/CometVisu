@@ -46,7 +46,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type{Object} the parsed data*/
-      __P_496_0: null,
+      __P_497_0: null,
       /**
        * Loads the meta from disk
        *
@@ -64,9 +64,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 1:
                 metaData = _context.v;
                 if ((metaData === null || metaData === void 0 ? void 0 : metaData.version) === qx.tool.compiler.MetaExtraction.VERSION) {
-                  _this.__P_496_0 = metaData;
+                  _this.__P_497_0 = metaData;
                 } else {
-                  _this.__P_496_0 = null;
+                  _this.__P_497_0 = null;
                 }
               case 2:
                 return _context.a(2);
@@ -89,7 +89,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return qx.tool.utils.Utils.makeParentDir(filename);
               case 1:
                 _context2.n = 2;
-                return qx.tool.utils.Json.saveJsonAsync(filename, _this2.__P_496_0);
+                return qx.tool.utils.Json.saveJsonAsync(filename, _this2.__P_497_0);
               case 2:
                 return _context2.a(2);
             }
@@ -102,7 +102,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {*}
        */
       getMetaData: function getMetaData() {
-        return this.__P_496_0;
+        return this.__P_497_0;
       },
       /**
        * Checks whether the meta data is out of date compared to the last modified
@@ -113,12 +113,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       isOutOfDate: function isOutOfDate() {
         var _this3 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
-          var _this3$__P_496_;
+          var _this3$__P_497_;
           var classFilename, stat, lastModified;
           return _regenerator().w(function (_context3) {
             while (1) switch (_context3.n) {
               case 0:
-                classFilename = _this3.__P_496_0.classFilename;
+                classFilename = _this3.__P_497_0.classFilename;
                 if (_this3.getMetaRootDir()) {
                   classFilename = path.join(_this3.getMetaRootDir(), classFilename);
                 }
@@ -126,7 +126,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return fs.promises.stat(classFilename);
               case 1:
                 stat = _context3.v;
-                lastModified = (_this3$__P_496_ = _this3.__P_496_0) === null || _this3$__P_496_ === void 0 ? void 0 : _this3$__P_496_.lastModified;
+                lastModified = (_this3$__P_497_ = _this3.__P_497_0) === null || _this3$__P_497_ === void 0 ? void 0 : _this3$__P_497_.lastModified;
                 if (!(lastModified && lastModified == stat.mtime.getTime())) {
                   _context3.n = 2;
                   break;
@@ -159,22 +159,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return fs.promises.stat(classFilename);
               case 2:
                 stat = _context4.v;
-                _this4.__P_496_0 = {
+                _this4.__P_497_0 = {
                   version: qx.tool.compiler.MetaExtraction.VERSION,
                   lastModified: stat.mtime.getTime(),
                   lastModifiedIso: stat.mtime.toISOString()
                 };
                 if (_this4.getMetaRootDir()) {
-                  _this4.__P_496_0.classFilename = path.relative(_this4.getMetaRootDir(), classFilename);
+                  _this4.__P_497_0.classFilename = path.relative(_this4.getMetaRootDir(), classFilename);
                 } else {
-                  _this4.__P_496_0.classFilename = path.resolve(classFilename);
+                  _this4.__P_497_0.classFilename = path.resolve(classFilename);
                 }
                 babelCore = require("@babel/core");
                 _context4.n = 3;
                 return fs.promises.readFile(classFilename, "utf8");
               case 3:
                 src = _context4.v;
-                plugins = [require("@babel/plugin-syntax-jsx"), _this4.__P_496_1()];
+                plugins = [require("@babel/plugin-syntax-jsx"), _this4.__P_497_1()];
                 config = {
                   ast: true,
                   babelrc: false,
@@ -195,7 +195,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   passPerPreset: true
                 };
                 result = babelCore.transform(src, config);
-                return _context4.a(2, _this4.__P_496_0);
+                return _context4.a(2, _this4.__P_497_0);
             }
           }, _callee4);
         }))();
@@ -205,8 +205,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        * @returns {Object}
        */
-      __P_496_1: function __P_496_1() {
-        var metaData = this.__P_496_0;
+      __P_497_1: function __P_497_1() {
+        var metaData = this.__P_497_0;
         var t = this;
         return {
           visitor: {
@@ -235,7 +235,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                       metaData.className = null;
                     }
                     metaData.jsdoc = qx.tool.utils.BabelHelpers.getJsDoc(node.leadingComments);
-                    t.__P_496_2(path.get("expression.arguments")[1]);
+                    t.__P_497_2(path.get("expression.arguments")[1]);
                   }
                 }
               });
@@ -248,9 +248,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        * @param {NodePath} path
        */
-      __P_496_2: function __P_496_2(path) {
+      __P_497_2: function __P_497_2(path) {
         var _this5 = this;
-        var metaData = this.__P_496_0;
+        var metaData = this.__P_497_0;
         var getFunctionParams = function getFunctionParams(node) {
           if (node.type == "ObjectMethod") {
             return node.params;
@@ -376,7 +376,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
           // Properties
           else if (propertyName == "properties") {
-            _this5.__P_496_3(path.get("value.properties"));
+            _this5.__P_497_3(path.get("value.properties"));
           }
 
           // Members & Statics
@@ -426,8 +426,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        * @param {NodePath[]} paths
        */
-      __P_496_3: function __P_496_3(paths) {
-        var metaData = this.__P_496_0;
+      __P_497_3: function __P_497_3(paths) {
+        var metaData = this.__P_497_0;
         if (!metaData.properties) {
           metaData.properties = {};
         }
@@ -446,7 +446,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         });
       },
       fixupJsDoc: function fixupJsDoc(typeResolver) {
-        var metaData = this.__P_496_0;
+        var metaData = this.__P_497_0;
         var fixupEntry = function fixupEntry(obj) {
           if (obj && obj.jsdoc) {
             var _obj$jsdoc$Return;
@@ -507,4 +507,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.MetaExtraction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaExtraction.js.map?dt=1792082789899
+//# sourceMappingURL=MetaExtraction.js.map?dt=1794845773316

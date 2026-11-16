@@ -49,9 +49,9 @@
     },
     members: {
       manager: null,
-      __P_392_0: null,
+      __P_393_0: null,
       setUp: function setUp() {
-        if (!this.__P_392_0) {
+        if (!this.__P_393_0) {
           // add dummy translations
           this.manager.addTranslation("en_QX", {
             "test one": "test one",
@@ -71,7 +71,7 @@
             "test %1 cars": "%1 Autos",
             key_short_Shift: "Umschalt"
           });
-          this.__P_392_0 = true;
+          this.__P_393_0 = true;
         }
         this.manager.setLocale("en_QX");
       },
@@ -122,4 +122,4 @@
   qx.test.ui.LocaleSwitch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LocaleSwitch.js.map?dt=1792082783034
+//# sourceMappingURL=LocaleSwitch.js.map?dt=1794845766756

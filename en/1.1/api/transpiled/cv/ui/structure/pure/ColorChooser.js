@@ -1,6 +1,6 @@
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
@@ -131,18 +131,18 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       var _this = this;
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       var base = this.getBaseColors();
-      this.__P_62_0 = new cv.util.Color(base.r, base.g, base.b, base.w);
-      this.__P_62_1 = new cv.util.LimitedRateUpdateAnimator(this.__P_62_2, this);
-      this.__P_62_1.setAnimationSpeed(100, 0.5);
+      this.__P_63_0 = new cv.util.Color(base.r, base.g, base.b, base.w);
+      this.__P_63_1 = new cv.util.LimitedRateUpdateAnimator(this.__P_63_2, this);
+      this.__P_63_1.setAnimationSpeed(100, 0.5);
       if (cv.ui.structure.pure.layout) {
-        this.__P_62_3 = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
+        this.__P_63_3 = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
           _this.invalidateScreensize();
         });
       }
-      this.__P_62_4 = new Set(Object.entries(this.getAddress()).map(function (v) {
+      this.__P_63_4 = new Set(Object.entries(this.getAddress()).map(function (v) {
         return v[1].variantInfo;
       }));
-      this.__P_62_5 = {};
+      this.__P_63_5 = {};
     },
     /*
     ***********************************************
@@ -150,9 +150,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     ***********************************************
     */
     destruct: function destruct() {
-      cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__P_62_3);
-      this.__P_62_3 = null;
-      this.__P_62_6 = null;
+      cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__P_63_3);
+      this.__P_63_3 = null;
+      this.__P_63_6 = null;
     },
     /*
     ******************************************************
@@ -189,34 +189,34 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     ******************************************************
     */
     members: {
-      __P_62_7: '',
-      __P_62_8: undefined,
+      __P_63_7: '',
+      __P_63_8: undefined,
       // the color where the animation started
-      __P_62_9: undefined,
+      __P_63_9: undefined,
       // the current color of the running animation
-      __P_62_0: undefined,
+      __P_63_0: undefined,
       // the current color of the widget, also the target for the animation
-      __P_62_5: undefined,
+      __P_63_5: undefined,
       // initialize with empty object in the constructor to prevent object being shared between instances
-      __P_62_1: null,
-      __P_62_6: undefined,
+      __P_63_1: null,
+      __P_63_6: undefined,
       // cache for DOM element
-      __P_62_10: undefined,
+      __P_63_10: undefined,
       // cache for DOM element
-      __P_62_11: undefined,
-      __P_62_3: undefined,
-      __P_62_4: undefined,
+      __P_63_11: undefined,
+      __P_63_3: undefined,
+      __P_63_4: undefined,
       // set of all color components required to send
-      __P_62_12: false,
+      __P_63_12: false,
       // is the handle currently dragged?
-      __P_62_13: undefined,
+      __P_63_13: undefined,
       // minimal screen coordinate of slider
-      __P_62_14: 2000,
+      __P_63_14: 2000,
       // minimal color temperature to show in slider
-      __P_62_15: 12500,
+      __P_63_15: 12500,
       // maximal color temperature to show in slider
       getColor: function getColor() {
-        return this.__P_62_0;
+        return this.__P_63_0;
       },
       // overridden
       _getInnerDomString: function _getInnerDomString() {
@@ -267,10 +267,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 var parts = control.split(':');
                 if (parts[0] === 'T') {
                   var temperatures = (parts[1] || '-').split('-');
-                  self.__P_62_14 = Math.max(1667, Math.min(temperatures[0] || 2500, 25000));
-                  self.__P_62_15 = Math.max(1667, Math.min(temperatures[1] || 9000, 25000));
-                  var rgbTmin = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_62_14));
-                  var rgbTmax = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_62_15));
+                  self.__P_63_14 = Math.max(1667, Math.min(temperatures[0] || 2500, 25000));
+                  self.__P_63_15 = Math.max(1667, Math.min(temperatures[1] || 9000, 25000));
+                  var rgbTmin = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_63_14));
+                  var rgbTmax = cv.util.Color.xy2sRGB(cv.util.Color.temperature2xy(self.__P_63_15));
                   var disp = function disp(c) {
                     return [Math.round(255 * c.r), Math.round(255 * c.g), Math.round(255 * c.b)].join(',');
                   };
@@ -286,7 +286,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       _onDomReady: function _onDomReady() {
         var _this2 = this;
         cv.ui.structure.pure.ColorChooser.superclass.prototype._onDomReady.call(this);
-        this.__P_62_16 = cv.util.Function.throttle(this.__P_62_17, this.getThrottleInterval(), {
+        this.__P_63_16 = cv.util.Function.throttle(this.__P_63_17, this.getThrottleInterval(), {
           trailing: true
         }, this);
         this.getDomElement().querySelectorAll('.actor').forEach(function (actor) {
@@ -433,22 +433,22 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             variantType = 'xyY';
             break;
         }
-        if (this.__P_62_12 || this.__P_62_5[variantType] && this.__P_62_5[variantType][variant] && this.__P_62_5[variantType][variant][transform] === data) {
+        if (this.__P_63_12 || this.__P_63_5[variantType] && this.__P_63_5[variantType][variant] && this.__P_63_5[variantType][variant][transform] === data) {
           // slider in use -> ignore value from bus
           // internal state unchanged -> also do nothing
           return;
         }
-        var notKnown = this.__P_62_5[variantType] === undefined;
+        var notKnown = this.__P_63_5[variantType] === undefined;
         if (notKnown) {
-          this.__P_62_5[variantType] = {};
+          this.__P_63_5[variantType] = {};
         }
 
         // forget all other transforms as they might not be valid anymore
-        this.__P_62_5 = _defineProperty({}, variantType, this.__P_62_5[variantType]);
-        this.__P_62_5[variantType][variant] = _defineProperty({}, transform, data);
+        this.__P_63_5 = _defineProperty({}, variantType, this.__P_63_5[variantType]);
+        this.__P_63_5[variantType][variant] = _defineProperty({}, transform, data);
 
         // animate when visible, otherwise jump to the target value
-        this.__P_62_18(value, variant, !this.isVisible() || notKnown);
+        this.__P_63_18(value, variant, !this.isVisible() || notKnown);
       },
       /**
        * The internal slider state and its handle and displayed value
@@ -457,18 +457,18 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param {boolean} instant Animate or instant change
        * @private
        */
-      __P_62_18: function __P_62_18(value, variant, instant) {
-        this.__P_62_8 = this.__P_62_9 === undefined ? this.__P_62_0.copy() : this.__P_62_9.copy();
-        this.__P_62_19(variant, value);
-        instant = instant || this.__P_62_0.delta(this.__P_62_8) < 0.5;
+      __P_63_18: function __P_63_18(value, variant, instant) {
+        this.__P_63_8 = this.__P_63_9 === undefined ? this.__P_63_0.copy() : this.__P_63_9.copy();
+        this.__P_63_19(variant, value);
+        instant = instant || this.__P_63_0.delta(this.__P_63_8) < 0.5;
         if (!instant) {
-          this.__P_62_1.setTo(this.__P_62_8, true, false);
+          this.__P_63_1.setTo(this.__P_63_8, true, false);
         }
-        this.__P_62_1.setTo(this.__P_62_0, instant);
+        this.__P_63_1.setTo(this.__P_63_0, instant);
       },
-      __P_62_2: function __P_62_2(newColor) {
+      __P_63_2: function __P_63_2(newColor) {
         // check cache
-        if (this.__P_62_11 === undefined) {
+        if (this.__P_63_11 === undefined) {
           var actors = {};
           var actorStyle;
           this.getDomElement().querySelectorAll('.actor').forEach(function (actor) {
@@ -514,12 +514,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 }
             }
           });
-          this.__P_62_11 = actors;
+          this.__P_63_11 = actors;
         }
-        this.__P_62_9 = newColor;
+        this.__P_63_9 = newColor;
         // move handles
-        for (var type in this.__P_62_11) {
-          var actor = this.__P_62_11[type];
+        for (var type in this.__P_63_11) {
+          var actor = this.__P_63_11[type];
           if (type === 'wheel') {
             var Bt = 75;
             var St = 0;
@@ -529,7 +529,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             var Wl = 92.5;
             var angle = void 0;
             if (actor.isLCh) {
-              var LCh = this.__P_62_9.getComponent('LCh');
+              var LCh = this.__P_63_9.getComponent('LCh');
               var r = cv.util.Color.curve(LCh.h, [246, 255, 46, 0, 246], 1);
               var g = cv.util.Color.curve(LCh.h, [27, 224, 255, 136, 27], 1);
               var b = cv.util.Color.curve(LCh.h, [136, 32, 224, 245, 136], 1);
@@ -540,7 +540,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               actor.handle.style.left = LCh.L * WSl + (1 - LCh.L) * Bl + '%';
               actor.inner.style.background = 'linear-gradient(210deg, transparent 45%, black 90%),linear-gradient(150deg, transparent 45%, white 90%),rgb(' + [r, g, b].join(',') + ')';
             } else {
-              var hsv = this.__P_62_9.getComponent('hsv');
+              var hsv = this.__P_63_9.getComponent('hsv');
               angle = hsv.h * 360 + 'deg';
               var _WSt = hsv.s * St + (1 - hsv.s) * Wt;
               var _WSl = hsv.s * Sl + (1 - hsv.s) * Wl;
@@ -552,7 +552,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           } else if (type === 'box') {
             var _angle = void 0;
             if (actor.isLCh) {
-              var _LCh = this.__P_62_9.getComponent('LCh');
+              var _LCh = this.__P_63_9.getComponent('LCh');
               var _r = cv.util.Color.curve(_LCh.h, [246, 255, 46, 0, 246], 1);
               var _g = cv.util.Color.curve(_LCh.h, [27, 224, 255, 136, 27], 1);
               var _b = cv.util.Color.curve(_LCh.h, [136, 32, 224, 245, 136], 1);
@@ -561,7 +561,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               actor.handle.style.left = (1 - _LCh.C) * 100 + '%';
               actor.inner.style.background = 'linear-gradient(0deg, black 0%, transparent 50%, white 100%), linear-gradient(90deg,rgb(' + [_r, _g, _b].join(',') + '), #808080 100%)';
             } else {
-              var _hsv = this.__P_62_9.getComponent('hsv');
+              var _hsv = this.__P_63_9.getComponent('hsv');
               _angle = _hsv.h * 360 + 'deg';
               actor.handle.style.top = (1 - _hsv.v) * 100 + '%';
               actor.handle.style.left = (1 - _hsv.s) * 100 + '%';
@@ -570,9 +570,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             actor.handle_hue.style.transform = 'rotate(' + _angle + ')';
             actor.handle_hue.style.transformOrigin = actor.handle_hueWidth / 2 + 'px ' + (actor.width / 2 - actor.handle_hueTop) + 'px'; //calc(195px / 2 - 3px)';
           } else {
-            var ratioComponent = this.__P_62_9.getComponent(type);
+            var ratioComponent = this.__P_63_9.getComponent(type);
             if (type === 'T') {
-              ratioComponent = (ratioComponent - this.__P_62_14) / (this.__P_62_15 - this.__P_62_14);
+              ratioComponent = (ratioComponent - this.__P_63_14) / (this.__P_63_15 - this.__P_63_14);
             }
             var length = Math.max(0, Math.min(ratioComponent, 1)) * actor.width;
             actor.button.style.transform = 'translate3d(' + (length - actor.buttonWidth / 2) + 'px, 0px, 0px)';
@@ -581,8 +581,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
       },
       invalidateScreensize: function invalidateScreensize() {
-        this.__P_62_11 = undefined; // invalidate cached values
-        this.__P_62_1.setTo(this.__P_62_0, true /* tmp */);
+        this.__P_63_11 = undefined; // invalidate cached values
+        this.__P_63_1.setTo(this.__P_63_0, true /* tmp */);
       },
       handleEvent: function handleEvent(event) {
         var relCoordX = 0;
@@ -592,16 +592,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           case 'pointerdown':
             {
               var actorType = event.currentTarget.className.replace(/.*cc_([^ ]*).*/, '$1');
-              actor = this.__P_62_11[actorType];
+              actor = this.__P_63_11[actorType];
               var boundingRect = event.currentTarget.getBoundingClientRect();
               var computedStyle = window.getComputedStyle(event.currentTarget);
-              this.__P_62_20 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-              this.__P_62_21 = boundingRect.top;
-              relCoordX = (event.clientX - this.__P_62_20) / actor.width;
-              relCoordY = (event.clientY - this.__P_62_21) / actor.height;
+              this.__P_63_20 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
+              this.__P_63_21 = boundingRect.top;
+              relCoordX = (event.clientX - this.__P_63_20) / actor.width;
+              relCoordY = (event.clientY - this.__P_63_21) / actor.height;
               if (actorType === 'wheel') {
                 var radius = actor !== undefined ? 0.5 * actor.innerRadius / actor.outerRadius : 1;
-                var sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_62_0.getComponent(actor.isLCh ? 'LCh' : 'hsv').h, radius);
+                var sv = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_63_0.getComponent(actor.isLCh ? 'LCh' : 'hsv').h, radius);
                 var distSqrd = Math.pow(relCoordX - 0.5, 2) + Math.pow(relCoordY - 0.5, 2);
                 if (distSqrd < Math.pow(0.535, 2)) {
                   // ignore clicks outside of the wheel, with 7% safety margin on the outside
@@ -609,13 +609,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   var closeToInerior = Math.pow(radius, 2) < distSqrd && !clearlyOnWheel;
                   var closeToTriangleCorners = sv[1] < 0.01 || sv[0] < 0.01 && sv[1] > 0.99 || sv[0] > 0.99 && sv[1] > 0.99;
                   if (clearlyOnWheel || closeToInerior && !closeToTriangleCorners) {
-                    this.__P_62_7 = 'wheel_h';
-                    this.__P_62_19(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
-                    this.__P_62_12 = true;
+                    this.__P_63_7 = 'wheel_h';
+                    this.__P_63_19(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+                    this.__P_63_12 = true;
                   } else {
-                    this.__P_62_7 = 'wheel_sv';
-                    this.__P_62_19(actor.isLCh ? 'LCh-CL' : 'sv', sv);
-                    this.__P_62_12 = true;
+                    this.__P_63_7 = 'wheel_sv';
+                    this.__P_63_19(actor.isLCh ? 'LCh-CL' : 'sv', sv);
+                    this.__P_63_12 = true;
                   }
                 }
               } else if (actorType === 'box') {
@@ -624,69 +624,69 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 var y = relCoordY - 0.5;
                 var _sv = [-x / boxSize / 2 + 0.5, -y / boxSize / 2 + 0.5];
                 if (Math.abs(x) < boxSize && Math.abs(y) < boxSize) {
-                  this.__P_62_7 = 'box_sv';
-                  this.__P_62_19(actor.isLCh ? 'LCh-CL' : 'sv', _sv);
-                  this.__P_62_12 = true;
+                  this.__P_63_7 = 'box_sv';
+                  this.__P_63_19(actor.isLCh ? 'LCh-CL' : 'sv', _sv);
+                  this.__P_63_12 = true;
                 } else {
-                  this.__P_62_7 = 'box_h';
-                  this.__P_62_19(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
-                  this.__P_62_12 = true;
+                  this.__P_63_7 = 'box_h';
+                  this.__P_63_19(actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-x, y) / 2 / Math.PI);
+                  this.__P_63_12 = true;
                 }
               } else {
                 var ratio = relCoordX;
                 if (actorType === 'T') {
-                  ratio = this.__P_62_14 + ratio * (this.__P_62_15 - this.__P_62_14);
+                  ratio = this.__P_63_14 + ratio * (this.__P_63_15 - this.__P_63_14);
                 }
-                this.__P_62_7 = actorType;
-                this.__P_62_19(actorType, ratio);
-                this.__P_62_12 = true;
+                this.__P_63_7 = actorType;
+                this.__P_63_19(actorType, ratio);
+                this.__P_63_12 = true;
               }
-              if (this.__P_62_12) {
+              if (this.__P_63_12) {
                 document.addEventListener('pointermove', this);
                 document.addEventListener('pointerup', this);
               } else {
-                this.__P_62_7 = undefined;
+                this.__P_63_7 = undefined;
               }
               break;
             }
           case 'pointermove':
             {
-              if (!this.__P_62_12) {
+              if (!this.__P_63_12) {
                 return;
               }
               if (event.buttons === 0) {
                 // move with no button could only happen during debug sessions
-                this.__P_62_12 = false;
+                this.__P_63_12 = false;
                 document.removeEventListener('pointermove', this);
                 document.removeEventListener('pointerup', this);
               }
-              var type = this.__P_62_7.split('_')[0]; // clamp "wheel_*" to "wheel"
-              actor = this.__P_62_11[type];
-              relCoordX = (event.clientX - this.__P_62_20) / actor.width;
-              relCoordY = (event.clientY - this.__P_62_21) / actor.height;
+              var type = this.__P_63_7.split('_')[0]; // clamp "wheel_*" to "wheel"
+              actor = this.__P_63_11[type];
+              relCoordX = (event.clientX - this.__P_63_20) / actor.width;
+              relCoordY = (event.clientY - this.__P_63_21) / actor.height;
               break;
             }
           case 'pointerup':
             {
-              this.__P_62_12 = false;
+              this.__P_63_12 = false;
               document.removeEventListener('pointermove', this);
               document.removeEventListener('pointerup', this);
-              var _type = this.__P_62_7.split('_')[0]; // clamp "wheel_*" to "wheel"
-              actor = this.__P_62_11[_type];
-              relCoordX = (event.clientX - this.__P_62_20) / actor.width;
-              relCoordY = (event.clientY - this.__P_62_21) / actor.height;
+              var _type = this.__P_63_7.split('_')[0]; // clamp "wheel_*" to "wheel"
+              actor = this.__P_63_11[_type];
+              relCoordX = (event.clientX - this.__P_63_20) / actor.width;
+              relCoordY = (event.clientY - this.__P_63_21) / actor.height;
               break;
             }
         }
         if (event.type !== 'pointerdown') {
-          var _type2 = this.__P_62_7.split('_')[0]; // clamp "wheel_*" to "wheel"
-          var _actor = this.__P_62_11[_type2];
-          switch (this.__P_62_7) {
+          var _type2 = this.__P_63_7.split('_')[0]; // clamp "wheel_*" to "wheel"
+          var _actor = this.__P_63_11[_type2];
+          switch (this.__P_63_7) {
             case 'wheel_sv':
               {
                 var _radius = _actor !== undefined ? 0.5 * _actor.innerRadius / _actor.outerRadius : 1;
-                var _sv2 = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_62_0.getComponent(_actor.isLCh ? 'LCh' : 'hsv').h, _radius);
-                this.__P_62_19(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv2[0], 0), 1), Math.min(Math.max(_sv2[1], 0), 1)]);
+                var _sv2 = cv.ui.structure.pure.ColorChooser.coord2sv(relCoordX, relCoordY, this.__P_63_0.getComponent(_actor.isLCh ? 'LCh' : 'hsv').h, _radius);
+                this.__P_63_19(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv2[0], 0), 1), Math.min(Math.max(_sv2[1], 0), 1)]);
                 break;
               }
             case 'box_sv':
@@ -695,33 +695,33 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 var _x = relCoordX - 0.5;
                 var _y = relCoordY - 0.5;
                 var _sv3 = [-_x / _boxSize / 2 + 0.5, -_y / _boxSize / 2 + 0.5];
-                this.__P_62_19(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv3[0], 0), 1), Math.min(Math.max(_sv3[1], 0), 1)]);
+                this.__P_63_19(_actor.isLCh ? 'LCh-CL' : 'sv', [Math.min(Math.max(_sv3[0], 0), 1), Math.min(Math.max(_sv3[1], 0), 1)]);
                 break;
               }
             case 'wheel_h':
             case 'box_h':
-              this.__P_62_19(_actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
+              this.__P_63_19(_actor.isLCh ? 'LCh-h' : 'h', 0.5 + Math.atan2(-relCoordX + 0.5, relCoordY - 0.5) / 2 / Math.PI);
               break;
             case 'T':
-              this.__P_62_19('T', this.__P_62_14 + Math.max(0, Math.min(relCoordX, 1)) * (this.__P_62_15 - this.__P_62_14));
+              this.__P_63_19('T', this.__P_63_14 + Math.max(0, Math.min(relCoordX, 1)) * (this.__P_63_15 - this.__P_63_14));
               break;
             default:
-              this.__P_62_19(this.__P_62_7, relCoordX);
+              this.__P_63_19(this.__P_63_7, relCoordX);
           }
         }
-        this.__P_62_1.setTo(this.__P_62_0, true);
+        this.__P_63_1.setTo(this.__P_63_0, true);
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_62_16.call();
+          this.__P_63_16.call();
         }
       },
-      __P_62_19: function __P_62_19(component, value) {
-        this.__P_62_0.changeComponent(component, value);
+      __P_63_19: function __P_63_19(component, value) {
+        this.__P_63_0.changeComponent(component, value);
         this.fireEvent('colorChanged');
       },
-      __P_62_17: function __P_62_17() {
+      __P_63_17: function __P_63_17() {
         var _this3 = this;
-        this.__P_62_4.forEach(function (type) {
-          var value = _this3.__P_62_0.getComponent(['xyY', 'x', 'y'].includes(type) ? 'xy' : type);
+        this.__P_63_4.forEach(function (type) {
+          var value = _this3.__P_63_0.getComponent(['xyY', 'x', 'y'].includes(type) ? 'xy' : type);
           var typeCategory;
           var base;
           switch (type) {
@@ -769,7 +769,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               break;
             case 'xyY':
               {
-                var Y = _this3.__P_62_0.getComponent('Y');
+                var Y = _this3.__P_63_0.getComponent('Y');
                 value = new Map([['x', value.x], ['y', value.y], ['Y', Y]]);
                 typeCategory = 'xyY';
                 break;
@@ -783,12 +783,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               typeCategory = 'xyY';
               break;
           }
-          if (_this3.__P_62_5[typeCategory] === undefined) {
-            _this3.__P_62_5[typeCategory] = {};
+          if (_this3.__P_63_5[typeCategory] === undefined) {
+            _this3.__P_63_5[typeCategory] = {};
           }
-          _this3.__P_62_5[typeCategory][type] = _this3.sendToBackend(value, function (t) {
+          _this3.__P_63_5[typeCategory][type] = _this3.sendToBackend(value, function (t) {
             return t.variantInfo === type;
-          }, _this3.__P_62_5[typeCategory][type]);
+          }, _this3.__P_63_5[typeCategory][type]);
         });
       }
     },
@@ -799,4 +799,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.pure.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1792082764199
+//# sourceMappingURL=ColorChooser.js.map?dt=1794845748696

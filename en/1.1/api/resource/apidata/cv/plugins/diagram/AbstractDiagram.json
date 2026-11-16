@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547831,
-  "lastModifiedIso": "2026-10-15T16:42:27.831Z",
+  "lastModified": 1794845538738,
+  "lastModifiedIso": "2026-11-16T16:12:18.738Z",
   "classFilename": "../../source/class/cv/plugins/diagram/AbstractDiagram.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 3026
     },
     "end": {
-      "line": 972,
+      "line": 1080,
       "column": 3,
-      "index": 30560
+      "index": 34749
     }
   },
   "className": "cv.plugins.diagram.AbstractDiagram",
@@ -290,9 +290,9 @@
           "index": 5684
         },
         "end": {
-          "line": 218,
+          "line": 228,
           "column": 5,
-          "index": 8305
+          "index": 8973
         }
       },
       "type": "function",
@@ -336,14 +336,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 225,
+          "line": 235,
           "column": 4,
-          "index": 8429
+          "index": 9097
         },
         "end": {
-          "line": 267,
+          "line": 277,
           "column": 5,
-          "index": 9366
+          "index": 10034
         }
       },
       "type": "function",
@@ -442,14 +442,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 281,
+          "line": 291,
           "column": 4,
-          "index": 9796
+          "index": 10464
         },
         "end": {
-          "line": 351,
+          "line": 389,
           "column": 5,
-          "index": 12603
+          "index": 14223
         }
       },
       "type": "function",
@@ -487,19 +487,317 @@
       ],
       "appearsIn": []
     },
+    "getTimeSeriesSource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The time series source for this data set, if its type provides one. Such a source",
+          "     * retrieves the data itself, e.g. over an already established backend connection,",
+          "     * so no request url is built for it.",
+          "     * @param ts {Map} data set configuration",
+          "     * @return {cv.io.timeseries.AbstractTimeSeriesSource|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The time series source for this data set, if its type provides one. Such a source\n retrieves the data itself, e.g. over an already established backend connection,\n so no request url is built for it.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.io.timeseries.AbstractTimeSeriesSource|null}",
+            "type": "cv.io.timeseries.AbstractTimeSeriesSource|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4,
+          "index": 14574
+        },
+        "end": {
+          "line": 410,
+          "column": 5,
+          "index": 15001
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "cv.io.timeseries.AbstractTimeSeriesSource|null"
+      },
+      "appearsIn": []
+    },
+    "_scaleTsData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the configured time offset and scaling to the raw values.",
+          "     * @param ts {Map} data set configuration",
+          "     * @param tsdata {Array} raw [timestamp, value] pairs",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the configured time offset and scaling to the raw values.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "tsdata {Array} raw [timestamp, value] pairs",
+            "paramName": "tsdata",
+            "description": " raw [timestamp, value] pairs",
+            "type": "Array<any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4,
+          "index": 15224
+        },
+        "end": {
+          "line": 426,
+          "column": 5,
+          "index": 15742
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "tsdata",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_addNowDatapoint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Repeats the last value at the current time, so that the graph is drawn up to now.",
+          "     * @param tsdata {Array} [timestamp, value] pairs",
+          "     * @param forceNowDatapoint {Boolean}",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Repeats the last value at the current time, so that the graph is drawn up to now.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tsdata {Array} [timestamp, value] pairs",
+            "paramName": "tsdata",
+            "description": " [timestamp, value] pairs",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "forceNowDatapoint {Boolean}",
+            "paramName": "forceNowDatapoint",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4,
+          "index": 15973
+        },
+        "end": {
+          "line": 442,
+          "column": 5,
+          "index": 16237
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tsdata",
+          "type": "Array<any>"
+        },
+        {
+          "name": "forceNowDatapoint",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_onSourceError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A source that retrieves its data itself failed, there is no response to show.",
+          "     * @param ts {Map} data set configuration",
+          "     * @param key {String} identifies the data set in the error message",
+          "     * @param err {Error|var} what went wrong",
+          "     * @param callback {Function} call when the data has arrived",
+          "     * @param callbackParameter {var}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A source that retrieves its data itself failed, there is no response to show.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "key {String} identifies the data set in the error message",
+            "paramName": "key",
+            "description": " identifies the data set in the error message",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "err {Error|var} what went wrong",
+            "paramName": "err",
+            "description": " what went wrong",
+            "type": [
+              "Error",
+              "var"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} call when the data has arrived",
+            "paramName": "callback",
+            "description": " call when the data has arrived",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "callbackParameter {var}",
+            "paramName": "callbackParameter",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4,
+          "index": 16612
+        },
+        "end": {
+          "line": 467,
+          "column": 5,
+          "index": 17221
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "err",
+          "type": [
+            "Error",
+            "var"
+          ]
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "callbackParameter",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
     "_onSuccess": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 353,
+          "line": 469,
           "column": 4,
-          "index": 12610
+          "index": 17228
         },
         "end": {
-          "line": 392,
+          "line": 500,
           "column": 5,
-          "index": 14355
+          "index": 18544
         }
       },
       "type": "function",
@@ -524,14 +822,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 394,
+          "line": 502,
           "column": 4,
-          "index": 14362
+          "index": 18551
         },
         "end": {
-          "line": 422,
+          "line": 530,
           "column": 5,
-          "index": 15512
+          "index": 19701
         }
       },
       "type": "function",
@@ -586,14 +884,14 @@
     "content": {
       "location": {
         "start": {
-          "line": 431,
+          "line": 539,
           "column": 4,
-          "index": 15678
+          "index": 19867
         },
         "end": {
-          "line": 434,
+          "line": 542,
           "column": 5,
-          "index": 15732
+          "index": 19921
         }
       },
       "json": {
@@ -606,14 +904,14 @@
     "title": {
       "location": {
         "start": {
-          "line": 436,
+          "line": 544,
           "column": 4,
-          "index": 15739
+          "index": 19928
         },
         "end": {
-          "line": 440,
+          "line": 548,
           "column": 5,
-          "index": 15825
+          "index": 20014
         }
       },
       "json": {
@@ -627,14 +925,14 @@
     "series": {
       "location": {
         "start": {
-          "line": 442,
+          "line": 550,
           "column": 4,
-          "index": 15832
+          "index": 20021
         },
         "end": {
-          "line": 445,
+          "line": 553,
           "column": 5,
-          "index": 15941
+          "index": 20130
         }
       },
       "json": {
@@ -655,14 +953,14 @@
     "seriesStart": {
       "location": {
         "start": {
-          "line": 447,
+          "line": 555,
           "column": 4,
-          "index": 15948
+          "index": 20137
         },
         "end": {
-          "line": 450,
+          "line": 558,
           "column": 5,
-          "index": 16015
+          "index": 20204
         }
       },
       "json": {
@@ -675,14 +973,14 @@
     "seriesEnd": {
       "location": {
         "start": {
-          "line": 452,
+          "line": 560,
           "column": 4,
-          "index": 16022
+          "index": 20211
         },
         "end": {
-          "line": 455,
+          "line": 563,
           "column": 5,
-          "index": 16081
+          "index": 20270
         }
       },
       "json": {
@@ -695,14 +993,14 @@
     "seriesResolution": {
       "location": {
         "start": {
-          "line": 457,
+          "line": 565,
           "column": 4,
-          "index": 16088
+          "index": 20277
         },
         "end": {
-          "line": 460,
+          "line": 568,
           "column": 5,
-          "index": 16152
+          "index": 20341
         }
       },
       "json": {
@@ -715,14 +1013,14 @@
     "forceNowDatapoint": {
       "location": {
         "start": {
-          "line": 462,
+          "line": 570,
           "column": 4,
-          "index": 16159
+          "index": 20348
         },
         "end": {
-          "line": 465,
+          "line": 573,
           "column": 5,
-          "index": 16226
+          "index": 20415
         }
       },
       "json": {
@@ -735,14 +1033,14 @@
     "period": {
       "location": {
         "start": {
-          "line": 467,
+          "line": 575,
           "column": 4,
-          "index": 16233
+          "index": 20422
         },
         "end": {
-          "line": 470,
+          "line": 578,
           "column": 5,
-          "index": 16285
+          "index": 20474
         }
       },
       "json": {
@@ -755,14 +1053,14 @@
     "legendInline": {
       "location": {
         "start": {
-          "line": 472,
+          "line": 580,
           "column": 4,
-          "index": 16292
+          "index": 20481
         },
         "end": {
-          "line": 475,
+          "line": 583,
           "column": 5,
-          "index": 16354
+          "index": 20543
         }
       },
       "json": {
@@ -775,14 +1073,14 @@
     "legendPopup": {
       "location": {
         "start": {
-          "line": 477,
+          "line": 585,
           "column": 4,
-          "index": 16361
+          "index": 20550
         },
         "end": {
-          "line": 480,
+          "line": 588,
           "column": 5,
-          "index": 16422
+          "index": 20611
         }
       },
       "json": {
@@ -795,14 +1093,14 @@
     "legendposition": {
       "location": {
         "start": {
-          "line": 482,
+          "line": 590,
           "column": 4,
-          "index": 16429
+          "index": 20618
         },
         "end": {
-          "line": 485,
+          "line": 593,
           "column": 5,
-          "index": 16508
+          "index": 20697
         }
       },
       "json": {
@@ -820,14 +1118,14 @@
     "timeformat": {
       "location": {
         "start": {
-          "line": 487,
+          "line": 595,
           "column": 4,
-          "index": 16515
+          "index": 20704
         },
         "end": {
-          "line": 490,
+          "line": 598,
           "column": 5,
-          "index": 16578
+          "index": 20767
         }
       },
       "json": {
@@ -840,14 +1138,14 @@
     "timeformatTooltip": {
       "location": {
         "start": {
-          "line": 492,
+          "line": 600,
           "column": 4,
-          "index": 16585
+          "index": 20774
         },
         "end": {
-          "line": 495,
+          "line": 603,
           "column": 5,
-          "index": 16663
+          "index": 20852
         }
       },
       "json": {
@@ -860,14 +1158,14 @@
     "zoomYAxis": {
       "location": {
         "start": {
-          "line": 497,
+          "line": 605,
           "column": 4,
-          "index": 16670
+          "index": 20859
         },
         "end": {
-          "line": 500,
+          "line": 608,
           "column": 5,
-          "index": 16730
+          "index": 20919
         }
       },
       "json": {
@@ -880,14 +1178,14 @@
     "gridcolor": {
       "location": {
         "start": {
-          "line": 502,
+          "line": 610,
           "column": 4,
-          "index": 16737
+          "index": 20926
         },
         "end": {
-          "line": 505,
+          "line": 613,
           "column": 5,
-          "index": 16800
+          "index": 20989
         }
       },
       "json": {
@@ -900,14 +1198,14 @@
     "previewlabels": {
       "location": {
         "start": {
-          "line": 507,
+          "line": 615,
           "column": 4,
-          "index": 16807
+          "index": 20996
         },
         "end": {
-          "line": 510,
+          "line": 618,
           "column": 5,
-          "index": 16871
+          "index": 21060
         }
       },
       "json": {
@@ -920,14 +1218,14 @@
     "popup": {
       "location": {
         "start": {
-          "line": 512,
+          "line": 620,
           "column": 4,
-          "index": 16878
+          "index": 21067
         },
         "end": {
-          "line": 515,
+          "line": 623,
           "column": 5,
-          "index": 16934
+          "index": 21123
         }
       },
       "json": {
@@ -940,14 +1238,14 @@
     "tooltip": {
       "location": {
         "start": {
-          "line": 517,
+          "line": 625,
           "column": 4,
-          "index": 16941
+          "index": 21130
         },
         "end": {
-          "line": 520,
+          "line": 628,
           "column": 5,
-          "index": 16999
+          "index": 21188
         }
       },
       "json": {
@@ -1034,14 +1332,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 529,
+          "line": 637,
           "column": 4,
-          "index": 17159
+          "index": 21348
         },
         "end": {
-          "line": 529,
+          "line": 637,
           "column": 16,
-          "index": 17171
+          "index": 21360
         }
       },
       "appearsIn": []
@@ -1051,14 +1349,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 530,
+          "line": 638,
           "column": 4,
-          "index": 17177
+          "index": 21366
         },
         "end": {
-          "line": 530,
+          "line": 638,
           "column": 19,
-          "index": 17192
+          "index": 21381
         }
       },
       "appearsIn": []
@@ -1068,14 +1366,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 531,
+          "line": 639,
           "column": 4,
-          "index": 17198
+          "index": 21387
         },
         "end": {
-          "line": 531,
+          "line": 639,
           "column": 14,
-          "index": 17208
+          "index": 21397
         }
       },
       "appearsIn": []
@@ -1085,14 +1383,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 532,
+          "line": 640,
           "column": 4,
-          "index": 17214
+          "index": 21403
         },
         "end": {
-          "line": 532,
+          "line": 640,
           "column": 17,
-          "index": 17227
+          "index": 21416
         }
       },
       "appearsIn": []
@@ -1102,14 +1400,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 533,
+          "line": 641,
           "column": 4,
-          "index": 17233
+          "index": 21422
         },
         "end": {
-          "line": 533,
+          "line": 641,
           "column": 21,
-          "index": 17250
+          "index": 21439
         }
       },
       "appearsIn": []
@@ -1119,14 +1417,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 534,
+          "line": 642,
           "column": 4,
-          "index": 17256
+          "index": 21445
         },
         "end": {
-          "line": 534,
+          "line": 642,
           "column": 20,
-          "index": 17272
+          "index": 21461
         }
       },
       "appearsIn": []
@@ -1140,14 +1438,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 537,
+          "line": 645,
           "column": 4,
-          "index": 17301
+          "index": 21490
         },
         "end": {
-          "line": 542,
+          "line": 650,
           "column": 5,
-          "index": 17445
+          "index": 21634
         }
       },
       "type": "function",
@@ -1163,14 +1461,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 544,
+          "line": 652,
           "column": 4,
-          "index": 17452
+          "index": 21641
         },
         "end": {
-          "line": 560,
+          "line": 668,
           "column": 5,
-          "index": 17995
+          "index": 22184
         }
       },
       "type": "function",
@@ -1212,14 +1510,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 568,
+          "line": 676,
           "column": 4,
-          "index": 18126
+          "index": 22315
         },
         "end": {
-          "line": 572,
+          "line": 680,
           "column": 5,
-          "index": 18223
+          "index": 22412
         }
       },
       "type": "function",
@@ -1274,14 +1572,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 581,
+          "line": 689,
           "column": 4,
-          "index": 18472
+          "index": 22661
         },
         "end": {
-          "line": 590,
+          "line": 698,
           "column": 5,
-          "index": 18700
+          "index": 22889
         }
       },
       "type": "function",
@@ -1302,14 +1600,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 592,
+          "line": 700,
           "column": 4,
-          "index": 18707
+          "index": 22896
         },
         "end": {
-          "line": 651,
+          "line": 759,
           "column": 5,
-          "index": 20768
+          "index": 24957
         }
       },
       "type": "function",
@@ -1321,14 +1619,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 653,
+          "line": 761,
           "column": 4,
-          "index": 20775
+          "index": 24964
         },
         "end": {
-          "line": 811,
+          "line": 919,
           "column": 5,
-          "index": 25561
+          "index": 29750
         }
       },
       "type": "function",
@@ -1344,14 +1642,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 813,
+          "line": 921,
           "column": 4,
-          "index": 25568
+          "index": 29757
         },
         "end": {
-          "line": 850,
+          "line": 958,
           "column": 5,
-          "index": 26870
+          "index": 31059
         }
       },
       "type": "function",
@@ -1370,14 +1668,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 852,
+          "line": 960,
           "column": 4,
-          "index": 26877
+          "index": 31066
         },
         "end": {
-          "line": 941,
+          "line": 1049,
           "column": 5,
-          "index": 29696
+          "index": 33885
         }
       },
       "type": "function",
@@ -1797,14 +2095,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 949,
+        "line": 1057,
         "column": 2,
-        "index": 29844
+        "index": 34033
       },
       "end": {
-        "line": 953,
+        "line": 1061,
         "column": 3,
-        "index": 29937
+        "index": 34126
       }
     }
   }

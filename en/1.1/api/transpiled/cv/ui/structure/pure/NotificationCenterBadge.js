@@ -73,7 +73,7 @@
      ******************************************************
      */
     members: {
-      __P_67_0: null,
+      __P_68_0: null,
       _beforePropsApplied: function _beforePropsApplied(props) {
         var classes = props.classes.trim().split(' ');
         var i_right = classes.indexOf('right');
@@ -104,14 +104,14 @@
         }
         cv.ui.NotificationCenter.getInstance().toggleVisibility();
       },
-      __P_67_1: function __P_67_1() {
-        if (!this.__P_67_0) {
-          this.__P_67_0 = this.getDomElement().querySelector('.badge');
+      __P_68_1: function __P_68_1() {
+        if (!this.__P_68_0) {
+          this.__P_68_0 = this.getDomElement().querySelector('.badge');
         }
-        return this.__P_67_0;
+        return this.__P_68_0;
       },
       _onChangeGlobalSeverity: function _onChangeGlobalSeverity(ev) {
-        var classList = this.__P_67_1().classList;
+        var classList = this.__P_68_1().classList;
         classList.remove.apply(classList, cv.ui.NotificationCenter.getInstance().getSeverities());
         if (ev.getData()) {
           classList.add(ev.getData());
@@ -119,9 +119,9 @@
       },
       _onChangeCounter: function _onChangeCounter() {
         var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
-        this.__P_67_1().innerHTML = '' + messages;
+        this.__P_68_1().innerHTML = '' + messages;
         if (this.isHideWhenEmpty()) {
-          this.__P_67_1().style.display = messages === 0 ? 'none' : 'block';
+          this.__P_68_1().style.display = messages === 0 ? 'none' : 'block';
         }
       },
       // overridden
@@ -150,4 +150,4 @@
   cv.ui.structure.pure.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1792082764460
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1794845748938

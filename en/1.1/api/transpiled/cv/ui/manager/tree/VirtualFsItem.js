@@ -147,7 +147,7 @@
       _onDrop: function _onDrop(ev) {
         this.info(ev.getRelatedTarget());
       },
-      __P_57_0: function __P_57_0() {
+      __P_58_0: function __P_58_0() {
         this.getChildControl('edit').setValue(this.getName());
         this.setEditing(false);
       },
@@ -155,7 +155,7 @@
         if (ev.getKeyIdentifier() === 'Enter') {
           this.setEditing(false);
         } else if (ev.getKeyIdentifier() === 'Esc') {
-          this.__P_57_0();
+          this.__P_58_0();
         }
       },
       // overridden
@@ -187,4 +187,4 @@
   cv.ui.manager.tree.VirtualFsItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualFsItem.js.map?dt=1792082763859
+//# sourceMappingURL=VirtualFsItem.js.map?dt=1794845748378

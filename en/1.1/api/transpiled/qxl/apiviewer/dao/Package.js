@@ -113,7 +113,7 @@
       }
     },
     statics: {
-      __P_821_0: null,
+      __P_825_0: null,
       /**
        * Locates a package by name
        * @param name {String} package name, null or "" for top level
@@ -121,9 +121,9 @@
        * @return {Package?}
        */
       getPackage: function getPackage(name, create) {
-        var root = qxl.apiviewer.dao.Package.__P_821_0;
+        var root = qxl.apiviewer.dao.Package.__P_825_0;
         if (!root) {
-          root = qxl.apiviewer.dao.Package.__P_821_0 = new qxl.apiviewer.dao.Package("");
+          root = qxl.apiviewer.dao.Package.__P_825_0 = new qxl.apiviewer.dao.Package("");
         }
         if (!name) {
           return root;
@@ -166,4 +166,4 @@
   qxl.apiviewer.dao.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1792082804560
+//# sourceMappingURL=Package.js.map?dt=1794845787906

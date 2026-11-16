@@ -82,6 +82,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#knxd-eibd">knxd / eibd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#openhab">openHAB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mqtt">MQTT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iobroker">ioBroker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#backend-konfigurieren">Backend konfigurieren</a></li>
 </ul>
 </li>
@@ -192,6 +193,16 @@ und
 <p>Damit die CometVisu ein MQTT-Teilnehmer ist, wird ein MQTT Broker benötigt
 der über WebSocket ansprechbar ist.</p>
 </section>
+<section id="iobroker">
+<h3>ioBroker<a class="headerlink" href="#iobroker" title="Link to this heading"></a></h3>
+<p>Für den Datenaustausch wird ein ioBroker-Server mit Websocket-Schnittstelle
+benötigt: entweder der Web-Adapter (<code class="docutils literal notranslate"><span class="pre">iobroker.web</span></code>) oder der „Web socket“
+Adapter (<code class="docutils literal notranslate"><span class="pre">iobroker.ws</span></code>, mindestens Version 5.0.2). Die CometVisu lädt die
+passende Programmbibliothek von diesem Server, es spielt daher keine Rolle,
+welches Protokoll er dafür verwendet. Für die Anzeige von Diagrammen bzw.
+Verlaufsdaten wird zusätzlich der SQL-Adapter (<code class="docutils literal notranslate"><span class="pre">iobroker.sql</span></code>, mindestens
+Version 4.1.1) benötigt.</p>
+</section>
 <section id="backend-konfigurieren">
 <h3>Backend konfigurieren<a class="headerlink" href="#backend-konfigurieren" title="Link to this heading"></a></h3>
 <p>Um die CometVisu für die Verwendung von einem spezifischen Backend zu
@@ -213,7 +224,7 @@ Docker-Images der CometVisu leicht durch das Setzen entsprechender
 </tr>
 <tr class="row-even"><td><p>X-CometVisu-Backend-Name</p></td>
 <td><p>BACKEND_NAME</p></td>
-<td><p>Name wie <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> oder <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
+<td><p>Name wie <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">iobroker</span></code> oder <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>X-CometVisu-Backend-KNXD-Url</p></td>
 <td><p>BACKEND_KNXD</p></td>
@@ -223,19 +234,23 @@ Docker-Images der CometVisu leicht durch das Setzen entsprechender
 <td><p>BACKEND_MQTT</p></td>
 <td><p>URL für die MQTT Login-Ressource</p></td>
 </tr>
-<tr class="row-odd"><td><p>X-CometVisu-Backend-OpenHAB-Url</p></td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-ioBroker-Url</p></td>
+<td><p>BACKEND_IOBROKER</p></td>
+<td><p>URL für die ioBroker websocket API</p></td>
+</tr>
+<tr class="row-even"><td><p>X-CometVisu-Backend-OpenHAB-Url</p></td>
 <td><p>BACKEND_OPENHAB</p></td>
 <td><p>openHAB: Pfad zur REST-API</p></td>
 </tr>
-<tr class="row-even"><td><p>X-CometVisu-Backend-LoginUrl</p></td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-LoginUrl</p></td>
 <td><p>CGI_URL_PATH</p></td>
 <td><p>Veraltet: URL für die knxd oder openHAB Login-Ressource</p></td>
 </tr>
-<tr class="row-odd"><td><p>X-CometVisu-Backend-User</p></td>
+<tr class="row-even"><td><p>X-CometVisu-Backend-User</p></td>
 <td><p>BACKEND_USERNAME</p></td>
 <td><p>Veraltet: Benutzername, wenn für openHAB benötigt</p></td>
 </tr>
-<tr class="row-even"><td><p>X-CometVisu-Backend-Pass</p></td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-Pass</p></td>
 <td><p>BACKEND_PASSWORD</p></td>
 <td><p>Veraltet: Passwort, wenn für openHAB benötigt</p></td>
 </tr>
@@ -265,16 +280,19 @@ als Attribut gesetzt werden:</p>
 <tr class="row-even"><td><p>backend-mqtt-url</p></td>
 <td><p>URL für die MQTT Login-Ressource</p></td>
 </tr>
-<tr class="row-odd"><td><p>backend-openhab-url</p></td>
+<tr class="row-odd"><td><p>backend-iobroker-url</p></td>
+<td><p>URL für die ioBroker websocket API</p></td>
+</tr>
+<tr class="row-even"><td><p>backend-openhab-url</p></td>
 <td><p>openHAB: Pfad zur REST-API</p></td>
 </tr>
-<tr class="row-even"><td><p>backend-url</p></td>
+<tr class="row-odd"><td><p>backend-url</p></td>
 <td><p>Veraltet: URL für die openHAB Verbindung</p></td>
 </tr>
-<tr class="row-odd"><td><p>username</p></td>
+<tr class="row-even"><td><p>username</p></td>
 <td><p>Veraltet: Benutzername, wenn für openHAB benötigt</p></td>
 </tr>
-<tr class="row-even"><td><p>password</p></td>
+<tr class="row-odd"><td><p>password</p></td>
 <td><p>Veraltet: Passwort, wenn für openHAB benötigt</p></td>
 </tr>
 </tbody>
@@ -481,6 +499,9 @@ beschrieben.</p>
         </dd>
         
         <dd><a href="../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

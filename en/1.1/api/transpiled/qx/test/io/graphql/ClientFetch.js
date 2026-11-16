@@ -54,4 +54,4 @@
   qx.test.io.graphql.ClientFetch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClientFetch.js.map?dt=1792082780905
+//# sourceMappingURL=ClientFetch.js.map?dt=1794845764726

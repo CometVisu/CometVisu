@@ -264,7 +264,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context.n = 17;
-                return _this.__P_488_0(argv);
+                return _this.__P_489_0(argv);
               case 17:
                 manifestModels = [];
                 cwd = _process.cwd();
@@ -619,8 +619,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Creates a qooxdoo.json file with paths to Manifest.json files in this repository
        * @private
        */
-      __P_488_0: function () {
-        var _P_488_ = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(argv) {
+      __P_489_0: function () {
+        var _P_489_ = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(argv) {
           return _regenerator().w(function (_context3) {
             while (1) switch (_context3.n) {
               case 0:
@@ -708,14 +708,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             }
           }, _callee3);
         }));
-        function __P_488_0(_x) {
-          return _P_488_.apply(this, arguments);
+        function __P_489_0(_x) {
+          return _P_489_.apply(this, arguments);
         }
-        return __P_488_0;
+        return __P_489_0;
       }()
     }
   });
   qx.tool.cli.commands["package"].Publish.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Publish.js.map?dt=1792082789125
+//# sourceMappingURL=Publish.js.map?dt=1794845772549

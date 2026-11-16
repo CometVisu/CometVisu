@@ -96,7 +96,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type{Map<String,Object>} font data required by the Qooxdoo app at runtime */
-      __P_500_0: null,
+      __P_501_0: null,
       /**
        * Updates this from the data in the Manifest.json
        *
@@ -127,12 +127,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 1:
                 glyphsData = _context.v;
                 glyphsData = JSON.parse(glyphsData);
-                _this.__P_500_0 = {};
+                _this.__P_501_0 = {};
                 name = _this.getName();
                 defaultSize = _this.getDefaultSize();
                 for (key in glyphsData) {
                   glyph = glyphsData[key];
-                  _this.__P_500_0["@" + name + "/" + key] = [
+                  _this.__P_501_0["@" + name + "/" + key] = [
                   // width
                   Math.ceil(defaultSize * glyph.advanceWidth / glyph.advanceHeight) || defaultSize,
                   // height
@@ -150,7 +150,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {Map<String,Object>}
        */
       getApplicationFontData: function getApplicationFontData() {
-        return this.__P_500_0;
+        return this.__P_501_0;
       },
       /**
        * Return bootstrap code that is executed before the Application starts.
@@ -185,4 +185,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.ManifestFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ManifestFont.js.map?dt=1792082790096
+//# sourceMappingURL=ManifestFont.js.map?dt=1794845773509

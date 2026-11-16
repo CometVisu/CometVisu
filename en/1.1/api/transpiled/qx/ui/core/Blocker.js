@@ -83,9 +83,9 @@
     construct: function construct(widget) {
       qx.core.Object.constructor.call(this);
       this._widget = widget;
-      widget.addListener("resize", this.__P_545_0, this);
-      widget.addListener("move", this.__P_545_0, this);
-      widget.addListener("disappear", this.__P_545_1, this);
+      widget.addListener("resize", this.__P_546_0, this);
+      widget.addListener("move", this.__P_546_0, this);
+      widget.addListener("disappear", this.__P_546_1, this);
       if (qx.Class.isDefined("qx.ui.root.Abstract") && widget instanceof qx.ui.root.Abstract) {
         this._isRoot = true;
         this.setKeepBlockerActive(true);
@@ -93,10 +93,10 @@
 
       // dynamic theme switch
       {
-        this.__P_545_2 = qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
+        this.__P_546_2 = qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
       }
-      this.__P_545_3 = [];
-      this.__P_545_4 = [];
+      this.__P_546_3 = [];
+      this.__P_546_4 = [];
     },
     /*
     *****************************************************************************
@@ -151,21 +151,21 @@
     */
 
     members: {
-      __P_545_5: null,
-      __P_545_6: 0,
-      __P_545_7: false,
-      __P_545_3: null,
-      __P_545_4: null,
-      __P_545_8: null,
+      __P_546_5: null,
+      __P_546_6: 0,
+      __P_546_7: false,
+      __P_546_3: null,
+      __P_546_4: null,
+      __P_546_8: null,
       _widget: null,
       _isRoot: false,
-      __P_545_9: null,
+      __P_546_9: null,
       /**
        * Adjust html element size on layout resizes.
        *
        * @param e {qx.event.type.Data} event object
        */
-      __P_545_0: function __P_545_0(e) {
+      __P_546_0: function __P_546_0(e) {
         var data = e.getData();
         if (this.isBlocked()) {
           this._updateBlockerBounds(data);
@@ -174,7 +174,7 @@
       /**
        * Widget re-appears: Update blocker size/position and attach to (new) parent
        */
-      __P_545_10: function __P_545_10() {
+      __P_546_10: function __P_546_10() {
         this._updateBlockerBounds(this._widget.getBounds());
         if (this._widget.isRootWidget()) {
           this._widget.getContentElement().add(this.getBlockerElement());
@@ -185,10 +185,10 @@
       /**
        * Remove the blocker if the widget disappears
        */
-      __P_545_1: function __P_545_1() {
+      __P_546_1: function __P_546_1() {
         if (this.isBlocked()) {
           this.getBlockerElement().getParent().remove(this.getBlockerElement());
-          this._widget.addListenerOnce("appear", this.__P_545_10, this);
+          this._widget.addListenerOnce("appear", this.__P_546_10, this);
         }
       },
       /**
@@ -199,8 +199,8 @@
         // When blocking content, the blocker is a child of the widget itself,
         // so it should be positioned at 0,0 relative to the widget.
         // Otherwise, it's positioned relative to the layout parent.
-        var left = this.__P_545_7 ? 0 : bounds.left;
-        var top = this.__P_545_7 ? 0 : bounds.top;
+        var left = this.__P_546_7 ? 0 : bounds.left;
+        var top = this.__P_546_7 ? 0 : bounds.top;
         this.getBlockerElement().setStyles({
           width: bounds.width + "px",
           height: bounds.height + "px",
@@ -211,11 +211,11 @@
       // property apply
       _applyColor: function _applyColor(value, old) {
         var color = qx.theme.manager.Color.getInstance().resolve(value);
-        this.__P_545_11("backgroundColor", color);
+        this.__P_546_11("backgroundColor", color);
       },
       // property apply
       _applyOpacity: function _applyOpacity(value, old) {
-        this.__P_545_11("opacity", value);
+        this.__P_546_11("opacity", value);
       },
       /**
        * Handler for the theme change.
@@ -233,9 +233,9 @@
        * @param key {String} The name of the style attribute.
        * @param value {String} The value.
        */
-      __P_545_11: function __P_545_11(key, value) {
+      __P_546_11: function __P_546_11(key, value) {
         var blockers = [];
-        this.__P_545_5 && blockers.push(this.__P_545_5);
+        this.__P_546_5 && blockers.push(this.__P_546_5);
         for (var i = 0; i < blockers.length; i++) {
           blockers[i].setStyle(key, value);
         }
@@ -247,8 +247,8 @@
         var focusHandler = qx.event.Registration.getManager(window).getHandler(qx.event.handler.Focus);
         var activeWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getActive());
         var focusedWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getFocus());
-        this.__P_545_3.push(activeWidget);
-        this.__P_545_4.push(focusedWidget);
+        this.__P_546_3.push(activeWidget);
+        this.__P_546_4.push(focusedWidget);
         if (activeWidget) {
           activeWidget.deactivate();
         }
@@ -261,16 +261,16 @@
        */
       _restoreActiveWidget: function _restoreActiveWidget() {
         var widget;
-        var focusElementsLength = this.__P_545_4.length;
+        var focusElementsLength = this.__P_546_4.length;
         if (focusElementsLength > 0) {
-          widget = this.__P_545_4.pop();
+          widget = this.__P_546_4.pop();
           if (widget && !widget.isDisposed() && widget.isFocusable()) {
             widget.focus();
           }
         }
-        var activeElementsLength = this.__P_545_3.length;
+        var activeElementsLength = this.__P_546_3.length;
         if (activeElementsLength > 0) {
-          widget = this.__P_545_3.pop();
+          widget = this.__P_546_3.pop();
           if (widget && !widget.isDisposed()) {
             widget.activate();
           }
@@ -281,7 +281,7 @@
        *
        * @return {qx.html.Element} The blocker element
        */
-      __P_545_12: function __P_545_12() {
+      __P_546_12: function __P_546_12() {
         return new qx.html.Blocker(this.getColor(), this.getOpacity());
       },
       /**
@@ -292,9 +292,9 @@
        * @return {qx.html.Element} The blocker element
        */
       getBlockerElement: function getBlockerElement(widget) {
-        if (!this.__P_545_5) {
-          this.__P_545_5 = this.__P_545_12();
-          this.__P_545_5.setStyle("zIndex", 15);
+        if (!this.__P_546_5) {
+          this.__P_546_5 = this.__P_546_12();
+          this.__P_546_5.setStyle("zIndex", 15);
           if (!widget) {
             if (this._isRoot) {
               widget = this._widget;
@@ -302,10 +302,10 @@
               widget = this._widget.getLayoutParent();
             }
           }
-          widget.getContentElement().add(this.__P_545_5);
-          this.__P_545_5.exclude();
+          widget.getContentElement().add(this.__P_546_5);
+          this.__P_546_5.exclude();
         }
-        return this.__P_545_5;
+        return this.__P_546_5;
       },
       /**
        * Block all events from this widget by placing a transparent overlay widget,
@@ -322,8 +322,8 @@
        */
       _block: function _block(zIndex, blockContent) {
         if (!this._isRoot && !this._widget.getLayoutParent()) {
-          if (!this.__P_545_9) {
-            this.__P_545_9 = this._widget.addListenerOnce("appear", this._block.bind(this, zIndex, blockContent));
+          if (!this.__P_546_9) {
+            this.__P_546_9 = this._widget.addListenerOnce("appear", this._block.bind(this, zIndex, blockContent));
           }
           return;
         }
@@ -337,10 +337,10 @@
         if (zIndex != null) {
           blocker.setStyle("zIndex", zIndex);
         }
-        this.__P_545_6++;
-        if (this.__P_545_6 < 2) {
+        this.__P_546_6++;
+        if (this.__P_546_6 < 2) {
           // Track if we're blocking content (blocker is child of widget)
-          this.__P_545_7 = blockContent === true;
+          this.__P_546_7 = blockContent === true;
           this._backupActiveWidget();
           var bounds = this._widget.getBounds();
           // no bounds -> widget not yet rendered -> bounds will be set on resize
@@ -351,10 +351,10 @@
           if (!blockContent) {
             blocker.activate();
           }
-          blocker.addListener("deactivate", this.__P_545_13, this);
-          blocker.addListener("keypress", this.__P_545_14, this);
-          blocker.addListener("keydown", this.__P_545_14, this);
-          blocker.addListener("keyup", this.__P_545_14, this);
+          blocker.addListener("deactivate", this.__P_546_13, this);
+          blocker.addListener("keypress", this.__P_546_14, this);
+          blocker.addListener("keydown", this.__P_546_14, this);
+          blocker.addListener("keyup", this.__P_546_14, this);
           this.fireEvent("blocked", qx.event.type.Event);
         }
       },
@@ -364,7 +364,7 @@
        * @return {Boolean} Whether the widget is blocked.
        */
       isBlocked: function isBlocked() {
-        return this.__P_545_6 > 0;
+        return this.__P_546_6 > 0;
       },
       /**
        * Unblock the widget blocked by {@link #block}, but it takes care of
@@ -372,17 +372,17 @@
        * the number of {@link #unblock} calls is identical to {@link #block} calls.
        */
       unblock: function unblock() {
-        if (this.__P_545_9) {
-          this._widget.removeListenerById(this.__P_545_9);
-          this.__P_545_9 = null;
+        if (this.__P_546_9) {
+          this._widget.removeListenerById(this.__P_546_9);
+          this.__P_546_9 = null;
         }
         if (!this.isBlocked()) {
           return;
         }
-        this.__P_545_6--;
-        if (this.__P_545_6 < 1) {
-          this.__P_545_15();
-          this.__P_545_6 = 0;
+        this.__P_546_6--;
+        if (this.__P_546_6 < 1) {
+          this.__P_546_15();
+          this.__P_546_6 = 0;
         }
       },
       /**
@@ -390,30 +390,30 @@
        * the amount of {@link #block} calls. The blocker is directly removed.
        */
       forceUnblock: function forceUnblock() {
-        if (this.__P_545_9) {
-          this._widget.removeListenerById(this.__P_545_9);
-          this.__P_545_9 = null;
+        if (this.__P_546_9) {
+          this._widget.removeListenerById(this.__P_546_9);
+          this.__P_546_9 = null;
         }
         if (!this.isBlocked()) {
           return;
         }
-        this.__P_545_6 = 0;
-        this.__P_545_15();
+        this.__P_546_6 = 0;
+        this.__P_546_15();
       },
       /**
        * Unblock the widget blocked by {@link #block}.
        */
-      __P_545_15: function __P_545_15() {
+      __P_546_15: function __P_546_15() {
         this._restoreActiveWidget();
         var blocker = this.getBlockerElement();
-        blocker.removeListener("deactivate", this.__P_545_13, this);
-        blocker.removeListener("keypress", this.__P_545_14, this);
-        blocker.removeListener("keydown", this.__P_545_14, this);
-        blocker.removeListener("keyup", this.__P_545_14, this);
+        blocker.removeListener("deactivate", this.__P_546_13, this);
+        blocker.removeListener("keypress", this.__P_546_14, this);
+        blocker.removeListener("keydown", this.__P_546_14, this);
+        blocker.removeListener("keyup", this.__P_546_14, this);
         blocker.exclude();
 
         // Reset blocking content state
-        this.__P_545_7 = false;
+        this.__P_546_7 = false;
         this.fireEvent("unblocked", qx.event.type.Event);
       },
       /**
@@ -430,7 +430,7 @@
        *
        * @param e {qx.event.type.KeySequence} event to stop.
        */
-      __P_545_14: function __P_545_14(e) {
+      __P_546_14: function __P_546_14(e) {
         if (e.getKeyIdentifier() == "Tab") {
           e.stop();
         }
@@ -438,7 +438,7 @@
       /**
        * Sets the blocker element to active.
        */
-      __P_545_13: function __P_545_13() {
+      __P_546_13: function __P_546_13() {
         //
         // If this._widget is attached to the focus handler as a focus root,
         // activating the blocker after this widget was deactivated,
@@ -463,21 +463,21 @@
     */
     destruct: function destruct() {
       // remove dynamic theme listener
-      if (true && this.__P_545_2) {
-        qx.theme.manager.Meta.getInstance().removeListenerById(this.__P_545_2);
+      if (true && this.__P_546_2) {
+        qx.theme.manager.Meta.getInstance().removeListenerById(this.__P_546_2);
       }
-      this._widget.removeListener("resize", this.__P_545_0, this);
-      this._widget.removeListener("move", this.__P_545_0, this);
-      this._widget.removeListener("appear", this.__P_545_10, this);
-      this._widget.removeListener("disappear", this.__P_545_1, this);
-      if (this.__P_545_9) {
-        this._widget.removeListenerById(this.__P_545_9);
+      this._widget.removeListener("resize", this.__P_546_0, this);
+      this._widget.removeListener("move", this.__P_546_0, this);
+      this._widget.removeListener("appear", this.__P_546_10, this);
+      this._widget.removeListener("disappear", this.__P_546_1, this);
+      if (this.__P_546_9) {
+        this._widget.removeListenerById(this.__P_546_9);
       }
-      this._disposeObjects("__P_545_5", "__P_545_8");
-      this.__P_545_3 = this.__P_545_4 = this._widget = null;
+      this._disposeObjects("__P_546_5", "__P_546_8");
+      this.__P_546_3 = this.__P_546_4 = this._widget = null;
     }
   });
   qx.ui.core.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1792082793057
+//# sourceMappingURL=Blocker.js.map?dt=1794845776528

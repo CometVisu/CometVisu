@@ -18,6 +18,7 @@
  */
 'use strict';
 
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -88,12 +89,18 @@
       client: null,
       running: null,
       /** @type {Number} */
-      __P_804_0: 0,
+      __P_807_0: 0,
       /** @type {Function|null} */
-      __P_804_1: null,
+      __P_807_1: null,
       /** Maximum retry counter value to prevent unbounded growth
        * when the tab is backgrounded for extended periods. */
       MAX_RETRY_COUNTER: 10,
+      /** Delay in ms before the next read request is sent while knxd is
+       * unavailable. The backend answers immediately in that state, so a
+       * long-poll timeout cannot throttle the requests. */
+      KNXD_DOWN_RETRY_DELAY: 5000,
+      /** timer of the pending read request while knxd is not available */
+      __P_807_2: null,
       /**
        * This function gets called once the communication is established
        * and this.client information is available.
@@ -125,9 +132,9 @@
         // background tabs, so the watchdog and retry timers can be delayed
         // by minutes. This handler ensures an immediate restart when the
         // user returns to the tab.
-        if (!this.__P_804_1 && typeof document !== 'undefined' && document.addEventListener) {
-          this.__P_804_1 = this.__P_804_2.bind(this);
-          document.addEventListener('visibilitychange', this.__P_804_1);
+        if (!this.__P_807_1 && typeof document !== 'undefined' && document.addEventListener) {
+          this.__P_807_1 = this.__P_807_3.bind(this);
+          document.addEventListener('visibilitychange', this.__P_807_1);
         }
 
         // send first request
@@ -142,7 +149,7 @@
           data = this.client.buildRequest();
           successCallback = this.handleRead;
         }
-        this.__P_804_3(data, successCallback);
+        this.__P_807_4(data, successCallback);
         this.watchdog.start(5);
       },
       /**
@@ -150,13 +157,13 @@
        * again after being in a background tab, force a connection restart
        * to recover from any throttled or broken long-polling requests.
        */
-      __P_804_2: function __P_804_2() {
+      __P_807_3: function __P_807_3() {
         if (document.visibilityState === 'visible' && this.running) {
           this.info('Page became visible - restarting connection to recover from background tab suspension');
           this.restart();
         }
       },
-      __P_804_3: function __P_804_3(data, callback) {
+      __P_807_4: function __P_807_4(data, callback) {
         data !== null && data !== void 0 ? data : data = this.client.buildRequest();
         callback !== null && callback !== void 0 ? callback : callback = this.handleRead;
         data.t = 0;
@@ -167,6 +174,58 @@
           }
         };
         this.xhr = this.client.doRequest(this.client.getResourcePath('read'), data, callback, this, options);
+      },
+      /**
+       * Handle a response that reports a lost connection of the backend to knxd.
+       * The backend itself is reachable, so the connection must stay alive, only
+       * the read requests have to be repeated until knxd is back. As there is no
+       * long-poll wait while knxd is gone (nothing can arrive), the requests are
+       * throttled here.
+       *
+       * @param response {Object|String} body of the failed response
+       */
+      __P_807_5: function __P_807_5(response) {
+        var json = response;
+        if (typeof json === 'string') {
+          try {
+            json = JSON.parse(json);
+          } catch (e) {
+            json = null;
+          }
+        }
+        var isNewOutage = this.client.reportKnxdStatus(json) === 'outage';
+        // the backend is reachable, therefore this is no connection loss
+        this.client.setConnected(true);
+        this.client.setDataReceived(true);
+        if (json && _typeof(json) === 'object') {
+          if (typeof json.i === 'number') {
+            this.lastIndex = json.i;
+          }
+          if (isNewOutage && json.d && _typeof(json.d) === 'object') {
+            // the backend sends the values it has received last, keep them
+            this.client.update(json.d);
+          }
+        }
+        this.retryServerErrorCounter = 0; // this is no server error
+        this.doRestart = false;
+        if (this.running) {
+          this.info("knxd is not available, retrying in ".concat(this.KNXD_DOWN_RETRY_DELAY, " ms"));
+          this.watchdog.ping();
+          if (!this.watchdog.isActive()) {
+            this.watchdog.start(5);
+          }
+          this.__P_807_2 = qx.event.Timer.once(function () {
+            this.__P_807_2 = null;
+            if (this.running && !this.isDisposed()) {
+              // only ask for new values, the backend keeps the last ones anyway
+              var data = this.client.buildRequest();
+              if (this.lastIndex >= 0) {
+                data.i = this.lastIndex;
+              }
+              this.__P_807_4(data);
+            }
+          }, this, this.KNXD_DOWN_RETRY_DELAY);
+        }
       },
       /**
        * This function gets called once the communication is established
@@ -209,7 +268,7 @@
               this.watchdog.start(5);
             }
             qx.event.Timer.once(function () {
-              this.__P_804_3();
+              this.__P_807_4();
               this.watchdog.ping(true);
             }, this, delay);
           }
@@ -218,18 +277,18 @@
         if (json && Object.prototype.hasOwnProperty.call(json, 'error')) {
           // Backend returned an error response (e.g. {"error":"Read failed"})
           this.error('Backend error: ' + json.error, JSON.stringify(json));
-          this.__P_804_0++;
-          if (this.__P_804_0 === 1) {
+          this.__P_807_0++;
+          if (this.__P_807_0 === 1) {
             // First failure: restart silently
             this.restart();
             return;
           }
           var maxRetries = this.client.backend.maxRetries || 3;
-          if (this.__P_804_0 <= maxRetries) {
+          if (this.__P_807_0 <= maxRetries) {
             // Show self-healing notification (will auto-resolve on successful reconnect)
             this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, json);
             // Restart with exponential backoff delay
-            var _delay = 1000 * Math.pow(2, this.__P_804_0 - 2);
+            var _delay = 1000 * Math.pow(2, this.__P_807_0 - 2);
             this.watchdog.stop();
             qx.event.Timer.once(function () {
               this.restart();
@@ -249,14 +308,20 @@
             this.client.showError(cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I, json);
             return;
           }
+          if (this.client.reportKnxdStatus(json) === 'recovery') {
+            // knxd is back, the values might have changed while the backend
+            // was not able to reach the bus -> reload all data
+            this.restart(true);
+            return;
+          }
           this.lastIndex = json.i;
           data = json.d;
           this.readResendHeaderValues();
           this.client.update(data);
-          if (this.__P_804_0 > 0) {
+          if (this.__P_807_0 > 0) {
             this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, null); // clear self-healing notification
           }
-          this.__P_804_0 = 0; // reset on success
+          this.__P_807_0 = 0; // reset on success
           this.retryCounter = 0;
           this.client.setDataReceived(true);
           this.client.setConnected(true);
@@ -285,6 +350,7 @@
         }
         if (json && !this.doRestart) {
           this.readResendHeaderValues();
+          this.client.reportKnxdStatus(json);
           this.client.update(json.d);
           this.client.setDataReceived(true);
           this.client.setConnected(true);
@@ -311,6 +377,17 @@
         }
       },
       /**
+       * Stop and dispose a pending read retry that was scheduled during a knxd
+       * outage.
+       */
+      __P_807_6: function __P_807_6() {
+        if (this.__P_807_2) {
+          this.__P_807_2.stop();
+          this.__P_807_2.dispose();
+          this.__P_807_2 = null;
+        }
+      },
+      /**
        * This function gets called on an error
        *
        *
@@ -332,6 +409,15 @@
             return;
           }
 
+          // The backend is reachable but has lost the connection to knxd. That
+          // is not a problem of the connection to the backend itself, so keep
+          // the connection alive and continue reading when knxd is back.
+          if (this.running && cv.io.Client.getKnxdStatus(req.getResponse())) {
+            req.serverErrorHandled = true;
+            this.__P_807_5(req.getResponse());
+            return;
+          }
+
           // check for temporary server errors and retry a few times
           if ([408, 444, 499, 502, 503, 504].indexOf(status) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
             this.info("Temporary connection problem (status: ".concat(status, ") - retry count: ").concat(this.retryServerErrorCounter));
@@ -347,10 +433,19 @@
           }
         },
         jquery: function jquery(xhr, str, excptObj) {
+          var _xhr$responseJSON;
           // Status 0 indicates an aborted connection (timeout, network error).
           if (xhr.status === 0 && this.running && !this.doRestart) {
             this.info('Connection timeout (status 0) detected - restarting');
             this.restart();
+            return;
+          }
+
+          // The backend is reachable but has lost the connection to knxd, see
+          // the qooxdoo variant above.
+          if (this.running && cv.io.Client.getKnxdStatus((_xhr$responseJSON = xhr.responseJSON) !== null && _xhr$responseJSON !== void 0 ? _xhr$responseJSON : xhr.responseText)) {
+            var _xhr$responseJSON2;
+            this.__P_807_5((_xhr$responseJSON2 = xhr.responseJSON) !== null && _xhr$responseJSON2 !== void 0 ? _xhr$responseJSON2 : xhr.responseText);
             return;
           }
 
@@ -435,6 +530,7 @@
        */
       abort: function abort() {
         this.watchdog.stop();
+        this.__P_807_6();
         if (this.xhr && this.xhr.abort) {
           this.xhr.abort();
           this.xhr = null;
@@ -451,11 +547,12 @@
     */
     destruct: function destruct() {
       // Remove the visibility change listener to prevent leaks
-      if (this.__P_804_1) {
-        document.removeEventListener('visibilitychange', this.__P_804_1);
-        this.__P_804_1 = null;
+      if (this.__P_807_1) {
+        document.removeEventListener('visibilitychange', this.__P_807_1);
+        this.__P_807_1 = null;
       }
       this.watchdog.stop();
+      this.__P_807_6();
       if (this.xhr && this.xhr.abort) {
         this.xhr.abort();
         this.xhr = null;
@@ -465,4 +562,4 @@
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1792082803965
+//# sourceMappingURL=LongPolling.js.map?dt=1794845787338

@@ -58,7 +58,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         init: null,
         nullable: true,
         check: "String",
-        apply: "__P_506_0"
+        apply: "__P_507_0"
       },
       /** Map of environment settings */
       environment: {
@@ -157,7 +157,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param oldValue
        * @private
        */
-      __P_506_0: function __P_506_0(value, oldValue) {
+      __P_507_0: function __P_507_0(value, oldValue) {
         if (this._analyser) {
           throw new Error("Cannot change the database filename once an Analyser has been created");
         }
@@ -206,4 +206,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.makers.Maker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Maker.js.map?dt=1792082790384
+//# sourceMappingURL=Maker.js.map?dt=1794845773800

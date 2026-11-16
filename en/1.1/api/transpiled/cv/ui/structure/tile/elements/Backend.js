@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -73,7 +73,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     members: {
       _name: null,
-      __P_103_0: null,
+      __P_104_0: null,
       _init: function _init() {
         var _this = this;
         var element = this._element;
@@ -124,6 +124,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             case 'mqtt':
               backendUrlConfigKey = 'backendMQTTUrl';
               break;
+            case 'iobroker':
+              backendUrlConfigKey = 'backendIoBrokerUrl';
+              break;
           }
           if (backendUrlConfigKey) {
             // override by URL settings
@@ -159,7 +162,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           var client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl, 'config');
           this._client = client;
           this._name = name;
-          this.__P_103_0 = [];
+          this.__P_104_0 = [];
           client.update = function (data) {
             return model.updateFrom(name, data);
           }; // override clients update function
@@ -181,7 +184,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               model.setDefaultBackendName(name);
             }
             var doSubscribe = function doSubscribe() {
-              var _iterator2 = _createForOfIteratorHelper(_this.__P_103_0),
+              var _iterator2 = _createForOfIteratorHelper(_this.__P_104_0),
                 _step2;
               try {
                 for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -239,4 +242,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.elements.Backend.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Backend.js.map?dt=1792082766893
+//# sourceMappingURL=Backend.js.map?dt=1794845751305

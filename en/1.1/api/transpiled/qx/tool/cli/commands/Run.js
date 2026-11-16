@@ -146,7 +146,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     return _regenerator().w(function (_context) {
                       while (1) switch (_context.p = _context.n) {
                         case 0:
-                          if (!_this.__P_483_0) {
+                          if (!_this.__P_484_0) {
                             _context.n = 5;
                             break;
                           }
@@ -158,7 +158,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                         case 1:
                           _context.p = 1;
                           _context.n = 2;
-                          return qx.tool.utils.Utils.killTree(_this.__P_483_0.pid);
+                          return qx.tool.utils.Utils.killTree(_this.__P_484_0.pid);
                         case 2:
                           _context.n = 4;
                           break;
@@ -166,10 +166,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           _context.p = 3;
                           _t = _context.v;
                         case 4:
-                          _this.__P_483_0 = null;
+                          _this.__P_484_0 = null;
                         case 5:
                           console.log("Starting application: " + cmd);
-                          child = _this.__P_483_0 = require("child_process").exec(cmd);
+                          child = _this.__P_484_0 = require("child_process").exec(cmd);
                           child.stdout.setEncoding("utf8");
                           child.stdout.on("data", function (data) {
                             console.log(data);
@@ -180,7 +180,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           });
                           child.on("close", function (code) {
                             console.log("Application has terminated");
-                            this.__P_483_0 = null;
+                            this.__P_484_0 = null;
                           });
                           child.on("error", function (err) {
                             console.error("Application has failed: " + err);
@@ -214,4 +214,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Run.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Run.js.map?dt=1792082788447
+//# sourceMappingURL=Run.js.map?dt=1794845771879

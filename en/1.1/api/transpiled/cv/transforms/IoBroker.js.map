@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "statics",
+    "isUndefined",
+    "value",
+    "undefined",
+    "indexOf",
+    "defer",
+    "cv",
+    "Transform",
+    "addTransform",
+    "number",
+    "name",
+    "lname",
+    "de",
+    "en",
+    "example",
+    "unit",
+    "encode",
+    "parseFloat",
+    "decode",
+    "transforms",
+    "IoBroker",
+    "string",
+    "toString"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/transforms/IoBroker.js"
+  ],
+  "sourcesContent": [
+    "/* IoBroker.js\n *\n * copyright (c) 2023-2024, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Transformations for the ioBroker backend\n *\n * @author Florian Schirmer\n * @since 2023\n */\nqx.Class.define('cv.transforms.IoBroker', {\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    isUndefined(value) {\n      return ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(value) >= 0;\n    }\n  },\n\n  /**\n   * This class defines the default transforms: encode: transform JavaScript to\n   * bus value decode: transform bus to JavaScript value\n   */\n  defer() {\n    cv.Transform.addTransform('IOB', {\n      number: {\n        name: 'IOB_Number',\n        lname: {\n          de: 'Zahl',\n          en: 'number'\n        },\n        example: '42',\n        unit: '-',\n        encode(value) {\n          return parseFloat(value);\n        },\n        decode(value) {\n          if (cv.transforms.IoBroker.isUndefined(value)) {\n            return 0;\n          }\n\n          return parseFloat(value);\n        }\n      },\n      string: {\n        name: 'IOB_String',\n        lname: {\n          de: 'Zeichenkette',\n          en: 'string'\n        },\n        example: '\"abc\"',\n        unit: '-',\n        encode(value) {\n          return value.toString();\n        },\n        decode(value) {\n          if (cv.transforms.IoBroker.isUndefined(value)) {\n            return '';\n          }\n\n          return value.toString();\n        }\n      },\n      switch: {\n        name: 'IOB_Switch',\n        lname: {\n          de: 'Aus-An-Schalter',\n          en: 'off on switch'\n        },\n        encode(value) {\n          // ioBroker switches are boolean datapoints, a string would be the wrong type\n          return value === 1 || value === '1' || value === true || value === 'true';\n        },\n        decode(value) {\n          if (cv.transforms.IoBroker.isUndefined(value)) {\n            return 0;\n          }\n\n          return value === true || value === 1 || value === '1' || value === 'true' ? 1 : 0;\n        }\n      }\n    });\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxC;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,WAAW,WAAXA,WAAWA,CAACC,KAAK,EAAE;QACjB,OAAO,CAAC,KAAK,EAAE,eAAe,EAAE,MAAM,EAAE,OAAO,EAAEC,SAAS,EAAE,IAAI,CAAC,CAACC,OAAO,CAACF,KAAK,CAAC,IAAI,CAAC;MACvF;IACF,CAAC;IAED;AACF;AACA;AACA;IACEG,KAAK,WAALA,KAAKA,CAAA,EAAG;MACNC,EAAE,CAACC,SAAS,CAACC,YAAY,CAAC,KAAK,EAAE;QAC/BC,MAAM,EAAE;UACNC,IAAI,EAAE,YAAY;UAClBC,KAAK,EAAE;YACLC,EAAE,EAAE,MAAM;YACVC,EAAE,EAAE;UACN,CAAC;UACDC,OAAO,EAAE,IAAI;UACbC,IAAI,EAAE,GAAG;UACTC,MAAM,WAANA,MAAMA,CAACd,KAAK,EAAE;YACZ,OAAOe,UAAU,CAACf,KAAK,CAAC;UAC1B,CAAC;UACDgB,MAAM,WAANA,MAAMA,CAAChB,KAAK,EAAE;YACZ,IAAII,EAAE,CAACa,UAAU,CAACC,QAAQ,CAACnB,WAAW,CAACC,KAAK,CAAC,EAAE;cAC7C,OAAO,CAAC;YACV;YAEA,OAAOe,UAAU,CAACf,KAAK,CAAC;UAC1B;QACF,CAAC;QACDmB,MAAM,EAAE;UACNX,IAAI,EAAE,YAAY;UAClBC,KAAK,EAAE;YACLC,EAAE,EAAE,cAAc;YAClBC,EAAE,EAAE;UACN,CAAC;UACDC,OAAO,EAAE,OAAO;UAChBC,IAAI,EAAE,GAAG;UACTC,MAAM,WAANA,MAAMA,CAACd,KAAK,EAAE;YACZ,OAAOA,KAAK,CAACoB,QAAQ,CAAC,CAAC;UACzB,CAAC;UACDJ,MAAM,WAANA,MAAMA,CAAChB,KAAK,EAAE;YACZ,IAAII,EAAE,CAACa,UAAU,CAACC,QAAQ,CAACnB,WAAW,CAACC,KAAK,CAAC,EAAE;cAC7C,OAAO,EAAE;YACX;YAEA,OAAOA,KAAK,CAACoB,QAAQ,CAAC,CAAC;UACzB;QACF,CAAC;QACD,UAAQ;UACNZ,IAAI,EAAE,YAAY;UAClBC,KAAK,EAAE;YACLC,EAAE,EAAE,iBAAiB;YACrBC,EAAE,EAAE;UACN,CAAC;UACDG,MAAM,WAANA,MAAMA,CAACd,KAAK,EAAE;YACZ;YACA,OAAOA,KAAK,KAAK,CAAC,IAAIA,KAAK,KAAK,GAAG,IAAIA,KAAK,KAAK,IAAI,IAAIA,KAAK,KAAK,MAAM;UAC3E,CAAC;UACDgB,MAAM,WAANA,MAAMA,CAAChB,KAAK,EAAE;YACZ,IAAII,EAAE,CAACa,UAAU,CAACC,QAAQ,CAACnB,WAAW,CAACC,KAAK,CAAC,EAAE;cAC7C,OAAO,CAAC;YACV;YAEA,OAAOA,KAAK,KAAK,IAAI,IAAIA,KAAK,KAAK,CAAC,IAAIA,KAAK,KAAK,GAAG,IAAIA,KAAK,KAAK,MAAM,GAAG,CAAC,GAAG,CAAC;UACnF;QACF;MACF,CAAC,CAAC;IACJ;EACF,CAAC,CAAC;EArGFI,EAAE,CAACa,UAAU,CAACC,QAAQ,CAACvB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

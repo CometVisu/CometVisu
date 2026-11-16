@@ -622,11 +622,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   var method = fieldData.validation.method;
                   var message = fieldData.validation.invalidMessage;
                   var validationFunc = function validationFunc(validatorObj, value) {
-                    if (!validatorObj.__P_812_0) {
-                      validatorObj.__P_812_0 = true;
+                    if (!validatorObj.__P_816_0) {
+                      validatorObj.__P_816_0 = true;
                       proxy(method, [value], function (valid) {
                         validatorObj.setValid(valid, message || this.tr("Value is invalid"));
-                        validatorObj.__P_812_0 = false;
+                        validatorObj.__P_816_0 = false;
                       });
                     }
                   };
@@ -795,4 +795,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qxl.dialog.MForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MForm.js.map?dt=1792082804300
+//# sourceMappingURL=MForm.js.map?dt=1794845787651

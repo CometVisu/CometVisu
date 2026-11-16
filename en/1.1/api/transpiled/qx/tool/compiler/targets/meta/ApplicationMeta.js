@@ -57,18 +57,18 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct(target, application) {
       qx.core.Object.constructor.call(this);
-      this.__P_516_0 = target;
-      this.__P_516_1 = application;
-      this.__P_516_2 = [];
-      this.__P_516_3 = {
+      this.__P_517_0 = target;
+      this.__P_517_1 = application;
+      this.__P_517_2 = [];
+      this.__P_517_3 = {
         urisBefore: [],
         cssBefore: []
       };
-      this.__P_516_4 = [];
-      this.__P_516_5 = {};
-      this.__P_516_6 = [];
-      this.__P_516_7 = [];
-      this.__P_516_8 = {};
+      this.__P_517_4 = [];
+      this.__P_517_5 = {};
+      this.__P_517_6 = [];
+      this.__P_517_7 = [];
+      this.__P_517_8 = {};
     },
     properties: {
       /** The environment for the build */
@@ -97,21 +97,21 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** {qx.tool.compiler.targets.Target} the target */
-      __P_516_0: null,
+      __P_517_0: null,
       /** {qx.tool.compiler.app.Application} the application */
-      __P_516_1: null,
+      __P_517_1: null,
       /** {qx.tool.compiler.app.Libary[]} the libraries */
-      __P_516_2: null,
+      __P_517_2: null,
       /** {Map} uris and CSS to load */
-      __P_516_3: null,
+      __P_517_3: null,
       /** {String[]} code to run before boot */
-      __P_516_4: null,
+      __P_517_4: null,
       /** {Map} list of resource paths, indexed by resource id */
-      __P_516_5: null,
+      __P_517_5: null,
       /** {Package[]} list of packages */
-      __P_516_6: null,
+      __P_517_6: null,
       /** {Part[]} list of parts */
-      __P_516_7: null,
+      __P_517_7: null,
       /**
        * Sets an environment variable
        *
@@ -150,7 +150,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.app.Application}
        */
       getApplication: function getApplication() {
-        return this.__P_516_1;
+        return this.__P_517_1;
       },
       /**
        * Returns the target
@@ -158,7 +158,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.targets.Target}
        */
       getTarget: function getTarget() {
-        return this.__P_516_0;
+        return this.__P_517_0;
       },
       /**
        * Returns the application root
@@ -166,7 +166,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {String} the folder
        */
       getApplicationRoot: function getApplicationRoot() {
-        return this.__P_516_0.getApplicationRoot(this.__P_516_1);
+        return this.__P_517_0.getApplicationRoot(this.__P_517_1);
       },
       /**
        * Returns the Analyser
@@ -174,7 +174,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.Analyser}
        */
       getAnalyser: function getAnalyser() {
-        return this.__P_516_1.getAnalyser();
+        return this.__P_517_1.getAnalyser();
       },
       /**
        * Syncs all assets into the output directory
@@ -188,14 +188,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 i = 0;
               case 1:
-                if (!(i < _this.__P_516_6.length)) {
+                if (!(i < _this.__P_517_6.length)) {
                   _context.n = 3;
                   break;
                 }
-                pkg = _this.__P_516_6[i];
+                pkg = _this.__P_517_6[i];
                 _context.n = 2;
                 return qx.tool.utils.Promisify.poolEachOf(pkg.getAssets(), 10, function (asset) {
-                  return asset.sync(_this.__P_516_0);
+                  return asset.sync(_this.__P_517_0);
                 });
               case 2:
                 i++;
@@ -213,7 +213,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param library {qx.tool.compiler.app.Library}
        */
       addLibrary: function addLibrary(library) {
-        this.__P_516_2.push(library);
+        this.__P_517_2.push(library);
       },
       /**
        * Returns the library that contains the application class
@@ -221,7 +221,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.app.Library}
        */
       getAppLibrary: function getAppLibrary() {
-        var appLibrary = this.__P_516_1.getAnalyser().getLibraryFromClassname(this.__P_516_1.getClassName());
+        var appLibrary = this.__P_517_1.getAnalyser().getLibraryFromClassname(this.__P_517_1.getClassName());
         return appLibrary;
       },
       /**
@@ -230,7 +230,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.app.Library[]}
        */
       getLibraries: function getLibraries() {
-        return this.__P_516_2;
+        return this.__P_517_2;
       },
       /**
        * Adds an external resource (JS or CSS) to be loaded which is a http[s] URL
@@ -239,7 +239,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param uri {String} uri to load
        */
       addExternal: function addExternal(type, uri) {
-        this.__P_516_3[type].push("__external__:" + uri);
+        this.__P_517_3[type].push("__external__:" + uri);
       },
       /**
        * Adds an external resource (JS or CSS) to be loaded, which is a resource path
@@ -248,7 +248,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param uri {String} uri to load
        */
       addPreload: function addPreload(type, uri) {
-        this.__P_516_3[type].push(uri);
+        this.__P_517_3[type].push(uri);
       },
       /**
        * Returns the list of preloads, which is a map by type
@@ -256,7 +256,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Map}
        */
       getPreloads: function getPreloads() {
-        return this.__P_516_3;
+        return this.__P_517_3;
       },
       /**
        * Adds code to be run before the boot code is run
@@ -264,7 +264,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param code {String} the code to run
        */
       addPreBootCode: function addPreBootCode(code) {
-        this.__P_516_4.push(code);
+        this.__P_517_4.push(code);
       },
       /**
        * Returns the code to be run before the boot code
@@ -272,7 +272,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {String} the code
        */
       getPreBootCode: function getPreBootCode() {
-        return this.__P_516_4.join("\n");
+        return this.__P_517_4.join("\n");
       },
       /**
        * Creates a new Part and adds it
@@ -281,9 +281,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Part}
        */
       createPart: function createPart(name) {
-        var part = new qx.tool.compiler.targets.meta.Part(this.getTarget(), name, this.__P_516_7.length);
-        this.__P_516_7.push(part);
-        this.__P_516_8[name] = part;
+        var part = new qx.tool.compiler.targets.meta.Part(this.getTarget(), name, this.__P_517_7.length);
+        this.__P_517_7.push(part);
+        this.__P_517_8[name] = part;
         return part;
       },
       /**
@@ -292,7 +292,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Part[]}
        */
       getParts: function getParts() {
-        return this.__P_516_7;
+        return this.__P_517_7;
       },
       /**
        * Returns a part with a given name
@@ -300,7 +300,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param name {String} the name to look for
        */
       getPart: function getPart(name) {
-        return this.__P_516_8[name] || null;
+        return this.__P_517_8[name] || null;
       },
       /**
        * Returns a list of all packages
@@ -308,7 +308,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Package[]}
        */
       getPackages: function getPackages() {
-        return this.__P_516_6;
+        return this.__P_517_6;
       },
       /**
        * Creates a package and adds it
@@ -316,8 +316,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Package}
        */
       createPackage: function createPackage() {
-        var pkg = new qx.tool.compiler.targets.meta.Package(this, this.__P_516_6.length);
-        this.__P_516_6.push(pkg);
+        var pkg = new qx.tool.compiler.targets.meta.Package(this, this.__P_517_6.length);
+        this.__P_517_6.push(pkg);
         return pkg;
       },
       /**
@@ -343,7 +343,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param path {String} the path to the resource
        */
       addResource: function addResource(key, path) {
-        this.__P_516_5[key] = path;
+        this.__P_517_5[key] = path;
       },
       /**
        * Returns all of the resources
@@ -351,11 +351,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Map}
        */
       getResources: function getResources() {
-        return this.__P_516_5;
+        return this.__P_517_5;
       }
     }
   });
   qx.tool.compiler.targets.meta.ApplicationMeta.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ApplicationMeta.js.map?dt=1792082791112
+//# sourceMappingURL=ApplicationMeta.js.map?dt=1794845774799

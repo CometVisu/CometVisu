@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -73,7 +73,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     ***********************************************
     */
     members: {
-      __P_87_0: null,
+      __P_88_0: null,
       _init: function _init() {
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
@@ -128,8 +128,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   doc = parser.parseFromString(_this._element.innerHTML, 'application/xml');
                   props = Clazz.parse(doc.firstElementChild, id, '', 'text');
                   cv.TemplateEngine.getInstance().setDomFinished(false);
-                  _this.__P_87_0 = new Clazz(props);
-                  _this._element.innerHTML = "<div class=\"widget_container\" id=\"".concat(id, "\" data-type=\"").concat(props.$$type, "\">").concat(_this.__P_87_0.getDomString(), "</div>");
+                  _this.__P_88_0 = new Clazz(props);
+                  _this._element.innerHTML = "<div class=\"widget_container\" id=\"".concat(id, "\" data-type=\"").concat(props.$$type, "\">").concat(_this.__P_88_0.getDomString(), "</div>");
                   scriptLoader = cv.util.ScriptLoader.getInstance();
                   window.requestAnimationFrame(function () {
                     if (!scriptLoader.isFinished()) {
@@ -196,4 +196,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1792082766085
+//# sourceMappingURL=Plugin.js.map?dt=1794845750373

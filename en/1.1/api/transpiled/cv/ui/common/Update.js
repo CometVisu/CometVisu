@@ -48,9 +48,9 @@
     construct: function construct() {
       if (this.getAddress) {
         if (this._initOnCreate === true) {
-          this.__P_788_0();
+          this.__P_790_0();
         } else if (qx.Class.getEventType(this.constructor, 'domReady')) {
-          this.addListenerOnce('domReady', this.__P_788_0, this);
+          this.addListenerOnce('domReady', this.__P_790_0, this);
         }
       }
     },
@@ -61,7 +61,7 @@
     */
     members: {
       _initOnCreate: false,
-      __P_788_0: function __P_788_0() {
+      __P_790_0: function __P_790_0() {
         var model = cv.data.Model.getInstance();
         var addresses = this.getAddress();
         var addressSettings;
@@ -128,4 +128,4 @@
   cv.ui.common.Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1792082802788
+//# sourceMappingURL=Update.js.map?dt=1794845786168

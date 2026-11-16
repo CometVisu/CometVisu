@@ -127,7 +127,7 @@
       this.addListener("keyup", this._onKeyUp, this);
       this.addListener("roll", this._onRoll, this);
       {
-        this.__P_600_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+        this.__P_601_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
       }
 
       // CREATE CONTROLS
@@ -238,11 +238,11 @@
 
     members: {
       /** Saved last value in case invalid text is entered */
-      __P_600_1: null,
+      __P_601_1: null,
       /** Whether the page-up button has been pressed */
-      __P_600_2: false,
+      __P_601_2: false,
       /** Whether the page-down button has been pressed */
-      __P_600_3: false,
+      __P_601_3: false,
       /*
       ---------------------------------------------------------------------------
         WIDGET INTERNALS
@@ -404,7 +404,7 @@
         this._updateButtons();
 
         // save the last valid value of the spinner
-        this.__P_600_1 = value;
+        this.__P_601_1 = value;
 
         // write the value of the spinner to the textfield
         if (value !== null) {
@@ -458,7 +458,7 @@
         if (numberFormat !== null) {
           numberFormat.addListener("changeNumberFormat", this._onChangeNumberFormat, this);
         }
-        this._applyValue(this.__P_600_1, undefined);
+        this._applyValue(this.__P_601_1, undefined);
       },
       /**
        * Returns the element, to which the content padding should be applied.
@@ -520,7 +520,7 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             // mark that the spinner is in page mode and process further
-            this.__P_600_2 = true;
+            this.__P_601_2 = true;
             this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
             this.getChildControl("upbutton").press();
             break;
@@ -530,7 +530,7 @@
             break;
           case "PageDown":
             // mark that the spinner is in page mode and process further
-            this.__P_600_3 = true;
+            this.__P_601_3 = true;
             this.getChildControl("textfield").fireNonBubblingEvent("changeValue", qx.event.type.Data);
             this.getChildControl("downbutton").press();
             break;
@@ -556,14 +556,14 @@
         switch (e.getKeyIdentifier()) {
           case "PageUp":
             this.getChildControl("upbutton").release();
-            this.__P_600_2 = false;
+            this.__P_601_2 = false;
             break;
           case "Up":
             this.getChildControl("upbutton").release();
             break;
           case "PageDown":
             this.getChildControl("downbutton").release();
-            this.__P_600_3 = false;
+            this.__P_601_3 = false;
             break;
           case "Down":
             this.getChildControl("downbutton").release();
@@ -627,14 +627,14 @@
           }
 
           // If value is the same than before, call directly _applyValue()
-          if (value === this.__P_600_1) {
-            this._applyValue(this.__P_600_1);
+          if (value === this.__P_601_1) {
+            this._applyValue(this.__P_601_1);
           } else {
             this.setValue(value);
           }
         } else {
           // otherwise, reset the last valid value
-          this._applyValue(this.__P_600_1, undefined);
+          this._applyValue(this.__P_601_1, undefined);
         }
       },
       /**
@@ -671,7 +671,7 @@
        *
        */
       _countUp: function _countUp() {
-        if (this.__P_600_2) {
+        if (this.__P_601_2) {
           var newValue = this.getValue() + this.getPageStep();
         } else {
           var newValue = this.getValue() + this.getSingleStep();
@@ -692,7 +692,7 @@
        *
        */
       _countDown: function _countDown() {
-        if (this.__P_600_3) {
+        if (this.__P_601_3) {
           var newValue = this.getValue() - this.getPageStep();
         } else {
           var newValue = this.getValue() - this.getSingleStep();
@@ -728,12 +728,12 @@
       if (nf) {
         nf.removeListener("changeNumberFormat", this._onChangeNumberFormat, this);
       }
-      if (true && this.__P_600_0) {
-        qx.locale.Manager.getInstance().removeListenerById(this.__P_600_0);
+      if (true && this.__P_601_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_601_0);
       }
     }
   });
   qx.ui.form.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1792082795074
+//# sourceMappingURL=Spinner.js.map?dt=1794845778608

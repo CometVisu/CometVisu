@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547840,
-  "lastModifiedIso": "2026-10-15T16:42:27.840Z",
+  "lastModified": 1794845538748,
+  "lastModifiedIso": "2026-11-16T16:12:18.748Z",
   "classFilename": "../../source/class/cv/ui/manager/upload/UploadMgr.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 912
     },
     "end": {
-      "line": 250,
+      "line": 257,
       "column": 3,
-      "index": 7767
+      "index": 8206
     }
   },
   "className": "cv.ui.manager.upload.UploadMgr",
@@ -171,7 +171,7 @@
         "end": {
           "line": 79,
           "column": 5,
-          "index": 2085
+          "index": 2105
         }
       },
       "type": "function",
@@ -185,12 +185,12 @@
         "start": {
           "line": 81,
           "column": 4,
-          "index": 2092
+          "index": 2112
         },
         "end": {
-          "line": 175,
+          "line": 180,
           "column": 5,
-          "index": 5438
+          "index": 5792
         }
       },
       "type": "function",
@@ -224,14 +224,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 182,
+          "line": 187,
           "column": 4,
-          "index": 5521
+          "index": 5875
         },
         "end": {
-          "line": 184,
+          "line": 189,
           "column": 5,
-          "index": 5602
+          "index": 5956
         }
       },
       "type": "function",
@@ -267,14 +267,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 190,
+          "line": 195,
           "column": 4,
-          "index": 5712
+          "index": 6066
         },
         "end": {
-          "line": 204,
+          "line": 211,
           "column": 5,
-          "index": 6162
+          "index": 6601
         }
       },
       "type": "function",
@@ -313,14 +313,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 211,
+          "line": 218,
           "column": 4,
-          "index": 6264
+          "index": 6703
         },
         "end": {
-          "line": 226,
+          "line": 233,
           "column": 5,
-          "index": 6918
+          "index": 7357
         }
       },
       "type": "function",
@@ -365,14 +365,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 233,
+          "line": 240,
           "column": 4,
-          "index": 7084
+          "index": 7523
         },
         "end": {
-          "line": 248,
+          "line": 255,
           "column": 5,
-          "index": 7759
+          "index": 8198
         }
       },
       "type": "function",

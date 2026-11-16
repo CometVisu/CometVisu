@@ -72,17 +72,17 @@
       this._init();
     },
     members: {
-      __P_655_0: null,
-      __P_655_1: null,
-      __P_655_2: null,
-      __P_655_3: null,
+      __P_656_0: null,
+      __P_656_1: null,
+      __P_656_2: null,
+      __P_656_3: null,
       /**
        * Returns the image widget which is used for this renderer.
        *
        * @return {qx.ui.mobile.basic.Image} The image widget
        */
       getImageWidget: function getImageWidget() {
-        return this.__P_655_0;
+        return this.__P_656_0;
       },
       /**
        * Returns the title widget which is used for this renderer.
@@ -90,7 +90,7 @@
        * @return {qx.ui.mobile.basic.Label} The title widget
        */
       getTitleWidget: function getTitleWidget() {
-        return this.__P_655_1;
+        return this.__P_656_1;
       },
       /**
        * Returns the subtitle widget which is used for this renderer.
@@ -98,7 +98,7 @@
        * @return {qx.ui.mobile.basic.Label} The subtitle widget
        */
       getSubtitleWidget: function getSubtitleWidget() {
-        return this.__P_655_2;
+        return this.__P_656_2;
       },
       /**
        * Sets the source of the image widget.
@@ -106,7 +106,7 @@
        * @param source {String} The source to set
        */
       setImage: function setImage(source) {
-        this.__P_655_0.setSource(source);
+        this.__P_656_0.setSource(source);
       },
       /**
        * Sets the value of the title widget.
@@ -115,9 +115,9 @@
        */
       setTitle: function setTitle(title) {
         if (title && title.translate) {
-          this.__P_655_1.setValue(title.translate());
+          this.__P_656_1.setValue(title.translate());
         } else {
-          this.__P_655_1.setValue(title);
+          this.__P_656_1.setValue(title);
         }
       },
       /**
@@ -127,9 +127,9 @@
        */
       setSubtitle: function setSubtitle(subtitle) {
         if (subtitle && subtitle.translate) {
-          this.__P_655_2.setValue(subtitle.translate());
+          this.__P_656_2.setValue(subtitle.translate());
         } else {
-          this.__P_655_2.setValue(subtitle);
+          this.__P_656_2.setValue(subtitle);
         }
       },
       /**
@@ -137,16 +137,16 @@
        *
        */
       _init: function _init() {
-        this.__P_655_0 = this._createImage();
-        this.add(this.__P_655_0);
-        this.__P_655_3 = this._createRightContainer();
-        this.add(this.__P_655_3, {
+        this.__P_656_0 = this._createImage();
+        this.add(this.__P_656_0);
+        this.__P_656_3 = this._createRightContainer();
+        this.add(this.__P_656_3, {
           flex: 1
         });
-        this.__P_655_1 = this._createTitle();
-        this.__P_655_3.add(this.__P_655_1);
-        this.__P_655_2 = this._createSubtitle();
-        this.__P_655_3.add(this.__P_655_2);
+        this.__P_656_1 = this._createTitle();
+        this.__P_656_3.add(this.__P_656_1);
+        this.__P_656_2 = this._createSubtitle();
+        this.__P_656_3.add(this.__P_656_2);
       },
       /**
        * Creates and returns the right container composite. Override this to adapt the widget code.
@@ -191,16 +191,16 @@
       },
       // overridden
       reset: function reset() {
-        this.__P_655_0.setSource(null);
-        this.__P_655_1.setValue("");
-        this.__P_655_2.setValue("");
+        this.__P_656_0.setSource(null);
+        this.__P_656_1.setValue("");
+        this.__P_656_2.setValue("");
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_655_0", "__P_655_1", "__P_655_2", "__P_655_3");
+      this._disposeObjects("__P_656_0", "__P_656_1", "__P_656_2", "__P_656_3");
     }
   });
   qx.ui.mobile.list.renderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1792082797261
+//# sourceMappingURL=Default.js.map?dt=1794845780690

@@ -67,7 +67,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_778_0 = new qx.data.Array();
+      this.__P_780_0 = new qx.data.Array();
     },
     /*
     ******************************************************
@@ -75,10 +75,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ******************************************************
     */
     members: {
-      __P_778_0: null,
-      __P_778_1: null,
-      __P_778_2: null,
-      __P_778_3: null,
+      __P_780_0: null,
+      __P_780_1: null,
+      __P_780_2: null,
+      __P_780_3: null,
       /**
        * Load a config file
        * @param callback
@@ -86,8 +86,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       load: function load(callback, context) {
         var _this = this;
-        this.__P_778_1 = callback;
-        this.__P_778_2 = context;
+        this.__P_780_1 = callback;
+        this.__P_780_2 = context;
         // get the data once the page was loaded
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
         if (cv.Config.testMode) {
@@ -99,7 +99,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
         this.debug('Requesting ' + uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
-        this.__P_778_0.push(uri);
+        this.__P_780_0.push(uri);
         ajaxRequest.set({
           accept: 'application/xml',
           cache: !cv.Config.forceReload
@@ -129,9 +129,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var _parser = new DOMParser();
               xml = _parser.parseFromString(rawContent, 'text/xml');
             }
-            _this.__P_778_3 = xml;
+            _this.__P_780_3 = xml;
             xml.querySelectorAll('include').forEach(_this.loadInclude, _this);
-            _this.__P_778_0.remove(ajaxRequest.getUrl());
+            _this.__P_780_0.remove(ajaxRequest.getUrl());
             var lastModified = (_ref = (_req$getResponseHeade = req.getResponseHeader('Last-Modified')) !== null && _req$getResponseHeade !== void 0 ? _req$getResponseHeade : req.getResponseHeader('ETag')) !== null && _ref !== void 0 ? _ref : '';
             cv.Config.configETag = lastModified;
             var systemLibVersion = isTileStructure ? cv.Version.LIBRARY_VERSION_TILE : cv.Version.LIBRARY_VERSION_PURE;
@@ -177,6 +177,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   backendName = 'mqtt';
                 }
               }
+              if (req.getResponseHeader('X-CometVisu-Backend-IoBroker-Url')) {
+                cv.Config.server.backendIoBrokerUrl = req.getResponseHeader('X-CometVisu-Backend-IoBroker-Url');
+                if (backendName === '') {
+                  backendName = 'iobroker';
+                }
+              }
               if (req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url')) {
                 cv.Config.server.backendOpenHABUrl = req.getResponseHeader('X-CometVisu-Backend-OpenHAB-Url');
                 if (backendName === '') {
@@ -195,10 +201,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           if (!qx.util.Request.isSuccessful(status) && ajaxRequest.getUserData('noDemo')) {
             ajaxRequest.setUserData('noDemo', false);
             ajaxRequest.setUserData('origUrl', ajaxRequest.getUrl());
-            _this.__P_778_0.remove(ajaxRequest.getUrl());
+            _this.__P_780_0.remove(ajaxRequest.getUrl());
             var demoUrl = ajaxRequest.getUrl().replace('config/', 'demo/');
             ajaxRequest.setUrl(demoUrl);
-            _this.__P_778_0.push(demoUrl);
+            _this.__P_780_0.push(demoUrl);
             ajaxRequest.send();
           } else if (!qx.util.Request.isSuccessful(status)) {
             _this.configError('filenotfound', [ajaxRequest.getUserData('origUrl'), ajaxRequest.getUrl()]);
@@ -218,7 +224,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (!url.startsWith('/')) {
           url = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + url;
         }
-        this.__P_778_0.push(url);
+        this.__P_780_0.push(url);
         var xhr = new qx.io.request.Xhr(url);
         xhr.set({
           accept: 'text/plain',
@@ -228,7 +234,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           var req = e.getTarget();
           var xml = qx.xml.Document.fromString('<root>' + req.getResponseText() + '</root>');
           includeElem.replaceWith.apply(includeElem, _toConsumableArray(xml.firstChild.childNodes));
-          _this2.__P_778_0.remove(url);
+          _this2.__P_780_0.remove(url);
           _this2._checkQueue();
         });
         xhr.addListener('statusError', function (e) {
@@ -246,8 +252,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @private
        */
       _checkQueue: function _checkQueue() {
-        if (this.__P_778_0.length === 0) {
-          this.__P_778_1.call(this.__P_778_2, this.__P_778_3);
+        if (this.__P_780_0.length === 0) {
+          this.__P_780_1.call(this.__P_780_2, this.__P_780_3);
           this.dispose();
         }
       },
@@ -319,12 +325,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     destruct: function destruct() {
       // remove references
-      this.__P_778_3 = null;
-      this.__P_778_1 = null;
-      this.__P_778_2 = null;
+      this.__P_780_3 = null;
+      this.__P_780_1 = null;
+      this.__P_780_2 = null;
     }
   });
   cv.util.ConfigLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigLoader.js.map?dt=1792082802411
+//# sourceMappingURL=ConfigLoader.js.map?dt=1794845785791

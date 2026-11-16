@@ -56,7 +56,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         init: false,
         check: "Boolean",
         event: "changeValid",
-        apply: "__P_173_0"
+        apply: "__P_174_0"
       }
     },
     /*
@@ -80,8 +80,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
 
     members: {
-      __P_173_1: null,
-      __P_173_2: null,
+      __P_174_1: null,
+      __P_174_2: null,
       toString: function toString() {
         var fontWeight = this.isBold() ? "bold" : "normal";
         if (this.getWeight() !== null) {
@@ -117,7 +117,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } finally {
           _iterator.f();
         }
-        this.__P_173_2 = qx.Promise.all(promises).then(function (results) {
+        this.__P_174_2 = qx.Promise.all(promises).then(function (results) {
           if (results.length == 0 || results.indexOf(true) > -1) {
             _this.setValid(true);
           } else {
@@ -132,14 +132,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             while (1) switch (_context.n) {
               case 0:
                 _context.n = 1;
-                return _this2.__P_173_2;
+                return _this2.__P_174_2;
               case 1:
                 return _context.a(2);
             }
           }, _callee);
         }))();
       },
-      __P_173_0: function __P_173_0(value) {
+      __P_174_0: function __P_174_0(value) {
         qx.bom.Label.flushSizeCache();
         this.fireDataEvent("changeStatus", {
           family: this.getFamily(),
@@ -157,4 +157,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.bom.webfonts.WebFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFont.js.map?dt=1792082769777
+//# sourceMappingURL=WebFont.js.map?dt=1794845754029

@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -67,10 +67,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_101_0: null,
-      __P_101_1: null,
+      __P_102_0: null,
+      __P_102_1: null,
       _stateUpdateTarget: null,
-      __P_101_2: null,
+      __P_102_2: null,
       getAddress: function getAddress() {
         return this._element.textContent.trim();
       },
@@ -115,7 +115,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           }
           if (mode !== 'read') {
             // listen for sendState events
-            this.__P_101_2 = function (ev) {
+            this.__P_102_2 = function (ev) {
               var value = null;
               if (Object.prototype.hasOwnProperty.call(ev.detail, 'value')) {
                 value = ev.detail.value;
@@ -160,14 +160,14 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
                 }
               }
             };
-            element.addEventListener('sendState', this.__P_101_2);
+            element.addEventListener('sendState', this.__P_102_2);
           }
         }
       },
       _disconnected: function _disconnected() {
-        if (this.__P_101_2) {
-          this._element.removeEventListener('sendState', this.__P_101_2);
-          this.__P_101_2 = null;
+        if (this.__P_102_2) {
+          this._element.removeEventListener('sendState', this.__P_102_2);
+          this.__P_102_2 = null;
         }
       },
       resend: function resend() {
@@ -188,7 +188,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
        * @param force {boolean} if true, the event is fired even if the state has not changed since the last update
        */
       fireStateUpdate: function fireStateUpdate(address, state, force) {
-        if (force || this.__P_101_0 !== state || this._element.getAttribute('send-mode') === 'always') {
+        if (force || this.__P_102_0 !== state || this._element.getAttribute('send-mode') === 'always') {
           var transform = this._element.getAttribute('transform') || 'raw';
           var transformedState = cv.Transform.decode({
             transform: transform,
@@ -230,7 +230,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
               variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
             }
           });
-          this.__P_101_1 = transformedState;
+          this.__P_102_1 = transformedState;
           this._element.setAttribute('data-value', '' + transformedState);
           //console.log(ev.detail);
           if (this._stateUpdateTarget) {
@@ -239,7 +239,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             // fallback: should never happen, but at least we can dispatch the event to the element itself, so tiles can listen to it even if they forget to set the target
             this._element.dispatchEvent(ev);
           }
-          this.__P_101_0 = state;
+          this.__P_102_0 = state;
           // reset lastSentValue
           if (state !== this._element.lastSentValue) {
             this._element.lastSentValue = null;
@@ -261,13 +261,13 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         return this._element.getAttribute('mode') !== 'read';
       },
       getValue: function getValue() {
-        return this.__P_101_1;
+        return this.__P_102_1;
       }
     },
     destruct: function destruct() {
-      if (this.__P_101_2 && this._element) {
-        this._element.removeEventListener('sendState', this.__P_101_2);
-        this.__P_101_2 = null;
+      if (this.__P_102_2 && this._element) {
+        this._element.removeEventListener('sendState', this.__P_102_2);
+        this.__P_102_2 = null;
       }
       cv.data.Model.getInstance().removeUpdateListener(this.getAddress(), this.fireStateUpdate, this, this._element.getAttribute('backend'));
     },
@@ -287,4 +287,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.elements.Address.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Address.js.map?dt=1792082766825
+//# sourceMappingURL=Address.js.map?dt=1794845751239

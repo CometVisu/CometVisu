@@ -119,7 +119,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * @var {Boolean}
        */
-      __P_486_0: false,
+      __P_487_0: false,
       /**
        * API method to install a library via its URI and version tag
        * @param {String} library_uri
@@ -211,7 +211,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return qx.tool.cli.commands["package"].Install.superclass.prototype.process.call(_this4);
               case 1:
                 _context4.n = 2;
-                return _this4.__P_486_1();
+                return _this4.__P_487_1();
               case 2:
                 _context4.n = 3;
                 return _this4._getConfigData();
@@ -233,13 +233,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context4.n = 4;
-                return _this4.__P_486_2();
+                return _this4.__P_487_2();
               case 4:
                 _context4.n = 7;
                 break;
               case 5:
                 _context4.n = 6;
-                return _this4.__P_486_3(manifestModel.getData());
+                return _this4.__P_487_3(manifestModel.getData());
               case 6:
                 _context4.n = 7;
                 return _this4._saveConfigData();
@@ -276,7 +276,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 9:
                 saveToManifest = uri ? _this4.argv.save : false;
                 _context4.n = 10;
-                return _this4.__P_486_4(uri, _this4.argv.fromPath, saveToManifest);
+                return _this4.__P_487_4(uri, _this4.argv.fromPath, saveToManifest);
               case 10:
                 _context4.n = 14;
                 break;
@@ -286,13 +286,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context4.n = 12;
-                return _this4.__P_486_5(uri, id, _this4.argv.save);
+                return _this4.__P_487_5(uri, id, _this4.argv.save);
               case 12:
                 _context4.n = 14;
                 break;
               case 13:
                 _context4.n = 14;
-                return _this4.__P_486_6(uri, id, _this4.argv.save);
+                return _this4.__P_487_6(uri, id, _this4.argv.save);
               case 14:
                 _context4.n = 15;
                 return _this4._saveConfigData();
@@ -311,7 +311,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_486_1: function __P_486_1() {
+      __P_487_1: function __P_487_1() {
         var _this5 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
           var repos_cache;
@@ -349,7 +349,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {{package_path: string | string, repo_name: string}}
        * @private
        */
-      __P_486_7: function __P_486_7(uri) {
+      __P_487_7: function __P_487_7(uri) {
         if (!uri) {
           throw new qx.tool.utils.Utils.UserError("No package resource identifier given");
         }
@@ -375,10 +375,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_486_5: function __P_486_5(uri, tag_name, writeToManifest) {
+      __P_487_5: function __P_487_5(uri, tag_name, writeToManifest) {
         var _this6 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
-          var qxVersion, _this6$__P_486_, repo_name, package_path, cache, options, _yield$_this6$__P_, download_path, found, repo_data, release_data, _iterator, _step, manifest_path, library_uri, _t;
+          var qxVersion, _this6$__P_487_, repo_name, package_path, cache, options, _yield$_this6$__P_, download_path, found, repo_data, release_data, _iterator, _step, manifest_path, library_uri, _t;
           return _regenerator().w(function (_context6) {
             while (1) switch (_context6.p = _context6.n) {
               case 0:
@@ -386,7 +386,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _this6.getAppQxVersion();
               case 1:
                 qxVersion = _context6.v.replace("-beta", "");
-                _this6$__P_486_ = _this6.__P_486_7(uri), repo_name = _this6$__P_486_.repo_name, package_path = _this6$__P_486_.package_path;
+                _this6$__P_487_ = _this6.__P_487_7(uri), repo_name = _this6$__P_487_.repo_name, package_path = _this6$__P_487_.package_path;
                 if (tag_name) {
                   _context6.n = 4;
                   break;
@@ -421,7 +421,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   qx.tool.compiler.Console.info(">>> Installing '".concat(uri, "', release '").concat(tag_name, "' for qooxdoo version: ").concat(qxVersion));
                 }
                 _context6.n = 5;
-                return _this6.__P_486_8(repo_name, tag_name);
+                return _this6.__P_487_8(repo_name, tag_name);
               case 5:
                 _yield$_this6$__P_ = _context6.v;
                 download_path = _yield$_this6$__P_.download_path;
@@ -460,7 +460,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 library_uri = path.join(repo_name, path.dirname(manifest_path));
                 found = true;
                 _context6.n = 11;
-                return _this6.__P_486_9(library_uri, tag_name, download_path, writeToManifest);
+                return _this6.__P_487_9(library_uri, tag_name, download_path, writeToManifest);
               case 11:
                 _context6.n = 9;
                 break;
@@ -501,10 +501,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_486_6: function __P_486_6(uri, hash, writeToManifest) {
+      __P_487_6: function __P_487_6(uri, hash, writeToManifest) {
         var _this7 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-          var qxVersion, _this7$__P_486_, repo_name, _yield$_this7$__P_, download_path;
+          var qxVersion, _this7$__P_487_, repo_name, _yield$_this7$__P_, download_path;
           return _regenerator().w(function (_context7) {
             while (1) switch (_context7.n) {
               case 0:
@@ -515,14 +515,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (_this7.argv.verbose) {
                   qx.tool.compiler.Console.info(">>> Installing '".concat(uri, "' from tree hash '").concat(hash, "' for qooxdoo version ").concat(qxVersion));
                 }
-                _this7$__P_486_ = _this7.__P_486_7(uri), repo_name = _this7$__P_486_.repo_name;
+                _this7$__P_487_ = _this7.__P_487_7(uri), repo_name = _this7$__P_487_.repo_name;
                 _context7.n = 2;
-                return _this7.__P_486_8(repo_name, hash);
+                return _this7.__P_487_8(repo_name, hash);
               case 2:
                 _yield$_this7$__P_ = _context7.v;
                 download_path = _yield$_this7$__P_.download_path;
                 _context7.n = 3;
-                return _this7.__P_486_9(uri, hash, download_path, writeToManifest);
+                return _this7.__P_487_9(uri, hash, download_path, writeToManifest);
               case 3:
                 return _context7.a(2);
             }
@@ -541,7 +541,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_486_4: function __P_486_4(uri, dir) {
+      __P_487_4: function __P_487_4(uri, dir) {
         var _arguments = arguments,
           _this8 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
@@ -558,7 +558,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   qx.tool.compiler.Console.info(">>> Installing '".concat(uri, "' from '").concat(dir, "' for qooxdoo version ").concat(qxVersion));
                 }
                 _context8.n = 2;
-                return _this8.__P_486_9(uri, undefined, dir, writeToManifest);
+                return _this8.__P_487_9(uri, undefined, dir, writeToManifest);
               case 2:
                 return _context8.a(2);
             }
@@ -578,14 +578,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_486_9: function __P_486_9(uri, id, download_path, writeToManifest) {
+      __P_487_9: function __P_487_9(uri, id, download_path, writeToManifest) {
         var _this9 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
           var _ref, repo_name, package_path, _yield$_this9$_getCon, _yield$_this9$_getCon2, manifestModel, lockfileModel, library_path, manifest_path, _qx$tool$utils$Json$p, info, local_path, lib, index, appsInstalled, depsInstalled;
           return _regenerator().w(function (_context9) {
             while (1) switch (_context9.n) {
               case 0:
-                _ref = uri ? _this9.__P_486_7(uri) : {
+                _ref = uri ? _this9.__P_487_7(uri) : {
                   repo_name: "",
                   package_path: ""
                 }, repo_name = _ref.repo_name, package_path = _ref.package_path;
@@ -643,14 +643,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   manifestModel.setValue(["requires", uri], "^" + info.version);
                 }
                 _context9.n = 3;
-                return _this9.__P_486_10(library_path);
+                return _this9.__P_487_10(library_path);
               case 3:
                 appsInstalled = _context9.v;
                 if (!appsInstalled && _this9.argv.verbose) {
                   qx.tool.compiler.Console.info(">>> No applications installed for ".concat(uri, "."));
                 }
                 _context9.n = 4;
-                return _this9.__P_486_11(library_path);
+                return _this9.__P_487_11(library_path);
               case 4:
                 depsInstalled = _context9.v;
                 if (!depsInstalled && _this9.argv.verbose) {
@@ -670,7 +670,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {String} downloadPath
        * @return {Promise<Boolean>} Wether any libraries were installed
        */
-      __P_486_11: function __P_486_11(downloadPath) {
+      __P_487_11: function __P_487_11(downloadPath) {
         var _this0 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
           var manifest_file, manifest;
@@ -694,7 +694,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (_this0.argv.verbose) {
                   qx.tool.compiler.Console.info(">>> Installing libraries from ".concat(manifest_file, "."));
                 }
-                return _context0.a(2, _this0.__P_486_3(manifest));
+                return _context0.a(2, _this0.__P_487_3(manifest));
             }
           }, _callee0);
         }))();
@@ -704,10 +704,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {Object} manifest
        * @return {Promise<Boolean>} Wether any libraries were installed
        */
-      __P_486_3: function __P_486_3(manifest) {
+      __P_487_3: function __P_487_3(manifest) {
         var _this1 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1() {
-          var _iterator2, _step2, lib_uri, lib_range, qxVersion, _this1$__P_486_, tag, _t2, _t3, _t4;
+          var _iterator2, _step2, lib_uri, lib_range, qxVersion, _this1$__P_487_, tag, _t2, _t3, _t4;
           return _regenerator().w(function (_context1) {
             while (1) switch (_context1.p = _context1.n) {
               case 0:
@@ -751,7 +751,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _context1.n = 13;
                   break;
                 }
-                _this1$__P_486_ = _this1.__P_486_12(lib_uri, lib_range), tag = _this1$__P_486_.tag;
+                _this1$__P_487_ = _this1.__P_487_12(lib_uri, lib_range), tag = _this1$__P_487_.tag;
                 if (tag) {
                   _context1.n = 9;
                   break;
@@ -766,7 +766,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context1.n = 11;
-                return _this1.__P_486_5(lib_uri, tag, false);
+                return _this1.__P_487_5(lib_uri, tag, false);
               case 11:
                 return _context1.a(3, 19);
               case 12:
@@ -784,7 +784,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _context1.p = 15;
                 _context1.n = 16;
-                return _this1.__P_486_6(lib_uri, lib_range, false);
+                return _this1.__P_487_6(lib_uri, lib_range, false);
               case 16:
                 return _context1.a(3, 19);
               case 17:
@@ -824,10 +824,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Object} Returns an object with the keys "tag" and "version"
        * @private
        */
-      __P_486_12: function __P_486_12(lib_uri, lib_range) {
+      __P_487_12: function __P_487_12(lib_uri, lib_range) {
         var _this10 = this;
-        var _this$__P_486_ = this.__P_486_7(lib_uri),
-          repo_name = _this$__P_486_.repo_name;
+        var _this$__P_487_ = this.__P_487_7(lib_uri),
+          repo_name = _this$__P_487_.repo_name;
         var lib = this.getCache().repos.data[repo_name];
         if (!lib) {
           throw new qx.tool.utils.Utils.UserError("".concat(lib_uri, " is not in the library registry!"));
@@ -861,7 +861,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {String} downloadPath
        * @return {Promise<Boolean>} Returns true if applications were installed
        */
-      __P_486_10: function __P_486_10(downloadPath) {
+      __P_487_10: function __P_487_10(downloadPath) {
         var _this11 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
           var manifest, manifestApp, compileConfigModel, app;
@@ -931,7 +931,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_486_2: function __P_486_2() {
+      __P_487_2: function __P_487_2() {
         var _this12 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11() {
           var libraries;
@@ -948,7 +948,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context11.a(2, qx.Promise.all(libraries.filter(function (lib) {
                   return lib.repo_name && lib.repo_tag;
                 }).map(function (lib) {
-                  return _this12.__P_486_8(lib.repo_name, lib.repo_tag);
+                  return _this12.__P_487_8(lib.repo_name, lib.repo_tag);
                 })));
             }
           }, _callee11);
@@ -964,7 +964,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {Boolean} force Overwrite existing downloads
        * @return {{download_path:String}}
        */
-      __P_486_8: function __P_486_8(repo_name) {
+      __P_487_8: function __P_487_8(repo_name) {
         var _arguments2 = arguments,
           _this13 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee12() {
@@ -1034,4 +1034,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Install.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Install.js.map?dt=1792082788893
+//# sourceMappingURL=Install.js.map?dt=1794845772315

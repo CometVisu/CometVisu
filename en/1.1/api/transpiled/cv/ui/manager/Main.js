@@ -130,9 +130,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       cv.ui.manager.model.BackupFolder.getInstance();
       this._checkEnvironment();
       this.initOpenFiles(new qx.data.Array());
-      this.__P_29_0 = cv.ui.manager.control.ActionDispatcher.getInstance();
-      this.__P_29_0.setMain(this);
-      this.__P_29_1();
+      this.__P_30_0 = cv.ui.manager.control.ActionDispatcher.getInstance();
+      this.__P_30_0.setMain(this);
+      this.__P_30_1();
       this._draw();
       qx.event.message.Bus.subscribe('cv.manager.*', this._onManagerEvent, this);
       this._initAuth();
@@ -206,8 +206,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     ***********************************************
     */
     members: {
-      __P_29_2: null,
-      __P_29_3: null,
+      __P_30_2: null,
+      __P_30_3: null,
       _pane: null,
       _tree: null,
       _stack: null,
@@ -216,15 +216,15 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       _mainContent: null,
       _openFilesController: null,
       _hiddenConfigFakeFile: null,
-      __P_29_0: null,
+      __P_30_0: null,
       _applyVisible: function _applyVisible(value) {
         var manager = qx.core.Init.getApplication().getCommandManager();
         if (value) {
           manager.setActive(this._managerCommands);
-          qx.bom.element.Style.set(this.__P_29_4(), 'display', 'block');
+          qx.bom.element.Style.set(this.__P_30_4(), 'display', 'block');
         } else {
           manager.setActive(this._oldCommandGroup);
-          qx.bom.element.Style.set(this.__P_29_4(), 'display', 'none');
+          qx.bom.element.Style.set(this.__P_30_4(), 'display', 'none');
         }
       },
       _checkEnvironment: function _checkEnvironment() {
@@ -249,9 +249,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not writeable'));
                   }
                   if (refreshActions) {
-                    var widget = this.__P_29_0.getFocusedWidget();
-                    this.__P_29_0.resetFocusedWidget();
-                    this.__P_29_0.setFocusedWidget(widget);
+                    var widget = this.__P_30_0.getFocusedWidget();
+                    this.__P_30_0.resetFocusedWidget();
+                    this.__P_30_0.setFocusedWidget(widget);
                   }
                   break;
                 case 'backup':
@@ -492,7 +492,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           loginWidget.show();
         }
       },
-      __P_29_5: function __P_29_5(name) {
+      __P_30_5: function __P_30_5(name) {
         var file = null;
         var demoFolder = null;
         cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (child) {
@@ -528,14 +528,14 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           case 'cv.manager.openWith':
             if (typeof data.file === 'string') {
               // this can only by a file in the root dir (a config)
-              data.file = this.__P_29_5(data.file);
+              data.file = this.__P_30_5(data.file);
             }
             this.openFile(data.file || this.getCurrentSelection(), false, data.handler, null, data.handlerOptions);
             break;
           case 'cv.manager.open':
             if (typeof data === 'string') {
               // this can only by a file in the root dir (a config)
-              data = this.__P_29_5(data);
+              data = this.__P_30_5(data);
             }
             this.openFile(data || this.getCurrentSelection(), false);
             break;
@@ -549,7 +549,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       _onChangeTreeSelection: function _onChangeTreeSelection(ev) {
         var data = ev.getData();
         if (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() && data.mode === 'tap' || data.mode === 'dbltap') {
-          this.__P_29_6(data.node, data.mode);
+          this.__P_30_6(data.node, data.mode);
         }
         var node = data.node;
         if (node) {
@@ -564,7 +564,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           this.resetCurrentSelection();
         }
       },
-      __P_29_6: function __P_29_6(node, mode) {
+      __P_30_6: function __P_30_6(node, mode) {
         if (node) {
           if (node.getType() === 'file') {
             this.openFile(node, mode === 'tap');
@@ -625,7 +625,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             editorConfig.instance.setHandlerOptions(openFile.getHandlerOptions());
           }
           this._stack.setSelection([editorConfig.instance]);
-          this.__P_29_0.setFocusedWidget(editorConfig.instance);
+          this.__P_30_0.setFocusedWidget(editorConfig.instance);
           cv.ui.manager.core.GlobalState.getInstance().setOpenedFocusedFile(file);
         } else {
           cv.ui.manager.core.GlobalState.getInstance().resetOpenedFocusedFile();
@@ -678,21 +678,21 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         }
         if (preview === true) {
           if (!openFile.isPermanent()) {
-            if (this.__P_29_2 !== null && openFiles.getItem(this.__P_29_2) && !openFiles.getItem(this.__P_29_2).isPermanent()) {
-              openFiles.setItem(this.__P_29_2, openFile);
+            if (this.__P_30_2 !== null && openFiles.getItem(this.__P_30_2) && !openFiles.getItem(this.__P_30_2).isPermanent()) {
+              openFiles.setItem(this.__P_30_2, openFile);
             } else {
-              this.__P_29_2 = openFiles.length;
+              this.__P_30_2 = openFiles.length;
               openFiles.push(openFile);
             }
             // do not 'downgrade' the permanent state
             openFile.setPermanent(false);
           }
         } else {
-          if (!isOpen && (this.__P_29_2 === null || openFiles.indexOf(openFile) !== this.__P_29_2)) {
+          if (!isOpen && (this.__P_30_2 === null || openFiles.indexOf(openFile) !== this.__P_30_2)) {
             openFiles.push(openFile);
           }
           openFile.setPermanent(true);
-          this.__P_29_2 = null;
+          this.__P_30_2 = null;
         }
         this._openFilesController.getTarget().setModelSelection([openFile]);
       },
@@ -797,8 +797,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         }
         if (this.getOpenFiles().length === 0) {
           this._stack.resetSelection();
-          this.__P_29_0.resetFocusedWidget();
-          this.__P_29_2 = null;
+          this.__P_30_0.resetFocusedWidget();
+          this.__P_30_2 = null;
         }
         if (selectionIndex > 0) {
           this._openFilesController.getSelection().replace(openFiles.getItem(selectionIndex - 1));
@@ -831,18 +831,18 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       _onCloseFile: function _onCloseFile(ev) {
         this.closeFile(ev.getData());
       },
-      __P_29_4: function __P_29_4() {
-        if (!this.__P_29_3) {
-          this.__P_29_3 = qx.dom.Element.create('div', {
+      __P_30_4: function __P_30_4() {
+        if (!this.__P_30_3) {
+          this.__P_30_3 = qx.dom.Element.create('div', {
             id: 'manager',
             style: 'position: absolute; top: 0; left: 0; right: 0; bottom: 0;'
           });
-          qx.dom.Element.insertEnd(this.__P_29_3, document.body);
+          qx.dom.Element.insertEnd(this.__P_30_3, document.body);
           qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark);
         }
-        return this.__P_29_3;
+        return this.__P_30_3;
       },
-      __P_29_1: function __P_29_1() {
+      __P_30_1: function __P_30_1() {
         var group = this._managerCommands = new qx.ui.command.Group();
         group.add('save', new qx.ui.command.Command('Ctrl+S'));
         group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S'));
@@ -890,7 +890,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         }, this);
         this._openFilesController.getSelection().replace(openFiles);
       },
-      __P_29_7: function __P_29_7(message, callback, context, value, caption) {
+      __P_30_7: function __P_30_7(message, callback, context, value, caption) {
         var prompt = new cv.ui.manager.dialog.Prompt({
           message: message,
           callback: callback || null,
@@ -939,7 +939,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }, this);
           if (exists) {
             cv.ui.manager.snackbar.Controller.error(existsMessage);
-            this.__P_29_7(message, _handlePrompt, this, name);
+            this.__P_30_7(message, _handlePrompt, this, name);
           } else {
             var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
             item.set({
@@ -986,7 +986,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             }
           }
         };
-        this.__P_29_7(message, _handlePrompt, this, suggestedName);
+        this.__P_30_7(message, _handlePrompt, this, suggestedName);
       },
       /**
        * Finds next droppable parent of the given element. Maybe the element itself as well.
@@ -996,7 +996,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @param elem {Element} The element to query
        * @return {Element} The next parent element which is droppable. May also be <code>null</code>
        */
-      __P_29_8: function __P_29_8(elem) {
+      __P_30_8: function __P_30_8(elem) {
         while (elem && elem.nodeType === 1) {
           if (elem.getAttribute('qxDroppable') === 'on') {
             return elem;
@@ -1008,7 +1008,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       // overridden
       _draw: function _draw() {
         var _this3 = this;
-        var domRoot = this.__P_29_4();
+        var domRoot = this.__P_30_4();
         var root = new qx.ui.root.Inline(domRoot, true, true);
         this.bind('visible', root, 'visibility', {
           converter: function converter(visible) {
@@ -1019,13 +1019,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           // disable file drop
           var element = root.getContentElement().getDomElement();
           element.addEventListener('drop', function (ev) {
-            var target = this.__P_29_8(ev.target);
+            var target = this.__P_30_8(ev.target);
             if (!target) {
               ev.preventDefault();
             }
           }.bind(_this3));
           element.addEventListener('dragover', function (ev) {
-            var target = this.__P_29_8(ev.target);
+            var target = this.__P_30_8(ev.target);
             if (!target) {
               ev.preventDefault();
             }
@@ -1176,9 +1176,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       new qx.util.DeferredCall(function () {
         application.resetRoot();
       }).schedule();
-      document.body.removeChild(this.__P_29_3);
-      this.__P_29_3 = null;
-      this.__P_29_0 = null;
+      document.body.removeChild(this.__P_30_3);
+      this.__P_30_3 = null;
+      this.__P_30_0 = null;
       qx.event.message.Bus.unsubscribe('cv.manager.*', this._onManagerEvent, this);
 
       // destroy the singleton instance
@@ -1188,4 +1188,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1792082761806
+//# sourceMappingURL=Main.js.map?dt=1794845746487

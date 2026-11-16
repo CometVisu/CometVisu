@@ -69,7 +69,7 @@
 
       // translation support
       {
-        this.__P_607_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+        this.__P_608_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
         this._names = [];
       }
       this._form = form;
@@ -194,8 +194,8 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (true && this.__P_607_0) {
-        qx.locale.Manager.getInstance().removeListenerById(this.__P_607_0);
+      if (true && this.__P_608_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_608_0);
       }
       this._names = null;
       this._form.removeListener("change", this._onFormChange, this);
@@ -205,4 +205,4 @@
   qx.ui.form.renderer.AbstractRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractRenderer.js.map?dt=1792082795299
+//# sourceMappingURL=AbstractRenderer.js.map?dt=1794845778836

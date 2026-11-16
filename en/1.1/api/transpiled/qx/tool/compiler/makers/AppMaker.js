@@ -69,7 +69,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(className, theme) {
       qx.tool.compiler.makers.AbstractAppMaker.constructor.call(this);
-      this.__P_505_0 = [];
+      this.__P_506_0 = [];
       if (className) {
         var app = new qx.tool.compiler.app.Application(className);
         if (theme) {
@@ -79,20 +79,20 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_505_0: null,
+      __P_506_0: null,
       /**
        * Adds an Application to be made
        * @param app
        */
       addApplication: function addApplication(app) {
-        this.__P_505_0.push(app);
+        this.__P_506_0.push(app);
       },
       /**
        * Returns the array of applications
        * @returns {qx.tool.compiler.app.Application[]}
        */
       getApplications: function getApplications() {
-        return this.__P_505_0;
+        return this.__P_506_0;
       },
       /*
        * @Override
@@ -196,7 +196,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return analyser.updateEnvironmentData();
               case 7:
                 target.setAnalyser(analyser);
-                _this.__P_505_0.forEach(function (app) {
+                _this.__P_506_0.forEach(function (app) {
                   return app.setAnalyser(analyser);
                 });
                 _context2.n = 8;
@@ -246,7 +246,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _iterator.f();
                 return _context2.f(16);
               case 17:
-                _this.__P_505_0.forEach(function (app) {
+                _this.__P_506_0.forEach(function (app) {
                   app.getRequiredClasses().forEach(function (className) {
                     analyser.addClass(className);
                   });
@@ -270,7 +270,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 compiledClasses = _this.getRecentlyCompiledClasses(true);
                 db = analyser.getDatabase();
                 _context2.n = 21;
-                return _this.__P_505_0.filter(/*#__PURE__*/function () {
+                return _this.__P_506_0.filter(/*#__PURE__*/function () {
                   var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(app) {
                     var loadDeps, res, localModules, requireName, _db$modulesInfo, stat, _t, _t2;
                     return _regenerator().w(function (_context) {
@@ -387,4 +387,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.makers.AppMaker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AppMaker.js.map?dt=1792082790359
+//# sourceMappingURL=AppMaker.js.map?dt=1794845773775

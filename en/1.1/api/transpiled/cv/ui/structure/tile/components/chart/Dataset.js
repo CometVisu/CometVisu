@@ -137,7 +137,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       * @type {cv.ui.structure.tile.components.Chart}
       */
       _chart: null,
-      __P_94_0: null,
+      __P_95_0: null,
       _lastRefresh: null,
       /**
        * Load data from the source
@@ -311,4 +311,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.chart.Dataset.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dataset.js.map?dt=1792082766408
+//# sourceMappingURL=Dataset.js.map?dt=1794845750829

@@ -38,7 +38,7 @@
     include: qx.dev.unit.MMock,
     members: {
       testWithSetValueWithArbitraryValue: function testWithSetValueWithArbitraryValue() {
-        var combobox = this.__P_408_0("arbitrary value");
+        var combobox = this.__P_409_0("arbitrary value");
         this.getRoot().add(combobox);
         this.flush();
         this.assertIdentical("arbitrary value", combobox.getValue(), "Wrong result from getValue()");
@@ -50,7 +50,7 @@
         this.flush();
       },
       testWithSetValueWith: function testWithSetValueWith() {
-        var combobox = this.__P_408_0("Item 0");
+        var combobox = this.__P_409_0("Item 0");
         this.getRoot().add(combobox);
         this.flush();
         this.assertIdentical("Item 0", combobox.getValue(), "Wrong result from getValue()");
@@ -69,7 +69,7 @@
         this.flush();
       },
       testWithoutSetValue: function testWithoutSetValue() {
-        var combobox = this.__P_408_0();
+        var combobox = this.__P_409_0();
         this.getRoot().add(combobox);
         this.flush();
         this.assertIdentical(null, combobox.getValue(), "Wrong result from getValue()");
@@ -80,7 +80,7 @@
         combobox.dispose();
         this.flush();
       },
-      __P_408_0: function __P_408_0(initValue) {
+      __P_409_0: function __P_409_0(initValue) {
         var comboBox = new qx.ui.form.ComboBox();
         if (initValue) {
           comboBox.setValue(initValue);
@@ -95,4 +95,4 @@
   qx.test.ui.form.ComboBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ComboBox.js.map?dt=1792082783548
+//# sourceMappingURL=ComboBox.js.map?dt=1794845767280

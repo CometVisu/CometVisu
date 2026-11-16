@@ -45,7 +45,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_475_0 = {};
+      this.__P_476_0 = {};
     },
     properties: {
       path: {
@@ -55,8 +55,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_475_1: null,
-      __P_475_0: null,
+      __P_476_1: null,
+      __P_476_0: null,
       /**
        * Apply for path property
        * @returns
@@ -67,7 +67,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context) {
             while (1) switch (_context.n) {
               case 0:
-                _this.__P_475_1 = {};
+                _this.__P_476_1 = {};
               case 1:
                 return _context.a(2);
             }
@@ -94,7 +94,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _t = {};
               case 2:
-                _this2.__P_475_1 = _t;
+                _this2.__P_476_1 = _t;
               case 3:
                 return _context2.a(2);
             }
@@ -114,7 +114,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return qx.tool.utils.Utils.makeParentDir(_this3.getPath());
               case 1:
                 _context3.n = 2;
-                return qx.tool.utils.Json.saveJsonAsync(_this3.getPath(), _this3.__P_475_1);
+                return qx.tool.utils.Json.saveJsonAsync(_this3.getPath(), _this3.__P_476_1);
               case 2:
                 return _context3.a(2);
             }
@@ -126,9 +126,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       setOverride: function setOverride(key, value) {
         if (value === undefined) {
-          delete this.__P_475_0[key];
+          delete this.__P_476_0[key];
         } else {
-          this.__P_475_0[key] = value;
+          this.__P_476_0[key] = value;
         }
       },
       /**
@@ -142,11 +142,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       db: function db(path, defaultValue) {
         if (path) {
-          var override = this.__P_475_0[path];
+          var override = this.__P_476_0[path];
           if (override) {
             return override;
           }
-          var result = this.__P_475_1;
+          var result = this.__P_476_1;
           var segs = path.split(".");
           for (var i = 0; i < segs.length; i++) {
             var seg = segs[i];
@@ -165,17 +165,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           return result;
         }
-        return this.__P_475_1;
+        return this.__P_476_1;
       }
     },
     defer: function defer(statics) {
-      statics.__P_475_2 = path.join(require("os").homedir(), ".qooxdoo/");
+      statics.__P_476_2 = path.join(require("os").homedir(), ".qooxdoo/");
     },
     statics: {
       /** Singleton default instance */
-      __P_475_3: null,
+      __P_476_3: null,
       /** The directory where config files (any any other temporary/cached data) is kept */
-      __P_475_2: null,
+      __P_476_2: null,
       /**
        * Gets the default instance of ConfigDb, loaded with the global config
        *
@@ -187,12 +187,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context4) {
             while (1) switch (_context4.n) {
               case 0:
-                db = qx.tool.cli.ConfigDb.__P_475_3;
+                db = qx.tool.cli.ConfigDb.__P_476_3;
                 if (db) {
                   _context4.n = 1;
                   break;
                 }
-                db = qx.tool.cli.ConfigDb.__P_475_3 = new qx.tool.cli.ConfigDb();
+                db = qx.tool.cli.ConfigDb.__P_476_3 = new qx.tool.cli.ConfigDb();
                 db.setPath(path.join(qx.tool.cli.ConfigDb.getDirectory(), "config.json"));
                 _context4.n = 1;
                 return db.load();
@@ -206,7 +206,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Returns the local directory, where cache and configuration are kept
        */
       getDirectory: function getDirectory() {
-        return this.__P_475_2;
+        return this.__P_476_2;
       },
       /**
        * Wrapper for non-static version of db
@@ -221,4 +221,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.ConfigDb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigDb.js.map?dt=1792082787514
+//# sourceMappingURL=ConfigDb.js.map?dt=1794845770968

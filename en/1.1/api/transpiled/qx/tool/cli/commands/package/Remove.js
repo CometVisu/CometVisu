@@ -110,10 +110,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context.n = 6;
-                return _this.__P_489_0(elem.uri);
+                return _this.__P_490_0(elem.uri);
               case 6:
                 _context.n = 7;
-                return _this.__P_489_1(elem.uri);
+                return _this.__P_490_1(elem.uri);
               case 7:
                 c = elem.path.split(/\//).length;
                 _p = elem.path;
@@ -171,7 +171,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee, null, [[4, 11, 12, 13]]);
         }))();
       },
-      __P_489_1: function __P_489_1(uri) {
+      __P_490_1: function __P_490_1(uri) {
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
           var manifest;
           return _regenerator().w(function (_context2) {
@@ -200,7 +200,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_489_0: function __P_489_0(uri) {
+      __P_490_0: function __P_490_0(uri) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
           var pkgData, libraryData, manifest, compileData, manifestApp, app, idx;
@@ -266,4 +266,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Remove.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Remove.js.map?dt=1792082789169
+//# sourceMappingURL=Remove.js.map?dt=1794845772594

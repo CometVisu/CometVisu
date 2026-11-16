@@ -314,11 +314,11 @@
     ******************************************************
     */
     members: {
-      __P_69_0: undefined,
-      __P_69_1: null,
-      __P_69_2: undefined,
+      __P_70_0: undefined,
+      __P_70_1: null,
+      __P_70_2: undefined,
       _beforePropsApplied: function _beforePropsApplied(props) {
-        this.__P_69_1 = [];
+        this.__P_70_1 = [];
         return props;
       },
       // overridden
@@ -538,9 +538,9 @@
           BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
           BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
         });
-        this.__P_69_0 = [];
+        this.__P_70_0 = [];
         this.getIndicators().forEach(function (indicator, number) {
-          self.__P_69_0.push(new cv.util.LimitedRateUpdateAnimator(self.__P_69_3, self, number));
+          self.__P_70_0.push(new cv.util.LimitedRateUpdateAnimator(self.__P_70_3, self, number));
           svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
           if (indicator.showValue) {
             cntValues++;
@@ -577,13 +577,13 @@
       _onDomReady: function _onDomReady() {
         var _this = this;
         cv.ui.structure.pure.Roundbar.superclass.prototype._onDomReady.call(this);
-        if (this.__P_69_2 !== undefined) {
-          this.__P_69_2.forEach(function (_ref) {
+        if (this.__P_70_2 !== undefined) {
+          this.__P_70_2.forEach(function (_ref) {
             var address = _ref.address,
               data = _ref.data;
             _this._update(address, data);
           });
-          this.__P_69_2 = undefined;
+          this.__P_70_2 = undefined;
         }
       },
       /**
@@ -600,11 +600,11 @@
         var domElement = this.getDomElement();
         // only continue when the animators are already available, i.e. the
         // DOM is set up - otherwise just store it for later
-        if (this.__P_69_0 === undefined || !domElement) {
-          if (this.__P_69_2 === undefined) {
-            this.__P_69_2 = [];
+        if (this.__P_70_0 === undefined || !domElement) {
+          if (this.__P_70_2 === undefined) {
+            this.__P_70_2 = [];
           }
-          this.__P_69_2.push({
+          this.__P_70_2.push({
             address: address,
             data: data
           });
@@ -620,7 +620,7 @@
             if (tspan[i] !== undefined) {
               tspan[i].textContent = valueFormat;
             }
-            self.__P_69_0[i].setTo(target[i][0], !self.isVisible());
+            self.__P_70_0[i].setTo(target[i][0], !self.isVisible());
           }
         });
         this.setTargetRatioValue(target);
@@ -635,10 +635,10 @@
        * @param ratio
        * @param indicatorNumber
        */
-      __P_69_3: function __P_69_3(ratio, indicatorNumber) {
-        if (this.__P_69_1.length === 0) {
+      __P_70_3: function __P_70_3(ratio, indicatorNumber) {
+        if (this.__P_70_1.length === 0) {
           // cache
-          this.__P_69_1 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
+          this.__P_70_1 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
         }
         var indicator = this.getIndicators()[indicatorNumber];
         var target = this.getTargetRatioValue()[indicatorNumber];
@@ -650,9 +650,9 @@
           targetAngle = endAngle > startAngle ? Math.max(startAngle, targetAngle - indicator.endarrow) : Math.min(startAngle, targetAngle - indicator.endarrow);
         }
         if (indicator.isBar) {
-          this.__P_69_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
+          this.__P_70_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
         } else {
-          this.__P_69_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
+          this.__P_70_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
         }
       }
     }
@@ -660,4 +660,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1792082764670
+//# sourceMappingURL=Roundbar.js.map?dt=1794845749135

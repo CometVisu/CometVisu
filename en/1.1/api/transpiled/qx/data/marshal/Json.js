@@ -63,13 +63,13 @@
      */
     construct: function construct(delegate) {
       qx.core.Object.constructor.call(this);
-      this.__P_199_0 = delegate;
+      this.__P_200_0 = delegate;
     },
     statics: {
       /**
        * Set to true when a warning has been shown that we are using the deprecated behaviour of trying to marshall non-POJO objects into Qooxdoo objects.
        */
-      __P_199_1: false,
+      __P_200_1: false,
       $$instance: null,
       /**
        * Creates a qooxdoo object based on the given json data. This function
@@ -111,14 +111,14 @@
        * A warning is shown if it hasn't been shown already.
        */
       checkIfWarnAboutNotBreakingOnNonPojos: function checkIfWarnAboutNotBreakingOnNonPojos() {
-        if (!qx.core.Environment.get("qx.data.marshal.Json.breakOnNonPojos") && !this.__P_199_1) {
+        if (!qx.core.Environment.get("qx.data.marshal.Json.breakOnNonPojos") && !this.__P_200_1) {
           console.warn("Using deprecated behaviour of not breaking on non-POJOs when marshalling.\n          Please set the environment setting \"qx.data.marshal.Json.breakOnNonPojos\" to enable the new behaviour.\n          The old behaviour will be removed in the next major release of Qooxdoo.");
-          this.__P_199_1 = true;
+          this.__P_200_1 = true;
         }
       }
     },
     members: {
-      __P_199_0: null,
+      __P_200_0: null,
       /**
        * Converts a given object into a hash which will be used to identify the
        * classes under the namespace <code>qx.data.model</code>.
@@ -129,9 +129,9 @@
        *   support the bubbling of change events or not.
        * @return {String} The hash representation of the given JavaScript object.
        */
-      __P_199_2: function __P_199_2(data, includeBubbleEvents) {
-        if (this.__P_199_0 && this.__P_199_0.getJsonHash) {
-          return this.__P_199_0.getJsonHash(data, includeBubbleEvents);
+      __P_200_2: function __P_200_2(data, includeBubbleEvents) {
+        if (this.__P_200_0 && this.__P_200_0.getJsonHash) {
+          return this.__P_200_0.getJsonHash(data, includeBubbleEvents);
         }
         return Object.keys(data).sort().join("|") + (includeBubbleEvents === true ? "♥" : "");
       },
@@ -150,19 +150,19 @@
        *   selects the "best" model currently available.
        * @return {String} The hash representation of the given JavaScript object.
        */
-      __P_199_3: function __P_199_3(data, includeBubbleEvents) {
+      __P_200_3: function __P_200_3(data, includeBubbleEvents) {
         // forced mode?
         //
         if (includeBubbleEvents === true) {
-          return this.__P_199_2(data, true);
+          return this.__P_200_2(data, true);
         }
         if (includeBubbleEvents === false) {
-          return this.__P_199_2(data, false);
+          return this.__P_200_2(data, false);
         }
 
         // automatic mode!
         //
-        var hash = this.__P_199_2(data); // without bubble event feature
+        var hash = this.__P_200_2(data); // without bubble event feature
         var bubbleClassHash = hash + "♥"; // with bubble event feature
         var bubbleClassName = "qx.data.model." + bubbleClassHash;
 
@@ -188,7 +188,7 @@
        *   the bubbling of change events or not.
        */
       toClass: function toClass(data, includeBubbleEvents) {
-        this.__P_199_4(data, includeBubbleEvents, null, 0);
+        this.__P_200_4(data, includeBubbleEvents, null, 0);
       },
       /**
        * Implementation of {@link #toClass} used for recursion.
@@ -200,7 +200,7 @@
        *   data will be stored in.
        * @param depth {Number} The depth of the data relative to the data's root.
        */
-      __P_199_4: function __P_199_4(data, includeBubbleEvents, parentProperty, depth) {
+      __P_200_4: function __P_200_4(data, includeBubbleEvents, parentProperty, depth) {
         var breakOnNonPojos = qx.core.Environment.get("qx.data.marshal.Json.breakOnNonPojos");
         this.constructor.checkIfWarnAboutNotBreakingOnNonPojos();
 
@@ -219,23 +219,23 @@
           // check for arrays
           if (data instanceof Array || qx.Bootstrap.getClass(data) == "Array") {
             for (var i = 0; i < data.length; i++) {
-              this.__P_199_4(data[i], includeBubbleEvents, parentProperty + "[" + i + "]", depth + 1);
+              this.__P_200_4(data[i], includeBubbleEvents, parentProperty + "[" + i + "]", depth + 1);
             }
           }
 
           // ignore arrays and primitive types
           return;
         }
-        var hash = this.__P_199_2(data, includeBubbleEvents);
+        var hash = this.__P_200_2(data, includeBubbleEvents);
 
         // ignore rules
-        if (this.__P_199_5(hash, parentProperty, depth)) {
+        if (this.__P_200_5(hash, parentProperty, depth)) {
           return;
         }
 
         // check for the possible child classes
         for (var key in data) {
-          this.__P_199_4(data[key], includeBubbleEvents, key, depth + 1);
+          this.__P_200_4(data[key], includeBubbleEvents, key, depth + 1);
         }
 
         // class already exists
@@ -244,7 +244,7 @@
         }
 
         // class is defined by the delegate
-        if (this.__P_199_0 && this.__P_199_0.getModelClass && this.__P_199_0.getModelClass(hash, data, parentProperty, depth) != null) {
+        if (this.__P_200_0 && this.__P_200_0.getModelClass && this.__P_200_0.getModelClass(hash, data, parentProperty, depth) != null) {
           return;
         }
 
@@ -252,12 +252,12 @@
         var properties = {};
         // include the disposeItem for the dispose process.
         var members = {
-          __P_199_6: this.__P_199_6
+          __P_200_6: this.__P_200_6
         };
         for (var key in data) {
           // apply the property names mapping
-          if (this.__P_199_0 && this.__P_199_0.getPropertyMapping) {
-            key = this.__P_199_0.getPropertyMapping(key, hash);
+          if (this.__P_200_0 && this.__P_200_0.getPropertyMapping) {
+            key = this.__P_200_0.getPropertyMapping(key, hash);
           }
 
           // strip the unwanted characters
@@ -272,8 +272,8 @@
             properties[key].apply = "_applyEventPropagation";
           }
           // validation rules
-          if (this.__P_199_0 && this.__P_199_0.getValidationRule) {
-            var rule = this.__P_199_0.getValidationRule(hash, key);
+          if (this.__P_200_0 && this.__P_200_0.getValidationRule) {
+            var rule = this.__P_200_0.getValidationRule(hash, key);
             if (rule) {
               properties[key].validate = "_validate" + key;
               members["_validate" + key] = rule;
@@ -282,16 +282,16 @@
         }
 
         // try to get the superclass, qx.core.Object as default
-        if (this.__P_199_0 && this.__P_199_0.getModelSuperClass) {
-          var superClass = this.__P_199_0.getModelSuperClass(hash, parentProperty, depth) || qx.core.Object;
+        if (this.__P_200_0 && this.__P_200_0.getModelSuperClass) {
+          var superClass = this.__P_200_0.getModelSuperClass(hash, parentProperty, depth) || qx.core.Object;
         } else {
           var superClass = qx.core.Object;
         }
 
         // try to get the mixins
         var mixins = [];
-        if (this.__P_199_0 && this.__P_199_0.getModelMixins) {
-          var delegateMixins = this.__P_199_0.getModelMixins(hash, parentProperty, depth);
+        if (this.__P_200_0 && this.__P_200_0.getModelMixins) {
+          var delegateMixins = this.__P_200_0.getModelMixins(hash, parentProperty, depth);
 
           // check if its an array
           if (!qx.lang.Type.isArray(delegateMixins)) {
@@ -322,7 +322,7 @@
        *
        * @param item {var} The item to dispose.
        */
-      __P_199_6: function __P_199_6(item) {
+      __P_200_6: function __P_200_6(item) {
         if (!(item instanceof qx.core.Object)) {
           // ignore all non objects
           return;
@@ -344,11 +344,11 @@
        * @param data {Map} The data for which an instance should be created.
        * @return {qx.core.Object} An instance of the corresponding class.
        */
-      __P_199_7: function __P_199_7(hash, data, parentProperty, depth) {
+      __P_200_7: function __P_200_7(hash, data, parentProperty, depth) {
         var delegateClass;
         // get the class from the delegate
-        if (this.__P_199_0 && this.__P_199_0.getModelClass) {
-          delegateClass = this.__P_199_0.getModelClass(hash, data, parentProperty, depth);
+        if (this.__P_200_0 && this.__P_200_0.getModelClass) {
+          delegateClass = this.__P_200_0.getModelClass(hash, data, parentProperty, depth);
         }
         if (delegateClass != null) {
           return new delegateClass();
@@ -374,8 +374,8 @@
        * @param depth {Number} The depth of the object relative to the data root.
        * @return {Boolean} <code>true</code> if the set should be ignored
        */
-      __P_199_5: function __P_199_5(hash, parentProperty, depth) {
-        var del = this.__P_199_0;
+      __P_200_5: function __P_200_5(hash, parentProperty, depth) {
+        var del = this.__P_200_0;
         return del && del.ignore && del.ignore(hash, parentProperty, depth);
       },
       /**
@@ -393,7 +393,7 @@
        * @return {qx.core.Object} The created model object.
        */
       toModel: function toModel(data, includeBubbleEvents) {
-        return this.__P_199_8(data, includeBubbleEvents, null, 0);
+        return this.__P_200_8(data, includeBubbleEvents, null, 0);
       },
       /**
        * Implementation of {@link #toModel} used for recursion.
@@ -408,7 +408,7 @@
        * @param depth {Number} The depth of the data relative to the data's root.
        * @return {qx.core.Object} The created model object.
        */
-      __P_199_8: function __P_199_8(data, includeBubbleEvents, parentProperty, depth) {
+      __P_200_8: function __P_200_8(data, includeBubbleEvents, parentProperty, depth) {
         var breakOnNonPojos = qx.core.Environment.get("qx.data.marshal.Json.breakOnNonPojos");
         this.constructor.checkIfWarnAboutNotBreakingOnNonPojos();
         var isObject = qx.lang.Type.isObject(data);
@@ -428,32 +428,32 @@
           return data;
 
           // ignore rules
-        } else if (this.__P_199_5(this.__P_199_3(data, includeBubbleEvents), parentProperty, depth)) {
+        } else if (this.__P_200_5(this.__P_200_3(data, includeBubbleEvents), parentProperty, depth)) {
           return data;
         } else if (isArray) {
           var arrayClass = qx.data.Array;
-          if (this.__P_199_0 && this.__P_199_0.getArrayClass) {
-            var customArrayClass = this.__P_199_0.getArrayClass(parentProperty, depth);
+          if (this.__P_200_0 && this.__P_200_0.getArrayClass) {
+            var customArrayClass = this.__P_200_0.getArrayClass(parentProperty, depth);
             arrayClass = customArrayClass || arrayClass;
           }
           var array = new arrayClass();
           // set the auto dispose for the array
           array.setAutoDisposeItems(true);
           for (var i = 0; i < data.length; i++) {
-            array.push(this.__P_199_8(data[i], includeBubbleEvents, parentProperty + "[" + i + "]", depth + 1));
+            array.push(this.__P_200_8(data[i], includeBubbleEvents, parentProperty + "[" + i + "]", depth + 1));
           }
           return array;
         } else if (breakOnNonPojos ? isPojo : isObject) {
           // create an instance for the object
-          var hash = this.__P_199_3(data, includeBubbleEvents);
-          var model = this.__P_199_7(hash, data, parentProperty, depth);
+          var hash = this.__P_200_3(data, includeBubbleEvents);
+          var model = this.__P_200_7(hash, data, parentProperty, depth);
 
           // go threw all element in the data
           for (var key in data) {
             // apply the property names mapping
             var propertyName = key;
-            if (this.__P_199_0 && this.__P_199_0.getPropertyMapping) {
-              propertyName = this.__P_199_0.getPropertyMapping(key, hash);
+            if (this.__P_200_0 && this.__P_200_0.getPropertyMapping) {
+              propertyName = this.__P_200_0.getPropertyMapping(key, hash);
             }
             var propertyNameReplaced = propertyName.replace(/-|\.|\s+/g, "");
             // warn if there has been a replacement
@@ -462,7 +462,7 @@
             // only set the properties if they are available [BUG #5909]
             var setterName = "set" + qx.lang.String.firstUp(propertyName);
             if (model[setterName]) {
-              model[setterName](this.__P_199_8(data[key], includeBubbleEvents, key, depth + 1));
+              model[setterName](this.__P_200_8(data[key], includeBubbleEvents, key, depth + 1));
             }
           }
           return model;
@@ -474,4 +474,4 @@
   qx.data.marshal.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1792082770807
+//# sourceMappingURL=Json.js.map?dt=1794845754996

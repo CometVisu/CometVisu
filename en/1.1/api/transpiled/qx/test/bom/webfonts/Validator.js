@@ -36,19 +36,19 @@
     members: {
       setUp: function setUp() {
         this.require(["webFontSupport"]);
-        this.__P_336_0 = new qx.bom.webfonts.Validator();
+        this.__P_337_0 = new qx.bom.webfonts.Validator();
       },
       tearDown: function tearDown() {
-        if (this.__P_336_0) {
-          this.__P_336_0.dispose();
-          delete this.__P_336_0;
+        if (this.__P_337_0) {
+          this.__P_337_0.dispose();
+          delete this.__P_337_0;
         }
         qx.bom.webfonts.Validator.removeDefaultHelperElements();
       },
       testValidFont: function testValidFont() {
         var _this = this;
-        this.__P_336_0.setFontFamily("monospace, courier");
-        this.__P_336_0.addListener("changeStatus", function (ev) {
+        this.__P_337_0.setFontFamily("monospace, courier");
+        this.__P_337_0.addListener("changeStatus", function (ev) {
           var result = ev.getData();
           _this.resume(function (ev) {
             this.assertTrue(result.valid);
@@ -56,15 +56,15 @@
         });
         var that = this;
         window.setTimeout(function () {
-          that.__P_336_0.validate();
+          that.__P_337_0.validate();
         }, 0);
         this.wait(10000);
       },
       testInvalidFont: function testInvalidFont() {
         var _this2 = this;
-        this.__P_336_0.setFontFamily("zzzzzzzzzzzzzzz");
-        this.__P_336_0.setTimeout(250);
-        this.__P_336_0.addListener("changeStatus", function (ev) {
+        this.__P_337_0.setFontFamily("zzzzzzzzzzzzzzz");
+        this.__P_337_0.setTimeout(250);
+        this.__P_337_0.addListener("changeStatus", function (ev) {
           var result = ev.getData();
           _this2.resume(function (ev) {
             this.assertFalse(result.valid);
@@ -72,7 +72,7 @@
         });
         var that = this;
         window.setTimeout(function () {
-          that.__P_336_0.validate();
+          that.__P_337_0.validate();
         }, 0);
         this.wait(500);
       }
@@ -81,4 +81,4 @@
   qx.test.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1792082778835
+//# sourceMappingURL=Validator.js.map?dt=1794845762698

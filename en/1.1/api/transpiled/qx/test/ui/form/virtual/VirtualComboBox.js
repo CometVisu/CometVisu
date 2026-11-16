@@ -34,36 +34,36 @@
   qx.Class.define("qx.test.ui.form.virtual.VirtualComboBox", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_433_0: null,
-      __P_433_1: null,
+      __P_434_0: null,
+      __P_434_1: null,
       setUp: function setUp() {
         qx.test.ui.form.virtual.VirtualComboBox.superclass.prototype.setUp.call(this);
-        this.__P_433_0 = new qx.ui.form.VirtualComboBox();
-        this.getRoot().add(this.__P_433_0);
+        this.__P_434_0 = new qx.ui.form.VirtualComboBox();
+        this.getRoot().add(this.__P_434_0);
         this.flush();
       },
       tearDown: function tearDown() {
         qx.test.ui.form.virtual.VirtualComboBox.superclass.prototype.tearDown.call(this);
-        this.__P_433_0.destroy();
-        this.__P_433_0 = null;
-        this.__P_433_1.dispose();
+        this.__P_434_0.destroy();
+        this.__P_434_0 = null;
+        this.__P_434_1.dispose();
         this.flush();
       },
-      __P_433_2: function __P_433_2() {
+      __P_434_2: function __P_434_2() {
         var model = new qx.data.Array();
         for (var i = 0; i < 100; i++) {
           model.push("item " + (i + 1));
         }
         return model;
       },
-      __P_433_3: function __P_433_3() {
+      __P_434_3: function __P_434_3() {
         var model = new qx.data.Array();
         for (var i = 0; i < 100; i++) {
           model.push("<b>item " + (i + 1) + "</b>");
         }
         return model;
       },
-      __P_433_4: function __P_433_4() {
+      __P_434_4: function __P_434_4() {
         var rawData = [{
           firstname: "James",
           lastname: "Kirk"
@@ -78,46 +78,46 @@
         return model;
       },
       testPreselectOnOpen: function testPreselectOnOpen() {
-        this.__P_433_1 = this.__P_433_2();
-        this.__P_433_0.setModel(this.__P_433_1);
-        this.__P_433_0.setValue("i");
+        this.__P_434_1 = this.__P_434_2();
+        this.__P_434_0.setModel(this.__P_434_1);
+        this.__P_434_0.setValue("i");
         this.flush();
-        this.__P_433_0.open();
+        this.__P_434_0.open();
         this.flush();
-        this.__P_433_0.close();
+        this.__P_434_0.close();
         this.flush();
         // Preselection may not change the actual value
-        this.assertNotEquals("item 1", this.__P_433_0.getValue());
-        this.assertEquals("i", this.__P_433_0.getValue());
+        this.assertNotEquals("item 1", this.__P_434_0.getValue());
+        this.assertEquals("i", this.__P_434_0.getValue());
       },
       testSelectFirstMatch: function testSelectFirstMatch() {
-        this.__P_433_1 = this.__P_433_2();
-        this.__P_433_0.setModel(this.__P_433_1);
-        this.__P_433_0.setValue("item 4");
+        this.__P_434_1 = this.__P_434_2();
+        this.__P_434_0.setModel(this.__P_434_1);
+        this.__P_434_0.setValue("item 4");
         this.flush();
-        this.__P_433_0.open();
+        this.__P_434_0.open();
         this.flush();
-        var preselected = this.__P_433_0.getChildControl("dropdown")._preselected;
+        var preselected = this.__P_434_0.getChildControl("dropdown")._preselected;
         this.assertEquals("item 4", preselected);
-        this.assertEquals("item 4", this.__P_433_0.getValue());
+        this.assertEquals("item 4", this.__P_434_0.getValue());
       },
       testSelectFirstMatchWithSortedModel: function testSelectFirstMatchWithSortedModel() {
-        this.__P_433_1 = this.__P_433_2();
-        this.__P_433_0.setModel(this.__P_433_1);
+        this.__P_434_1 = this.__P_434_2();
+        this.__P_434_0.setModel(this.__P_434_1);
         var delegate = {
           // invert sort order
           sorter: function sorter(a, b) {
             return a < b ? 1 : a > b ? -1 : 0;
           }
         };
-        this.__P_433_0.setDelegate(delegate);
-        this.__P_433_0.setValue("item 4");
+        this.__P_434_0.setDelegate(delegate);
+        this.__P_434_0.setValue("item 4");
         this.flush();
-        this.__P_433_0.open();
+        this.__P_434_0.open();
         this.flush();
-        var preselected = this.__P_433_0.getChildControl("dropdown")._preselected;
+        var preselected = this.__P_434_0.getChildControl("dropdown")._preselected;
         this.assertEquals("item 49", preselected);
-        this.assertEquals("item 4", this.__P_433_0.getValue());
+        this.assertEquals("item 4", this.__P_434_0.getValue());
 
         // The virtual list uses a timeout to asynchronously flush the layout
         // queue and scroll the (pre)selected item into view. tearDown is called
@@ -131,8 +131,8 @@
         this.wait(200);
       },
       testSelectFirstMatchWithFilteredModel: function testSelectFirstMatchWithFilteredModel() {
-        this.__P_433_1 = this.__P_433_2();
-        this.__P_433_0.setModel(this.__P_433_1);
+        this.__P_434_1 = this.__P_434_2();
+        this.__P_434_0.setModel(this.__P_434_1);
         var delegate = {
           // remove even-numbered items
           filter: function filter(item) {
@@ -140,61 +140,61 @@
             return num % 2 ? true : false;
           }
         };
-        this.__P_433_0.setDelegate(delegate);
-        this.__P_433_0.setValue("item 22");
+        this.__P_434_0.setDelegate(delegate);
+        this.__P_434_0.setValue("item 22");
         this.flush();
-        this.__P_433_0.open();
+        this.__P_434_0.open();
         this.flush();
         // item 22 is not in the list, nothing should be preselected
-        var preselected = this.__P_433_0.getChildControl("dropdown")._preselected;
+        var preselected = this.__P_434_0.getChildControl("dropdown")._preselected;
         this.assertNull(preselected);
-        this.assertEquals("item 22", this.__P_433_0.getValue());
+        this.assertEquals("item 22", this.__P_434_0.getValue());
       },
       testSelectFirstMatchWithFormatter: function testSelectFirstMatchWithFormatter() {
-        this.__P_433_1 = this.__P_433_3();
-        this.__P_433_0.setModel(this.__P_433_1);
+        this.__P_434_1 = this.__P_434_3();
+        this.__P_434_0.setModel(this.__P_434_1);
         var delegate = {
           configureItem: function configureItem(item) {
             item.setRich(true);
           }
         };
-        this.__P_433_0.setDelegate(delegate);
-        this.__P_433_0.setDefaultFormat(function (data) {
+        this.__P_434_0.setDelegate(delegate);
+        this.__P_434_0.setDefaultFormat(function (data) {
           if (data) {
             data = qx.lang.String.stripTags(data);
             data = qx.bom.String.unescape(data);
           }
           return data;
         });
-        this.__P_433_0.setValue("item 4");
+        this.__P_434_0.setValue("item 4");
         this.flush();
-        this.__P_433_0.open();
+        this.__P_434_0.open();
         this.flush();
-        var preselected = this.__P_433_0.getChildControl("dropdown")._preselected;
+        var preselected = this.__P_434_0.getChildControl("dropdown")._preselected;
         this.assertEquals("<b>item 4</b>", preselected);
-        this.assertEquals("item 4", this.__P_433_0.getValue());
+        this.assertEquals("item 4", this.__P_434_0.getValue());
       },
       testSelectFirstMatchByLabelPath: function testSelectFirstMatchByLabelPath() {
-        this.__P_433_1 = this.__P_433_4();
-        this.__P_433_0.setLabelPath("lastname");
-        this.__P_433_0.setModel(this.__P_433_1);
-        this.__P_433_0.setValue("Si");
+        this.__P_434_1 = this.__P_434_4();
+        this.__P_434_0.setLabelPath("lastname");
+        this.__P_434_0.setModel(this.__P_434_1);
+        this.__P_434_0.setValue("Si");
         this.flush();
-        this.__P_433_0.open();
+        this.__P_434_0.open();
         this.flush();
-        var preselected = this.__P_433_0.getChildControl("dropdown")._preselected.getLastname();
+        var preselected = this.__P_434_0.getChildControl("dropdown")._preselected.getLastname();
         this.assertEquals("Sisko", preselected);
-        this.assertEquals("Si", this.__P_433_0.getValue());
+        this.assertEquals("Si", this.__P_434_0.getValue());
       },
       testEmptySelection: function testEmptySelection() {
-        this.__P_433_0.setLabelPath("label");
+        this.__P_434_0.setLabelPath("label");
         var rawData = [{
           label: "foo"
         }];
-        var model = this.__P_433_1 = qx.data.marshal.Json.createModel(rawData);
-        this.__P_433_0.setModel(model);
-        var selection = this.__P_433_0.getChildControl("dropdown").getSelection();
-        selection.push(this.__P_433_0.getModel().getItem(0));
+        var model = this.__P_434_1 = qx.data.marshal.Json.createModel(rawData);
+        this.__P_434_0.setModel(model);
+        var selection = this.__P_434_0.getChildControl("dropdown").getSelection();
+        selection.push(this.__P_434_0.getModel().getItem(0));
         selection.removeAll();
       },
       testOpenWithUnrenderedWidget: function testOpenWithUnrenderedWidget() {
@@ -207,4 +207,4 @@
   qx.test.ui.form.virtual.VirtualComboBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualComboBox.js.map?dt=1792082784478
+//# sourceMappingURL=VirtualComboBox.js.map?dt=1794845768157

@@ -99,7 +99,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * The current cache object
        */
-      __P_482_0: null,
+      __P_483_0: null,
       /**
        * @override
        */
@@ -323,13 +323,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getCache: function getCache() {
         var readFromFile = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-        if (!readFromFile && this.__P_482_0 && _typeof(this.__P_482_0) == "object") {
-          return this.__P_482_0;
+        if (!readFromFile && this.__P_483_0 && _typeof(this.__P_483_0) == "object") {
+          return this.__P_483_0;
         }
         try {
-          this.__P_482_0 = JSON.parse(fs.readFileSync(this.getCachePath(), "UTF-8"));
+          this.__P_483_0 = JSON.parse(fs.readFileSync(this.getCachePath(), "UTF-8"));
         } catch (e) {
-          this.__P_482_0 = {
+          this.__P_483_0 = {
             repos: {
               list: [],
               data: {}
@@ -337,7 +337,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             compat: {}
           };
         }
-        return this.__P_482_0;
+        return this.__P_483_0;
       },
       /**
        * Manually overwrite the cache data
@@ -345,7 +345,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {void}
        */
       setCache: function setCache(data) {
-        this.__P_482_0 = data;
+        this.__P_483_0 = data;
       },
       /**
        * Saves the cache to a hidden local file
@@ -361,7 +361,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return qx.tool.utils.Utils.makeParentDir(_this7.getCachePath());
               case 1:
                 _context0.n = 2;
-                return fs.writeFileAsync(_this7.getCachePath(), JSON.stringify(_this7.__P_482_0, null, 2), "UTF-8");
+                return fs.writeFileAsync(_this7.getCachePath(), JSON.stringify(_this7.__P_483_0, null, 2), "UTF-8");
               case 2:
                 return _context0.a(2);
             }
@@ -382,7 +382,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context1.p = _context1.n) {
               case 0:
                 _context1.p = 0;
-                cache = _this8.__P_482_0 || _this8.getCache(true);
+                cache = _this8.__P_483_0 || _this8.getCache(true);
                 data = stringify(cache, {
                   space: 2
                 });
@@ -406,7 +406,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Clears the cache
        */
       clearCache: function clearCache() {
-        this.__P_482_0 = null;
+        this.__P_483_0 = null;
         try {
           fs.unlinkSync(this.getCachePath());
         } catch (e) {}
@@ -416,4 +416,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1792082788394
+//# sourceMappingURL=Package.js.map?dt=1794845771828

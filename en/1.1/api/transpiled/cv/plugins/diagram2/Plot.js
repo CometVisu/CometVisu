@@ -76,7 +76,7 @@
         lineWidth: null
       }, options || {});
       this._series = [];
-      this.__P_25_0();
+      this.__P_26_0();
     },
     /*
     ***********************************************
@@ -155,8 +155,8 @@
       _observer: null,
       _layout: null,
       /** canvas and context used to measure the width of a label */
-      __P_25_1: null,
-      __P_25_2: null,
+      __P_26_1: null,
+      __P_26_2: null,
       /** the time range the user has panned or zoomed to, in milliseconds */
       _view: null,
       /** the value ranges the user has zoomed to, by axis number */
@@ -195,16 +195,16 @@
         if (!width || !height) {
           return;
         }
-        var axes = this.__P_25_3();
-        var layout = this.__P_25_4(width, height, axes);
+        var axes = this.__P_26_3();
+        var layout = this.__P_26_4(width, height, axes);
         this._layout = layout;
         this._svg.attr('width', width).attr('height', height).attr('viewBox', "0 0 ".concat(width, " ").concat(height));
         this._content.selectAll('*').remove();
-        this.__P_25_5(layout);
-        this.__P_25_6(layout);
-        this.__P_25_7(layout);
-        this.__P_25_8(layout);
-        this.__P_25_9(layout);
+        this.__P_26_5(layout);
+        this.__P_26_6(layout);
+        this.__P_26_7(layout);
+        this.__P_26_8(layout);
+        this.__P_26_9(layout);
         this._marker = this._content.append('circle').attr('class', 'marker').attr('r', 3).style('display', 'none');
       },
       /**
@@ -224,13 +224,13 @@
         this._legend = null;
         this._tooltip = null;
         this._marker = null;
-        this.__P_25_1 = null;
-        this.__P_25_2 = null;
+        this.__P_26_1 = null;
+        this.__P_26_2 = null;
       },
       /**
        * Creates the svg, the legend and the tooltip inside the container.
        */
-      __P_25_0: function __P_25_0() {
+      __P_26_0: function __P_26_0() {
         var _this = this;
         var element = this._element;
         element.innerHTML = '';
@@ -249,21 +249,21 @@
         this._capture = this._svg.append('rect').attr('class', 'capture').attr('x', 0).attr('y', 0).attr('width', '100%').attr('height', '100%').attr('fill', 'none').style('pointer-events', 'all');
         this._legend = d3.select(element).append('div').attr('class', 'diagram2-legend').style('position', 'absolute').style('display', 'none').style('padding', '3px 5px').style('line-height', '1.4').style('pointer-events', 'none')
         // measured on a flot diagram: the labels run in the size of the tick labels, in the grid color
-        .style('font-size', this.__P_25_10() + 'px').style('color', this._options.gridcolor).style('background-color', cv.plugins.diagram2.Plot.LEGEND_BACKGROUND);
+        .style('font-size', this.__P_26_10() + 'px').style('color', this._options.gridcolor).style('background-color', cv.plugins.diagram2.Plot.LEGEND_BACKGROUND);
         this._tooltip = d3.select(element).append('div').attr('class', 'diagram2-tooltip').style('position', 'absolute').style('display', 'none')
         // the values the designs give flots tooltip, see "#diagramTooltip, #flotTip"
         .style('padding', '2px').style('text-align', 'center').style('pointer-events', 'none').style('border', '1px solid ' + cv.plugins.diagram2.Plot.TOOLTIP_BORDER).style('background-color', cv.plugins.diagram2.Plot.TOOLTIP_BACKGROUND).style('color', cv.plugins.diagram2.Plot.TOOLTIP_COLOR).style('opacity', 0.8);
         if (this._options.tooltip) {
           var node = this._svg.node();
           node.addEventListener('pointermove', function (e) {
-            return _this.__P_25_11(e);
+            return _this.__P_26_11(e);
           });
           node.addEventListener('pointerleave', function () {
-            return _this.__P_25_12();
+            return _this.__P_26_12();
           });
         }
         if (this._options.interactive) {
-          this.__P_25_13();
+          this.__P_26_13();
         }
         this._observer = new ResizeObserver(function () {
           return _this.draw();
@@ -277,7 +277,7 @@
        * hand written listeners could not do that reliably on iOS. Only the arithmetic stays here:
        * the difference to the previous transform becomes a pan or a zoom of the visible range.
        */
-      __P_25_13: function __P_25_13() {
+      __P_26_13: function __P_26_13() {
         var _this2 = this;
         var node = this._svg.node();
         node.style.cursor = 'move';
@@ -288,7 +288,7 @@
         node.style.touchAction = 'none';
         this._element.style.touchAction = 'none';
         node.addEventListener('touchmove', function (event) {
-          if (node.__P_25_14 && event.cancelable) {
+          if (node.__P_26_14 && event.cancelable) {
             event.preventDefault();
           }
         }, {
@@ -308,13 +308,13 @@
           if (transform.k !== last.k) {
             var layout = _this2._layout;
             var middle = layout ? (layout.margin.left + layout.width - layout.margin.right) / 2 : 0;
-            _this2.__P_25_15(point ? point[0] : middle, transform.k / last.k, point ? point[1] : undefined);
+            _this2.__P_26_15(point ? point[0] : middle, transform.k / last.k, point ? point[1] : undefined);
           } else {
-            _this2.__P_25_16(transform.x - last.x, transform.y - last.y);
+            _this2.__P_26_16(transform.x - last.x, transform.y - last.y);
           }
           last = transform;
         }).on('end', function () {
-          return _this2.__P_25_17();
+          return _this2.__P_26_17();
         });
         this._svg.call(behaviour);
 
@@ -334,7 +334,7 @@
        * @param amount {Number} bigger than 1 zooms in
        * @param py {Number?} distance from the top edge, for the value axes
        */
-      __P_25_15: function __P_25_15(px, amount, py) {
+      __P_26_15: function __P_26_15(px, amount, py) {
         var _this3 = this;
         var layout = this._layout;
         if (!layout || !amount || amount <= 0) {
@@ -377,7 +377,7 @@
        * @param dx {Number} horizontal distance
        * @param dy {Number} vertical distance
        */
-      __P_25_16: function __P_25_16(dx, dy) {
+      __P_26_16: function __P_26_16(dx, dy) {
         var _this4 = this;
         var layout = this._layout;
         if (!layout || !dx && !dy) {
@@ -406,7 +406,7 @@
       /**
        * Tells the widget which range is shown now, so that it can load the data for it.
        */
-      __P_25_17: function __P_25_17() {
+      __P_26_17: function __P_26_17() {
         if (this._view) {
           this.fireDataEvent('rangeChanged', this._view.slice());
         }
@@ -415,17 +415,17 @@
        * The y axes of the widget, with an implicit one when the configuration has none.
        * @return {Array}
        */
-      __P_25_3: function __P_25_3() {
+      __P_26_3: function __P_26_3() {
         var _this5 = this;
         var axes = this._options.axes && this._options.axes.length ? this._options.axes : [{}];
         return axes.map(function (axis) {
           return {
             axisLabel: axis.axisLabel || null,
             position: axis.position === 'right' ? 'right' : 'left',
-            min: _this5.__P_25_18(axis.min),
-            max: _this5.__P_25_18(axis.max),
+            min: _this5.__P_26_18(axis.min),
+            max: _this5.__P_26_18(axis.max),
             unit: axis.unit || '',
-            decimals: _this5.__P_25_18(axis.decimals)
+            decimals: _this5.__P_26_18(axis.decimals)
           };
         });
       },
@@ -435,7 +435,7 @@
        * @param value {var}
        * @return {Number|null}
        */
-      __P_25_18: function __P_25_18(value) {
+      __P_26_18: function __P_26_18(value) {
         if (value === null || value === undefined || value === '') {
           return null;
         }
@@ -449,10 +449,10 @@
        * @param axes {Array}
        * @return {Map}
        */
-      __P_25_4: function __P_25_4(width, height, axes) {
+      __P_26_4: function __P_26_4(width, height, axes) {
         var _this6 = this;
         var labels = this._options.showLabels;
-        var fontSize = this.__P_25_10();
+        var fontSize = this.__P_26_10();
         // the same room on every side: the topmost value label sits centered on the axis, the time
         // labels hang below their tick the way d3 places them, 6 pixels of tick plus 3 of padding
         var padding = cv.plugins.diagram2.Plot.PLOT_PADDING;
@@ -470,13 +470,13 @@
         var yRange = [height - margin.bottom, margin.top];
         axes.forEach(function (axis, index) {
           axis.index = index + 1;
-          axis.scale = d3.scaleLinear().domain(_this6.__P_25_19(axis)).range(yRange);
-          axis.format = _this6.__P_25_20(axis);
+          axis.scale = d3.scaleLinear().domain(_this6.__P_26_19(axis)).range(yRange);
+          axis.format = _this6.__P_26_20(axis);
           // flot asks for 0.3 * sqrt(size) ticks, which keeps the axis readable instead of dense
-          axis.ticks = _this6.__P_25_21(axis, Math.max(2, Math.round(0.3 * Math.sqrt(yRange[0] - yRange[1]))));
+          axis.ticks = _this6.__P_26_21(axis, Math.max(2, Math.round(0.3 * Math.sqrt(yRange[0] - yRange[1]))));
         });
         if (labels && !axes.some(function (axis) {
-          return _this6.__P_25_22(axis);
+          return _this6.__P_26_22(axis);
         })) {
           // nothing is drawn up there, so the diagram keeps the same distance as on the other sides
           margin.top = padding;
@@ -494,23 +494,23 @@
             }
             var gaps = (own.length - 1) * cv.plugins.diagram2.Plot.AXIS_GAP;
             var space = padding + gaps + own.reduce(function (sum, axis) {
-              return sum + _this6.__P_25_23(axis);
+              return sum + _this6.__P_26_23(axis);
             }, 0);
             margin[side] = Math.min(space, Math.round(width / 3));
           });
         }
         var xRange = [margin.left, width - margin.right];
-        var x = d3.scaleTime().domain(this.__P_25_24()).range(xRange);
+        var x = d3.scaleTime().domain(this.__P_26_24()).range(xRange);
 
         // the number of ticks flot asks for on a time axis
         var xTicks = Math.max(2, Math.round(0.3 * Math.sqrt(width)));
-        var xFormat = this.__P_25_25(x, xTicks);
+        var xFormat = this.__P_26_25(x, xTicks);
         var xValues = x.ticks(xTicks);
         if (labels && xValues.length > 2) {
           // d3 rounds the number of ticks up to a nice time step and hands back more of them than
           // asked for, so dates can be long enough to run into each other. Every second one is
           // dropped until each label has room, which keeps the remaining ticks on round times.
-          var labelWidth = this.__P_25_26(xFormat(x.domain()[1]), fontSize) + 12;
+          var labelWidth = this.__P_26_26(xFormat(x.domain()[1]), fontSize) + 12;
           var room = Math.max(1, Math.floor((xRange[1] - xRange[0]) / labelWidth));
           if (xValues.length > room) {
             var step = Math.ceil(xValues.length / room);
@@ -536,7 +536,7 @@
        * @param axis {Map}
        * @return {Array}
        */
-      __P_25_19: function __P_25_19(axis) {
+      __P_26_19: function __P_26_19(axis) {
         if (this._yViews && this._yViews[axis.index]) {
           return this._yViews[axis.index].slice();
         }
@@ -593,7 +593,7 @@
        * The time range of all graphs, the last hour while there is no data yet.
        * @return {Array}
        */
-      __P_25_24: function __P_25_24() {
+      __P_26_24: function __P_26_24() {
         if (this._view) {
           return [new Date(this._view[0]), new Date(this._view[1])];
         }
@@ -626,7 +626,7 @@
        * @param count {Number} how many ticks would fit
        * @return {Array}
        */
-      __P_25_21: function __P_25_21(axis, count) {
+      __P_26_21: function __P_26_21(axis, count) {
         var ticks = axis.scale.ticks(count);
         if (axis.decimals === null) {
           return ticks;
@@ -648,7 +648,7 @@
        * @param axis {Map}
        * @return {Function}
        */
-      __P_25_20: function __P_25_20(axis) {
+      __P_26_20: function __P_26_20(axis) {
         if (axis.decimals !== null) {
           return function (value) {
             return value.toFixed(axis.decimals) + axis.unit;
@@ -667,9 +667,9 @@
        * @param ticks {Number} how many ticks are asked for
        * @return {Function}
        */
-      __P_25_25: function __P_25_25(scale, ticks) {
+      __P_26_25: function __P_26_25(scale, ticks) {
         if (this._options.timeformat) {
-          return this.__P_25_27(this._options.timeformat);
+          return this.__P_26_27(this._options.timeformat);
         }
         var values = scale.ticks(ticks);
         var domain = scale.domain();
@@ -691,18 +691,18 @@
         } else {
           pattern = '%Y';
         }
-        return this.__P_25_27(pattern);
+        return this.__P_26_27(pattern);
       },
       /**
        * A date formatter for a strftime like pattern, the same placeholders flot understands.
        * @param pattern {String}
        * @return {Function}
        */
-      __P_25_27: function __P_25_27(pattern) {
+      __P_26_27: function __P_26_27(pattern) {
         var locale = cv.util.D3.TF;
         return locale ? locale.format(pattern) : d3.timeFormat(pattern);
       },
-      __P_25_5: function __P_25_5(layout) {
+      __P_26_5: function __P_26_5(layout) {
         var color = this._options.gridcolor;
         var gridWidth = this._options.gridWidth;
         var gridOpacity = this._options.gridOpacity;
@@ -727,14 +727,14 @@
        * same reason.
        * @param layout {Map}
        */
-      __P_25_8: function __P_25_8(layout) {
+      __P_26_8: function __P_26_8(layout) {
         var borderWidth = this._options.borderWidth;
         var inset = borderWidth / 2;
         var top = layout.margin.top;
         var bottom = layout.height - layout.margin.bottom;
         this._content.append('rect').attr('class', 'frame').attr('x', layout.margin.left + inset).attr('y', top + inset).attr('width', Math.max(0, layout.width - layout.margin.left - layout.margin.right - borderWidth)).attr('height', Math.max(0, bottom - top - borderWidth)).attr('fill', 'none').attr('stroke', this._options.gridcolor).attr('stroke-width', borderWidth);
       },
-      __P_25_6: function __P_25_6(layout) {
+      __P_26_6: function __P_26_6(layout) {
         var _this7 = this;
         if (!this._options.showLabels) {
           return;
@@ -776,11 +776,11 @@
         var gap = cv.plugins.diagram2.Plot.AXIS_GAP;
         layout.axes.forEach(function (axis) {
           if (axis.position === 'left') {
-            _this7.__P_25_28(layout, axis, offsetLeft);
-            offsetLeft -= _this7.__P_25_23(axis) + gap;
+            _this7.__P_26_28(layout, axis, offsetLeft);
+            offsetLeft -= _this7.__P_26_23(axis) + gap;
           } else {
-            _this7.__P_25_28(layout, axis, offsetRight);
-            offsetRight += _this7.__P_25_23(axis) + gap;
+            _this7.__P_26_28(layout, axis, offsetRight);
+            offsetRight += _this7.__P_26_23(axis) + gap;
           }
         });
       },
@@ -790,20 +790,20 @@
        * @param axis {Map}
        * @return {Number} width in pixels
        */
-      __P_25_23: function __P_25_23(axis) {
+      __P_26_23: function __P_26_23(axis) {
         var _this8 = this;
-        var size = this.__P_25_10();
+        var size = this.__P_26_10();
         var longest = axis.ticks.reduce(function (max, tick) {
-          return Math.max(max, _this8.__P_25_26(axis.format(tick), size));
+          return Math.max(max, _this8.__P_26_26(axis.format(tick), size));
         }, 0);
-        return 8 + longest + (axis.axisLabel ? this.__P_25_29().space : 0);
+        return 8 + longest + (axis.axisLabel ? this.__P_26_29().space : 0);
       },
       /**
        * How much room the title of an axis takes beside the tick labels: the height of the rotated
        * line - the box of a text is about 1.2 em high - plus the gap to the labels.
        * @return {Map} height of the rotated line and the room it occupies
        */
-      __P_25_29: function __P_25_29() {
+      __P_26_29: function __P_26_29() {
         var height = Math.ceil(cv.plugins.diagram2.Plot.AXIS_TITLE_SIZE * 1.2);
         return {
           height: height,
@@ -815,7 +815,7 @@
        * so the labels grow and shrink with the design.
        * @return {Number} size in pixels
        */
-      __P_25_10: function __P_25_10() {
+      __P_26_10: function __P_26_10() {
         var size = parseFloat(window.getComputedStyle(this._element).fontSize);
         return Number.isFinite(size) && size > 0 ? size * 0.8333 : 13;
       },
@@ -825,7 +825,7 @@
        * @param axis {Map}
        * @return {Boolean}
        */
-      __P_25_22: function __P_25_22(axis) {
+      __P_26_22: function __P_26_22(axis) {
         if (!axis.ticks.length) {
           return false;
         }
@@ -843,15 +843,15 @@
        * @param size {Number} font size in pixels
        * @return {Number} width in pixels
        */
-      __P_25_26: function __P_25_26(text, size) {
-        if (!this.__P_25_1) {
-          this.__P_25_1 = document.createElement('canvas');
-          this.__P_25_2 = this.__P_25_1.getContext('2d');
+      __P_26_26: function __P_26_26(text, size) {
+        if (!this.__P_26_1) {
+          this.__P_26_1 = document.createElement('canvas');
+          this.__P_26_2 = this.__P_26_1.getContext('2d');
         }
         // the design may change the font, so it is read again for every layout
         var family = window.getComputedStyle(this._element).fontFamily || 'sans-serif';
-        this.__P_25_2.font = size + 'px ' + family;
-        return this.__P_25_2.measureText(text).width;
+        this.__P_26_2.font = size + 'px ' + family;
+        return this.__P_26_2.measureText(text).width;
       },
       /**
        * Draws one y axis. The bundled d3 only has axisLeft, so both sides are drawn here and
@@ -860,7 +860,7 @@
        * @param axis {Map}
        * @param x {Number} where the axis line sits
        */
-      __P_25_28: function __P_25_28(layout, axis, x) {
+      __P_26_28: function __P_26_28(layout, axis, x) {
         var _this9 = this;
         var color = this._options.gridcolor;
         var gridWidth = this._options.gridWidth;
@@ -874,20 +874,20 @@
         .call(function (g) {
           return g.attr('font-size', null).attr('font-family', null);
         }).call(function (g) {
-          return g.selectAll('text').attr('fill', cv.plugins.diagram2.Plot.LABEL_COLOR).style('font-size', _this9.__P_25_10() + 'px');
+          return g.selectAll('text').attr('fill', cv.plugins.diagram2.Plot.LABEL_COLOR).style('font-size', _this9.__P_26_10() + 'px');
         }).call(function (g) {
           return g.selectAll('line,path').attr('stroke', color).attr('stroke-width', gridWidth);
         });
         if (axis.axisLabel) {
           var middle = (range[0] + range[1]) / 2;
-          var title = this.__P_25_29();
+          var title = this.__P_26_29();
           // the rotated text is centered on this line, so it sits half its height inside its own box
-          var width = this.__P_25_23(axis);
+          var width = this.__P_26_23(axis);
           var labelX = left ? x - width + title.height / 2 : x + width - title.height / 2;
           this._content.append('text').attr('class', 'axis-label').attr('transform', "translate(".concat(labelX, ",").concat(middle, ") rotate(").concat(left ? -90 : 90, ")")).attr('text-anchor', 'middle').attr('dominant-baseline', 'middle').attr('fill', color).style('font-size', cv.plugins.diagram2.Plot.AXIS_TITLE_SIZE + 'px').text(axis.axisLabel);
         }
       },
-      __P_25_7: function __P_25_7(layout) {
+      __P_26_7: function __P_26_7(layout) {
         var _this0 = this;
         var clip = 'diagram2-clip-' + this.toHashCode();
         var top = layout.margin.top;
@@ -948,7 +948,7 @@
         var palette = cv.plugins.diagram2.Plot.COLORS;
         return entry.color || palette[index % palette.length];
       },
-      __P_25_9: function __P_25_9(layout) {
+      __P_26_9: function __P_26_9(layout) {
         var _this1 = this;
         var legend = this._options.legend;
         if (!legend || !legend.show || !this._series.length) {
@@ -975,7 +975,7 @@
        * Shows the value of the graph point closest to the pointer.
        * @param event {Event} pointer event on the svg
        */
-      __P_25_11: function __P_25_11(event) {
+      __P_26_11: function __P_26_11(event) {
         if (!this._layout || !this._series.length) {
           return;
         }
@@ -1009,10 +1009,10 @@
           });
         });
         if (!best || best.distance > 1600) {
-          this.__P_25_12();
+          this.__P_26_12();
           return;
         }
-        var time = this.__P_25_27(this._options.timeformatTooltip)(new Date(best.point[0]));
+        var time = this.__P_26_27(this._options.timeformatTooltip)(new Date(best.point[0]));
         this._tooltip.style('display', 'block').style('left', '0px').style('top', '0px').html("".concat(time, "<br/>").concat(best.axis.format(best.point[1])));
 
         // like flot: when it does not fit any more, the tooltip moves to the other side of the pointer
@@ -1026,7 +1026,7 @@
           this._marker.style('display', null).attr('cx', layout.x(new Date(best.point[0]))).attr('cy', best.axis.scale(best.point[1])).attr('fill', this.getColor(best.entry, best.index));
         }
       },
-      __P_25_12: function __P_25_12() {
+      __P_26_12: function __P_26_12() {
         if (this._tooltip) {
           this._tooltip.style('display', 'none');
         }
@@ -1048,4 +1048,4 @@
   cv.plugins.diagram2.Plot.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plot.js.map?dt=1792082761421
+//# sourceMappingURL=Plot.js.map?dt=1794845746110

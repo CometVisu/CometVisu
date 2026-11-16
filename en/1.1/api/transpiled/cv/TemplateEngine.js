@@ -71,12 +71,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       var _this = this;
       // this.base(arguments);
       this.lazyPlugins = ['plugin-openhab'];
-      this.__P_774_0 = new qx.data.Array();
+      this.__P_776_0 = new qx.data.Array();
       this._domFinishedQueue = [];
-      this.__P_774_0.addListener('changeLength', function (ev) {
+      this.__P_776_0.addListener('changeLength', function (ev) {
         _this.setPartsLoaded(ev.getData() === 0);
       });
-      this.__P_774_1 = {};
+      this.__P_776_1 = {};
       this.defaults = {
         widget: {},
         plugin: {}
@@ -166,7 +166,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       defaults: null,
       pluginsToLoadCount: 0,
-      __P_774_0: null,
+      __P_776_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: null,
@@ -195,14 +195,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return !loadLazyParts.includes(p);
           });
         }
-        this.__P_774_0.append(parts);
+        this.__P_776_0.append(parts);
         var waitingFor = new qx.data.Array(parts);
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === 'complete') {
               this.debug('successfully loaded part ' + part);
-              this.__P_774_0.remove(part);
-              if (part.startsWith('structure-') && !this.__P_774_0.some(function (p) {
+              this.__P_776_0.remove(part);
+              if (part.startsWith('structure-') && !this.__P_776_0.some(function (p) {
                 return p.startsWith('structure-');
               })) {
                 if (!cv.Config.loadedStructure) {
@@ -213,7 +213,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   qx.core.Init.getApplication().setStructureLoaded(true);
                 }
               }
-              this.__P_774_0.remove(part);
+              this.__P_776_0.remove(part);
               waitingFor.remove(part);
             } else {
               this.error('error loading part ' + part);
@@ -377,7 +377,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 // timeoutStructureLoad for debugging reasons. Usually, the server
                 // must be quick enough so that the client doesn't run into any issues
                 // here.
-                _this2.__P_774_2("".concat(qx.locale.Manager.tr('loadParts "Structure" failed'), ": ").concat(_t2));
+                _this2.__P_776_2("".concat(qx.locale.Manager.tr('loadParts "Structure" failed'), ": ").concat(_t2));
                 throw new Error('loadParts "Structure" failed');
               case 7:
                 if (cv.Application.structureController.parseBackendSettings(xml) || cv.Config.testMode) {
@@ -549,7 +549,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param message {string}
        * @private
        */
-      __P_774_2: function __P_774_2(message) {
+      __P_776_2: function __P_776_2(message) {
         var notification = {
           topic: 'cv.error',
           title: qx.locale.Manager.tr('CometVisu startup error'),
@@ -573,4 +573,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1792082802274
+//# sourceMappingURL=TemplateEngine.js.map?dt=1794845785657

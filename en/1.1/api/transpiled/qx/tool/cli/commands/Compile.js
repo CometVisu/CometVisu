@@ -355,16 +355,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       minifiedApplication: "qx.event.type.Data"
     },
     members: {
-      __P_479_0: null,
-      __P_479_1: null,
-      __P_479_2: null,
-      __P_479_3: false,
+      __P_480_0: null,
+      __P_480_1: null,
+      __P_480_2: null,
+      __P_480_3: false,
       /** @type{String} the path to the root of the meta files by classname */
-      __P_479_4: null,
+      __P_480_4: null,
       /** @type{Boolean} whether the typescript output is enabled */
-      __P_479_5: false,
+      __P_480_5: false,
       /** @type{String} the name of the typescript file to generate */
-      __P_479_6: null,
+      __P_480_6: null,
       /*
        * @Override
        */
@@ -434,9 +434,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   ourTheme.preSubsection = _colorOn + ourTheme.preSubsection;
                   ourTheme.progressbarTheme.postComplete += _colorOn;
                   ourTheme.progressbarTheme.postRemaining += _colorOn;
-                  _this.__P_479_0 = new Gauge();
-                  _this.__P_479_0.setTheme(ourTheme);
-                  _this.__P_479_0.show("Compiling", 0);
+                  _this.__P_480_0 = new Gauge();
+                  _this.__P_480_0.setTheme(ourTheme);
+                  _this.__P_480_0.show("Compiling", 0);
                   TYPES = {
                     error: "ERROR",
                     warning: "Warning"
@@ -444,30 +444,30 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   qx.tool.compiler.Console.getInstance().setWriter(function (str, msgId) {
                     msgId = qx.tool.compiler.Console.MESSAGE_IDS[msgId];
                     if (!msgId || msgId.type !== "message") {
-                      _this.__P_479_0.hide();
+                      _this.__P_480_0.hide();
                       qx.tool.compiler.Console.log(_colorOn + TYPES[(msgId || {}).type || "error"] + ": " + str);
-                      _this.__P_479_0.show();
+                      _this.__P_480_0.show();
                     } else {
-                      _this.__P_479_0.show(_colorOn + str);
+                      _this.__P_480_0.show(_colorOn + str);
                     }
                   });
                 }
               case 8:
-                if (_this.__P_479_0) {
+                if (_this.__P_480_0) {
                   _this.addListener("writingApplications", function () {
-                    return _this.__P_479_0.show("Writing Applications", 0);
+                    return _this.__P_480_0.show("Writing Applications", 0);
                   });
                   _this.addListener("writtenApplications", function () {
-                    return _this.__P_479_0.show("Writing Applications", 1);
+                    return _this.__P_480_0.show("Writing Applications", 1);
                   });
                   _this.addListener("writingApplication", function (evt) {
-                    return _this.__P_479_0.pulse("Writing Application " + evt.getData().appMeta.getApplication().getName());
+                    return _this.__P_480_0.pulse("Writing Application " + evt.getData().appMeta.getApplication().getName());
                   });
                   _this.addListener("compilingClass", function (evt) {
-                    return _this.__P_479_0.pulse("Compiling " + evt.getData().classFile.getClassName());
+                    return _this.__P_480_0.pulse("Compiling " + evt.getData().classFile.getClassName());
                   });
                   _this.addListener("minifyingApplication", function (evt) {
-                    return _this.__P_479_0.pulse("Minifying " + evt.getData().application.getName() + " " + evt.getData().filename);
+                    return _this.__P_480_0.pulse("Minifying " + evt.getData().application.getName() + " " + evt.getData().filename);
                   });
                 } else {
                   _this.addListener("writingApplication", function (evt) {
@@ -479,15 +479,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   });
                 }
                 _this.addListener("making", function (evt) {
-                  if (_this.__P_479_0) {
-                    _this.__P_479_0.show("Compiling", 1);
+                  if (_this.__P_480_0) {
+                    _this.__P_480_0.show("Compiling", 1);
                   } else {
                     qx.tool.compiler.Console.print("qx.tool.cli.compile.makeBegins");
                   }
                 });
                 _this.addListener("made", function (evt) {
-                  if (_this.__P_479_0) {
-                    _this.__P_479_0.show("Compiling", 1);
+                  if (_this.__P_480_0) {
+                    _this.__P_480_0.show("Compiling", 1);
                   } else {
                     qx.tool.compiler.Console.print("qx.tool.cli.compile.makeEnds");
                   }
@@ -495,7 +495,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _this.addListener("writtenApplications", function (e) {
                   if (_this.argv.verbose) {
                     qx.tool.compiler.Console.log("\nCompleted all applications, libraries used are:");
-                    Object.values(_this.__P_479_2).forEach(function (lib) {
+                    Object.values(_this.__P_480_2).forEach(function (lib) {
                       return qx.tool.compiler.Console.log("   ".concat(lib.getNamespace(), " (").concat(lib.getRootDir(), ")"));
                     });
                   }
@@ -504,16 +504,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _this._loadConfigAndStartMaking();
               case 9:
                 if (!_this.argv.watch) {
-                  success = _this.__P_479_1.every(function (maker) {
+                  success = _this.__P_480_1.every(function (maker) {
                     return maker.getSuccess();
                   });
-                  hasWarnings = _this.__P_479_1.every(function (maker) {
+                  hasWarnings = _this.__P_480_1.every(function (maker) {
                     return maker.getHasWarnings();
                   });
                   if (success && hasWarnings && _this.argv.warnAsError) {
                     success = false;
                   }
-                  if (!_this.argv.deploying && !_this.argv["machine-readable"] && _this.argv["feedback"] && _this.__P_479_3 && _this.argv.target === "build") {
+                  if (!_this.argv.deploying && !_this.argv["machine-readable"] && _this.argv["feedback"] && _this.__P_480_3 && _this.argv.target === "build") {
                     qx.tool.compiler.Console.warn("   *******************************************************************************************\n   **                                                                                       **\n   **  Your compilation will include temporary files that are only necessary during         **\n   **  development; these files speed up the compilation, but take up space that you would  **\n   **  probably not want to put on a production server.                                     **\n   **                                                                                       **\n   **  When you are ready to deploy, try running `qx deploy` to get a minimised version     **\n   **                                                                                       **\n   *******************************************************************************************");
                   }
                   _process.exitCode = success ? 0 : 1;
@@ -544,7 +544,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context7.n = 1;
                 return _this2.createMakersFromConfig(config);
               case 1:
-                makers = _this2.__P_479_1 = _context7.v;
+                makers = _this2.__P_480_1 = _context7.v;
                 if (!(!makers || !makers.length)) {
                   _context7.n = 2;
                   break;
@@ -578,7 +578,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             _context6.n = 3;
                             break;
                           }
-                          _this2.__P_479_3 = true;
+                          _this2.__P_480_3 = true;
                         case 3:
                           if (!_this2.argv["clean"]) {
                             _context6.n = 6;
@@ -741,7 +741,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           isFirstWatcher = false;
                           _context6.p = 10;
                           _context6.n = 11;
-                          return _this2.__P_479_7(watch);
+                          return _this2.__P_480_7(watch);
                         case 11:
                           _context6.n = 13;
                           break;
@@ -765,7 +765,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _context7.p = 4;
                 _context7.n = 5;
-                return _this2.__P_479_7(null);
+                return _this2.__P_480_7(null);
               case 5:
                 _context7.n = 7;
                 break;
@@ -779,7 +779,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee7, null, [[4, 6]]);
         }))();
       },
-      __P_479_7: function __P_479_7(watch) {
+      __P_480_7: function __P_480_7(watch) {
         var _this3 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
           var classFiles, _scanImpl, metaDb, _i, _Object$values, lib, dir, _iterator, _step, filename, tsWriter, debounce, _t6;
@@ -838,14 +838,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }(); // Do the initial scan
                 qx.tool.compiler.Console.info("Loading meta data ...");
                 metaDb = new qx.tool.compiler.MetaDatabase().set({
-                  rootDir: _this3.__P_479_4
+                  rootDir: _this3.__P_480_4
                 });
                 _context0.n = 1;
                 return metaDb.load();
               case 1:
                 // Scan all library directories
                 metaDb.getDatabase().libraries = {};
-                _i = 0, _Object$values = Object.values(_this3.__P_479_2);
+                _i = 0, _Object$values = Object.values(_this3.__P_480_2);
               case 2:
                 if (!(_i < _Object$values.length)) {
                   _context0.n = 4;
@@ -900,16 +900,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 14:
                 // Do the inital write
                 tsWriter = null;
-                if (!_this3.__P_479_5) {
+                if (!_this3.__P_480_5) {
                   _context0.n = 15;
                   break;
                 }
                 qx.tool.compiler.Console.info("Generating typescript output ...");
                 tsWriter = new qx.tool.compiler.targets.TypeScriptWriter(metaDb);
-                if (_this3.__P_479_6) {
-                  tsWriter.setOutputTo(_this3.__P_479_6);
+                if (_this3.__P_480_6) {
+                  tsWriter.setOutputTo(_this3.__P_480_6);
                 } else {
-                  tsWriter.setOutputTo(path.join(_this3.__P_479_4, "..", "qooxdoo.d.ts"));
+                  tsWriter.setOutputTo(path.join(_this3.__P_480_4, "..", "qooxdoo.d.ts"));
                 }
                 _context0.n = 15;
                 return tsWriter.process();
@@ -967,7 +967,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                         _context9.n = 6;
                         return metaDb.save();
                       case 6:
-                        if (!_this3.__P_479_5) {
+                        if (!_this3.__P_480_5) {
                           _context9.n = 7;
                           break;
                         }
@@ -1019,13 +1019,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   delete data.babelOptions;
                 }
                 if (qx.lang.Type.isBoolean(data === null || data === void 0 || (_data$meta = data.meta) === null || _data$meta === void 0 ? void 0 : _data$meta.typescript)) {
-                  _this4.__P_479_5 = data.meta.typescript;
+                  _this4.__P_480_5 = data.meta.typescript;
                 } else if (qx.lang.Type.isString(data === null || data === void 0 || (_data$meta2 = data.meta) === null || _data$meta2 === void 0 ? void 0 : _data$meta2.typescript)) {
-                  _this4.__P_479_5 = true;
-                  _this4.__P_479_6 = path.relative(_process.cwd(), path.resolve(data === null || data === void 0 || (_data$meta3 = data.meta) === null || _data$meta3 === void 0 ? void 0 : _data$meta3.typescript));
+                  _this4.__P_480_5 = true;
+                  _this4.__P_480_6 = path.relative(_process.cwd(), path.resolve(data === null || data === void 0 || (_data$meta3 = data.meta) === null || _data$meta3 === void 0 ? void 0 : _data$meta3.typescript));
                 }
                 if (qx.lang.Type.isBoolean(_this4.argv.typescript)) {
-                  _this4.__P_479_5 = _this4.argv.typescript;
+                  _this4.__P_480_5 = _this4.argv.typescript;
                 }
                 argvAppNames = null;
                 if (t.argv["app-name"]) {
@@ -1114,7 +1114,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (defaultTargetConfig && defaultTargetConfig.appConfigs) {
                   targetConfigs.push(defaultTargetConfig);
                 }
-                libraries = _this4.__P_479_2 = {};
+                libraries = _this4.__P_480_2 = {};
                 librariesArray = [];
                 _iterator2 = _createForOfIteratorHelper(data.libraries);
                 _context1.p = 1;
@@ -1168,7 +1168,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   Console.log("Qooxdoo found in " + qxLib.getRootDir());
                 }
                 _context1.n = 12;
-                return _this4.__P_479_8(Object.values(libraries), data.packages);
+                return _this4.__P_480_8(Object.values(libraries), data.packages);
               case 12:
                 errors = _context1.v;
                 if (!(errors.length > 0)) {
@@ -1225,9 +1225,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                  */
                 targetOutputPaths = {};
                 makers = [];
-                _this4.__P_479_4 = (_data$meta4 = data.meta) === null || _data$meta4 === void 0 ? void 0 : _data$meta4.output;
-                if (!_this4.__P_479_4) {
-                  _this4.__P_479_4 = path.relative(_process.cwd(), path.resolve(targetConfigs[0].outputPath, "../meta"));
+                _this4.__P_480_4 = (_data$meta4 = data.meta) === null || _data$meta4 === void 0 ? void 0 : _data$meta4.output;
+                if (!_this4.__P_480_4) {
+                  _this4.__P_480_4 = path.relative(_process.cwd(), path.resolve(targetConfigs[0].outputPath, "../meta"));
                 }
                 targetConfigs.forEach(function (targetConfig) {
                   if (!targetConfig.appConfigs) {
@@ -1384,11 +1384,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   }
                   if (typeof targetConfig.typescript == "string") {
                     Console.warn("The 'typescript' property inside a target definition is deprecated - please see top level 'meta.typescript' property");
-                    if (_this4.__P_479_6) {
-                      Console.warn("Multiple conflicting locations for the Typescript output - choosing to write to " + _this4.__P_479_6 + " and NOT " + targetConfig.typescript);
+                    if (_this4.__P_480_6) {
+                      Console.warn("Multiple conflicting locations for the Typescript output - choosing to write to " + _this4.__P_480_6 + " and NOT " + targetConfig.typescript);
                     } else {
-                      _this4.__P_479_5 = true;
-                      _this4.__P_479_6 = path.relative(_process.cwd(), path.resolve(targetConfig.typescript));
+                      _this4.__P_480_5 = true;
+                      _this4.__P_480_6 = path.relative(_process.cwd(), path.resolve(targetConfig.typescript));
                     }
                   }
                   if (data.environment) {
@@ -1567,7 +1567,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<Array>} Array of error messages
        * @private
        */
-      __P_479_8: function __P_479_8(libs, packages) {
+      __P_480_8: function __P_480_8(libs, packages) {
         var _this5 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10() {
           var Console, errors, _iterator3, _step3, lib, requires, range, requires_uris, urisToInstall, pkg_libs, installer, _iterator4, _step4, _loop, _t9, _t0;
@@ -1778,7 +1778,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return  {qx.tool.compiler.makers.Maker[]}
        */
       getMakers: function getMakers() {
-        return this.__P_479_1;
+        return this.__P_480_1;
       },
       /**
        * Returns the one maker; this is for backwards compatibility with the compiler API, because it is
@@ -1790,10 +1790,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.makers.Maker}
        */
       getMaker: function getMaker() {
-        if (this.__P_479_1.length == 1) {
-          return this.__P_479_1[0];
+        if (this.__P_480_1.length == 1) {
+          return this.__P_480_1[0];
         }
-        throw new Error("Cannot get a single maker - there are " + this.__P_479_1.length + " available");
+        throw new Error("Cannot get a single maker - there are " + this.__P_480_1.length + " available");
       },
       /**
        * Returns the makers for a given application name
@@ -1802,7 +1802,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.makers.Maker}
        */
       getMakersForApp: function getMakersForApp(appName) {
-        return this.__P_479_1.filter(function (maker) {
+        return this.__P_480_1.filter(function (maker) {
           var res = maker.getApplications().find(function (app) {
             return app.getName() == appName;
           });
@@ -1815,7 +1815,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.app.Library[]}
        */
       getLibraries: function getLibraries() {
-        return this.__P_479_2;
+        return this.__P_480_2;
       }
     },
     defer: function defer(statics) {
@@ -1844,4 +1844,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Compile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Compile.js.map?dt=1792082788034
+//# sourceMappingURL=Compile.js.map?dt=1794845771470

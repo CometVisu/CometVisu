@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547627,
-  "lastModifiedIso": "2026-10-15T16:42:27.627Z",
+  "lastModified": 1794845538528,
+  "lastModifiedIso": "2026-11-16T16:12:18.528Z",
   "classFilename": "../../client/source/class/cv/io/Client.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1241
     },
     "end": {
-      "line": 773,
+      "line": 1006,
       "column": 3,
-      "index": 22033
+      "index": 30084
     }
   },
   "className": "cv.io.Client",
@@ -141,6 +141,35 @@
       },
       "appearsIn": []
     },
+    "KNXD_STATUS_REFRESH_INTERVAL": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Interval in ms used to refresh the outage duration of the knxd message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Interval in ms used to refresh the outage duration of the knxd message</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 4291
+        },
+        "end": {
+          "line": 133,
+          "column": 39,
+          "index": 4326
+        }
+      },
+      "appearsIn": []
+    },
     "stopAll": {
       "jsdoc": {
         "raw": [
@@ -158,18 +187,96 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 133,
+          "line": 138,
           "column": 4,
-          "index": 4245
+          "index": 4381
         },
         "end": {
-          "line": 137,
+          "line": 142,
           "column": 5,
-          "index": 4342
+          "index": 4478
         }
       },
       "type": "function",
       "params": [],
+      "appearsIn": []
+    },
+    "getKnxdStatus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extract the knxd availability report from a backend response.",
+          "     *",
+          "     * While the connection of the backend to the KNX bus (knxd) is lost, the",
+          "     * knxd based backend (cometvisu-knxd-fcgi) adds a \"knxd\" field to its /r",
+          "     * and /w responses:",
+          "     *",
+          "     *   \"knxd\": {\"ok\": false, \"since\": <unix time of the outage start>,",
+          "     *            \"lastOk\": <unix time of the last successful connection>}",
+          "     *",
+          "     * The field is absent as long as knxd is reachable. The backend answers",
+          "     * read requests with HTTP 503 in that state, but the body still contains",
+          "     * the last values it has received.",
+          "     *",
+          "     * @param response {Object|String|null} parsed or raw response body",
+          "     * @return {Object|null} the knxd status or `null` if no outage is reported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extract the knxd availability report from a backend response.\n While the connection of the backend to the KNX bus (knxd) is lost, the\n knxd based backend (cometvisu-knxd-fcgi) adds a \"knxd\" field to its /r\n and /w responses:\n   \"knxd\": {\"ok\": false, \"since\": <unix time of the outage start>,\n            \"lastOk\": <unix time of the last successful connection>}\n The field is absent as long as knxd is reachable. The backend answers\n read requests with HTTP 503 in that state, but the body still contains\n the last values it has received.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "response {Object|String|null} parsed or raw response body",
+            "paramName": "response",
+            "description": " parsed or raw response body",
+            "type": [
+              "Object",
+              "String",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object|null} the knxd status or <code>null</code> if no outage is reported",
+            "type": "Object|null",
+            "description": "the knxd status or <code>null</code> if no outage is reported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 5274
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 5620
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response",
+          "type": [
+            "Object",
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Object|null"
+      },
       "appearsIn": []
     },
     "backendNameAliases": {
@@ -181,14 +288,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 177,
           "column": 4,
-          "index": 4387
+          "index": 5665
         },
         "end": {
-          "line": 145,
+          "line": 182,
           "column": 5,
-          "index": 4507
+          "index": 5785
         }
       },
       "appearsIn": []
@@ -202,14 +309,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 149,
+          "line": 186,
           "column": 4,
-          "index": 4672
+          "index": 5950
         },
         "end": {
-          "line": 174,
+          "line": 211,
           "column": 5,
-          "index": 5448
+          "index": 6726
         }
       },
       "appearsIn": []
@@ -219,14 +326,14 @@
     "running": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 223,
           "column": 4,
-          "index": 5683
+          "index": 6961
         },
         "end": {
-          "line": 190,
+          "line": 227,
           "column": 5,
-          "index": 5771
+          "index": 7049
         }
       },
       "json": {
@@ -252,14 +359,14 @@
     "connected": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 232,
           "column": 4,
-          "index": 5853
+          "index": 7131
         },
         "end": {
-          "line": 200,
+          "line": 237,
           "column": 5,
-          "index": 5977
+          "index": 7255
         }
       },
       "json": {
@@ -288,14 +395,14 @@
     "dataReceived": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 242,
           "column": 4,
-          "index": 6102
+          "index": 7380
         },
         "end": {
-          "line": 208,
+          "line": 245,
           "column": 5,
-          "index": 6165
+          "index": 7443
         }
       },
       "json": {
@@ -322,14 +429,14 @@
     "currentTransport": {
       "location": {
         "start": {
-          "line": 213,
+          "line": 250,
           "column": 4,
-          "index": 6230
+          "index": 7508
         },
         "end": {
-          "line": 215,
+          "line": 252,
           "column": 5,
-          "index": 6272
+          "index": 7550
         }
       },
       "json": {},
@@ -351,14 +458,14 @@
     "server": {
       "location": {
         "start": {
-          "line": 220,
+          "line": 257,
           "column": 4,
-          "index": 6373
+          "index": 7651
         },
         "end": {
-          "line": 224,
+          "line": 261,
           "column": 5,
-          "index": 6462
+          "index": 7740
         }
       },
       "json": {
@@ -386,14 +493,14 @@
     "name": {
       "location": {
         "start": {
-          "line": 226,
+          "line": 263,
           "column": 4,
-          "index": 6469
+          "index": 7747
         },
         "end": {
-          "line": 229,
+          "line": 266,
           "column": 5,
-          "index": 6526
+          "index": 7804
         }
       },
       "json": {
@@ -412,14 +519,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 238,
+          "line": 275,
           "column": 4,
-          "index": 6688
+          "index": 7966
         },
         "end": {
-          "line": 238,
+          "line": 275,
           "column": 17,
-          "index": 6701
+          "index": 7979
         }
       },
       "appearsIn": []
@@ -429,14 +536,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 239,
+          "line": 276,
           "column": 4,
-          "index": 6707
+          "index": 7985
         },
         "end": {
-          "line": 239,
+          "line": 276,
           "column": 21,
-          "index": 6724
+          "index": 8002
         }
       },
       "appearsIn": []
@@ -446,14 +553,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 240,
+          "line": 277,
           "column": 4,
-          "index": 6730
+          "index": 8008
         },
         "end": {
-          "line": 240,
+          "line": 277,
           "column": 15,
-          "index": 6741
+          "index": 8019
         }
       },
       "appearsIn": []
@@ -463,14 +570,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 241,
+          "line": 278,
           "column": 4,
-          "index": 6747
+          "index": 8025
         },
         "end": {
-          "line": 241,
+          "line": 278,
           "column": 25,
-          "index": 6768
+          "index": 8046
         }
       },
       "appearsIn": []
@@ -480,14 +587,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 242,
+          "line": 279,
           "column": 4,
-          "index": 6774
+          "index": 8052
         },
         "end": {
-          "line": 242,
+          "line": 279,
           "column": 19,
-          "index": 6789
+          "index": 8067
         }
       },
       "appearsIn": []
@@ -501,14 +608,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 243,
+          "line": 280,
           "column": 4,
-          "index": 6823
+          "index": 8101
         },
         "end": {
-          "line": 243,
+          "line": 280,
           "column": 26,
-          "index": 6845
+          "index": 8123
         }
       },
       "appearsIn": []
@@ -522,14 +629,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 244,
+          "line": 281,
           "column": 4,
-          "index": 6923
+          "index": 8201
         },
         "end": {
-          "line": 244,
+          "line": 281,
           "column": 17,
-          "index": 6936
+          "index": 8214
         }
       },
       "appearsIn": []
@@ -543,14 +650,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 245,
+          "line": 282,
           "column": 4,
-          "index": 6968
+          "index": 8246
         },
         "end": {
-          "line": 245,
+          "line": 282,
           "column": 14,
-          "index": 6978
+          "index": 8256
         }
       },
       "appearsIn": []
@@ -564,14 +671,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 246,
+          "line": 283,
           "column": 4,
-          "index": 7004
+          "index": 8282
         },
         "end": {
-          "line": 246,
+          "line": 283,
           "column": 14,
-          "index": 7014
+          "index": 8292
         }
       },
       "appearsIn": []
@@ -585,14 +692,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 247,
+          "line": 284,
           "column": 4,
-          "index": 7044
+          "index": 8322
         },
         "end": {
-          "line": 247,
+          "line": 284,
           "column": 16,
-          "index": 7056
+          "index": 8334
         }
       },
       "appearsIn": []
@@ -606,14 +713,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 248,
+          "line": 285,
           "column": 4,
-          "index": 7087
+          "index": 8365
         },
         "end": {
-          "line": 248,
+          "line": 285,
           "column": 17,
-          "index": 7100
+          "index": 8378
         }
       },
       "appearsIn": []
@@ -627,14 +734,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 250,
+          "line": 287,
           "column": 4,
-          "index": 7129
+          "index": 8407
         },
         "end": {
-          "line": 250,
+          "line": 287,
           "column": 23,
-          "index": 7148
+          "index": 8426
         }
       },
       "appearsIn": []
@@ -644,14 +751,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 251,
+          "line": 288,
           "column": 4,
-          "index": 7154
+          "index": 8432
         },
         "end": {
-          "line": 251,
+          "line": 288,
           "column": 17,
-          "index": 7167
+          "index": 8445
         }
       },
       "appearsIn": []
@@ -661,14 +768,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 252,
+          "line": 289,
           "column": 4,
-          "index": 7173
+          "index": 8451
         },
         "end": {
-          "line": 252,
+          "line": 289,
           "column": 23,
-          "index": 7192
+          "index": 8470
         }
       },
       "appearsIn": []
@@ -678,14 +785,92 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 253,
+          "line": 290,
           "column": 4,
-          "index": 7198
+          "index": 8476
         },
         "end": {
-          "line": 253,
+          "line": 290,
           "column": 21,
-          "index": 7215
+          "index": 8493
+        }
+      },
+      "appearsIn": []
+    },
+    "__knxdUnavailable": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 8499
+        },
+        "end": {
+          "line": 291,
+          "column": 28,
+          "index": 8523
+        }
+      },
+      "appearsIn": []
+    },
+    "__knxdReported": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 8529
+        },
+        "end": {
+          "line": 292,
+          "column": 24,
+          "index": 8549
+        }
+      },
+      "appearsIn": []
+    },
+    "__knxdTimeFormat": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4,
+          "index": 8555
+        },
+        "end": {
+          "line": 293,
+          "column": 26,
+          "index": 8577
+        }
+      },
+      "appearsIn": []
+    },
+    "_knxdTimer": {
+      "jsdoc": {
+        "raw": [
+          "* timer that keeps the knxd outage duration up to date "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>timer that keeps the knxd outage duration up to date</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 296,
+          "column": 4,
+          "index": 8648
+        },
+        "end": {
+          "line": 296,
+          "column": 20,
+          "index": 8664
         }
       },
       "appearsIn": []
@@ -695,14 +880,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 255,
+          "line": 298,
           "column": 4,
-          "index": 7222
+          "index": 8671
         },
         "end": {
-          "line": 257,
+          "line": 300,
           "column": 5,
-          "index": 7264
+          "index": 8713
         }
       },
       "type": "function",
@@ -744,14 +929,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 264,
+          "line": 307,
           "column": 4,
-          "index": 7392
+          "index": 8841
         },
         "end": {
-          "line": 269,
+          "line": 312,
           "column": 5,
-          "index": 7530
+          "index": 8979
         }
       },
       "type": "function",
@@ -768,14 +953,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 271,
+          "line": 314,
           "column": 4,
-          "index": 7537
+          "index": 8986
         },
         "end": {
-          "line": 273,
+          "line": 316,
           "column": 5,
-          "index": 7616
+          "index": 9065
         }
       },
       "type": "function",
@@ -793,14 +978,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 275,
+          "line": 318,
           "column": 4,
-          "index": 7623
+          "index": 9072
         },
         "end": {
-          "line": 317,
+          "line": 360,
           "column": 5,
-          "index": 9182
+          "index": 10631
         }
       },
       "type": "function",
@@ -816,14 +1001,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 319,
+          "line": 362,
           "column": 4,
-          "index": 9189
+          "index": 10638
         },
         "end": {
-          "line": 321,
+          "line": 364,
           "column": 5,
-          "index": 9236
+          "index": 10685
         }
       },
       "type": "function",
@@ -858,14 +1043,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 327,
+          "line": 370,
           "column": 4,
-          "index": 9370
+          "index": 10819
         },
         "end": {
-          "line": 338,
+          "line": 381,
           "column": 5,
-          "index": 9789
+          "index": 11238
         }
       },
       "type": "function",
@@ -881,14 +1066,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 340,
+          "line": 383,
           "column": 4,
-          "index": 9796
+          "index": 11245
         },
         "end": {
-          "line": 344,
+          "line": 387,
           "column": 5,
-          "index": 9988
+          "index": 11437
         }
       },
       "type": "function",
@@ -909,14 +1094,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 346,
+          "line": 389,
           "column": 4,
-          "index": 9995
+          "index": 11444
         },
         "end": {
-          "line": 348,
+          "line": 391,
           "column": 5,
-          "index": 10073
+          "index": 11522
         }
       },
       "type": "function",
@@ -937,14 +1122,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 350,
+          "line": 393,
           "column": 4,
-          "index": 10080
+          "index": 11529
         },
         "end": {
-          "line": 352,
+          "line": 395,
           "column": 5,
-          "index": 10138
+          "index": 11587
         }
       },
       "type": "function",
@@ -958,14 +1143,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 353,
+          "line": 396,
           "column": 4,
-          "index": 10144
+          "index": 11593
         },
         "end": {
-          "line": 355,
+          "line": 398,
           "column": 5,
-          "index": 10194
+          "index": 11643
         }
       },
       "type": "function",
@@ -1018,14 +1203,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 365,
+          "line": 408,
           "column": 4,
-          "index": 10430
+          "index": 11879
         },
         "end": {
-          "line": 382,
+          "line": 425,
           "column": 5,
-          "index": 11020
+          "index": 12469
         }
       },
       "type": "function",
@@ -1050,14 +1235,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 384,
+          "line": 427,
           "column": 4,
-          "index": 11027
+          "index": 12476
         },
         "end": {
-          "line": 391,
+          "line": 434,
           "column": 5,
-          "index": 11222
+          "index": 12671
         }
       },
       "type": "function",
@@ -1128,14 +1313,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 404,
+          "line": 447,
           "column": 4,
-          "index": 11725
+          "index": 13174
         },
         "end": {
-          "line": 432,
+          "line": 475,
           "column": 5,
-          "index": 12713
+          "index": 14162
         }
       },
       "type": "function",
@@ -1181,14 +1366,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 437,
+          "line": 480,
           "column": 4,
-          "index": 12821
+          "index": 14270
         },
         "end": {
-          "line": 464,
+          "line": 507,
           "column": 6,
-          "index": 13467
+          "index": 14916
         }
       },
       "appearsIn": []
@@ -1198,14 +1383,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 466,
+          "line": 509,
           "column": 4,
-          "index": 13474
+          "index": 14923
         },
         "end": {
-          "line": 476,
+          "line": 519,
           "column": 6,
-          "index": 13770
+          "index": 15219
         }
       },
       "appearsIn": []
@@ -1215,14 +1400,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 478,
+          "line": 521,
           "column": 4,
-          "index": 13777
+          "index": 15226
         },
         "end": {
-          "line": 498,
+          "line": 541,
           "column": 5,
-          "index": 14477
+          "index": 15926
         }
       },
       "type": "function",
@@ -1294,14 +1479,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 509,
+          "line": 552,
           "column": 4,
-          "index": 14864
+          "index": 16313
         },
         "end": {
-          "line": 572,
+          "line": 615,
           "column": 6,
-          "index": 16819
+          "index": 18268
         }
       },
       "returnType": {
@@ -1335,14 +1520,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 578,
+          "line": 621,
           "column": 4,
-          "index": 16914
+          "index": 18363
         },
         "end": {
-          "line": 593,
+          "line": 636,
           "column": 5,
-          "index": 17341
+          "index": 18790
         }
       },
       "type": "function",
@@ -1381,14 +1566,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 600,
+          "line": 643,
           "column": 4,
-          "index": 17521
+          "index": 18970
         },
         "end": {
-          "line": 602,
+          "line": 645,
           "column": 5,
-          "index": 17574
+          "index": 19023
         }
       },
       "type": "function",
@@ -1428,14 +1613,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 618,
+          "line": 661,
           "column": 4,
-          "index": 18086
+          "index": 19535
         },
         "end": {
-          "line": 641,
+          "line": 684,
           "column": 5,
-          "index": 19001
+          "index": 20450
         }
       },
       "type": "function",
@@ -1460,14 +1645,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 647,
+          "line": 690,
           "column": 4,
-          "index": 19080
+          "index": 20529
         },
         "end": {
-          "line": 653,
+          "line": 696,
           "column": 5,
-          "index": 19265
+          "index": 20714
         }
       },
       "type": "function",
@@ -1518,14 +1703,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 661,
+          "line": 704,
           "column": 4,
-          "index": 19445
+          "index": 20894
         },
         "end": {
-          "line": 684,
+          "line": 727,
           "column": 5,
-          "index": 20063
+          "index": 21512
         }
       },
       "type": "function",
@@ -1582,14 +1767,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 692,
+          "line": 735,
           "column": 4,
-          "index": 20231
+          "index": 21680
         },
         "end": {
-          "line": 713,
+          "line": 759,
           "column": 5,
-          "index": 20770
+          "index": 22304
         }
       },
       "type": "function",
@@ -1607,6 +1792,393 @@
         "cv.io.IClient"
       ]
     },
+    "reportKnxdStatus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Report the knxd availability contained in a backend response. Both the",
+          "     * transports (read requests) and the write requests use this, therefore",
+          "     * the state is kept here. Notifications are only sent when the state",
+          "     * changes, i.e. when an outage starts or when knxd is back.",
+          "     *",
+          "     * @param response {Object|String|null} parsed or raw response body",
+          "     * @return {String|null} 'outage' if a new outage has been reported,",
+          "     *   'recovery' if knxd is reachable again, `null` if nothing changed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Report the knxd availability contained in a backend response. Both the\n transports (read requests) and the write requests use this, therefore\n the state is kept here. Notifications are only sent when the state\n changes, i.e. when an outage starts or when knxd is back.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "response {Object|String|null} parsed or raw response body",
+            "paramName": "response",
+            "description": " parsed or raw response body",
+            "type": [
+              "Object",
+              "String",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} 'outage' if a new outage has been reported,\n   'recovery' if knxd is reachable again, <code>null</code> if nothing changed",
+            "type": "String|null",
+            "description": "'outage' if a new outage has been reported,\n   'recovery' if knxd is reachable again, <code>null</code> if nothing changed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 771,
+          "column": 4,
+          "index": 22847
+        },
+        "end": {
+          "line": 796,
+          "column": 5,
+          "index": 23806
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response",
+          "type": [
+            "Object",
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "_getKnxdTopic": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the notification topic used for the knxd availability of this client.",
+          "     *",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the notification topic used for the knxd availability of this client.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 803,
+          "column": 4,
+          "index": 23941
+        },
+        "end": {
+          "line": 805,
+          "column": 5,
+          "index": 24025
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__showKnxdOutage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Show the knxd outage message in the notification center and keep it",
+          "     * updated, so that the user can see for how long the connection to the bus",
+          "     * is already lost. The message heals itself: it is removed as soon as the",
+          "     * backend reports knxd again (see {@link #__hideKnxdOutage}).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Show the knxd outage message in the notification center and keep it\n updated, so that the user can see for how long the connection to the bus\n is already lost. The message heals itself: it is removed as soon as the\n backend reports knxd again (see {@link #__hideKnxdOutage}).</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 813,
+          "column": 4,
+          "index": 24349
+        },
+        "end": {
+          "line": 821,
+          "column": 5,
+          "index": 24693
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__hideKnxdOutage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the knxd outage message from the notification center.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the knxd outage message from the notification center.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 826,
+          "column": 4,
+          "index": 24784
+        },
+        "end": {
+          "line": 839,
+          "column": 5,
+          "index": 25194
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__dispatchKnxdMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Build and dispatch the notification center message for the current knxd",
+          "     * outage. Dispatching it again with the same topic replaces the already",
+          "     * shown message (see `unique`).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Build and dispatch the notification center message for the current knxd\n outage. Dispatching it again with the same topic replaces the already\n shown message (see <code>unique</code>).</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 846,
+          "column": 4,
+          "index": 25410
+        },
+        "end": {
+          "line": 874,
+          "column": 5,
+          "index": 26442
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_formatDuration": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Format a duration in seconds for the message text, e.g. \"1 h 5 min 3 s\".",
+          "     *",
+          "     * @param seconds {Number} duration in seconds",
+          "     * @return {String}",
+          "     * @protected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format a duration in seconds for the message text, e.g. \"1 h 5 min 3 s\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "seconds {Number} duration in seconds",
+            "paramName": "seconds",
+            "description": " duration in seconds",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "@protected": [
+          {
+            "name": "@protected",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 883,
+          "column": 4,
+          "index": 26645
+        },
+        "end": {
+          "line": 896,
+          "column": 5,
+          "index": 27141
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "seconds",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__getTimeFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the (lazily created) formatter for the outage start time.",
+          "     *",
+          "     * @return {qx.util.format.DateFormat}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the (lazily created) formatter for the outage start time.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.util.format.DateFormat}",
+            "type": "qx.util.format.DateFormat",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 903,
+          "column": 4,
+          "index": 27283
+        },
+        "end": {
+          "line": 908,
+          "column": 5,
+          "index": 27490
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.util.format.DateFormat"
+      },
+      "appearsIn": []
+    },
+    "_onWriteError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle errors of write requests. When the backend cannot reach knxd it",
+          "     * answers with HTTP 503 and reports the knxd outage in the response body.",
+          "     * That is no connection problem of the CometVisu itself, so it must not",
+          "     * be reported as such but as a knxd outage instead.",
+          "     *",
+          "     * @param ev {qx.event.type.Event|Object} the 'statusError' event (qooxdoo)",
+          "     *   or the XHR object (jQuery)",
+          "     * @protected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle errors of write requests. When the backend cannot reach knxd it\n answers with HTTP 503 and reports the knxd outage in the response body.\n That is no connection problem of the CometVisu itself, so it must not\n be reported as such but as a knxd outage instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {qx.event.type.Event|Object} the 'statusError' event (qooxdoo)\n   or the XHR object (jQuery)",
+            "paramName": "ev",
+            "description": " the 'statusError' event (qooxdoo)\n   or the XHR object (jQuery)",
+            "type": [
+              "qx.event.type.Event",
+              "Object"
+            ]
+          }
+        ],
+        "@protected": [
+          {
+            "name": "@protected",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 920,
+          "column": 4,
+          "index": 27945
+        },
+        "end": {
+          "line": 937,
+          "column": 5,
+          "index": 28581
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": [
+            "qx.event.type.Event",
+            "Object"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
     "authorize": {
       "jsdoc": {
         "raw": [
@@ -1616,14 +2188,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 716,
+          "line": 940,
           "column": 4,
-          "index": 20832
+          "index": 28643
         },
         "end": {
-          "line": 716,
+          "line": 940,
           "column": 21,
-          "index": 20849
+          "index": 28660
         }
       },
       "type": "function",
@@ -1641,14 +2213,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 718,
+          "line": 942,
           "column": 4,
-          "index": 20856
+          "index": 28667
         },
         "end": {
-          "line": 720,
+          "line": 944,
           "column": 5,
-          "index": 20898
+          "index": 28709
         }
       },
       "type": "function",
@@ -1683,14 +2255,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 726,
+          "line": 950,
           "column": 4,
-          "index": 20970
+          "index": 28781
         },
         "end": {
-          "line": 728,
+          "line": 952,
           "column": 5,
-          "index": 21039
+          "index": 28850
         }
       },
       "type": "function",
@@ -1708,14 +2280,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 730,
+          "line": 954,
           "column": 4,
-          "index": 21046
+          "index": 28857
         },
         "end": {
-          "line": 732,
+          "line": 956,
           "column": 5,
-          "index": 21107
+          "index": 28918
         }
       },
       "type": "function",
@@ -1729,14 +2301,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 734,
+          "line": 958,
           "column": 4,
-          "index": 21114
+          "index": 28925
         },
         "end": {
-          "line": 734,
+          "line": 958,
           "column": 19,
-          "index": 21129
+          "index": 28940
         }
       },
       "type": "function",
@@ -1784,14 +2356,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 741,
+          "line": 965,
           "column": 4,
-          "index": 21316
+          "index": 29127
         },
         "end": {
-          "line": 741,
+          "line": 965,
           "column": 25,
-          "index": 21337
+          "index": 29148
         }
       },
       "type": "function",
@@ -1851,14 +2423,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 749,
+          "line": 973,
           "column": 4,
-          "index": 21564
+          "index": 29375
         },
         "end": {
-          "line": 749,
+          "line": 973,
           "column": 37,
-          "index": 21597
+          "index": 29408
         }
       },
       "type": "function",
@@ -1884,14 +2456,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 751,
+          "line": 975,
           "column": 4,
-          "index": 21604
+          "index": 29415
         },
         "end": {
-          "line": 753,
+          "line": 977,
           "column": 5,
-          "index": 21649
+          "index": 29460
         }
       },
       "type": "function",
@@ -1909,14 +2481,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 754,
+          "line": 978,
           "column": 4,
-          "index": 21655
+          "index": 29466
         },
         "end": {
-          "line": 756,
+          "line": 980,
           "column": 5,
-          "index": 21702
+          "index": 29513
         }
       },
       "type": "function",
@@ -1934,14 +2506,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 757,
+          "line": 981,
           "column": 4,
-          "index": 21708
+          "index": 29519
         },
         "end": {
-          "line": 759,
+          "line": 983,
           "column": 5,
-          "index": 21775
+          "index": 29586
         }
       },
       "type": "function",
@@ -1962,14 +2534,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 760,
+          "line": 984,
           "column": 4,
-          "index": 21781
+          "index": 29592
         },
         "end": {
-          "line": 762,
+          "line": 986,
           "column": 5,
-          "index": 21848
+          "index": 29659
         }
       },
       "type": "function",
@@ -1991,14 +2563,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 770,
+        "line": 994,
         "column": 2,
-        "index": 21996
+        "index": 29807
       },
       "end": {
-        "line": 772,
+        "line": 1005,
         "column": 3,
-        "index": 22029
+        "index": 30080
       }
     }
   }

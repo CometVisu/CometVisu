@@ -179,8 +179,8 @@ Achsen, Farben und Beschriftung direkt vergleichen. Ist alles umgestellt, kann d
 </tbody>
 </table>
 <p>Alle Attribute und Kind-Elemente bleiben unverändert — <code class="docutils literal notranslate"><span class="pre">series</span></code>, <code class="docutils literal notranslate"><span class="pre">period</span></code>, <code class="docutils literal notranslate"><span class="pre">legend</span></code>,
-<code class="docutils literal notranslate"><span class="pre">gridcolor</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> und der Rest werden genauso
-gelesen wie vorher.</p>
+<code class="docutils literal notranslate"><span class="pre">gridcolor</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;iobroker&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> und der Rest
+werden genauso gelesen wie vorher.</p>
 </section>
 <section id="schritt-3-strichstarken-und-gitterfarbe-fur-das-aussehen-von-diagram">
 <h2>Schritt 3: Strichstärken und Gitterfarbe für das Aussehen von <code class="docutils literal notranslate"><span class="pre">diagram</span></code><a class="headerlink" href="#schritt-3-strichstarken-und-gitterfarbe-fur-das-aussehen-von-diagram" title="Link to this heading"></a></h2>
@@ -231,7 +231,7 @@ ebenfalls mit 1 und nur den Rahmen kräftiger. Für das gewohnte Bild genügen a
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram2</span><span class="w"> </span><span class="na">series=</span><span class="s">"day"</span><span class="w"> </span><span class="na">period=</span><span class="s">"3"</span><span class="w"> </span><span class="na">borderwidth=</span><span class="s">"2"</span><span class="w"> </span><span class="na">linewidth=</span><span class="s">"2"</span><span class="w"> </span><span class="na">gridopacity=</span><span class="s">"1"</span><span class="w"> </span><span class="na">popup=</span><span class="s">"true"</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"12"</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">"6"</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">unit=</span><span class="s">" °C"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Temperatur"</span><span class="w"> </span><span class="na">decimals=</span><span class="s">"1"</span><span class="nt">&gt;</span>temperature<span class="nt">&lt;/axis&gt;</span>
-<span class="w">  </span><span class="nt">&lt;influx</span><span class="w"> </span><span class="na">measurement=</span><span class="s">"haus/temperatur"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Aussen [°C]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"temperature"</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;iobroker</span><span class="w"> </span><span class="na">instance=</span><span class="s">"influxdb.0"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Aussen [°C]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"temperature"</span><span class="nt">&gt;</span>hm-rpc.0.LEQ123456.1.TEMPERATURE<span class="nt">&lt;/iobroker&gt;</span>
 <span class="nt">&lt;/diagram2&gt;</span>
 </pre></div>
 </div>
@@ -331,6 +331,9 @@ und alle Datenquellen verhalten sich gleich.</p>
         </dd>
         
         <dd><a href="../../../../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

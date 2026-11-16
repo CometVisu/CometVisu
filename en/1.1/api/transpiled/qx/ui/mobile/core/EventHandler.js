@@ -78,7 +78,7 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_634_0 = qx.event.Registration.getManager(window);
+      this.__P_635_0 = qx.event.Registration.getManager(window);
     },
     /*
     *****************************************************************************
@@ -158,11 +158,11 @@
       },
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false,
-      __P_634_1: null,
-      __P_634_2: null,
-      __P_634_3: null,
-      __P_634_4: null,
-      __P_634_5: null,
+      __P_635_1: null,
+      __P_635_2: null,
+      __P_635_3: null,
+      __P_635_4: null,
+      __P_635_5: null,
       /**
        * Event handler. Called when the pointerdown event occurs.
        * Sets the <code>active</class> class to the event target after a certain
@@ -170,23 +170,23 @@
        *
        * @param domEvent {qx.event.type.Pointer} The pointerdown event
        */
-      __P_634_6: function __P_634_6(domEvent) {
+      __P_635_6: function __P_635_6(domEvent) {
         if (!domEvent.isPrimary()) {
           return;
         }
         var EventHandler = qx.ui.mobile.core.EventHandler;
-        EventHandler.__P_634_2 = qx.bom.Viewport.getScrollLeft();
-        EventHandler.__P_634_3 = qx.bom.Viewport.getScrollTop();
-        EventHandler.__P_634_4 = domEvent.getScreenTop();
-        EventHandler.__P_634_7();
+        EventHandler.__P_635_2 = qx.bom.Viewport.getScrollLeft();
+        EventHandler.__P_635_3 = qx.bom.Viewport.getScrollTop();
+        EventHandler.__P_635_4 = domEvent.getScreenTop();
+        EventHandler.__P_635_7();
         var target = domEvent.getTarget();
         while (target && target.parentNode && target.parentNode.nodeType == 1 && qx.bom.element.Attribute.get(target, "data-activatable") != "true") {
           target = target.parentNode;
         }
-        EventHandler.__P_634_1 = target;
-        EventHandler.__P_634_8 = window.setTimeout(function () {
-          EventHandler.__P_634_8 = null;
-          var target = EventHandler.__P_634_1;
+        EventHandler.__P_635_1 = target;
+        EventHandler.__P_635_8 = window.setTimeout(function () {
+          EventHandler.__P_635_8 = null;
+          var target = EventHandler.__P_635_1;
           if (target && qx.bom.element.Attribute.get(target, "data-selectable") != "false") {
             qx.bom.element.Class.add(target, "active");
           }
@@ -198,8 +198,8 @@
        *
        * @param domEvent {qx.event.type.Pointer} The pointerup event
        */
-      __P_634_9: function __P_634_9(domEvent) {
-        qx.ui.mobile.core.EventHandler.__P_634_10();
+      __P_635_9: function __P_635_9(domEvent) {
+        qx.ui.mobile.core.EventHandler.__P_635_10();
       },
       /**
        * Event handler. Called when the pointermove event occurs.
@@ -208,40 +208,40 @@
        *
        * @param domEvent {qx.event.type.Pointer} The pointermove event
        */
-      __P_634_11: function __P_634_11(domEvent) {
+      __P_635_11: function __P_635_11(domEvent) {
         if (!domEvent.isPrimary()) {
           return;
         }
         var EventHandler = qx.ui.mobile.core.EventHandler;
-        var deltaY = domEvent.getScreenTop() - EventHandler.__P_634_4;
-        if (EventHandler.__P_634_1 && Math.abs(deltaY) >= qx.event.handler.GestureCore.TAP_MAX_DISTANCE[domEvent.getPointerType()]) {
-          EventHandler.__P_634_10();
+        var deltaY = domEvent.getScreenTop() - EventHandler.__P_635_4;
+        if (EventHandler.__P_635_1 && Math.abs(deltaY) >= qx.event.handler.GestureCore.TAP_MAX_DISTANCE[domEvent.getPointerType()]) {
+          EventHandler.__P_635_10();
         }
-        if (EventHandler.__P_634_1 && (EventHandler.__P_634_2 != qx.bom.Viewport.getScrollLeft() || EventHandler.__P_634_3 != qx.bom.Viewport.getScrollTop())) {
-          EventHandler.__P_634_10();
+        if (EventHandler.__P_635_1 && (EventHandler.__P_635_2 != qx.bom.Viewport.getScrollLeft() || EventHandler.__P_635_3 != qx.bom.Viewport.getScrollTop())) {
+          EventHandler.__P_635_10();
         }
       },
       /**
        * Cancels the active state timer.
        */
-      __P_634_7: function __P_634_7() {
+      __P_635_7: function __P_635_7() {
         var EventHandler = qx.ui.mobile.core.EventHandler;
-        if (EventHandler.__P_634_8) {
-          window.clearTimeout(EventHandler.__P_634_8);
-          EventHandler.__P_634_8 = null;
+        if (EventHandler.__P_635_8) {
+          window.clearTimeout(EventHandler.__P_635_8);
+          EventHandler.__P_635_8 = null;
         }
       },
       /**
        * Removes the <code>active</class> class from the active target.
        */
-      __P_634_10: function __P_634_10() {
+      __P_635_10: function __P_635_10() {
         var EventHandler = qx.ui.mobile.core.EventHandler;
-        EventHandler.__P_634_7();
-        var activeTarget = EventHandler.__P_634_1;
+        EventHandler.__P_635_7();
+        var activeTarget = EventHandler.__P_635_1;
         if (activeTarget) {
           qx.bom.element.Class.remove(activeTarget, "active");
         }
-        EventHandler.__P_634_1 = null;
+        EventHandler.__P_635_1 = null;
       }
     },
     /*
@@ -251,7 +251,7 @@
     */
 
     members: {
-      __P_634_0: null,
+      __P_635_0: null,
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {
         return target instanceof qx.ui.mobile.core.Widget;
@@ -299,7 +299,7 @@
         // Load listeners
         var capture = domEvent.getEventPhase() == qx.event.type.Event.CAPTURING_PHASE;
         var type = domEvent.getType();
-        var listeners = this.__P_634_0.getListeners(currentWidget, type, capture);
+        var listeners = this.__P_635_0.getListeners(currentWidget, type, capture);
         if (!listeners || listeners.length === 0) {
           return;
         }
@@ -344,7 +344,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_634_0 = null;
+      this.__P_635_0 = null;
     },
     /*
     *****************************************************************************
@@ -353,13 +353,13 @@
     */
     defer: function defer(statics) {
       qx.event.Registration.addHandler(statics);
-      qx.event.Registration.addListener(document, "pointerdown", statics.__P_634_6);
-      qx.event.Registration.addListener(document, "pointerup", statics.__P_634_9);
-      qx.event.Registration.addListener(document, "pointercancel", statics.__P_634_9);
-      qx.event.Registration.addListener(document, "pointermove", statics.__P_634_11);
+      qx.event.Registration.addListener(document, "pointerdown", statics.__P_635_6);
+      qx.event.Registration.addListener(document, "pointerup", statics.__P_635_9);
+      qx.event.Registration.addListener(document, "pointercancel", statics.__P_635_9);
+      qx.event.Registration.addListener(document, "pointermove", statics.__P_635_11);
     }
   });
   qx.ui.mobile.core.EventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventHandler.js.map?dt=1792082796511
+//# sourceMappingURL=EventHandler.js.map?dt=1794845779985

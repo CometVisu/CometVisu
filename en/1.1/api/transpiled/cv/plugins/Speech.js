@@ -93,7 +93,7 @@
     construct: function construct(props) {
       qx.core.Object.constructor.call(this);
       this.set(props);
-      this.__P_17_0 = {};
+      this.__P_18_0 = {};
     },
     /*
      ******************************************************
@@ -156,7 +156,7 @@
      ******************************************************
      */
     members: {
-      __P_17_0: null,
+      __P_18_0: null,
       _initOnCreate: true,
       getDomString: function getDomString() {
         return undefined;
@@ -171,7 +171,7 @@
       handleUpdate: function handleUpdate(text, address) {
         if (!cv.io.BackendConnections.getClient().getDataReceived()) {
           // first call -> skipping
-          this.__P_17_0[address] = {
+          this.__P_18_0[address] = {
             text: text,
             time: Date.now()
           };
@@ -188,16 +188,16 @@
           text = text.substring(1);
         } else if (this.getRepeatTimeout() >= 0) {
           // do not repeat (within timeout when this.repeatTimeout > 0)
-          if (this.__P_17_0[address] && this.__P_17_0[address].text === text && (this.getRepeatTimeout() === 0 || this.getRepeatTimeout() >= Math.round((Date.now() - this.__P_17_0[address].time) / 1000))) {
+          if (this.__P_18_0[address] && this.__P_18_0[address].text === text && (this.getRepeatTimeout() === 0 || this.getRepeatTimeout() >= Math.round((Date.now() - this.__P_18_0[address].time) / 1000))) {
             // update time
-            this.__P_17_0[address].time = Date.now();
+            this.__P_18_0[address].time = Date.now();
             // do not repeat
             this.debug('skipping TTS because of repetition ' + text);
             return;
           }
         }
-        this.debug('changing lastSpeech from \'%s\' to \'%s\'', this.__P_17_0[address] ? this.__P_17_0[address].text : '', text);
-        this.__P_17_0[address] = {
+        this.debug('changing lastSpeech from \'%s\' to \'%s\'', this.__P_18_0[address] ? this.__P_18_0[address].text : '', text);
+        this.__P_18_0[address] = {
           text: text,
           time: Date.now()
         };
@@ -213,4 +213,4 @@
   cv.plugins.Speech.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Speech.js.map?dt=1792082760986
+//# sourceMappingURL=Speech.js.map?dt=1794845745710

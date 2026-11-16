@@ -250,7 +250,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                                     appRoot = target.getApplicationRoot(app);
                                     destRoot = path.join(deployDir, app.getName());
                                     _context3.n = 4;
-                                    return _this.__P_480_0(appRoot, destRoot, sourceMaps);
+                                    return _this.__P_481_0(appRoot, destRoot, sourceMaps);
                                   case 4:
                                     from = path.join(target.getOutputDir(), "resource");
                                     if (!fs.existsSync(from)) {
@@ -312,7 +312,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee5);
         }))();
       },
-      __P_480_0: function __P_480_0(srcDir, destDir, sourceMaps) {
+      __P_481_0: function __P_481_0(srcDir, destDir, sourceMaps) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
           var files;
@@ -344,7 +344,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             break;
                           }
                           _context6.n = 2;
-                          return _this2.__P_480_0(from, to, sourceMaps);
+                          return _this2.__P_481_0(from, to, sourceMaps);
                         case 2:
                           return _context6.a(2);
                         case 3:
@@ -413,4 +413,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Deploy.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Deploy.js.map?dt=1792082788185
+//# sourceMappingURL=Deploy.js.map?dt=1794845771621

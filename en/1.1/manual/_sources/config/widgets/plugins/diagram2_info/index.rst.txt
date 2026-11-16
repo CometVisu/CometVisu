@@ -14,7 +14,8 @@ a click on it opens a fullscreen diagram showing the history of that value. It i
 
 The displayed value comes from the ``<address>`` element and is rendered through ``format``, like
 in every other info widget. The diagram in the popup is configured exactly like :ref:`diagram2`:
-through ``<axis>`` and the data sources ``<rrd>``, ``<influx>``, ``<openhab>`` and ``<demo>``. Interaction in the popup — panning, zooming, reloading the visible range — is the same
+through ``<axis>`` and the data sources ``<iobroker>``, ``<rrd>``, ``<influx>``, ``<openhab>`` and
+``<demo>``. Interaction in the popup — panning, zooming, reloading the visible range — is the same
 as well.
 
 Without ``popup="true"`` the widget stays a plain value display and is not clickable.
@@ -27,7 +28,7 @@ To show the diagram itself as the widget, use :ref:`diagram2`.
         <layout colspan="3" />
         <label>Outside temperature</label>
         <axis unit=" °C" decimals="1">temperature</axis>
-        <influx measurement="house/temperature" color="#FF0000"/>
+        <iobroker instance="influxdb.0" color="#FF0000">hm-rpc.0.LEQ123456.1.TEMPERATURE</iobroker>
         <address transform="DPT:9.001">4/2/0</address>
     </diagram2_info>
 

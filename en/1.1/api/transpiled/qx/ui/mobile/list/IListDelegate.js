@@ -61,4 +61,4 @@
   qx.ui.mobile.list.IListDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListDelegate.js.map?dt=1792082797170
+//# sourceMappingURL=IListDelegate.js.map?dt=1794845780606

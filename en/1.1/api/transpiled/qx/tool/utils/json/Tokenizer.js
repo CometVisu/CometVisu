@@ -43,7 +43,7 @@
   /* eslint-disable no-constant-condition */
   /* eslint-disable no-labels */
 
-  var __P_532_0 = {
+  var __P_533_0 = {
     LEFT_BRACE: 0,
     // {
     RIGHT_BRACE: 1,
@@ -168,28 +168,28 @@
       }
     },
     statics: {
-      tokenTypes: __P_532_0,
+      tokenTypes: __P_533_0,
       punctuatorTokensMap: {
         // Lexeme: Token
-        "{": __P_532_0.LEFT_BRACE,
-        "}": __P_532_0.RIGHT_BRACE,
-        "[": __P_532_0.LEFT_BRACKET,
-        "]": __P_532_0.RIGHT_BRACKET,
-        ":": __P_532_0.COLON,
-        ",": __P_532_0.COMMA
+        "{": __P_533_0.LEFT_BRACE,
+        "}": __P_533_0.RIGHT_BRACE,
+        "[": __P_533_0.LEFT_BRACKET,
+        "]": __P_533_0.RIGHT_BRACKET,
+        ":": __P_533_0.COLON,
+        ",": __P_533_0.COMMA
       },
       keywordTokensMap: {
         // Lexeme: Token config
         "true": {
-          type: __P_532_0.TRUE,
+          type: __P_533_0.TRUE,
           value: true
         },
         "false": {
-          type: __P_532_0.FALSE,
+          type: __P_533_0.FALSE,
           value: false
         },
         "null": {
-          type: __P_532_0.NULL,
+          type: __P_533_0.NULL,
           value: null
         }
       },
@@ -577,4 +577,4 @@
   qx.tool.utils.json.Tokenizer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tokenizer.js.map?dt=1792082792539
+//# sourceMappingURL=Tokenizer.js.map?dt=1794845775996

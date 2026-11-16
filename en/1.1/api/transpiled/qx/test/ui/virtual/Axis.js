@@ -255,7 +255,7 @@
         //window.top.console.profile("setup (best case)");
         var start = new Date();
         for (var i = 0; i < this.SETUP_ITER; i++) {
-          this.axis.__P_453_0 = null;
+          this.axis.__P_454_0 = null;
           this.axis.getItemAtPosition(0);
         }
         var end = new Date();
@@ -272,7 +272,7 @@
         //window.top.console.profile("setup (worst case)");
         var start = new Date();
         for (var i = 0; i < this.SETUP_ITER; i++) {
-          this.axis.__P_453_0 = null;
+          this.axis.__P_454_0 = null;
           this.axis.getItemAtPosition(0);
         }
         var end = new Date();
@@ -320,4 +320,4 @@
   qx.test.ui.virtual.Axis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Axis.js.map?dt=1792082785541
+//# sourceMappingURL=Axis.js.map?dt=1794845769148

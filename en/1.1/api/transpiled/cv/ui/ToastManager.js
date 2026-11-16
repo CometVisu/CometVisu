@@ -111,24 +111,24 @@
     ******************************************************
     */
     members: {
-      __P_777_0: null,
-      __P_777_1: null,
-      __P_777_2: false,
+      __P_779_0: null,
+      __P_779_1: null,
+      __P_779_2: false,
       /**
        * Attach to dom element and style it
        */
       _init: function _init() {
-        if (!this.__P_777_0) {
+        if (!this.__P_779_0) {
           // check if there is one (might be restored from cache)
-          this.__P_777_0 = document.querySelector(this.getRootElementId());
-          if (!this.__P_777_0) {
-            this.__P_777_0 = qx.dom.Element.create('div', {
+          this.__P_779_0 = document.querySelector(this.getRootElementId());
+          if (!this.__P_779_0) {
+            this.__P_779_0 = qx.dom.Element.create('div', {
               id: this.getRootElementId()
             });
           }
         }
         if (document.querySelectorAll(this.getRootElementId()).length === 0) {
-          document.body.appendChild(this.__P_777_0);
+          document.body.appendChild(this.__P_779_0);
         }
         if (document.querySelectorAll('#ToastTemplate').length === 0) {
           var template = qx.dom.Element.create('script', {
@@ -141,8 +141,8 @@
         if (this._list) {
           this._list.dispose();
         }
-        this._list = new qx.data.controller.website.List(this._messages, this.__P_777_0, 'ToastTemplate');
-        qx.event.Registration.addListener(this.__P_777_0, 'tap', this._onListTap, this);
+        this._list = new qx.data.controller.website.List(this._messages, this.__P_779_0, 'ToastTemplate');
+        qx.event.Registration.addListener(this.__P_779_0, 'tap', this._onListTap, this);
       },
       _performAction: function _performAction(message) {
         if (message.actions) {
@@ -158,17 +158,17 @@
     ******************************************************
     */
     destruct: function destruct() {
-      if (this.__P_777_1) {
-        this.__P_777_1.stop();
-        this.__P_777_1 = null;
+      if (this.__P_779_1) {
+        this.__P_779_1.stop();
+        this.__P_779_1 = null;
       }
-      if (this.__P_777_0) {
-        this.__P_777_0.parentNode.removeChild(this.__P_777_0);
-        this.__P_777_0 = null;
+      if (this.__P_779_0) {
+        this.__P_779_0.parentNode.removeChild(this.__P_779_0);
+        this.__P_779_0 = null;
       }
     }
   });
   cv.ui.ToastManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToastManager.js.map?dt=1792082802377
+//# sourceMappingURL=ToastManager.js.map?dt=1794845785760

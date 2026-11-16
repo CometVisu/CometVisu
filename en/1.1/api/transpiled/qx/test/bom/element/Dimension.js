@@ -34,40 +34,40 @@
     extend: qx.dev.unit.TestCase,
     members: {
       setUp: function setUp() {
-        this.__P_332_0 = document.createElement("span");
-        document.body.appendChild(this.__P_332_0);
-        this.__P_332_1 = document.createElement("span");
-        this.__P_332_1.style.padding = "2px";
-        document.body.appendChild(this.__P_332_1);
-        this.__P_332_2 = document.createElement("div");
-        this.__P_332_2.style.width = "200px";
-        document.body.appendChild(this.__P_332_2);
-        this.__P_332_3 = document.createElement("div");
-        this.__P_332_3.style.padding = "2px";
-        this.__P_332_3.style.width = "200px";
-        document.body.appendChild(this.__P_332_3);
+        this.__P_333_0 = document.createElement("span");
+        document.body.appendChild(this.__P_333_0);
+        this.__P_333_1 = document.createElement("span");
+        this.__P_333_1.style.padding = "2px";
+        document.body.appendChild(this.__P_333_1);
+        this.__P_333_2 = document.createElement("div");
+        this.__P_333_2.style.width = "200px";
+        document.body.appendChild(this.__P_333_2);
+        this.__P_333_3 = document.createElement("div");
+        this.__P_333_3.style.padding = "2px";
+        this.__P_333_3.style.width = "200px";
+        document.body.appendChild(this.__P_333_3);
       },
       tearDown: function tearDown() {
-        document.body.removeChild(this.__P_332_0);
-        this.__P_332_0 = null;
-        document.body.removeChild(this.__P_332_1);
-        this.__P_332_1 = null;
-        document.body.removeChild(this.__P_332_2);
-        this.__P_332_2 = null;
-        document.body.removeChild(this.__P_332_3);
-        this.__P_332_3 = null;
+        document.body.removeChild(this.__P_333_0);
+        this.__P_333_0 = null;
+        document.body.removeChild(this.__P_333_1);
+        this.__P_333_1 = null;
+        document.body.removeChild(this.__P_333_2);
+        this.__P_333_2 = null;
+        document.body.removeChild(this.__P_333_3);
+        this.__P_333_3 = null;
       },
       testContentWidthOfInlineElement: function testContentWidthOfInlineElement() {
-        this.assertEquals(0, qx.bom.element.Dimension.getContentWidth(this.__P_332_0));
+        this.assertEquals(0, qx.bom.element.Dimension.getContentWidth(this.__P_333_0));
       },
       testContentWidthOfInlineElementWithPadding: function testContentWidthOfInlineElementWithPadding() {
-        this.assertEquals(0, qx.bom.element.Dimension.getContentWidth(this.__P_332_1));
+        this.assertEquals(0, qx.bom.element.Dimension.getContentWidth(this.__P_333_1));
       },
       testContentWidthOfBlockElement: function testContentWidthOfBlockElement() {
-        this.assertEquals(200, qx.bom.element.Dimension.getContentWidth(this.__P_332_2));
+        this.assertEquals(200, qx.bom.element.Dimension.getContentWidth(this.__P_333_2));
       },
       testContentWidthOfBlockElementWithPadding: function testContentWidthOfBlockElementWithPadding() {
-        this.assertEquals(200, qx.bom.element.Dimension.getContentWidth(this.__P_332_3));
+        this.assertEquals(200, qx.bom.element.Dimension.getContentWidth(this.__P_333_3));
       },
       testRoundingErrorInWidthAndHeightGetters: function testRoundingErrorInWidthAndHeightGetters() {
         // width = left - right = height = bottom - top = 38.416656494140625
@@ -109,4 +109,4 @@
   qx.test.bom.element.Dimension.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dimension.js.map?dt=1792082778416
+//# sourceMappingURL=Dimension.js.map?dt=1794845762299

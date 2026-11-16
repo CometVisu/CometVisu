@@ -64,8 +64,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       this.client = new qx.io.graphql.Client(transport);
     },
     members: {
-      __P_363_0: false,
-      __P_363_1: "Skipping test as endpoint is not available.",
+      __P_364_0: false,
+      __P_364_1: "Skipping test as endpoint is not available.",
       runQuery: function runQuery(query, expected) {
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
@@ -136,10 +136,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 result = _context3.v;
                 _this3.assertDeepEquals({
                   data: {
-                    __P_363_2: "Query"
+                    __P_364_2: "Query"
                   }
                 }, result);
-                _this3.__P_363_0 = true;
+                _this3.__P_364_0 = true;
                 _context3.n = 4;
                 break;
               case 3:
@@ -158,11 +158,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context4) {
             while (1) switch (_context4.n) {
               case 0:
-                if (_this4.__P_363_0) {
+                if (_this4.__P_364_0) {
                   _context4.n = 1;
                   break;
                 }
-                return _context4.a(2, _this4.skip(_this4.__P_363_1));
+                return _context4.a(2, _this4.skip(_this4.__P_364_1));
               case 1:
                 _context4.n = 2;
                 return _this4.runQuery("{\n          country(code: \"BR\") {\n            name\n            native\n            capital\n            currency\n            languages {\n              code\n              name\n            }\n          }\n        }", {
@@ -189,11 +189,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context5) {
             while (1) switch (_context5.n) {
               case 0:
-                if (_this5.__P_363_0) {
+                if (_this5.__P_364_0) {
                   _context5.n = 1;
                   break;
                 }
-                return _context5.a(2, _this5.skip(_this5.__P_363_1));
+                return _context5.a(2, _this5.skip(_this5.__P_364_1));
               case 1:
                 _context5.n = 2;
                 return _this5.runQueryWithVariables("query ($countryCode:ID!){\n          country(code: $countryCode) {\n            name\n            languages {\n              code\n              name\n            }\n          }\n        }", {
@@ -226,11 +226,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context6) {
             while (1) switch (_context6.p = _context6.n) {
               case 0:
-                if (_this6.__P_363_0) {
+                if (_this6.__P_364_0) {
                   _context6.n = 1;
                   break;
                 }
-                return _context6.a(2, _this6.skip(_this6.__P_363_1));
+                return _context6.a(2, _this6.skip(_this6.__P_364_1));
               case 1:
                 _context6.p = 1;
                 _context6.n = 2;
@@ -259,11 +259,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context7) {
             while (1) switch (_context7.p = _context7.n) {
               case 0:
-                if (_this7.__P_363_0) {
+                if (_this7.__P_364_0) {
                   _context7.n = 1;
                   break;
                 }
-                return _context7.a(2, _this7.skip(_this7.__P_363_1));
+                return _context7.a(2, _this7.skip(_this7.__P_364_1));
               case 1:
                 _context7.p = 1;
                 client = new qx.io.graphql.Client("https://doesnotexist.org/" + Math.random());
@@ -294,4 +294,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.graphql.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1792082780896
+//# sourceMappingURL=Client.js.map?dt=1794845764718

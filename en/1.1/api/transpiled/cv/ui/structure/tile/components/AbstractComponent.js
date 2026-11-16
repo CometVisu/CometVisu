@@ -117,8 +117,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _headerFooterParent: null,
       _preMappingHooks: null,
       _tileElement: null,
-      __P_79_0: null,
-      __P_79_1: null,
+      __P_80_0: null,
+      __P_80_1: null,
       /**
        * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
        */
@@ -189,15 +189,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         this._writeAddresses = writeAddresses;
         this._readAddresses = readAddresses;
         if (hasReadAddress) {
-          this.__P_79_1 = function (ev) {
+          this.__P_80_1 = function (ev) {
             _this.onStateUpdate(ev);
             ev.stopPropagation();
           };
-          element.addEventListener('stateUpdate', this.__P_79_1);
+          element.addEventListener('stateUpdate', this.__P_80_1);
         }
 
         // has mobile attributes
-        this.__P_79_0 = [];
+        this.__P_80_0 = [];
         var check = function check(element) {
           var _iterator = _createForOfIteratorHelper(element.getAttributeNames()),
             _step;
@@ -206,7 +206,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var name = _step.value;
               if (name.startsWith('mobile-')) {
                 var targetName = name.substring(7);
-                _this.__P_79_0.push({
+                _this.__P_80_0.push({
                   name: targetName,
                   mobile: element.getAttribute(name),
                   desktop: element.getAttribute(targetName),
@@ -224,11 +224,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (this._headerFooterParent && this._headerFooterParent.localName === 'cv-widget') {
           check(this._headerFooterParent);
         }
-        if (this.__P_79_0.length > 0) {
-          qx.core.Init.getApplication().addListener('changeMobile', this.__P_79_2, this);
+        if (this.__P_80_0.length > 0) {
+          qx.core.Init.getApplication().addListener('changeMobile', this.__P_80_2, this);
         }
         if (document.body.classList.contains('mobile')) {
-          this.__P_79_2();
+          this.__P_80_2();
         }
       },
       _postInit: function _postInit() {
@@ -250,9 +250,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
         }
       },
-      __P_79_2: function __P_79_2() {
+      __P_80_2: function __P_80_2() {
         var isMobile = document.body.classList.contains('mobile');
-        var _iterator3 = _createForOfIteratorHelper(this.__P_79_0),
+        var _iterator3 = _createForOfIteratorHelper(this.__P_80_0),
           _step3;
         try {
           for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
@@ -266,10 +266,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
       },
       _disconnected: function _disconnected() {
-        qx.core.Init.getApplication().removeListener('changeMobile', this.__P_79_2, this);
-        if (this.__P_79_1) {
-          this._element.removeEventListener('stateUpdate', this.__P_79_1);
-          this.__P_79_1 = null;
+        qx.core.Init.getApplication().removeListener('changeMobile', this.__P_80_2, this);
+        if (this.__P_80_1) {
+          this._element.removeEventListener('stateUpdate', this.__P_80_1);
+          this.__P_80_1 = null;
         }
       },
       /**
@@ -536,10 +536,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       this._readAddresses = null;
       this._headerFooterParent = null;
       this._store.clear();
-      qx.core.Init.getApplication().removeListener('changeMobile', this.__P_79_2, this);
+      qx.core.Init.getApplication().removeListener('changeMobile', this.__P_80_2, this);
     }
   });
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1792082765234
+//# sourceMappingURL=AbstractComponent.js.map?dt=1794845749674

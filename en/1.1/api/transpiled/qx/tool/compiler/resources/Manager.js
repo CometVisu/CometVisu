@@ -81,26 +81,26 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(analyser) {
       qx.core.Object.constructor.call(this);
-      this.__P_509_0 = analyser;
-      this.__P_509_1 = analyser.getResDbFilename() || "resource-db.json";
-      this.__P_509_2 = [new qx.tool.compiler.resources.ImageLoader(this), new qx.tool.compiler.resources.MetaLoader(this)];
-      this.__P_509_3 = [new qx.tool.compiler.resources.ScssConverter(), new qx.tool.compiler.resources.ScssIncludeConverter()];
+      this.__P_510_0 = analyser;
+      this.__P_510_1 = analyser.getResDbFilename() || "resource-db.json";
+      this.__P_510_2 = [new qx.tool.compiler.resources.ImageLoader(this), new qx.tool.compiler.resources.MetaLoader(this)];
+      this.__P_510_3 = [new qx.tool.compiler.resources.ScssConverter(), new qx.tool.compiler.resources.ScssIncludeConverter()];
     },
     members: {
       /** {String} filename of database */
-      __P_509_1: null,
+      __P_510_1: null,
       /** {Object} Database */
-      __P_509_4: null,
+      __P_510_4: null,
       /** the used analyser */
-      __P_509_0: null,
+      __P_510_0: null,
       /** {Map{String,Library}} Lookup of libraries, indexed by resource URI */
-      __P_509_5: null,
+      __P_510_5: null,
       /** {String[]} Array of all resource URIs, sorted alphabetically (ie these are the keys in __librariesByResourceUri) */
-      __P_509_6: null,
+      __P_510_6: null,
       /** {ResourceLoader[]} list of resource loaders, used to add info to the database */
-      __P_509_2: null,
+      __P_510_2: null,
       /** {ResourceConverter[]} list of resource converters, used to copy resources to the target */
-      __P_509_3: null,
+      __P_510_3: null,
       /**
        * Loads the cached database
        */
@@ -112,7 +112,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context.n) {
               case 0:
                 _context.n = 1;
-                return qx.tool.utils.Json.loadJsonAsync(_this.__P_509_1);
+                return qx.tool.utils.Json.loadJsonAsync(_this.__P_510_1);
               case 1:
                 _t = _context.v;
                 if (_t) {
@@ -121,7 +121,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _t = {};
               case 2:
-                _this.__P_509_4 = _t;
+                _this.__P_510_4 = _t;
               case 3:
                 return _context.a(2);
             }
@@ -138,7 +138,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context2.n) {
               case 0:
                 log.debug("saving resource manager database");
-                return _context2.a(2, qx.tool.utils.Json.saveJsonAsync(_this2.__P_509_1, _this2.__P_509_4));
+                return _context2.a(2, qx.tool.utils.Json.saveJsonAsync(_this2.__P_510_1, _this2.__P_510_4));
             }
           }, _callee2);
         }))();
@@ -149,7 +149,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns
        */
       getDatabase: function getDatabase() {
-        return this.__P_509_4;
+        return this.__P_510_4;
       },
       /**
        * Finds the library needed for a resource, see `findLibrariesForResource`.  This reports
@@ -189,7 +189,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
           // check for absolute path first, in windows c:/ is a valid absolute name
           if (path.isAbsolute(uri)) {
-            var library = _this3.__P_509_0.getLibraries().find(function (lib) {
+            var library = _this3.__P_510_0.getLibraries().find(function (lib) {
               return uri.startsWith(path.resolve(lib.getRootDir()));
             });
             return library || null;
@@ -199,7 +199,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           pos = uri.indexOf(":");
           if (pos !== -1) {
             ns = uri.substring(0, pos);
-            var _library = _this3.__P_509_0.findLibrary(ns);
+            var _library = _this3.__P_510_0.findLibrary(ns);
             return _library || null;
           }
 
@@ -216,7 +216,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             pos = Math.min(pos1, pos2);
           }
           if (pos === -1) {
-            var _library2 = _this3.__P_509_5[uri] || null;
+            var _library2 = _this3.__P_510_5[uri] || null;
             return _library2;
           }
 
@@ -226,19 +226,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
           // Fast folder match
           if (isFolderMatch) {
-            var _library3 = _this3.__P_509_5[uri] || null;
+            var _library3 = _this3.__P_510_5[uri] || null;
             return _library3;
           }
 
           // Slow scan
-          if (!_this3.__P_509_6) {
-            _this3.__P_509_6 = Object.keys(_this3.__P_509_5).sort();
+          if (!_this3.__P_510_6) {
+            _this3.__P_510_6 = Object.keys(_this3.__P_510_5).sort();
           }
-          var thisUriPos = qx.tool.utils.Values.binaryStartsWith(_this3.__P_509_6, uri);
+          var thisUriPos = qx.tool.utils.Values.binaryStartsWith(_this3.__P_510_6, uri);
           if (thisUriPos > -1) {
             var libraries = {};
-            for (; thisUriPos < _this3.__P_509_6.length; thisUriPos++) {
-              var thisUri = _this3.__P_509_6[thisUriPos];
+            for (; thisUriPos < _this3.__P_510_6.length; thisUriPos++) {
+              var thisUri = _this3.__P_510_6[thisUriPos];
               if (!thisUri.startsWith(uri)) {
                 break;
               }
@@ -246,7 +246,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               if (pos !== -1) {
                 ns = uri.substring(0, pos);
                 if (!libraries[ns]) {
-                  libraries[ns] = _this3.__P_509_0.findLibrary(ns);
+                  libraries[ns] = _this3.__P_510_0.findLibrary(ns);
                 }
               }
             }
@@ -275,15 +275,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context8.n) {
               case 0:
                 t = _this4;
-                db = _this4.__P_509_4;
+                db = _this4.__P_510_4;
                 if (!db.resources) {
                   db.resources = {};
                 }
-                t.__P_509_5 = {};
-                _this4.__P_509_6 = null;
-                _this4.__P_509_7 = {};
+                t.__P_510_5 = {};
+                _this4.__P_510_6 = null;
+                _this4.__P_510_7 = {};
                 _context8.n = 1;
-                return qx.Promise.all(t.__P_509_0.getLibraries().map(/*#__PURE__*/function () {
+                return qx.Promise.all(t.__P_510_0.getLibraries().map(/*#__PURE__*/function () {
                   var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(library) {
                     var resources, unconfirmed, relFile, scanResources;
                     return _regenerator().w(function (_context6) {
@@ -324,7 +324,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                                             case 1:
                                               fileInfo.mtime = _context3.v;
                                               asset = new qx.tool.compiler.resources.Asset(library, relFile, fileInfo);
-                                              _this4.__P_509_8(asset);
+                                              _this4.__P_510_8(asset);
                                             case 2:
                                               return _context3.a(2);
                                           }
@@ -392,7 +392,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }()));
               case 1:
                 _context8.n = 2;
-                return qx.tool.utils.Promisify.poolEachOf(Object.values(_this4.__P_509_7), 10, /*#__PURE__*/function () {
+                return qx.tool.utils.Promisify.poolEachOf(Object.values(_this4.__P_510_7), 10, /*#__PURE__*/function () {
                   var _ref5 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(asset) {
                     var fileInfo, altPath, lib, otherAsset, dependsOn;
                     return _regenerator().w(function (_context7) {
@@ -408,7 +408,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                               if (!lib) {
                                 lib = asset.getLibrary();
                               }
-                              otherAsset = _this4.__P_509_7[lib.getNamespace() + ":" + altPath];
+                              otherAsset = _this4.__P_510_7[lib.getNamespace() + ":" + altPath];
                               if (otherAsset) {
                                 otherAsset.addMetaReferee(asset);
                                 asset.addMetaReferTo(otherAsset);
@@ -420,7 +420,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           if (fileInfo.dependsOn) {
                             dependsOn = [];
                             fileInfo.dependsOn.forEach(function (str) {
-                              var otherAsset = _this4.__P_509_7[str];
+                              var otherAsset = _this4.__P_510_7[str];
                               if (!otherAsset) {
                                 qx.tool.compiler.Console.warn("Cannot find asset " + str + " depended on by " + asset);
                               } else {
@@ -450,9 +450,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        * @param asset {Asset} the asset to add
        */
-      __P_509_8: function __P_509_8(asset) {
+      __P_510_8: function __P_510_8(asset) {
         var _this5 = this;
-        this.__P_509_7[asset.toUri()] = asset;
+        this.__P_510_7[asset.toUri()] = asset;
         var library = asset.getLibrary();
         var filename = asset.getFilename();
         var tmp = "";
@@ -461,23 +461,23 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             tmp += "/";
           }
           tmp += seg;
-          var current = _this5.__P_509_5[tmp];
+          var current = _this5.__P_510_5[tmp];
           if (current) {
             if (qx.lang.Type.isArray(current)) {
               if (!qx.lang.Array.contains(current, library)) {
                 current.push(library);
               }
             } else if (current !== library) {
-              current = _this5.__P_509_5[tmp] = [current, library];
+              current = _this5.__P_510_5[tmp] = [current, library];
             }
           } else {
-            _this5.__P_509_5[tmp] = library;
+            _this5.__P_510_5[tmp] = library;
           }
         });
-        asset.setLoaders(this.__P_509_2.filter(function (loader) {
+        asset.setLoaders(this.__P_510_2.filter(function (loader) {
           return loader.matches(filename, library);
         }));
-        asset.setConverters(this.__P_509_3.filter(function (converter) {
+        asset.setConverters(this.__P_510_3.filter(function (converter) {
           return converter.matches(filename, library);
         }));
       },
@@ -497,12 +497,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         var resourceDir = path.join(library.getRootDir(), isThemeFile ? library.getThemePath() : library.getResourcePath());
         srcPath = path.relative(resourceDir, path.isAbsolute(srcPath) ? srcPath : path.join(resourceDir, srcPath));
-        var asset = this.__P_509_7[library.getNamespace() + ":" + srcPath];
+        var asset = this.__P_510_7[library.getNamespace() + ":" + srcPath];
         if (!asset && create) {
           asset = new qx.tool.compiler.resources.Asset(library, srcPath, {
             resourcePath: "resourcePath"
           });
-          this.__P_509_8(asset);
+          this.__P_510_8(asset);
         }
         return asset;
       },
@@ -514,7 +514,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getAssetsForPaths: function getAssetsForPaths(srcPaths) {
         var _this6 = this;
-        var db = this.__P_509_4;
+        var db = this.__P_510_4;
 
         // Generate a lookup that maps the resource name to the meta file that
         //  contains the composite
@@ -538,7 +538,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           var libraries = null;
           if (pos > -1) {
             var ns = srcPath.substring(0, pos);
-            var tmp = _this6.__P_509_0.findLibrary(ns);
+            var tmp = _this6.__P_510_0.findLibrary(ns);
             libraries = tmp ? [tmp] : [];
             srcPath = srcPath.substring(pos + 1);
           } else {
@@ -564,7 +564,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               if (assetPaths[resourceName] !== undefined) {
                 return;
               }
-              var asset = _this6.__P_509_7[library.getNamespace() + ":" + resourceName];
+              var asset = _this6.__P_510_7[library.getNamespace() + ":" + resourceName];
               var fileInfo = asset.getFileInfo();
               if (fileInfo.doNotCopy === true) {
                 return;
@@ -588,4 +588,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1792082790541
+//# sourceMappingURL=Manager.js.map?dt=1794845773953

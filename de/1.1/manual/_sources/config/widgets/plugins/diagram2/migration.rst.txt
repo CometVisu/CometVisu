@@ -35,8 +35,8 @@ alt                           neu
 ============================  ==============================
 
 Alle Attribute und Kind-Elemente bleiben unverändert — ``series``, ``period``, ``legend``,
-``gridcolor``, ``<axis>``, ``<rrd>``, ``<influx>``, ``<openhab>`` und der Rest werden genauso
-gelesen wie vorher.
+``gridcolor``, ``<axis>``, ``<rrd>``, ``<influx>``, ``<iobroker>``, ``<openhab>`` und der Rest
+werden genauso gelesen wie vorher.
 
 Schritt 3: Strichstärken und Gitterfarbe für das Aussehen von ``diagram``
 -------------------------------------------------------------------------
@@ -69,7 +69,7 @@ ebenfalls mit 1 und nur den Rahmen kräftiger. Für das gewohnte Bild genügen a
     <diagram2 series="day" period="3" borderwidth="2" linewidth="2" gridopacity="1" popup="true">
       <layout colspan="12" rowspan="6"/>
       <axis unit=" °C" label="Temperatur" decimals="1">temperature</axis>
-      <influx measurement="haus/temperatur" color="#FF0000" label="Aussen [°C]" yaxis="temperature"/>
+      <iobroker instance="influxdb.0" color="#FF0000" label="Aussen [°C]" yaxis="temperature">hm-rpc.0.LEQ123456.1.TEMPERATURE</iobroker>
     </diagram2>
 
 Die Werte gelten für ein Diagramm als Ganzes, nicht je Datenreihe, und für ``<diagram2_info>``

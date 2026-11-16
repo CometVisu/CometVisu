@@ -38,13 +38,13 @@
   qx.Class.define("qx.test.event.handler.Offline", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_359_0: qx.event.Registration.getManager(window).getHandler(qx.event.handler.Offline),
+      __P_360_0: qx.event.Registration.getManager(window).getHandler(qx.event.handler.Offline),
       testIsOnline: function testIsOnline() {
-        this.assertBoolean(this.__P_359_0.isOnline());
+        this.assertBoolean(this.__P_360_0.isOnline());
       }
     }
   });
   qx.test.event.handler.Offline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Offline.js.map?dt=1792082780546
+//# sourceMappingURL=Offline.js.map?dt=1794845764376

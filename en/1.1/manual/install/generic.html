@@ -81,6 +81,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#knxd-eibd">knxd / eibd</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#openhab">openHAB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mqtt">MQTT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iobroker">ioBroker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#backend-configuration">Backend configuration</a></li>
 </ul>
 </li>
@@ -194,6 +195,15 @@ and
 <p>To use the CometVisu as one of the MQTT participant you need a MQTT broker
 that can be contacted with WebSockets.</p>
 </section>
+<section id="iobroker">
+<h3>ioBroker<a class="headerlink" href="#iobroker" title="Link to this heading"></a></h3>
+<p>An ioBroker server with a socket interface is required for the data exchange:
+either the web adapter (<code class="docutils literal notranslate"><span class="pre">iobroker.web</span></code>) or the “Web socket” adapter
+(<code class="docutils literal notranslate"><span class="pre">iobroker.ws</span></code>, at least version 5.0.2). CometVisu loads the matching client
+library from that server, so it does not matter which protocol it uses. To
+display charts or history data, the SQL adapter (<code class="docutils literal notranslate"><span class="pre">iobroker.sql</span></code>, at least
+version 4.1.1) is additionally required.</p>
+</section>
 <section id="backend-configuration">
 <h3>Backend configuration<a class="headerlink" href="#backend-configuration" title="Link to this heading"></a></h3>
 <p>To configure the CometVisu to use a given backend different possibilities are
@@ -214,7 +224,7 @@ be achieved by setting the corresponding <code class="docutils literal notransla
 </tr>
 <tr class="row-even"><td><p>X-CometVisu-Backend-Name</p></td>
 <td><p>BACKEND_NAME</p></td>
-<td><p>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
+<td><p>Name like <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">iobroker</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>X-CometVisu-Backend-KNXD-Url</p></td>
 <td><p>BACKEND_KNXD</p></td>
@@ -224,19 +234,23 @@ be achieved by setting the corresponding <code class="docutils literal notransla
 <td><p>BACKEND_MQTT</p></td>
 <td><p>URL of the MQTT login resource</p></td>
 </tr>
-<tr class="row-odd"><td><p>X-CometVisu-Backend-OpenHAB-Url</p></td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-ioBroker-Url</p></td>
+<td><p>BACKEND_IOBROKER</p></td>
+<td><p>URL of the ioBroker websocket API</p></td>
+</tr>
+<tr class="row-even"><td><p>X-CometVisu-Backend-OpenHAB-Url</p></td>
 <td><p>BACKEND_OPENHAB</p></td>
 <td><p>Only openHAB: path to the REST-API</p></td>
 </tr>
-<tr class="row-even"><td><p>X-CometVisu-Backend-LoginUrl</p></td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-LoginUrl</p></td>
 <td><p>CGI_URL_PATH</p></td>
 <td><p>Deprecated: URL of the knxd or openHAB login resource</p></td>
 </tr>
-<tr class="row-odd"><td><p>X-CometVisu-Backend-User</p></td>
+<tr class="row-even"><td><p>X-CometVisu-Backend-User</p></td>
 <td><p>BACKEND_USERNAME</p></td>
 <td><p>Deprecated: user name, when needed for the MQTT broker or openHAB</p></td>
 </tr>
-<tr class="row-even"><td><p>X-CometVisu-Backend-Pass</p></td>
+<tr class="row-odd"><td><p>X-CometVisu-Backend-Pass</p></td>
 <td><p>BACKEND_PASSWORD</p></td>
 <td><p>Deprecated: password, when needed for the MQTT broker or openHAB</p></td>
 </tr>
@@ -244,7 +258,7 @@ be achieved by setting the corresponding <code class="docutils literal notransla
 </table>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The user name and password for the MQTT broker are stored in pain text
+<p>The user name and password for the MQTT broker are stored in plain text
 and are transported like that over the network!</p>
 </div>
 </section>
@@ -266,16 +280,19 @@ as attributes:</p>
 <tr class="row-even"><td><p>backend-mqtt-url</p></td>
 <td><p>URL of the MQTT login resource</p></td>
 </tr>
-<tr class="row-odd"><td><p>backend-openhab-url</p></td>
+<tr class="row-odd"><td><p>backend-iobroker-url</p></td>
+<td><p>URL of the ioBroker websocket API</p></td>
+</tr>
+<tr class="row-even"><td><p>backend-openhab-url</p></td>
 <td><p>Only openHAB: path to the REST-API</p></td>
 </tr>
-<tr class="row-even"><td><p>backend-url</p></td>
+<tr class="row-odd"><td><p>backend-url</p></td>
 <td><p>Deprecated: URL of the MQTT WebSocket</p></td>
 </tr>
-<tr class="row-odd"><td><p>username</p></td>
+<tr class="row-even"><td><p>username</p></td>
 <td><p>Deprecated: User name, when needed for openHAB</p></td>
 </tr>
-<tr class="row-even"><td><p>password</p></td>
+<tr class="row-odd"><td><p>password</p></td>
 <td><p>Deprecated: Password, when needed for openHAB</p></td>
 </tr>
 </tbody>
@@ -482,6 +499,9 @@ available under <a class="reference internal" href="raspberry.html"><span class=
         </dd>
         
         <dd><a href="../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

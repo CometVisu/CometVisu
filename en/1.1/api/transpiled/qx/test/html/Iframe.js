@@ -50,32 +50,32 @@
     extend: qx.dev.unit.TestCase,
     include: qx.dev.unit.MMock,
     members: {
-      __P_361_0: null,
-      __P_361_1: null,
-      __P_361_2: null,
-      __P_361_3: null,
-      __P_361_4: false,
+      __P_362_0: null,
+      __P_362_1: null,
+      __P_362_2: null,
+      __P_362_3: null,
+      __P_362_4: false,
       setUp: function setUp() {
         var helper = document.createElement("div");
         document.body.appendChild(helper);
-        this.__P_361_0 = new qx.html.Root(helper);
-        this.__P_361_0.setAttribute("id", "doc");
-        var frame = this.__P_361_1 = new qx.html.Iframe();
-        this.__P_361_0.add(frame);
+        this.__P_362_0 = new qx.html.Root(helper);
+        this.__P_362_0.setAttribute("id", "doc");
+        var frame = this.__P_362_1 = new qx.html.Iframe();
+        this.__P_362_0.add(frame);
 
         // Source in parent directory is not of same origin
         // when using file protocol – use non-existing file
         // in same directory instead
         if (window.location.protocol === "file:") {
-          this.__P_361_3 = "blank.html";
+          this.__P_362_3 = "blank.html";
         } else {
-          this.__P_361_3 = qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html");
+          this.__P_362_3 = qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html");
         }
       },
       "test: set source to URL with same origin": function test_set_source_to_URL_with_same_origin() {
         var _this = this;
-        var frame = this.__P_361_1;
-        var source = this.__P_361_3;
+        var frame = this.__P_362_1;
+        var source = this.__P_362_3;
         frame.addListener("load", function () {
           _this.resume(function () {
             var element = frame.getDomElement();
@@ -100,11 +100,11 @@
         this.wait();
       },
       "test: update source on navigate": function test_update_source_on_navigate() {
-        var frame = this.__P_361_1;
+        var frame = this.__P_362_1;
 
         // As soon as the original frame has loaded,
         // fake user-action and browse
-        var source = this.__P_361_3;
+        var source = this.__P_362_3;
         frame.addListenerOnce("load", function () {
           qx.html.Element.flush();
           qx.bom.Iframe.setSource(frame.getDomElement(), source);
@@ -118,11 +118,11 @@
       },
       "test: skip setting source if frame is already on URL": function test_skip_setting_source_if_frame_is_already_on_URL() {
         var _this2 = this;
-        var frame = this.__P_361_1;
+        var frame = this.__P_362_1;
 
         // As soon as the original frame has loaded,
         // fake user-action and browse
-        var source = this.__P_361_3;
+        var source = this.__P_362_3;
         frame.addListenerOnce("load", function () {
           qx.bom.Iframe.setSource(frame.getDomElement(), source);
         });
@@ -149,8 +149,8 @@
       },
       "test: set null source if frame is cross-origin": function test_set_null_source_if_frame_is_crossOrigin() {
         var _this3 = this;
-        var frame = this.__P_361_1;
-        if (this.__P_361_4) {
+        var frame = this.__P_362_1;
+        if (this.__P_362_4) {
           this.skip("This test can only run once. Reload to run again.");
         }
 
@@ -164,7 +164,7 @@
           });
         });
         frame.setSource("http://example.com");
-        this.__P_361_4 = true;
+        this.__P_362_4 = true;
         this.wait();
       },
       tearDown: function tearDown() {
@@ -172,12 +172,12 @@
         var div = document.getElementById("doc");
         document.body.removeChild(div);
         this.getSandbox().restore();
-        this.__P_361_1.dispose();
-        this.__P_361_1 = null;
+        this.__P_362_1.dispose();
+        this.__P_362_1 = null;
       }
     }
   });
   qx.test.html.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1792082780762
+//# sourceMappingURL=Iframe.js.map?dt=1794845764583

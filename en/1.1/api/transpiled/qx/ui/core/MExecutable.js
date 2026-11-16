@@ -84,12 +84,12 @@
     */
 
     members: {
-      __P_553_0: null,
+      __P_554_0: null,
       /**
        * @type {Boolean} Whether the command already executed. The protection flag to stop the second command execution.
        */
-      __P_553_1: false,
-      __P_553_2: null,
+      __P_554_1: false,
+      __P_554_2: null,
       /**
        * @type {Map} Set of properties, which will by synced from the command to the
        *    including widget
@@ -106,10 +106,10 @@
       execute: function execute() {
         var cmd = this.getCommand();
         if (cmd) {
-          if (this.__P_553_1) {
-            this.__P_553_1 = false;
+          if (this.__P_554_1) {
+            this.__P_554_1 = false;
           } else {
-            this.__P_553_1 = true;
+            this.__P_554_1 = true;
             cmd.execute(this);
           }
         }
@@ -120,12 +120,12 @@
        *
        * @param e {qx.event.type.Event} The execute event of the command.
        */
-      __P_553_3: function __P_553_3(e) {
-        if (this.__P_553_1) {
-          this.__P_553_1 = false;
+      __P_554_3: function __P_554_3(e) {
+        if (this.__P_554_1) {
+          this.__P_554_1 = false;
           return;
         }
-        this.__P_553_1 = true;
+        this.__P_554_1 = true;
         if (this.isEnabled()) {
           this.execute();
         }
@@ -134,16 +134,16 @@
       _applyCommand: function _applyCommand(value, old) {
         // execute forwarding
         if (old != null) {
-          old.removeListenerById(this.__P_553_2);
+          old.removeListenerById(this.__P_554_2);
         }
         if (value != null) {
-          this.__P_553_2 = value.addListener("execute", this.__P_553_3, this);
+          this.__P_554_2 = value.addListener("execute", this.__P_554_3, this);
         }
 
         // binding stuff
-        var ids = this.__P_553_0;
+        var ids = this.__P_554_0;
         if (ids == null) {
-          this.__P_553_0 = ids = {};
+          this.__P_554_0 = ids = {};
         }
         var selfPropertyValue;
         for (var i = 0; i < this._bindableProperties.length; i++) {
@@ -184,10 +184,10 @@
     },
     destruct: function destruct() {
       this._applyCommand(null, this.getCommand());
-      this.__P_553_0 = null;
+      this.__P_554_0 = null;
     }
   });
   qx.ui.core.MExecutable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MExecutable.js.map?dt=1792082793290
+//# sourceMappingURL=MExecutable.js.map?dt=1794845776786

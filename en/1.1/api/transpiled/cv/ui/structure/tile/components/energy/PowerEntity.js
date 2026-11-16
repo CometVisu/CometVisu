@@ -11,7 +11,7 @@ function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new T
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
@@ -104,7 +104,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_96_0: null,
+      __P_97_0: null,
       _applyType: function _applyType(value) {
         var settings = cv.ui.structure.tile.components.energy.PowerEntity.typeSettings[value];
         if (settings) {
@@ -145,8 +145,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             icon.style.fontSize = this._iconSize + 'px';
           }
         }
-        this.__P_96_0 = window.requestAnimationFrame(function () {
-          _this.__P_96_0 = null;
+        this.__P_97_0 = window.requestAnimationFrame(function () {
+          _this.__P_97_0 = null;
           if (!_this.isConnected()) {
             return;
           }
@@ -156,18 +156,18 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         this.addListener('changeValue', this._updateDirection, this);
       },
       _disconnected: function _disconnected() {
-        this.__P_96_1();
+        this.__P_97_1();
         cv.ui.structure.tile.components.energy.PowerEntity.superclass.prototype._disconnected.call(this);
       },
-      __P_96_1: function __P_96_1() {
-        if (this.__P_96_0 !== null) {
-          window.cancelAnimationFrame(this.__P_96_0);
-          this.__P_96_0 = null;
+      __P_97_1: function __P_97_1() {
+        if (this.__P_97_0 !== null) {
+          window.cancelAnimationFrame(this.__P_97_0);
+          this.__P_97_0 = null;
         }
       }
     },
     destruct: function destruct() {
-      this.__P_96_1();
+      this.__P_97_1();
     },
     defer: function defer(QxClass) {
       var _Class;
@@ -186,4 +186,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.energy.PowerEntity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerEntity.js.map?dt=1792082766611
+//# sourceMappingURL=PowerEntity.js.map?dt=1794845751034

@@ -117,7 +117,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
       ICON: cv.theme.dark.Images.getIcon('text', 18),
-      __P_38_0: null,
+      __P_39_0: null,
       getExtensionRegex: function getExtensionRegex() {
         if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
           if (window.monaco && window.monaco.languages) {
@@ -142,14 +142,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       load: function load(callback, context) {
         // Guard against multiple concurrent loads
-        if (cv.ui.manager.editor.Source.__P_38_0) {
-          cv.ui.manager.editor.Source.__P_38_0.push({
+        if (cv.ui.manager.editor.Source.__P_39_0) {
+          cv.ui.manager.editor.Source.__P_39_0.push({
             fn: callback,
             ctx: context
           });
           return;
         }
-        cv.ui.manager.editor.Source.__P_38_0 = [{
+        cv.ui.manager.editor.Source.__P_39_0 = [{
           fn: callback,
           ctx: context
         }];
@@ -206,15 +206,17 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           fetch(qxLibUri).then(function (r) {
             return r.text();
           }).then(function (qxLib) {
-            window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
+            // since monaco 0.56 the language namespaces are top level
+            var ts = window.monaco.typescript || window.monaco.languages.typescript;
+            ts.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
             var completionProvider = new cv.ui.manager.editor.completion.Config();
             var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
             window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
             window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
 
             // Notify all pending callers
-            var cbs = cv.ui.manager.editor.Source.__P_38_0;
-            cv.ui.manager.editor.Source.__P_38_0 = null;
+            var cbs = cv.ui.manager.editor.Source.__P_39_0;
+            cv.ui.manager.editor.Source.__P_39_0 = null;
             cbs.forEach(function (entry) {
               entry.fn.apply(entry.ctx);
             });
@@ -229,7 +231,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (lang !== 'en') {
           code += 'await import(\'' + toUri('monaco/nls.messages.' + lang + '.js') + '\').catch(function(){});\n';
         }
-        code += 'await import(\'' + toUri('monaco/editor.main.js') + '\');\n';
+        // since monaco 0.56 the language services are exports of editor.main, not part of the global API
+        code += 'const m = await import(\'' + toUri('monaco/editor.main.js') + '\');\n';
+        code += 'if (m.typescript) { window.monaco.typescript = m.typescript; }\n';
+        code += 'if (m.json) { window.monaco.json = m.json; }\n';
         code += 'document.dispatchEvent(new CustomEvent(\'cv-monaco-loaded\'));\n';
         var script = document.createElement('script');
         script.type = 'module';
@@ -293,7 +298,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             xhr.addListenerOnce('success', function (e) {
               var req = e.getTarget();
               var schema = req.getResponse();
-              window.monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+              // since monaco 0.56 the language namespaces are top level
+              var json = window.monaco.json || window.monaco.languages.json;
+              json.jsonDefaults.setDiagnosticsOptions({
                 validate: true,
                 allowComments: true,
                 schemas: [{
@@ -412,17 +419,17 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             // ask user if he really want to save a file with warnings
             qxl.dialog.Dialog.confirm(this.tr('Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?'), function (confirmed) {
               if (confirmed) {
-                this.__P_38_1();
+                this.__P_39_1();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_38_1();
+            this.__P_39_1();
           }
         } else {
           cv.ui.manager.editor.Source.superclass.prototype.save.call(this, callback, overrideHash);
         }
       },
-      __P_38_1: function __P_38_1() {
+      __P_39_1: function __P_39_1() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -619,4 +626,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1792082762432
+//# sourceMappingURL=Source.js.map?dt=1794845747065

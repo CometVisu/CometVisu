@@ -62,24 +62,24 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Available once the promise of load() has resolved.
        */
       TF: null,
-      __P_791_0: null,
+      __P_793_0: null,
       /**
        * Loads d3 and localizes it. Repeated calls return the same promise.
        * @return {Promise} resolves when window.d3 is usable
        */
       load: function load() {
-        if (!cv.util.D3.__P_791_0) {
-          cv.util.D3.__P_791_0 = cv.util.D3.__P_791_1().then(function () {
-            return cv.util.D3.__P_791_2();
+        if (!cv.util.D3.__P_793_0) {
+          cv.util.D3.__P_793_0 = cv.util.D3.__P_793_1().then(function () {
+            return cv.util.D3.__P_793_2();
           });
         }
-        return cv.util.D3.__P_791_0;
+        return cv.util.D3.__P_793_0;
       },
       /**
        * Adds the script tag and waits for the library to appear in the window.
        * @return {Promise}
        */
-      __P_791_1: function __P_791_1() {
+      __P_793_1: function __P_793_1() {
         return new Promise(/*#__PURE__*/function () {
           var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(resolve, reject) {
             var check, timer, counter, _t;
@@ -136,7 +136,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * Applies the number and date formats of the current locale to d3.
        */
-      __P_791_2: function __P_791_2() {
+      __P_793_2: function __P_793_2() {
         if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
           d3.formatDefaultLocale({
             decimal: qx.locale.Number.getDecimalSeparator().translate().toString(),
@@ -189,4 +189,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.util.D3.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=D3.js.map?dt=1792082802909
+//# sourceMappingURL=D3.js.map?dt=1794845786285

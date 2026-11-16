@@ -29,20 +29,20 @@
     construct: function construct() {
       var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Infinity;
       qx.core.Object.constructor.call(this);
-      this.__P_747_0 = limit;
-      this.__P_747_1 = [];
-      this.__P_747_2 = 0;
+      this.__P_748_0 = limit;
+      this.__P_748_1 = [];
+      this.__P_748_2 = 0;
     },
     members: {
       /**
        * @type {TaskEntry<*>[]}
        * The tasks that are waiting to be executed
        */
-      __P_747_1: null,
+      __P_748_1: null,
       /**
        * Number of currently running tasks.
        */
-      __P_747_2: null,
+      __P_748_2: null,
       /**
        * Queues a function to be executed.
        * If the limit is reached, the function will be put on hold until a slot is available.
@@ -55,12 +55,12 @@
       add: function add(task) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-          _this.__P_747_1.push({
+          _this.__P_748_1.push({
             task: task,
             resolve: resolve,
             reject: reject
           });
-          _this.__P_747_3();
+          _this.__P_748_3();
         });
       },
       /**
@@ -68,22 +68,22 @@
        * and executes the next item in the queue if the limit is not reached.
        * Once the item has finished executing, it will check the queue again.
        */
-      __P_747_3: function __P_747_3() {
+      __P_748_3: function __P_748_3() {
         var _this2 = this;
-        if (this.__P_747_2 == this.__P_747_0) {
+        if (this.__P_748_2 == this.__P_748_0) {
           return;
         }
-        var next = this.__P_747_1.shift();
+        var next = this.__P_748_1.shift();
         if (!next) {
           return;
         }
         var task = next.task,
           resolve = next.resolve,
           reject = next.reject;
-        this.__P_747_2++;
+        this.__P_748_2++;
         task().then(resolve, reject)["finally"](function () {
-          _this2.__P_747_2--;
-          _this2.__P_747_3();
+          _this2.__P_748_2--;
+          _this2.__P_748_3();
         });
       }
     }
@@ -91,4 +91,4 @@
   qx.util.ConcurrencyLimiter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConcurrencyLimiter.js.map?dt=1792082801198
+//# sourceMappingURL=ConcurrencyLimiter.js.map?dt=1794845784522

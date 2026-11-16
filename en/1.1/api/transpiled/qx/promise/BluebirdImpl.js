@@ -34,7 +34,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * Called when the Bluebird Promise class is loaded
        * @param Promise {Class} the Promise class
        */
-      __P_311_0: function __P_311_0(Promise) {
+      __P_312_0: function __P_312_0(Promise) {
         qx.promise.BluebirdImpl.Bluebird = Promise;
         Promise.config({
           warnings: true,
@@ -119,7 +119,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
      * Features enabled: core, race, call_get, generators, map, nodeify, promisify, props, reduce, settle, some, using, timers, filter, any, each
      */
     !function (e) {
-      qx.promise.BluebirdImpl.__P_311_0(e());
+      qx.promise.BluebirdImpl.__P_312_0(e());
     }(function () {
       var define, module, exports;
       return function e(t, n, r) {
@@ -1045,10 +1045,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 }
                 if (trace !== undefined) {
                   trace.attachExtraTrace(error);
-                } else if (!error.__P_311_1) {
+                } else if (!error.__P_312_1) {
                   var parsed = parseStackAndMessage(error);
                   util.notEnumerableProp(error, "stack", parsed.message + "\n" + parsed.stack.join("\n"));
-                  util.notEnumerableProp(error, "__P_311_1", true);
+                  util.notEnumerableProp(error, "__P_312_1", true);
                 }
               }
             }
@@ -1361,7 +1361,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               }
             };
             CapturedTrace.prototype.attachExtraTrace = function (error) {
-              if (error.__P_311_1) return;
+              if (error.__P_312_1) return;
               this.uncycle();
               var parsed = parseStackAndMessage(error);
               var message = parsed.message;
@@ -1374,7 +1374,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               removeCommonRoots(stacks);
               removeDuplicateOrEmptyJumps(stacks);
               util.notEnumerableProp(error, "stack", reconstructStack(message, stacks));
-              util.notEnumerableProp(error, "__P_311_1", true);
+              util.notEnumerableProp(error, "__P_312_1", true);
             };
             var captureStackTrace = function stackDetection() {
               var v8stackFramePattern = /^\s*at\s*/;
@@ -3222,9 +3222,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             var TypeError = _dereq_("./errors").TypeError;
             var defaultSuffix = "Async";
             var defaultPromisified = {
-              __P_311_2: true
+              __P_312_2: true
             };
-            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__P_311_2"];
+            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__P_312_2"];
             var noCopyPropsPattern = new RegExp("^(?:" + noCopyProps.join("|") + ")$");
             var defaultFilter = function defaultFilter(name) {
               return util.isIdentifier(name) && name.charAt(0) !== "_" && name !== "constructor";
@@ -3234,7 +3234,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             }
             function isPromisified(fn) {
               try {
-                return fn.__P_311_2 === true;
+                return fn.__P_312_2 === true;
               } catch (e) {
                 return false;
               }
@@ -3274,7 +3274,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               return str.replace(/([$])/, "\\$");
             };
             var makeNodePromisifiedEval;
-            function makeNodePromisifiedClosure(callback, receiver, _, fn, __P_311_3, multiArgs) {
+            function makeNodePromisifiedClosure(callback, receiver, _, fn, __P_312_3, multiArgs) {
               var defaultThis = function () {
                 return this;
               }();
@@ -3297,7 +3297,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 if (!promise._isFateSealed()) promise._setAsyncGuaranteed();
                 return promise;
               }
-              util.notEnumerableProp(promisified, "__P_311_2", true);
+              util.notEnumerableProp(promisified, "__P_312_2", true);
               return promisified;
             }
             var makeNodePromisified = canEvaluate ? makeNodePromisifiedEval : makeNodePromisifiedClosure;
@@ -3314,7 +3314,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   var promisified = promisifier(fn, function () {
                     return makeNodePromisified(key, THIS, key, fn, suffix, multiArgs);
                   });
-                  util.notEnumerableProp(promisified, "__P_311_2", true);
+                  util.notEnumerableProp(promisified, "__P_312_2", true);
                   obj[promisifiedKey] = promisified;
                 }
               }
@@ -4022,11 +4022,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             PromiseInspection.prototype.isCancelled = function () {
               return (this._bitField & 8454144) !== 0;
             };
-            Promise.prototype.__P_311_4 = function () {
+            Promise.prototype.__P_312_4 = function () {
               return (this._bitField & 65536) === 65536;
             };
             Promise.prototype._isCancelled = function () {
-              return this._target().__P_311_4();
+              return this._target().__P_312_4();
             };
             Promise.prototype.isCancelled = function () {
               return (this._target()._bitField & 8454144) !== 0;
@@ -4745,4 +4745,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.promise.BluebirdImpl.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BluebirdImpl.js.map?dt=1792082777267
+//# sourceMappingURL=BluebirdImpl.js.map?dt=1794845761184

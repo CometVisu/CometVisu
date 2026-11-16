@@ -178,8 +178,8 @@ directly. Once everything is converted, the <code class="docutils literal notran
 </tbody>
 </table>
 <p>All attributes and child elements stay as they are — <code class="docutils literal notranslate"><span class="pre">series</span></code>, <code class="docutils literal notranslate"><span class="pre">period</span></code>, <code class="docutils literal notranslate"><span class="pre">legend</span></code>,
-<code class="docutils literal notranslate"><span class="pre">gridcolor</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> and the rest are read exactly as
-before.</p>
+<code class="docutils literal notranslate"><span class="pre">gridcolor</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;iobroker&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> and the rest are
+read exactly as before.</p>
 </section>
 <section id="step-3-stroke-widths-and-grid-colour-for-the-look-of-diagram">
 <h2>Step 3: stroke widths and grid colour for the look of <code class="docutils literal notranslate"><span class="pre">diagram</span></code><a class="headerlink" href="#step-3-stroke-widths-and-grid-colour-for-the-look-of-diagram" title="Link to this heading"></a></h2>
@@ -226,7 +226,7 @@ and only the frame more heavily. So three settings are enough for the familiar l
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram2</span><span class="w"> </span><span class="na">series=</span><span class="s">"day"</span><span class="w"> </span><span class="na">period=</span><span class="s">"3"</span><span class="w"> </span><span class="na">borderwidth=</span><span class="s">"2"</span><span class="w"> </span><span class="na">linewidth=</span><span class="s">"2"</span><span class="w"> </span><span class="na">gridopacity=</span><span class="s">"1"</span><span class="w"> </span><span class="na">popup=</span><span class="s">"true"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"12"</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">"6"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">unit=</span><span class="s">" °C"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Temperature"</span><span class="w"> </span><span class="na">decimals=</span><span class="s">"1"</span><span class="nt">&gt;</span>temperature<span class="nt">&lt;/axis&gt;</span>
-<span class="w">    </span><span class="nt">&lt;influx</span><span class="w"> </span><span class="na">measurement=</span><span class="s">"house/temperature"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Outside [°C]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"temperature"</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;iobroker</span><span class="w"> </span><span class="na">instance=</span><span class="s">"influxdb.0"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Outside [°C]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"temperature"</span><span class="nt">&gt;</span>hm-rpc.0.LEQ123456.1.TEMPERATURE<span class="nt">&lt;/iobroker&gt;</span>
 <span class="nt">&lt;/diagram2&gt;</span>
 </pre></div>
 </div>
@@ -324,6 +324,9 @@ data sources behave the same.</p>
         </dd>
         
         <dd><a href="../../../../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

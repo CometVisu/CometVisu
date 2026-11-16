@@ -1,7 +1,7 @@
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -108,10 +108,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       _lastUpdate: null,
       _maxAge: null,
       _hideTimer: null,
-      __P_107_0: null,
-      __P_107_1: null,
-      __P_107_2: null,
-      __P_107_3: null,
+      __P_108_0: null,
+      __P_108_1: null,
+      __P_108_2: null,
+      __P_108_3: null,
       _checkEnvironment: function _checkEnvironment() {
         cv.ui.structure.tile.widgets.Tile.superclass.prototype._checkEnvironment.call(this);
         var parent = this._element.parentElement;
@@ -128,45 +128,45 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           this.setBackgroundImage(this._element.getAttribute('background-image'));
         }
         if (this._childPopup) {
-          if (!this.__P_107_0) {
-            this.__P_107_0 = function () {
+          if (!this.__P_108_0) {
+            this.__P_108_0 = function () {
               _this.resetPopup();
             };
           }
-          this._childPopup.removeEventListener('closed', this.__P_107_0);
-          this._childPopup.addEventListener('closed', this.__P_107_0);
+          this._childPopup.removeEventListener('closed', this.__P_108_0);
+          this._childPopup.addEventListener('closed', this.__P_108_0);
         }
         if (this._element.querySelector(':scope > label.title')) {
           this._element.classList.add('has-title');
         }
         if (!this._hideTimer) {
           this._hideTimer = new qx.event.Timer(5000);
-          this.__P_107_2 = function () {
+          this.__P_108_2 = function () {
             var elem = _this._element.querySelector(':scope > .outdated-value');
             if (elem && elem.style.display !== 'none') {
               elem.style.display = 'none';
             }
             _this._hideTimer.stop();
           };
-          this._hideTimer.addListener('interval', this.__P_107_2);
+          this._hideTimer.addListener('interval', this.__P_108_2);
         }
         if (this._element.hasAttribute('href')) {
-          if (!this.__P_107_1) {
-            this.__P_107_1 = function (ev) {
+          if (!this.__P_108_1) {
+            this.__P_108_1 = function (ev) {
               var _this$_element$getAtt;
               window.open(_this._element.getAttribute('href'), (_this$_element$getAtt = _this._element.getAttribute('target')) !== null && _this$_element$getAtt !== void 0 ? _this$_element$getAtt : '_blank');
               ev.stopPropagation();
             };
           }
-          this._element.removeEventListener('click', this.__P_107_1);
-          this._element.addEventListener('click', this.__P_107_1);
+          this._element.removeEventListener('click', this.__P_108_1);
+          this._element.addEventListener('click', this.__P_108_1);
         }
       },
       _disconnected: function _disconnected() {
         this._element.removeEventListener('click', this._openPopupChildBounded);
-        this._element.removeEventListener('click', this.__P_107_1);
-        if (this._childPopup && this.__P_107_0) {
-          this._childPopup.removeEventListener('closed', this.__P_107_0);
+        this._element.removeEventListener('click', this.__P_108_1);
+        if (this._childPopup && this.__P_108_0) {
+          this._childPopup.removeEventListener('closed', this.__P_108_0);
         }
         if (this._hideTimer) {
           this._hideTimer.stop();
@@ -174,10 +174,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (this._autoCloseTimer) {
           this._autoCloseTimer.stop();
         }
-        if (this.__P_107_3 && this._headerFooterParent) {
+        if (this.__P_108_3 && this._headerFooterParent) {
           var closeButton = this._headerFooterParent.querySelector(':scope > button.close');
           if (closeButton) {
-            closeButton.removeEventListener('click', this.__P_107_3);
+            closeButton.removeEventListener('click', this.__P_108_3);
           }
         }
         cv.ui.structure.tile.widgets.Tile.superclass.prototype._disconnected.call(this);
@@ -279,13 +279,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             closeButton.appendChild(icon);
             target.appendChild(closeButton);
           }
-          if (!this.__P_107_3) {
-            this.__P_107_3 = function () {
+          if (!this.__P_108_3) {
+            this.__P_108_3 = function () {
               return _this3.setPopup(false);
             };
           }
-          closeButton.removeEventListener('click', this.__P_107_3);
-          closeButton.addEventListener('click', this.__P_107_3);
+          closeButton.removeEventListener('click', this.__P_108_3);
+          closeButton.addEventListener('click', this.__P_108_3);
           closeButton.style.display = 'block';
           target.classList.add('popup');
           if (this._fullScreenMode) {
@@ -392,4 +392,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.tile.widgets.Tile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tile.js.map?dt=1792082767156
+//# sourceMappingURL=Tile.js.map?dt=1794845751539

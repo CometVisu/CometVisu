@@ -3,7 +3,7 @@ function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Can
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
 function _assertThisInitialized(e) { if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); return e; }
@@ -197,7 +197,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var rootList = this._element.querySelector(':scope > ul');
               if (rootList) {
                 rootList.replaceChildren();
-                this.__P_86_0(rootList, parentElement, currentPage, 0);
+                this.__P_87_0(rootList, parentElement, currentPage, 0);
               }
               break;
             }
@@ -356,7 +356,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
         }
       },
-      __P_86_0: function __P_86_0(parentList, parentElement, currentPage, currentLevel) {
+      __P_87_0: function __P_87_0(parentList, parentElement, currentPage, currentLevel) {
         var _this3 = this;
         if (!parentElement) {
           return;
@@ -441,7 +441,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               details.appendChild(summary);
               var subList = document.createElement('ul');
               details.appendChild(subList);
-              _this3.__P_86_0(subList, page, currentPage, currentLevel + 1);
+              _this3.__P_87_0(subList, page, currentPage, currentLevel + 1);
               li.appendChild(details);
             } else {
               li.appendChild(a);
@@ -531,4 +531,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1792082766021
+//# sourceMappingURL=Menu.js.map?dt=1794845750305

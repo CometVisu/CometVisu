@@ -877,7 +877,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       /** Map containing the asynchronous check functions. */
       _asyncChecks: {},
       /** Internal cache for all checks. */
-      __P_179_0: {},
+      __P_180_0: {},
       /**
        * Internal map for environment keys to check methods.
        * Gets populated dynamically at runtime.
@@ -941,8 +941,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       get: function get(key) {
         // check the cache
-        if (this.__P_179_0[key] != undefined) {
-          return this.__P_179_0[key];
+        if (this.__P_180_0[key] != undefined) {
+          return this.__P_180_0[key];
         }
 
         // search for a matching check
@@ -950,7 +950,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (check) {
           // execute the check and write the result in the cache
           var value = check();
-          this.__P_179_0[key] = value;
+          this.__P_180_0[key] = value;
           return value;
         }
 
@@ -960,7 +960,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           var clazz = classAndMethod[0];
           var method = classAndMethod[1];
           var value = clazz[method](); // call the check method
-          this.__P_179_0[key] = value;
+          this.__P_180_0[key] = value;
           return value;
         }
 
@@ -1007,17 +1007,17 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       getAsync: function getAsync(key, callback, self) {
         // check the cache
         var env = this;
-        if (this.__P_179_0[key] != undefined) {
+        if (this.__P_180_0[key] != undefined) {
           // force async behavior
           window.setTimeout(function () {
-            callback.call(self, env.__P_179_0[key]);
+            callback.call(self, env.__P_180_0[key]);
           }, 0);
           return;
         }
         var check = this._asyncChecks[key];
         if (check) {
           check(function (result) {
-            env.__P_179_0[key] = result;
+            env.__P_180_0[key] = result;
             callback.call(self, result);
           });
           return;
@@ -1030,7 +1030,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           var method = classAndMethod[1];
           clazz[method](function (result) {
             // call the check method
-            env.__P_179_0[key] = result;
+            env.__P_180_0[key] = result;
             callback.call(self, result);
           });
           return;
@@ -1052,7 +1052,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *   check of the key.
        */
       select: function select(key, values) {
-        return this.__P_179_1(this.get(key), values);
+        return this.__P_180_1(this.get(key), values);
       },
       /**
        * Selects the proper function dependent on the asynchronous check.
@@ -1067,7 +1067,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       selectAsync: function selectAsync(key, values, self) {
         this.getAsync(key, function (result) {
-          var value = this.__P_179_1(key, values);
+          var value = this.__P_180_1(key, values);
           value.call(self, result);
         }, this);
       },
@@ -1081,7 +1081,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param values {Map} A map containing some keys.
        * @return {var} The value stored as values[key] usually.
        */
-      __P_179_1: function __P_179_1(key, values) {
+      __P_180_1: function __P_180_1(key, values) {
         var value = values[key];
         if (values.hasOwnProperty(key)) {
           return value;
@@ -1128,7 +1128,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param key {String} The key of the check.
        */
       invalidateCacheKey: function invalidateCacheKey(key) {
-        delete this.__P_179_0[key];
+        delete this.__P_180_0[key];
       },
       /**
        * Add a check to the environment class. If there is already a check
@@ -1150,7 +1150,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             this._checks[key] = check;
             // otherwise, create a check function and use that
           } else {
-            this._checks[key] = this.__P_179_2(check);
+            this._checks[key] = this.__P_180_2(check);
           }
         }
       },
@@ -1201,12 +1201,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (key === undefined) {
           throw new TypeError("Key must be provided to set an environment setting.");
         }
-        if (this.__P_179_3 === undefined) {
+        if (this.__P_180_3 === undefined) {
           qx.Bootstrap.warn("Modifying environment settings at runtime is enabled. This is a security risk and should not be done in production code.");
-          this.__P_179_3 = Object.assign({}, this.__P_179_0);
-          this.__P_179_4 = Object.assign({}, this._checks);
+          this.__P_180_3 = Object.assign({}, this.__P_180_0);
+          this.__P_180_4 = Object.assign({}, this._checks);
         }
-        this.__P_179_0[key] = value;
+        this.__P_180_0[key] = value;
         delete this._checks[key];
         delete this._checksMap[key];
       } : undefined,
@@ -1220,10 +1220,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (key === undefined) {
           throw new TypeError("Key must be provided to remove an environment setting.");
         }
-        if (this.__P_179_3 === undefined || this.__P_179_3[key] === undefined) {
+        if (this.__P_180_3 === undefined || this.__P_180_3[key] === undefined) {
           throw new TypeError("Environment setting \"".concat(key, "\" does not exist."));
         }
-        delete this.__P_179_0[key];
+        delete this.__P_180_0[key];
         delete this._checks[key];
         delete this._checksMap[key];
       } : undefined,
@@ -1234,22 +1234,22 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param key {String?} The key of the environment setting to reset. If not provided, all settings are reset.
        */
       reset: qx.Bootstrap.getEnvironmentSetting("qx.environment.allowRuntimeMutations") ? function (key) {
-        if (this.__P_179_3 === undefined) {
+        if (this.__P_180_3 === undefined) {
           // no backup available, nothing to reset
           return;
         }
-        if (key !== undefined && this.__P_179_3[key] === undefined) {
+        if (key !== undefined && this.__P_180_3[key] === undefined) {
           throw new TypeError("Environment setting \"".concat(key, "\" does not exist."));
         }
         if (key === undefined) {
           // reset all keys
-          this.__P_179_0 = Object.assign({}, this.__P_179_3);
-          this._checks = Object.assign({}, this.__P_179_4);
+          this.__P_180_0 = Object.assign({}, this.__P_180_3);
+          this._checks = Object.assign({}, this.__P_180_4);
           return;
         }
         // only reset the particular key 
-        this.__P_179_0[key] = this.__P_179_3[key];
-        this._checks[key] = this.__P_179_4[key];
+        this.__P_180_0[key] = this.__P_180_3[key];
+        this._checks[key] = this.__P_180_4[key];
       } : undefined,
       /**
        * Initializer for the default values of the framework settings.
@@ -1267,12 +1267,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       /**
        * Import checks from global qx.$$environment into the Environment class.
        */
-      __P_179_5: function __P_179_5() {
+      __P_180_5: function __P_180_5() {
         // import the environment map
         if (qx && qx.$$environment) {
           for (var key in qx.$$environment) {
             var value = qx.$$environment[key];
-            this._checks[key] = this.__P_179_2(value);
+            this._checks[key] = this.__P_180_2(value);
           }
         }
       },
@@ -1280,7 +1280,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * Checks the URL for environment settings and imports these into the
        * Environment class.
        */
-      __P_179_6: function __P_179_6() {
+      __P_180_6: function __P_180_6() {
         if (window.document && window.document.location) {
           var urlChecks = window.document.location.search.slice(1).split("&");
           for (var i = 0; i < urlChecks.length; i++) {
@@ -1299,7 +1299,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             } else if (/^(\d|\.)+$/.test(value)) {
               value = parseFloat(value);
             }
-            this._checks[key] = this.__P_179_2(value);
+            this._checks[key] = this.__P_180_2(value);
           }
         }
       },
@@ -1309,7 +1309,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param value {var} The value which should be returned.
        * @return {Function} A function which could be used by a test.
        */
-      __P_179_2: function __P_179_2(value) {
+      __P_180_2: function __P_180_2(value) {
         return qx.Bootstrap.bind(function (value) {
           return value;
         }, null, value);
@@ -1319,10 +1319,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       // create default values for the environment class
       statics._initDefaultQxValues();
       // load the checks from the generator
-      statics.__P_179_5();
+      statics.__P_180_5();
       // load the checks from the url
       if (statics.get("qx.allowUrlSettings") === true) {
-        statics.__P_179_6();
+        statics.__P_180_6();
       }
     },
     environment: {
@@ -1339,4 +1339,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.core.Environment.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Environment.js.map?dt=1792082769955
+//# sourceMappingURL=Environment.js.map?dt=1794845754202

@@ -184,7 +184,7 @@ Attribute müssen zwingend vergeben werden.</p>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend=&quot;mqtt&quot;</span></code></p></td>
 <td><p>Mit dieser Option kann das Backend festgelegt werden und die vom Server gesendete Information übersteuern</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code>, <code class="docutils literal notranslate"><span class="pre">iobroker</span></code></p></td>
 <td><p>NEIN</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-knxd-url=&quot;&quot;</span></code></p></td>
@@ -202,22 +202,27 @@ Attribute müssen zwingend vergeben werden.</p>
 <td><p>Üblicher Weise <code class="docutils literal notranslate"><span class="pre">/rest/</span></code></p></td>
 <td><p>NEIN</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend-url=&quot;/rest/&quot;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend-iobroker-url=&quot;&quot;</span></code></p></td>
+<td><p>URL für die ioBroker Login-Ressource</p></td>
+<td></td>
+<td><p>NEIN</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-url=&quot;/rest/&quot;</span></code></p></td>
 <td><p>Veraltet: URL für die openHAB Verbindung</p></td>
 <td></td>
 <td><p>NEIN</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">username=&quot;user&quot;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">username=&quot;user&quot;</span></code></p></td>
 <td><p>Veraltet, nur für openHAB: Benutzername</p></td>
 <td></td>
 <td><p>NEIN</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">password=&quot;secret&quot;</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password=&quot;secret&quot;</span></code></p></td>
 <td><p>Veraltet, nur für openHAB: Passwort</p></td>
 <td></td>
 <td><p>NEIN</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lib_version=&quot;9&quot;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lib_version=&quot;9&quot;</span></code></p></td>
 <td><p>Version der CometVisu-library. Dieser Wert ist nur für die korrekte Funktion des Upgrade-Scripts notwendig.</p></td>
 <td><p>In der CometVisu Version 0.12.0 muss der Wert <code class="docutils literal notranslate"><span class="pre">9</span></code> sein</p></td>
 <td><p>JA</p></td>
@@ -699,6 +704,9 @@ werden:</p>
         </dd>
         
         <dd><a href="../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

@@ -39,7 +39,7 @@
   qx.Class.define("qx.test.ui.form.ModelSelection", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_419_0: function __P_419_0(widget, children) {
+      __P_420_0: function __P_420_0(widget, children) {
         var children = children || widget.getChildren();
 
         // check the model selection
@@ -50,7 +50,7 @@
         widget.setSelection([children[2]]);
         this.assertEquals(3, widget.getModelSelection().getItem(0));
       },
-      __P_419_1: function __P_419_1(widget, children) {
+      __P_420_1: function __P_420_1(widget, children) {
         var children = children || widget.getChildren();
 
         // check the model selection
@@ -63,7 +63,7 @@
         this.assertTrue(widget.getModelSelection().contains(2));
         this.assertTrue(widget.getModelSelection().contains(3));
       },
-      __P_419_2: function __P_419_2(widget, children) {
+      __P_420_2: function __P_420_2(widget, children) {
         var children = children || widget.getChildren();
 
         // check the set selection
@@ -74,7 +74,7 @@
         widget.setModelSelection([3]);
         this.assertEquals(children[2], widget.getSelection()[0]);
       },
-      __P_419_3: function __P_419_3(widget, children) {
+      __P_420_3: function __P_420_3(widget, children) {
         var children = children || widget.getChildren();
 
         // check the set selection
@@ -87,41 +87,41 @@
         this.assertTrue(widget.getSelection().includes(children[1]));
         this.assertTrue(widget.getSelection().includes(children[2]));
       },
-      __P_419_4: function __P_419_4() {
+      __P_420_4: function __P_420_4() {
         var box = new qx.ui.form.SelectBox();
-        this.__P_419_5(box);
+        this.__P_420_5(box);
         return box;
       },
-      __P_419_6: function __P_419_6() {
+      __P_420_6: function __P_420_6() {
         var list = new qx.ui.form.List();
-        this.__P_419_5(list);
+        this.__P_420_5(list);
         return list;
       },
-      __P_419_5: function __P_419_5(widget) {
+      __P_420_5: function __P_420_5(widget) {
         for (var i = 0; i < 3; i++) {
           var l = new qx.ui.form.ListItem("I" + (i + 1));
           l.setModel(i + 1);
           widget.add(l);
         }
       },
-      __P_419_7: function __P_419_7() {
+      __P_420_7: function __P_420_7() {
         var group = new qx.ui.form.RadioGroup();
-        this.__P_419_8(group);
+        this.__P_420_8(group);
         return group;
       },
-      __P_419_9: function __P_419_9() {
+      __P_420_9: function __P_420_9() {
         var group = new qx.ui.form.RadioButtonGroup();
-        this.__P_419_8(group);
+        this.__P_420_8(group);
         return group;
       },
-      __P_419_8: function __P_419_8(widget) {
+      __P_420_8: function __P_420_8(widget) {
         for (var i = 0; i < 3; i++) {
           var r = new qx.ui.form.RadioButton();
           r.setModel(i + 1);
           widget.add(r);
         }
       },
-      __P_419_10: function __P_419_10() {
+      __P_420_10: function __P_420_10() {
         var tree = new qx.ui.tree.Tree();
         var t2 = new qx.ui.tree.TreeFolder().set({
           model: 3
@@ -140,7 +140,7 @@
         t1.setOpen(true);
         return tree;
       },
-      __P_419_11: function __P_419_11(box) {
+      __P_420_11: function __P_420_11(box) {
         var children = box.getChildren();
         for (var i = 0; i < children.length; i++) {
           children[i].dispose();
@@ -148,81 +148,81 @@
         box.dispose();
       },
       testSelectBoxGetSingle: function testSelectBoxGetSingle() {
-        var box = this.__P_419_4();
-        this.__P_419_0(box);
-        this.__P_419_11(box);
+        var box = this.__P_420_4();
+        this.__P_420_0(box);
+        this.__P_420_11(box);
       },
       testSelectBoxSetSingle: function testSelectBoxSetSingle() {
-        var box = this.__P_419_4();
-        this.__P_419_2(box);
-        this.__P_419_11(box);
+        var box = this.__P_420_4();
+        this.__P_420_2(box);
+        this.__P_420_11(box);
       },
       testListGetSingle: function testListGetSingle() {
-        var list = this.__P_419_6();
-        this.__P_419_0(list);
-        this.__P_419_11(list);
+        var list = this.__P_420_6();
+        this.__P_420_0(list);
+        this.__P_420_11(list);
       },
       testListSetSingle: function testListSetSingle() {
-        var list = this.__P_419_6();
-        this.__P_419_2(list);
-        this.__P_419_11(list);
+        var list = this.__P_420_6();
+        this.__P_420_2(list);
+        this.__P_420_11(list);
       },
       testListGetMulti: function testListGetMulti() {
-        var list = this.__P_419_6();
+        var list = this.__P_420_6();
         list.setSelectionMode("multi");
-        this.__P_419_1(list);
-        this.__P_419_11(list);
+        this.__P_420_1(list);
+        this.__P_420_11(list);
       },
       testListSetMulti: function testListSetMulti() {
-        var list = this.__P_419_6();
+        var list = this.__P_420_6();
         list.setSelectionMode("multi");
-        this.__P_419_3(list);
-        this.__P_419_11(list);
+        this.__P_420_3(list);
+        this.__P_420_11(list);
       },
       testRadioGroupGetSingle: function testRadioGroupGetSingle() {
-        var group = this.__P_419_7();
-        this.__P_419_0(group);
-        this.__P_419_11(group);
+        var group = this.__P_420_7();
+        this.__P_420_0(group);
+        this.__P_420_11(group);
       },
       testRadioGroupSetSingle: function testRadioGroupSetSingle() {
-        var group = this.__P_419_7();
-        this.__P_419_2(group);
-        this.__P_419_11(group);
+        var group = this.__P_420_7();
+        this.__P_420_2(group);
+        this.__P_420_11(group);
       },
       testRadioButtonGroupGetSingle: function testRadioButtonGroupGetSingle() {
-        var group = this.__P_419_9();
-        this.__P_419_0(group);
-        this.__P_419_11(group);
+        var group = this.__P_420_9();
+        this.__P_420_0(group);
+        this.__P_420_11(group);
       },
       testRadioButtonGroupSetSingle: function testRadioButtonGroupSetSingle() {
-        var group = this.__P_419_9();
-        this.__P_419_2(group);
-        this.__P_419_11(group);
+        var group = this.__P_420_9();
+        this.__P_420_2(group);
+        this.__P_420_11(group);
       },
       testTreeGetSingle: function testTreeGetSingle() {
-        var widget = this.__P_419_10();
+        var widget = this.__P_420_10();
         var children = widget.getItems(true);
-        this.__P_419_0(widget, children);
+        this.__P_420_0(widget, children);
         widget.destroy();
       },
       testTreeSetSingle: function testTreeSetSingle() {
-        var widget = this.__P_419_10();
+        var widget = this.__P_420_10();
         var children = widget.getItems(true);
-        this.__P_419_2(widget, children);
+        this.__P_420_2(widget, children);
         widget.destroy();
       },
       testTreeGetMulti: function testTreeGetMulti() {
-        var widget = this.__P_419_10();
+        var widget = this.__P_420_10();
         widget.setSelectionMode("multi");
         var children = widget.getItems(true);
-        this.__P_419_1(widget, children);
+        this.__P_420_1(widget, children);
         widget.destroy();
       },
       testTreeSetMulti: function testTreeSetMulti() {
-        var widget = this.__P_419_10();
+        var widget = this.__P_420_10();
         widget.setSelectionMode("multi");
         var children = widget.getItems(true);
-        this.__P_419_3(widget, children);
+        this.__P_420_3(widget, children);
         widget.destroy();
       }
     }
@@ -230,4 +230,4 @@
   qx.test.ui.form.ModelSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ModelSelection.js.map?dt=1792082784210
+//# sourceMappingURL=ModelSelection.js.map?dt=1794845767907

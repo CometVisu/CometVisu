@@ -34,31 +34,31 @@
     extend: qx.test.ui.LayoutTestCase,
     members: {
       setUp: function setUp() {
-        this.__P_432_0 = new qx.ui.form.VirtualSelectBox();
-        this.getRoot().add(this.__P_432_0);
+        this.__P_433_0 = new qx.ui.form.VirtualSelectBox();
+        this.getRoot().add(this.__P_433_0);
         this.flush();
       },
       tearDown: function tearDown() {
         qx.test.ui.form.VirtualSelectBox.superclass.prototype.tearDown.call(this);
-        this.__P_432_0.destroy();
-        this.__P_432_0 = null;
+        this.__P_433_0.destroy();
+        this.__P_433_0 = null;
       },
-      __P_432_1: function __P_432_1() {
+      __P_433_1: function __P_433_1() {
         // focus -> array key down -> array key down -> enter
-        this.__P_432_0.getSelection().setItem(0, this.__P_432_0.getModel().getItem(1));
+        this.__P_433_0.getSelection().setItem(0, this.__P_433_0.getModel().getItem(1));
       },
       testChangeValueEvent: function testChangeValueEvent() {
         var m = qx.data.marshal.Json.createModel(["a", "b"]);
-        this.__P_432_0.addListenerOnce("changeValue", function (e) {
+        this.__P_433_0.addListenerOnce("changeValue", function (e) {
           this.assertIdentical("a", e.getData());
           this.assertNull(e.getOldData());
         }.bind(this));
-        this.__P_432_0.setModel(m);
-        this.__P_432_0.addListenerOnce("changeValue", function (e) {
+        this.__P_433_0.setModel(m);
+        this.__P_433_0.addListenerOnce("changeValue", function (e) {
           this.assertIdentical("b", e.getData());
           this.assertIdentical("a", e.getOldData());
         }.bind(this));
-        this.__P_432_1();
+        this.__P_433_1();
       },
       testChangeModelWhileNotVisible: function testChangeModelWhileNotVisible() {
         "use strict";
@@ -86,14 +86,14 @@
 
         var test = this;
         var m = qx.data.marshal.Json.createModel(["asdddddddddddddddddddddddddddddddddddddddddddddddddddd", "dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]);
-        this.__P_432_0.setAllowGrowDropDown(false);
-        this.__P_432_0.setModel(m);
-        this.__P_432_0.setWidth(150);
-        this.__P_432_0.open();
+        this.__P_433_0.setAllowGrowDropDown(false);
+        this.__P_433_0.setModel(m);
+        this.__P_433_0.setWidth(150);
+        this.__P_433_0.open();
         this.flush();
         setTimeout(function () {
-          test.assertIdentical(test.__P_432_0.getWidth(), test.__P_432_0.getBounds().width);
-          test.assertIdentical(test.__P_432_0.getWidth(), test.__P_432_0.getChildControl("dropdown").getBounds().width);
+          test.assertIdentical(test.__P_433_0.getWidth(), test.__P_433_0.getBounds().width);
+          test.assertIdentical(test.__P_433_0.getWidth(), test.__P_433_0.getChildControl("dropdown").getBounds().width);
           test.resume();
         }, 10);
         this.wait();
@@ -103,14 +103,14 @@
 
         var test = this;
         var m = qx.data.marshal.Json.createModel(["asddddddddddddddddddddddddddddddddddddddddddddddddddddasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]);
-        this.__P_432_0.setAllowGrowDropDown(true);
-        this.__P_432_0.setModel(m);
-        this.__P_432_0.setWidth(150);
-        this.__P_432_0.open();
+        this.__P_433_0.setAllowGrowDropDown(true);
+        this.__P_433_0.setModel(m);
+        this.__P_433_0.setWidth(150);
+        this.__P_433_0.open();
         this.flush();
         setTimeout(function () {
-          test.assertIdentical(test.__P_432_0.getWidth(), test.__P_432_0.getBounds().width);
-          test.assertTrue(test.__P_432_0.getChildControl("dropdown").getBounds().width > 666, "dropdown could not fit the whole item");
+          test.assertIdentical(test.__P_433_0.getWidth(), test.__P_433_0.getBounds().width);
+          test.assertTrue(test.__P_433_0.getChildControl("dropdown").getBounds().width > 666, "dropdown could not fit the whole item");
           test.resume();
         }, 10);
         this.wait();
@@ -120,4 +120,4 @@
   qx.test.ui.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1792082784456
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1794845768136

@@ -1,0 +1,294 @@
+{
+  "version": 0.3,
+  "lastModified": 1794845538735,
+  "lastModifiedIso": "2026-11-16T16:12:18.735Z",
+  "classFilename": "../../source/class/cv/io/iobroker/SocketLibrary.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 1622
+    },
+    "end": {
+      "line": 127,
+      "column": 3,
+      "index": 4459
+    }
+  },
+  "className": "cv.io.iobroker.SocketLibrary",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Loads the socket client library an ioBroker server publishes under /socket.io.js.",
+      " *",
+      " * Which protocol such a server speaks depends on its configuration - the raw framing of",
+      " * \\@iobroker/ws or socket.io - and that cannot be told apart from the outside. It does not have to",
+      " * be: every server delivers the matching client library under that path, and both offer the same",
+      " * `io.connect(url, options)` interface. Loading it instead of talking the protocol by hand is what",
+      " * every other ioBroker frontend does, and it is the only way to reach all configurations.",
+      " *",
+      " * The library announces itself in the global `window.io`. It is picked up right after loading and",
+      " * the previous value is put back, so several backends can be used side by side. Loads are",
+      " * serialized for the same reason.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Loads the socket client library an ioBroker server publishes under /socket.io.js.\n Which protocol such a server speaks depends on its configuration - the raw framing of\n \\@iobroker/ws or socket.io - and that cannot be told apart from the outside. It does not have to\n be: every server delivers the matching client library under that path, and both offer the same\n <code>io.connect(url, options)</code> interface. Loading it instead of talking the protocol by hand is what\n every other ioBroker frontend does, and it is the only way to reach all configurations.\n The library announces itself in the global <code>window.io</code>. It is picked up right after loading and\n the previous value is put back, so several backends can be used side by side. Loads are\n serialized for the same reason.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "__libraries": {
+      "jsdoc": {
+        "raw": [
+          "* origin -> promise of the library loaded from there "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>origin -&gt; promise of the library loaded from there</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1892
+        },
+        "end": {
+          "line": 43,
+          "column": 19,
+          "index": 1907
+        }
+      },
+      "appearsIn": []
+    },
+    "__queue": {
+      "jsdoc": {
+        "raw": [
+          "* loads run one after the other, they all pass through the global window.io "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>loads run one after the other, they all pass through the global window.io</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1998
+        },
+        "end": {
+          "line": 45,
+          "column": 17,
+          "index": 2011
+        }
+      },
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The library published by the server that hosts the given backend, loaded at most once per",
+          "     * origin.",
+          "     *",
+          "     * @param backendUrl {URL|String} url of the ioBroker backend",
+          "     * @return {Promise} resolves with the `io` object of the library",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The library published by the server that hosts the given backend, loaded at most once per\n origin.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendUrl {URL|String} url of the ioBroker backend",
+            "paramName": "backendUrl",
+            "description": " url of the ioBroker backend",
+            "type": [
+              "URL",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise} resolves with the <code>io</code> object of the library",
+            "type": "Promise<any>",
+            "description": "resolves with the <code>io</code> object of the library"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 2289
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2657
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendUrl",
+          "type": [
+            "URL",
+            "String"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "getOrigin": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Origin to load the library from. The backend is addressed as ws(s), the library is fetched",
+          "     * over http(s) from the same host.",
+          "     *",
+          "     * @param backendUrl {URL|String} url of the ioBroker backend",
+          "     * @return {String} origin without a trailing slash",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Origin to load the library from. The backend is addressed as ws(s), the library is fetched\n over http(s) from the same host.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendUrl {URL|String} url of the ioBroker backend",
+            "paramName": "backendUrl",
+            "description": " url of the ioBroker backend",
+            "type": [
+              "URL",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} origin without a trailing slash",
+            "type": "string",
+            "description": "origin without a trailing slash"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2947
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 3137
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendUrl",
+          "type": [
+            "URL",
+            "String"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__loadFrom": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load the library from one origin and hand back what it registered globally.",
+          "     *",
+          "     * @param origin {String} origin to load from",
+          "     * @return {Promise} resolves with the `io` object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load the library from one origin and hand back what it registered globally.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "origin {String} origin to load from",
+            "paramName": "origin",
+            "description": " origin to load from",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise} resolves with the <code>io</code> object",
+            "type": "Promise<any>",
+            "description": "resolves with the <code>io</code> object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 3355
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 4451
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "origin",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

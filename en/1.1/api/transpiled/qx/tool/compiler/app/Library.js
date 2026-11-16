@@ -59,9 +59,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_499_0 = {};
-      this.__P_499_1 = {};
-      this.__P_499_2 = {};
+      this.__P_500_0 = {};
+      this.__P_500_1 = {};
+      this.__P_500_2 = {};
     },
     properties: {
       /** The namespace of the library */
@@ -129,11 +129,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_499_0: null,
-      __P_499_1: null,
-      __P_499_3: null,
-      __P_499_2: null,
-      __P_499_4: null,
+      __P_500_0: null,
+      __P_500_1: null,
+      __P_500_3: null,
+      __P_500_2: null,
+      __P_500_4: null,
       /**
        * Transform for rootDir; converts it to an absolute path
        * @param value
@@ -151,12 +151,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param loadFromDir {String} directory
        */
       loadManifest: function loadManifest(loadFromDir) {
-        if (this.__P_499_3) {
-          return this.__P_499_3;
+        if (this.__P_500_3) {
+          return this.__P_500_3;
         }
-        return this.__P_499_3 = this.__P_499_5(loadFromDir);
+        return this.__P_500_3 = this.__P_500_5(loadFromDir);
       },
-      __P_499_5: function __P_499_5(loadFromDir) {
+      __P_500_5: function __P_500_5(loadFromDir) {
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
           var Console, rootDir, data, key, check, pos, fixLibraryPath, sourcePath, resourcePath, m, fonts;
@@ -187,13 +187,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     check = data.provides.environmentChecks[key];
                     pos = key.indexOf("*");
                     if (pos > -1) {
-                      _this.__P_499_2[key] = {
+                      _this.__P_500_2[key] = {
                         matchString: key.substring(0, pos),
                         startsWith: true,
                         className: check
                       };
                     } else {
-                      _this.__P_499_2[key] = {
+                      _this.__P_500_2[key] = {
                         matchString: key,
                         className: check
                       };
@@ -274,7 +274,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   });
                   _this.setWebFonts(fonts);
                 }
-                _this.__P_499_4 = data.provides.fonts || {};
+                _this.__P_500_4 = data.provides.fonts || {};
                 if (data.externalResources) {
                   if (data.externalResources.script) {
                     _this.setAddScript(data.externalResources.script);
@@ -301,7 +301,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {Array}
        */
       getFontsData: function getFontsData() {
-        return this.__P_499_4;
+        return this.__P_500_4;
       },
       /**
        * Scans the filing system looking for classes; there are occasions (ie Qooxdoo's qxWeb module)
@@ -357,19 +357,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   return;
                 }
                 if (extension == ".js" || extension == ".ts") {
-                  t.__P_499_0[className] = "class";
-                  t.__P_499_1[className] = extension;
+                  t.__P_500_0[className] = "class";
+                  t.__P_500_1[className] = extension;
                   classes.push(className);
                 } else {
-                  t.__P_499_0[filename] = "resource";
+                  t.__P_500_0[filename] = "resource";
                 }
-                if (Boolean(packageName) && !t.__P_499_0[packageName]) {
-                  t.__P_499_0[packageName] = "package";
+                if (Boolean(packageName) && !t.__P_500_0[packageName]) {
+                  t.__P_500_0[packageName] = "package";
                   var pos;
                   tmp = packageName;
                   while ((pos = tmp.lastIndexOf(".")) > -1) {
                     tmp = tmp.substring(0, pos);
-                    t.__P_499_0[tmp] = "package";
+                    t.__P_500_0[tmp] = "package";
                   }
                 }
                 cb();
@@ -404,8 +404,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             });
           });
           if (!isWebFont) {
-            for (var fontId in this.__P_499_4) {
-              var fontData = this.__P_499_4[fontId];
+            for (var fontId in this.__P_500_4) {
+              var fontData = this.__P_500_4[fontId];
               isWebFont = (fontData.fontFaces || []).find(function (fontFace) {
                 return (fontFace.paths || []).find(function (resource) {
                   return resource == filename;
@@ -430,10 +430,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return null;
         }
         var t = this;
-        var type = this.__P_499_0[name];
+        var type = this.__P_500_0[name];
         if (type) {
           return {
-            symbolType: t.__P_499_0[name],
+            symbolType: t.__P_500_0[name],
             className: type == "class" ? name : null,
             name: name
           };
@@ -457,12 +457,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           return null;
         }
-        var result = testEnvironment(this.__P_499_2[name]);
+        var result = testEnvironment(this.__P_500_2[name]);
         if (result) {
           return result;
         }
-        for (var key in this.__P_499_2) {
-          var check = this.__P_499_2[key];
+        for (var key in this.__P_500_2) {
+          var check = this.__P_500_2[key];
           if (check.startsWith) {
             result = testEnvironment(check);
             if (result !== null) {
@@ -474,7 +474,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         var pos;
         while ((pos = tmp.lastIndexOf(".")) > -1) {
           tmp = tmp.substring(0, pos);
-          type = this.__P_499_0[tmp];
+          type = this.__P_500_0[tmp];
           if (type) {
             if (type == "class") {
               return {
@@ -495,14 +495,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Boolean}
        */
       isClass: function isClass(classname) {
-        var type = this.__P_499_0[classname];
+        var type = this.__P_500_0[classname];
         return type === "class";
       },
       /**
        * Returns all known symbols as a map indexed by symbol name
        */
       getKnownSymbols: function getKnownSymbols() {
-        return this.__P_499_0;
+        return this.__P_500_0;
       },
       /**
        * Returns the original extension of the class file that implemented the
@@ -511,7 +511,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {String} className
        */
       getSourceFileExtension: function getSourceFileExtension(className) {
-        return this.__P_499_1[className];
+        return this.__P_500_1[className];
       },
       /**
        * Returns the full filename for the file within this library
@@ -568,4 +568,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.Library.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Library.js.map?dt=1792082790071
+//# sourceMappingURL=Library.js.map?dt=1794845773485

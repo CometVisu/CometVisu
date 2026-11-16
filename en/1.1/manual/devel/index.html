@@ -172,6 +172,7 @@ that provide the CometVisu with more information about the backend:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-Name</span></code>: The name of the backend to use.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-KNXD-Url</span></code>: URL of the knxd login resource</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-MQTT-Url</span></code>: URL of the MQTT login resource</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-ioBroker-Url</span></code>: URL of the ioBroker websocket API</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-OpenHAB-Url</span></code>: Only openHAB: path to the REST-API</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Deprecated: Path under which the client can log in.</p></li>
 </ul>
@@ -265,6 +266,8 @@ assignment, a title, text and various configuration options.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.error</span></code>: generic errors</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.config.error</span></code>: Errors that occurred while reading in the config file</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace for all in the <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">notifications</span></a> messages used</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.client.connection.&lt;backend&gt;</span></code>: The connection to the backend is lost</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.client.knxd.&lt;backend&gt;</span></code>: The backend has lost the connection to knxd (the KNX bus)</p></li>
 </ul>
 <p>A message receiver (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) can now register for one or more such topics:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
@@ -383,6 +386,9 @@ persists and disappear automatically once the problem is resolved.</p>
         </dd>
         
         <dd><a href="../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

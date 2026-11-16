@@ -51,39 +51,39 @@
   qx.Class.define("qx.test.bom.Iframe", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_322_0: null,
+      __P_323_0: null,
       tearDown: function tearDown() {
-        this.__P_322_0 = null;
+        this.__P_323_0 = null;
       },
       testCreate: function testCreate() {
-        this.__P_322_0 = qx.bom.Iframe.create();
-        this.__P_322_1(qx.bom.Iframe.DEFAULT_ATTRIBUTES);
+        this.__P_323_0 = qx.bom.Iframe.create();
+        this.__P_323_1(qx.bom.Iframe.DEFAULT_ATTRIBUTES);
       },
       testCreateWithAttributes: function testCreateWithAttributes() {
         var attributes = qx.lang.Object.clone(qx.bom.Iframe.DEFAULT_ATTRIBUTES);
         attributes.allowTransparency = false;
-        this.__P_322_0 = qx.bom.Iframe.create(attributes);
-        this.__P_322_1(attributes);
+        this.__P_323_0 = qx.bom.Iframe.create(attributes);
+        this.__P_323_1(attributes);
       },
-      __P_322_1: function __P_322_1(attributes) {
+      __P_323_1: function __P_323_1(attributes) {
         // do not test 'onload' on IE, this returns always 'undefined'
         // http://tobielangel.com/2007/1/11/attribute-nightmare-in-ie/
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           delete attributes["onload"];
         }
         for (var key in attributes) {
-          this.assertEquals(attributes[key], qx.bom.element.Attribute.get(this.__P_322_0, key), "Wrong value on attribute '" + key + "'");
+          this.assertEquals(attributes[key], qx.bom.element.Attribute.get(this.__P_323_0, key), "Wrong value on attribute '" + key + "'");
         }
       },
       testGetWindow: function testGetWindow() {
-        this.__P_322_0 = qx.bom.Iframe.create();
-        qx.dom.Element.insertBegin(this.__P_322_0, document.body);
-        this.assertNotNull(qx.bom.Iframe.getWindow(this.__P_322_0));
-        qx.dom.Element.remove(this.__P_322_0);
+        this.__P_323_0 = qx.bom.Iframe.create();
+        qx.dom.Element.insertBegin(this.__P_323_0, document.body);
+        this.assertNotNull(qx.bom.Iframe.getWindow(this.__P_323_0));
+        qx.dom.Element.remove(this.__P_323_0);
       }
     }
   });
   qx.test.bom.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1792082778128
+//# sourceMappingURL=Iframe.js.map?dt=1794845762027

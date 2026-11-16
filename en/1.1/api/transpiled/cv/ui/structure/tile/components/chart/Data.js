@@ -57,7 +57,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       this.lineTimes = [];
       this.lineValues = [];
       this._chart = chart;
-      this.__P_93_0 = new Map();
+      this.__P_94_0 = new Map();
     },
     properties: {
       minY: {
@@ -89,7 +89,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       lineValues: null,
       lineKeys: null,
       lineIndices: null,
-      __P_93_0: null,
+      __P_94_0: null,
       setData: function setData(data) {
         var _this = this;
         this.data = data; // Omit any data from v-/h-line-datasets
@@ -166,7 +166,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this.lineTimes = [];
           this.lineValues = [];
         }
-        this.__P_93_0.clear();
+        this.__P_94_0.clear();
       },
       /**
        * Interpolates the data for the given time interval. Used to
@@ -234,7 +234,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         for (var i = 0; i < this.times.length; i++) {
           _loop(i);
         }
-        this.__P_93_0.clear();
+        this.__P_94_0.clear();
       },
       append: function append(data) {
         if (this.times[this.times.length - 1] > data.time) {
@@ -244,7 +244,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (this.times[this.times.length - 1] === data.time) {
           // replace last value instead of adding one
           this.values[this.values.length - 1] = data.value;
-          this.__P_93_0["delete"]('value');
+          this.__P_94_0["delete"]('value');
         } else {
           this.times.push(data.time);
           this.values.push(data.value);
@@ -258,22 +258,22 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this.keys.shift();
           this.data.shift();
           this.titles.shift();
-          this.__P_93_0.clear();
+          this.__P_94_0.clear();
         }
         return true;
       },
       _applyMinMax: function _applyMinMax() {
         // invalidate values min/max
-        this.__P_93_0["delete"]('values');
+        this.__P_94_0["delete"]('values');
       },
       getTimesDomain: function getTimesDomain() {
-        if (!this.__P_93_0.has('times')) {
-          this.__P_93_0.set('times', d3.extent(this.times));
+        if (!this.__P_94_0.has('times')) {
+          this.__P_94_0.set('times', d3.extent(this.times));
         }
-        return this.__P_93_0.get('times');
+        return this.__P_94_0.get('times');
       },
       getValuesDomain: function getValuesDomain() {
-        if (!this.__P_93_0.has('values')) {
+        if (!this.__P_94_0.has('values')) {
           var minVal = 0;
           var maxVal = 0;
           if (this.getMinY() !== null) {
@@ -295,15 +295,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               maxVal += 0.1;
             }
           }
-          this.__P_93_0.set('values', [minVal, maxVal]);
+          this.__P_94_0.set('values', [minVal, maxVal]);
         }
-        return this.__P_93_0.get('values');
+        return this.__P_94_0.get('values');
       },
       getKeysDomain: function getKeysDomain() {
-        if (!this.__P_93_0.has('keys')) {
-          this.__P_93_0.set('keys', new d3.InternSet(this.keys));
+        if (!this.__P_94_0.has('keys')) {
+          this.__P_94_0.set('keys', new d3.InternSet(this.keys));
         }
-        return this.__P_93_0.get('keys');
+        return this.__P_94_0.get('keys');
       },
       getIndicesForKey: function getIndicesForKey(key) {
         var onlyWithValues = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
@@ -333,4 +333,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.chart.Data.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Data.js.map?dt=1792082766362
+//# sourceMappingURL=Data.js.map?dt=1794845750788

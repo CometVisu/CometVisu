@@ -90,14 +90,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 target = _step.value;
                 _context.n = 4;
-                return _this.__P_478_0(path.join(_process.cwd(), target.outputPath));
+                return _this.__P_479_0(path.join(_process.cwd(), target.outputPath));
               case 4:
                 if (!target.deployPath) {
                   _context.n = 5;
                   break;
                 }
                 _context.n = 5;
-                return _this.__P_478_0(path.join(_process.cwd(), target.deployPath));
+                return _this.__P_479_0(path.join(_process.cwd(), target.deployPath));
               case 5:
                 _context.n = 3;
                 break;
@@ -114,7 +114,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context.f(8);
               case 9:
                 _context.n = 10;
-                return _this.__P_478_0(path.join(_process.cwd(), qx.tool.cli.commands.Package.cache_dir));
+                return _this.__P_479_0(path.join(_process.cwd(), qx.tool.cli.commands.Package.cache_dir));
               case 10:
                 _context.n = 11;
                 return _this.checkMigrations();
@@ -124,7 +124,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee, null, [[2, 7, 8, 9]]);
         }))();
       },
-      __P_478_0: function __P_478_0(pathToRemove) {
+      __P_479_0: function __P_479_0(pathToRemove) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
           return _regenerator().w(function (_context2) {
@@ -161,4 +161,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Clean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clean.js.map?dt=1792082787717
+//# sourceMappingURL=Clean.js.map?dt=1794845771163

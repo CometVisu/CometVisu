@@ -104,7 +104,7 @@
         var valueField = this.getChildControl('value');
         var keyTitleField = this.getChildControl('key-title');
         var valueTitleField = this.getChildControl('value-title');
-        this.__P_44_0(old);
+        this.__P_45_0(old);
         if (value) {
           // bi-directional bind
           value.bind('key', keyField, 'value');
@@ -126,7 +126,7 @@
           this.getChildControl('add').hide();
         }
       },
-      __P_44_0: function __P_44_0(model) {
+      __P_45_0: function __P_45_0(model) {
         if (model) {
           var keyField = this.getChildControl('key');
           var valueField = this.getChildControl('value');
@@ -214,10 +214,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_44_0(this.getModel());
+      this.__P_45_0(this.getModel());
     }
   });
   cv.ui.manager.form.OptionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionListItem.js.map?dt=1792082763119
+//# sourceMappingURL=OptionListItem.js.map?dt=1794845747696

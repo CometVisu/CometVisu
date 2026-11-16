@@ -63,17 +63,17 @@
     extend: qx.dev.unit.TestCase,
     include: qx.locale.MTranslation,
     members: {
-      __P_366_0: null,
-      __P_366_1: null,
+      __P_367_0: null,
+      __P_367_1: null,
       setUp: function setUp() {
         var manager = qx.locale.Manager.getInstance();
-        this.__P_366_0 = manager.getLocale();
+        this.__P_367_0 = manager.getLocale();
       },
       tearDown: function tearDown() {
         var manager = qx.locale.Manager.getInstance();
-        manager.setLocale(this.__P_366_0);
-        if (this.__P_366_1) {
-          manager.removeListenerById(this.__P_366_1);
+        manager.setLocale(this.__P_367_0);
+        if (this.__P_367_1) {
+          manager.removeListenerById(this.__P_367_1);
         }
       },
       testTranslation: function testTranslation() {
@@ -147,7 +147,7 @@
         // check listener
         var fired = false;
         var evtLocale = "";
-        this.__P_366_1 = manager.addListener("changeLocale", function (e) {
+        this.__P_367_1 = manager.addListener("changeLocale", function (e) {
           fired = true;
           evtLocale = e.getData();
         });
@@ -239,4 +239,4 @@
   qx.test.locale.Locale.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Locale.js.map?dt=1792082781682
+//# sourceMappingURL=Locale.js.map?dt=1794845765482

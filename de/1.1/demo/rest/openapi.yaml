@@ -101,16 +101,16 @@ paths:
     parameters:
       - name: path
         in: query
-        description: Relative path inside the config folder
+        description: Relative path inside the config folder. For multipart file creation, this is the destination directory; for directory creation and legacy text file creation, it is the full target path.
         required: true
         schema:
           type: string
       - name: hash
         in: query
-        description: CRC32 hash value of the file content
+        description: CRC32 hash value of the file content, or "ignore" to skip the integrity check
         required: false
         schema:
-          type: number
+          type: string
     get:
       tags:
         - fs
@@ -161,7 +161,7 @@ paths:
       operationId: create
       x-exegesis-controller: FsController
       requestBody:
-        description: Content of the file (empty when creating folder)
+        description: Multipart file upload, or an empty multipart body for a folder. A raw text body is also accepted for compatibility.
         content:
           multipart/form-data:
             schema:
@@ -173,6 +173,10 @@ paths:
                 filename:
                   type: string
                   description: filename to use (if it should be another one than the original filename)
+                filenameEncoding:
+                  type: string
+                  enum: [uri]
+                  description: Set to uri when filename is percent-encoded, as used by the legacy upload component.
                 force:
                   type: boolean
                   description: replace existing file
@@ -182,6 +186,8 @@ paths:
       responses:
         '200':
           description: successful operation
+        '400':
+          description: Missing or invalid upload parameters
         '403':
           description: Not allowed
         '406':

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547827,
-  "lastModifiedIso": "2026-10-15T16:42:27.827Z",
+  "lastModified": 1794845538735,
+  "lastModifiedIso": "2026-11-16T16:12:18.735Z",
   "classFilename": "../../source/class/cv/io/BackendConnections.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 876
     },
     "end": {
-      "line": 541,
+      "line": 556,
       "column": 3,
-      "index": 18734
+      "index": 19293
     }
   },
   "className": "cv.io.BackendConnections",
@@ -250,9 +250,9 @@
           "index": 2082
         },
         "end": {
-          "line": 139,
+          "line": 154,
           "column": 5,
-          "index": 4666
+          "index": 5225
         }
       },
       "type": "function",
@@ -316,14 +316,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 149,
+          "line": 164,
           "column": 4,
-          "index": 4871
+          "index": 5430
         },
         "end": {
-          "line": 213,
+          "line": 228,
           "column": 5,
-          "index": 7236
+          "index": 7795
         }
       },
       "type": "function",
@@ -356,14 +356,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 215,
+          "line": 230,
           "column": 4,
-          "index": 7243
+          "index": 7802
         },
         "end": {
-          "line": 222,
+          "line": 237,
           "column": 5,
-          "index": 7433
+          "index": 7992
         }
       },
       "type": "function",
@@ -410,14 +410,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 229,
+          "line": 244,
           "column": 4,
-          "index": 7591
+          "index": 8150
         },
         "end": {
-          "line": 231,
+          "line": 246,
           "column": 5,
-          "index": 7687
+          "index": 8246
         }
       },
       "type": "function",
@@ -461,14 +461,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 238,
+          "line": 253,
           "column": 4,
-          "index": 7932
+          "index": 8491
         },
         "end": {
-          "line": 257,
+          "line": 272,
           "column": 5,
-          "index": 8623
+          "index": 9182
         }
       },
       "type": "function",
@@ -486,14 +486,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 259,
+          "line": 274,
           "column": 4,
-          "index": 8630
+          "index": 9189
         },
         "end": {
-          "line": 274,
+          "line": 289,
           "column": 5,
-          "index": 9044
+          "index": 9603
         }
       },
       "type": "function",
@@ -509,14 +509,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 276,
+          "line": 291,
           "column": 4,
-          "index": 9051
+          "index": 9610
         },
         "end": {
-          "line": 278,
+          "line": 293,
           "column": 5,
-          "index": 9100
+          "index": 9659
         }
       },
       "type": "function",
@@ -528,14 +528,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 280,
+          "line": 295,
           "column": 4,
-          "index": 9107
+          "index": 9666
         },
         "end": {
-          "line": 290,
+          "line": 305,
           "column": 5,
-          "index": 9518
+          "index": 10077
         }
       },
       "type": "function",
@@ -559,14 +559,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 295,
+          "line": 310,
           "column": 4,
-          "index": 9583
+          "index": 10142
         },
         "end": {
-          "line": 299,
+          "line": 314,
           "column": 5,
-          "index": 9730
+          "index": 10289
         }
       },
       "type": "function",
@@ -578,14 +578,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 301,
+          "line": 316,
           "column": 4,
-          "index": 9737
+          "index": 10296
         },
         "end": {
-          "line": 311,
+          "line": 326,
           "column": 5,
-          "index": 10190
+          "index": 10749
         }
       },
       "type": "function",
@@ -601,14 +601,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 313,
+          "line": 328,
           "column": 4,
-          "index": 10197
+          "index": 10756
         },
         "end": {
-          "line": 363,
+          "line": 378,
           "column": 5,
-          "index": 12116
+          "index": 12675
         }
       },
       "type": "function",
@@ -620,14 +620,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 365,
+          "line": 380,
           "column": 4,
-          "index": 12123
+          "index": 12682
         },
         "end": {
-          "line": 403,
+          "line": 418,
           "column": 5,
-          "index": 13385
+          "index": 13944
         }
       },
       "type": "function",
@@ -643,14 +643,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 405,
+          "line": 420,
           "column": 4,
-          "index": 13392
+          "index": 13951
         },
         "end": {
-          "line": 411,
+          "line": 426,
           "column": 5,
-          "index": 13602
+          "index": 14161
         }
       },
       "type": "function",
@@ -666,14 +666,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 413,
+          "line": 428,
           "column": 4,
-          "index": 13609
+          "index": 14168
         },
         "end": {
-          "line": 539,
+          "line": 554,
           "column": 5,
-          "index": 18726
+          "index": 19285
         }
       },
       "type": "function",

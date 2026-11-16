@@ -1,0 +1,75 @@
+{
+  "version": 0.3,
+  "lastModified": 1794845538741,
+  "lastModifiedIso": "2026-11-16T16:12:18.741Z",
+  "classFilename": "../../source/class/cv/transforms/IoBroker.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 913
+    },
+    "end": {
+      "line": 102,
+      "column": 3,
+      "index": 2839
+    }
+  },
+  "className": "cv.transforms.IoBroker",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Transformations for the ioBroker backend",
+      " *",
+      " * @author Florian Schirmer",
+      " * @since 2023",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Transformations for the ioBroker backend</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Florian Schirmer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ]
+  },
+  "statics": {
+    "isUndefined": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1110
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1229
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

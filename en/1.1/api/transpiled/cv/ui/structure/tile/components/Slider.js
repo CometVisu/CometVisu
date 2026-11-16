@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -90,13 +90,13 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_90_0: null,
-      __P_90_1: null,
-      __P_90_2: null,
-      __P_90_3: null,
-      __P_90_4: null,
-      __P_90_5: null,
-      __P_90_6: null,
+      __P_91_0: null,
+      __P_91_1: null,
+      __P_91_2: null,
+      __P_91_3: null,
+      __P_91_4: null,
+      __P_91_5: null,
+      __P_91_6: null,
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.components.Slider.superclass.prototype._init.call(this);
@@ -115,13 +115,13 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           input.setAttribute('type', 'range');
           element.insertBefore(input, element.querySelector(':scope > .up'));
         }
-        if (!this.__P_90_4) {
-          this.__P_90_4 = function () {
-            return _this.__P_90_0.call();
+        if (!this.__P_91_4) {
+          this.__P_91_4 = function () {
+            return _this.__P_91_0.call();
           };
         }
-        input.oninput = this.__P_90_4;
-        this.__P_90_1 = input;
+        input.oninput = this.__P_91_4;
+        this.__P_91_1 = input;
         if (element.hasAttribute('step-width')) {
           this.setStepWidth(parseInt(element.getAttribute('step-width')));
         }
@@ -138,51 +138,51 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
         var decreaseElement = element.querySelector(':scope > .decrease');
         if (decreaseElement) {
-          if (!this.__P_90_5) {
-            this.__P_90_5 = function () {
+          if (!this.__P_91_5) {
+            this.__P_91_5 = function () {
               return _this.onDecrease();
             };
           }
-          decreaseElement.removeEventListener('click', this.__P_90_5);
-          decreaseElement.addEventListener('click', this.__P_90_5);
+          decreaseElement.removeEventListener('click', this.__P_91_5);
+          decreaseElement.addEventListener('click', this.__P_91_5);
         }
-        this.__P_90_2 = decreaseElement;
+        this.__P_91_2 = decreaseElement;
         var increaseElement = element.querySelector(':scope > .increase');
         if (increaseElement) {
-          if (!this.__P_90_6) {
-            this.__P_90_6 = function () {
+          if (!this.__P_91_6) {
+            this.__P_91_6 = function () {
               return _this.onIncrease();
             };
           }
-          increaseElement.removeEventListener('click', this.__P_90_6);
-          increaseElement.addEventListener('click', this.__P_90_6);
+          increaseElement.removeEventListener('click', this.__P_91_6);
+          increaseElement.addEventListener('click', this.__P_91_6);
         }
-        this.__P_90_3 = increaseElement;
+        this.__P_91_3 = increaseElement;
       },
       _disconnected: function _disconnected() {
-        if (this.__P_90_1) {
-          this.__P_90_1.oninput = null;
+        if (this.__P_91_1) {
+          this.__P_91_1.oninput = null;
         }
-        if (this.__P_90_2 && this.__P_90_5) {
-          this.__P_90_2.removeEventListener('click', this.__P_90_5);
+        if (this.__P_91_2 && this.__P_91_5) {
+          this.__P_91_2.removeEventListener('click', this.__P_91_5);
         }
-        if (this.__P_90_3 && this.__P_90_6) {
-          this.__P_90_3.removeEventListener('click', this.__P_90_6);
+        if (this.__P_91_3 && this.__P_91_6) {
+          this.__P_91_3.removeEventListener('click', this.__P_91_6);
         }
-        if (this.__P_90_0) {
-          this.__P_90_0.abort();
+        if (this.__P_91_0) {
+          this.__P_91_0.abort();
         }
         cv.ui.structure.tile.components.Slider.superclass.prototype._disconnected.call(this);
       },
       _applyThrottleInterval: function _applyThrottleInterval(value) {
         var _this2 = this;
         if (value > 0) {
-          this.__P_90_0 = cv.util.Function.throttle(this.onInput, value, {
+          this.__P_91_0 = cv.util.Function.throttle(this.onInput, value, {
             trailing: true
           }, this);
         } else {
           // no throttling, direct call
-          this.__P_90_0 = {
+          this.__P_91_0 = {
             call: function call() {
               return _this2.onInput();
             },
@@ -191,18 +191,18 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
       },
       _applyMin: function _applyMin(value) {
-        if (this.__P_90_1) {
-          this.__P_90_1.setAttribute('min', '' + value);
+        if (this.__P_91_1) {
+          this.__P_91_1.setAttribute('min', '' + value);
         }
       },
       _applyMax: function _applyMax(value) {
-        if (this.__P_90_1) {
-          this.__P_90_1.setAttribute('max', '' + value);
+        if (this.__P_91_1) {
+          this.__P_91_1.setAttribute('max', '' + value);
         }
       },
       _applyStepWidth: function _applyStepWidth(value) {
-        if (this.__P_90_1) {
-          this.__P_90_1.setAttribute('step', '' + value);
+        if (this.__P_91_1) {
+          this.__P_91_1.setAttribute('step', '' + value);
         }
       },
       _applyShowValue: function _applyShowValue(value) {
@@ -217,8 +217,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
       },
       _updateValue: function _updateValue(mappedValue, value) {
-        if (this.__P_90_1) {
-          this.__P_90_1.value = value;
+        if (this.__P_91_1) {
+          this.__P_91_1.value = value;
         }
         if (this.isShowValue()) {
           var valueLabel = this._element.querySelector(':scope > label.value');
@@ -228,17 +228,17 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
       },
       onInput: function onInput() {
-        this.__P_90_7(this.__P_90_1.value);
+        this.__P_91_7(this.__P_91_1.value);
       },
       onDecrease: function onDecrease() {
         var value = this.getValue() - this.getStepWidth();
-        this.__P_90_7(value, 'decrease');
+        this.__P_91_7(value, 'decrease');
       },
       onIncrease: function onIncrease() {
         var value = this.getValue() + this.getStepWidth();
-        this.__P_90_7(value, 'increase');
+        this.__P_91_7(value, 'increase');
       },
-      __P_90_7: function __P_90_7(value, on) {
+      __P_91_7: function __P_91_7(value, on) {
         var ev = new CustomEvent('sendState', {
           detail: {
             value: value,
@@ -268,4 +268,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1792082766193
+//# sourceMappingURL=Slider.js.map?dt=1794845750618

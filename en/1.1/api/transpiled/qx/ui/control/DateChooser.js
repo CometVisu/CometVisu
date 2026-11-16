@@ -141,7 +141,7 @@
 
       // listen for locale changes
       {
-        this.__P_544_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._updateDatePane, this);
+        this.__P_545_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._updateDatePane, this);
       }
 
       // register pointer up and down handler
@@ -259,9 +259,9 @@
     */
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __P_544_1: null,
-      __P_544_2: null,
-      __P_544_3: null,
+      __P_545_1: null,
+      __P_545_2: null,
+      __P_545_3: null,
       // overridden
       /**
        * @lint ignoreReferenceField(_forwardStates)
@@ -379,19 +379,19 @@
               column: 0,
               row: 0
             });
-            this.__P_544_1 = [];
+            this.__P_545_1 = [];
             for (var i = 0; i < 7; i++) {
               label = this.getChildControl("weekday#" + i);
               control.add(label, {
                 column: i + 1,
                 row: 0
               });
-              this.__P_544_1.push(label);
+              this.__P_545_1.push(label);
             }
 
             // Add the days
-            this.__P_544_2 = [];
-            this.__P_544_3 = [];
+            this.__P_545_2 = [];
+            this.__P_545_3 = [];
             for (var y = 0; y < 6; y++) {
               // Add the week label
               var label = this.getChildControl("week#" + (y + 1));
@@ -399,7 +399,7 @@
                 column: 0,
                 row: y + 1
               });
-              this.__P_544_3.push(label);
+              this.__P_545_3.push(label);
 
               // Add the day labels
               for (var x = 0; x < 7; x++) {
@@ -408,7 +408,7 @@
                   column: x + 1,
                   row: y + 1
                 });
-                this.__P_544_2.push(label);
+                this.__P_545_2.push(label);
               }
             }
             this._add(control);
@@ -425,7 +425,7 @@
           // The new date is in the current month -> Just change the states
           var newDay = value == null ? -1 : value.getDate();
           for (var i = 0; i < 42; i++) {
-            var dayLabel = this.__P_544_2[i];
+            var dayLabel = this.__P_545_2[i];
             if (dayLabel.hasState("otherMonth")) {
               if (dayLabel.hasState("selected")) {
                 dayLabel.removeState("selected");
@@ -640,7 +640,7 @@
         var weekDayFormat = new qx.util.format.DateFormat(DateChooser.WEEKDAY_FORMAT);
         for (var i = 0; i < 7; i++) {
           var day = (i + startOfWeek) % 7;
-          var dayLabel = this.__P_544_1[i];
+          var dayLabel = this.__P_545_1[i];
           helpDate.setDate(firstSundayInMonth + day);
           dayLabel.setValue(weekDayFormat.format(helpDate));
           if (qx.locale.Date.isWeekend(day)) {
@@ -656,9 +656,9 @@
         helpDate.setDate(helpDate.getDate() - nrDaysOfLastMonth);
         var weekFormat = new qx.util.format.DateFormat(DateChooser.WEEK_FORMAT);
         for (var week = 0; week < 6; week++) {
-          this.__P_544_3[week].setValue(weekFormat.format(helpDate));
+          this.__P_545_3[week].setValue(weekFormat.format(helpDate));
           for (var i = 0; i < 7; i++) {
-            var dayLabel = this.__P_544_2[week * 7 + i];
+            var dayLabel = this.__P_545_2[week * 7 + i];
             var year = helpDate.getFullYear();
             var month = helpDate.getMonth();
             var dayOfMonth = helpDate.getDate();
@@ -681,7 +681,7 @@
             }
             dayLabel.setValue("" + dayOfMonth);
             dayLabel.dateTime = helpDate.getTime();
-            dayLabel.setEnabled(!this.__P_544_4(helpDate));
+            dayLabel.setEnabled(!this.__P_545_4(helpDate));
 
             // Go to the next day
             helpDate.setDate(helpDate.getDate() + 1);
@@ -691,7 +691,7 @@
         weekDayFormat.dispose();
         weekFormat.dispose();
       },
-      __P_544_4: function __P_544_4(date) {
+      __P_545_4: function __P_545_4(date) {
         var d = new Date(date);
         d.setHours(0, 0, 0, 0);
         var exceedsMin = this.getMinValue() !== null && d < this.getMinValue();
@@ -705,13 +705,13 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (true && this.__P_544_0) {
-        qx.locale.Manager.getInstance().removeListenerById(this.__P_544_0);
+      if (true && this.__P_545_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_545_0);
       }
-      this.__P_544_1 = this.__P_544_2 = this.__P_544_3 = null;
+      this.__P_545_1 = this.__P_545_2 = this.__P_545_3 = null;
     }
   });
   qx.ui.control.DateChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateChooser.js.map?dt=1792082793027
+//# sourceMappingURL=DateChooser.js.map?dt=1794845776498

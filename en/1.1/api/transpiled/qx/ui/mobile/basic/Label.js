@@ -78,7 +78,7 @@
       }
       this.initWrap();
       {
-        this.__P_627_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+        this.__P_628_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
       }
     },
     /*
@@ -158,12 +158,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (true && this.__P_627_0) {
-        qx.locale.Manager.getInstance().removeListenerById(this.__P_627_0);
+      if (true && this.__P_628_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_628_0);
       }
     }
   });
   qx.ui.mobile.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1792082796197
+//# sourceMappingURL=Label.js.map?dt=1794845779688

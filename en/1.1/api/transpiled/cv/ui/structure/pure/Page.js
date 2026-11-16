@@ -80,15 +80,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
       // prevent listening to the first message to the GA in the first second
       // as it might be of the trigger type and still be in the knxd cache
-      this.__P_68_0 = setTimeout(function () {
-        _this.__P_68_0 = null;
+      this.__P_69_0 = setTimeout(function () {
+        _this.__P_69_0 = null;
       }, 1000);
 
       // break out of the constructor
       new qx.util.DeferredCall(function () {
         var parentPage = this.getParentPage();
         if (!parentPage) {
-          this.__P_68_1 = [];
+          this.__P_69_1 = [];
         } else {
           this.debug('binding navbar visibility from ' + parentPage.getPath() + ' to ' + this.getPath());
         }
@@ -212,21 +212,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
      ******************************************************
      */
     members: {
-      __P_68_1: null,
-      __P_68_2: null,
-      __P_68_3: null,
-      __P_68_0: null,
+      __P_69_1: null,
+      __P_69_2: null,
+      __P_69_3: null,
+      __P_69_0: null,
       _beforePropsApplied: function _beforePropsApplied(props) {
-        this.__P_68_1 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
+        this.__P_69_1 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
         return props;
       },
       _applyNavbarVisibility: function _applyNavbarVisibility(value, old, name) {
         if (value !== null) {
-          var i_name = this.__P_68_1.indexOf(name);
+          var i_name = this.__P_69_1.indexOf(name);
           if (i_name !== -1) {
-            this.__P_68_1.splice(i_name, 1);
+            this.__P_69_1.splice(i_name, 1);
           }
-          if (this.__P_68_1.length === 0) {
+          if (this.__P_69_1.length === 0) {
             this.setInitialized(true);
           }
         }
@@ -237,7 +237,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       _onChangeVisible: function _onChangeVisible(ev) {
         if (ev.getData()) {
-          if (this.__P_68_2 !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
+          if (this.__P_69_2 !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
             this.applyColumnWidths();
           }
           if (this.getBackdrop()) {
@@ -250,7 +250,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       applyColumnWidths: function applyColumnWidths() {
         cv.ui.structure.pure.layout.Manager.applyColumnWidths('#' + this.getPath(), false);
-        this.__P_68_2 = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
+        this.__P_69_2 = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
       },
       // overridden
       getDomString: function getDomString() {
@@ -348,10 +348,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         //
         //   default:
 
-        if (this.__P_68_0 !== null) {
+        if (this.__P_69_0 !== null) {
           // ignore first bus message during this timeout
-          clearTimeout(this.__P_68_0);
-          this.__P_68_0 = null;
+          clearTimeout(this.__P_69_0);
+          this.__P_69_0 = null;
           return;
         }
         var value = this.applyTransform(address, data);
@@ -417,4 +417,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1792082764499
+//# sourceMappingURL=Page.js.map?dt=1794845748972

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547835,
-  "lastModifiedIso": "2026-10-15T16:42:27.835Z",
+  "lastModified": 1794845538744,
+  "lastModifiedIso": "2026-11-16T16:12:18.744Z",
   "classFilename": "../../source/class/cv/ui/manager/control/FileController.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 937
     },
     "end": {
-      "line": 375,
+      "line": 376,
       "column": 3,
-      "index": 12631
+      "index": 12665
     }
   },
   "className": "cv.ui.manager.control.FileController",
@@ -183,9 +183,9 @@
           "index": 4247
         },
         "end": {
-          "line": 210,
+          "line": 211,
           "column": 5,
-          "index": 7076
+          "index": 7110
         }
       },
       "type": "function",
@@ -202,14 +202,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 212,
+          "line": 213,
           "column": 4,
-          "index": 7083
+          "index": 7117
         },
         "end": {
-          "line": 233,
+          "line": 234,
           "column": 5,
-          "index": 7822
+          "index": 7856
         }
       },
       "type": "function",
@@ -228,14 +228,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 235,
+          "line": 236,
           "column": 4,
-          "index": 7829
+          "index": 7863
         },
         "end": {
-          "line": 269,
+          "line": 270,
           "column": 5,
-          "index": 9180
+          "index": 9214
         }
       },
       "type": "function",
@@ -257,14 +257,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 271,
+          "line": 272,
           "column": 4,
-          "index": 9187
+          "index": 9221
         },
         "end": {
-          "line": 308,
+          "line": 309,
           "column": 5,
-          "index": 10645
+          "index": 10679
         }
       },
       "type": "function",
@@ -286,14 +286,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 310,
+          "line": 311,
           "column": 4,
-          "index": 10652
+          "index": 10686
         },
         "end": {
-          "line": 320,
+          "line": 321,
           "column": 5,
-          "index": 11047
+          "index": 11081
         }
       },
       "type": "function",
@@ -309,14 +309,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 322,
+          "line": 323,
           "column": 4,
-          "index": 11054
+          "index": 11088
         },
         "end": {
-          "line": 331,
+          "line": 332,
           "column": 5,
-          "index": 11379
+          "index": 11413
         }
       },
       "type": "function",
@@ -332,14 +332,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 333,
+          "line": 334,
           "column": 4,
-          "index": 11386
+          "index": 11420
         },
         "end": {
-          "line": 364,
+          "line": 365,
           "column": 5,
-          "index": 12449
+          "index": 12483
         }
       },
       "type": "function",
@@ -356,14 +356,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 372,
+        "line": 373,
         "column": 2,
-        "index": 12583
+        "index": 12617
       },
       "end": {
-        "line": 374,
+        "line": 375,
         "column": 3,
-        "index": 12627
+        "index": 12661
       }
     }
   },

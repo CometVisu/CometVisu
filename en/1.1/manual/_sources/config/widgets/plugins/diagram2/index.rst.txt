@@ -50,21 +50,23 @@ Data sources
 
 Every series is its own child element. Which sources are available depends on the backend in use:
 
-=============  ===================================================================================
-``<rrd>``      RRD file on the server, as in the old plugin. The content is the name without the
-               ``.rrd`` suffix, ``datasourceIndex`` selects the column inside the file.
-``<influx>``   Measurement from an InfluxDB, filtered through ``<and>``, ``<or>`` and ``<tag>``.
-``<openhab>``  Item from the openHAB persistence service. The content is the item name.
-``<demo>``     Generated data, only useful in a demo configuration.
-=============  ===================================================================================
+==============  ==================================================================================
+``<iobroker>``  State from the ioBroker history. The content is the state id, ``instance`` selects
+                the history instance (e.g. ``influxdb.0``), ``backend`` a named backend entry.
+``<rrd>``       RRD file on the server, as in the old plugin. The content is the name without the
+                ``.rrd`` suffix, ``datasourceIndex`` selects the column inside the file.
+``<influx>``    Measurement from an InfluxDB, filtered through ``<and>``, ``<or>`` and ``<tag>``.
+``<openhab>``   Item from the openHAB persistence service. The content is the item name.
+``<demo>``      Generated data, only useful in a demo configuration.
+==============  ==================================================================================
 
 The series attributes are largely the same for all sources: ``yaxis`` assigns the series to an
 axis — its value is the **name** of that axis, i.e. the content of the corresponding ``<axis>``
 element; without it the series goes onto the first axis. ``color`` and ``label`` set colour and
 legend text, ``scaling`` and ``offset`` convert the raw values, ``style`` selects between
 ``lines``, ``bars`` and ``points``, ``fill``, ``steps``, ``barWidth`` and ``align`` control the
-drawing, and ``resolution`` together with ``consolidationFunction`` (on ``<rrd>`` and ``<influx>``)
-decide how the values are aggregated for the shown time range. ``fillMissing``
+drawing, and ``resolution`` together with ``consolidationFunction`` (on ``<iobroker>``, ``<rrd>``
+and ``<influx>``) decide how the values are aggregated for the shown time range. ``fillMissing``
 closes gaps — ``<rrd>`` does not have that attribute.
 
 The possible values of ``consolidationFunction`` and ``fillMissing``, the filter elements and the
@@ -77,8 +79,8 @@ unchanged: :ref:`diagram`.
         <layout colspan="12" rowspan="6" />
         <axis unit=" °C" label="Temperature" position="left" decimals="1">temperature</axis>
         <axis unit=" %" label="Humidity" position="right" min="0" max="100" decimals="0">humidity</axis>
-        <influx measurement="house/temperature" color="#FF0000" label="Outside [°C]" yaxis="temperature"/>
-        <influx measurement="house/humidity" color="#00A0FF" label="Humidity [%]" yaxis="humidity"/>
+        <iobroker instance="influxdb.0" color="#FF0000" label="Outside [°C]" yaxis="temperature">hm-rpc.0.LEQ123456.1.TEMPERATURE</iobroker>
+        <iobroker instance="influxdb.0" color="#00A0FF" label="Humidity [%]" yaxis="humidity">hm-rpc.0.LEQ123456.1.HUMIDITY</iobroker>
     </diagram2>
 
 Interaction in the popup

@@ -149,7 +149,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        */
       showStartpage: function showStartpage() {
-        return this.__P_484_0;
+        return this.__P_485_0;
       },
       /**
        * Runs the web server
@@ -185,9 +185,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (!defaultMaker && apps.length === 1) {
                   defaultMaker = firstMaker;
                 }
-                _this2.__P_484_0 = _this2.argv.showStartpage;
-                if (_this2.__P_484_0 === undefined || _this2.__P_484_0 === null) {
-                  _this2.__P_484_0 = defaultMaker === null;
+                _this2.__P_485_0 = _this2.argv.showStartpage;
+                if (_this2.__P_485_0 === undefined || _this2.__P_485_0 === null) {
+                  _this2.__P_485_0 = defaultMaker === null;
                 }
                 config = _this2.getCompilerApi().getConfiguration();
                 app = express();
@@ -201,7 +201,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   next();
                 });
                 website = new qx.tool.utils.Website();
-                if (_this2.__P_484_0) {
+                if (_this2.__P_485_0) {
                   _context2.n = 1;
                   break;
                 }
@@ -279,7 +279,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee2);
         }))();
       },
-      __P_484_0: null
+      __P_485_0: null
     },
     defer: function defer(statics) {
       qx.tool.compiler.Console.addMessageIds({
@@ -291,4 +291,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Serve.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Serve.js.map?dt=1792082788487
+//# sourceMappingURL=Serve.js.map?dt=1794845771917

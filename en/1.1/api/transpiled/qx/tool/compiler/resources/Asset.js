@@ -47,107 +47,107 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct(library, filename, fileInfo) {
       qx.core.Object.constructor.call(this);
-      this.__P_508_0 = library;
+      this.__P_509_0 = library;
       this.__filename = filename;
-      this.__P_508_1 = fileInfo;
+      this.__P_509_1 = fileInfo;
     },
     members: {
       /** {Library} that this asset belongs to */
-      __P_508_0: null,
+      __P_509_0: null,
       /** {String} path within the library resources */
       __filename: null,
       /** {Object} the data in the database */
-      __P_508_1: null,
+      __P_509_1: null,
       /** {ResourceLoader[]?} array of loaders */
-      __P_508_2: null,
+      __P_509_2: null,
       /** {ResourceConverter[]?} array of converters */
-      __P_508_3: null,
+      __P_509_3: null,
       /** {Asset[]?} list of assets which refer to this asset (eg for image combining) */
-      __P_508_4: null,
+      __P_509_4: null,
       /** {Asset[]?} list of assets which the meta in this asset refers to (eg for image combining) */
-      __P_508_5: null,
+      __P_509_5: null,
       /** {Asset[]?} list of assets which this asset depends on */
-      __P_508_6: null,
+      __P_509_6: null,
       /** {Asset[]?} list of assets which depend on this asset */
-      __P_508_7: null,
+      __P_509_7: null,
       getLibrary: function getLibrary() {
-        return this.__P_508_0;
+        return this.__P_509_0;
       },
       getFilename: function getFilename() {
         return this.__filename;
       },
       getFileInfo: function getFileInfo() {
-        return this.__P_508_1;
+        return this.__P_509_1;
       },
       isThemeFile: function isThemeFile() {
-        return this.__P_508_1.resourcePath == "themePath";
+        return this.__P_509_1.resourcePath == "themePath";
       },
       getSourceFilename: function getSourceFilename() {
-        return path.relative(process.cwd(), this.isThemeFile() ? this.__P_508_0.getThemeFilename(this.__filename) : this.__P_508_0.getResourceFilename(this.__filename));
+        return path.relative(process.cwd(), this.isThemeFile() ? this.__P_509_0.getThemeFilename(this.__filename) : this.__P_509_0.getResourceFilename(this.__filename));
       },
       getDestFilename: function getDestFilename(target) {
         var filename = null;
-        if (this.__P_508_3) {
-          filename = this.__P_508_3[this.__P_508_3.length - 1].getDestFilename(target, this);
+        if (this.__P_509_3) {
+          filename = this.__P_509_3[this.__P_509_3.length - 1].getDestFilename(target, this);
         }
         return filename ? filename : path.relative(process.cwd(), path.join(target.getOutputDir(), "resource", this.__filename));
       },
       setLoaders: function setLoaders(loaders) {
-        this.__P_508_2 = loaders.length ? loaders : null;
+        this.__P_509_2 = loaders.length ? loaders : null;
       },
       setConverters: function setConverters(converters) {
-        this.__P_508_3 = converters.length ? converters : null;
+        this.__P_509_3 = converters.length ? converters : null;
       },
       addMetaReferee: function addMetaReferee(asset) {
-        if (!this.__P_508_4) {
-          this.__P_508_4 = [];
+        if (!this.__P_509_4) {
+          this.__P_509_4 = [];
         }
-        if (!qx.lang.Array.contains(this.__P_508_4, asset)) {
-          this.__P_508_4.push(asset);
+        if (!qx.lang.Array.contains(this.__P_509_4, asset)) {
+          this.__P_509_4.push(asset);
         }
       },
       getMetaReferees: function getMetaReferees() {
-        return this.__P_508_4;
+        return this.__P_509_4;
       },
       addMetaReferTo: function addMetaReferTo(asset) {
-        if (!this.__P_508_5) {
-          this.__P_508_5 = [];
+        if (!this.__P_509_5) {
+          this.__P_509_5 = [];
         }
-        if (!qx.lang.Array.contains(this.__P_508_5, asset)) {
-          this.__P_508_5.push(asset);
+        if (!qx.lang.Array.contains(this.__P_509_5, asset)) {
+          this.__P_509_5.push(asset);
         }
       },
       getMetaReferTo: function getMetaReferTo() {
-        return this.__P_508_5;
+        return this.__P_509_5;
       },
       setDependsOn: function setDependsOn(assets) {
         var _this = this;
-        if (this.__P_508_6) {
-          this.__P_508_6.forEach(function (thatAsset) {
-            return delete thatAsset.__P_508_7[_this.getFilename];
+        if (this.__P_509_6) {
+          this.__P_509_6.forEach(function (thatAsset) {
+            return delete thatAsset.__P_509_7[_this.getFilename];
           });
         }
         if (assets && assets.length) {
-          this.__P_508_6 = assets;
-          this.__P_508_1.dependsOn = assets.map(function (asset) {
+          this.__P_509_6 = assets;
+          this.__P_509_1.dependsOn = assets.map(function (asset) {
             return asset.toUri();
           });
           assets.forEach(function (thatAsset) {
-            if (!thatAsset.__P_508_7) {
-              thatAsset.__P_508_7 = {};
+            if (!thatAsset.__P_509_7) {
+              thatAsset.__P_509_7 = {};
             }
-            thatAsset.__P_508_7[_this.getFilename()] = _this;
+            thatAsset.__P_509_7[_this.getFilename()] = _this;
           });
         } else {
-          this.__P_508_6 = null;
-          delete this.__P_508_1.dependsOn;
+          this.__P_509_6 = null;
+          delete this.__P_509_1.dependsOn;
         }
       },
       getDependsOn: function getDependsOn() {
-        return this.__P_508_6;
+        return this.__P_509_6;
       },
       getDependsOnThisAsset: function getDependsOnThisAsset() {
-        return this.__P_508_7 ? Object.values(this.__P_508_7) : null;
+        return this.__P_509_7 ? Object.values(this.__P_509_7) : null;
       },
       load: function load() {
         var _this2 = this;
@@ -155,12 +155,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context) {
             while (1) switch (_context.n) {
               case 0:
-                if (!_this2.__P_508_2) {
+                if (!_this2.__P_509_2) {
                   _context.n = 1;
                   break;
                 }
                 _context.n = 1;
-                return Promise.all(_this2.__P_508_2.map(function (loader) {
+                return Promise.all(_this2.__P_509_2.map(function (loader) {
                   return loader.load(_this2);
                 }));
               case 1:
@@ -178,12 +178,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 destFilename = _this3.getDestFilename(target);
                 srcFilename = _this3.getSourceFilename();
-                if (!_this3.__P_508_3) {
+                if (!_this3.__P_509_3) {
                   _context4.n = 2;
                   break;
                 }
                 _context4.n = 1;
-                return qx.tool.utils.Promisify.some(_this3.__P_508_3, function (converter) {
+                return qx.tool.utils.Promisify.some(_this3.__P_509_3, function (converter) {
                   return converter.isDoNotCopy(srcFilename);
                 });
               case 1:
@@ -203,8 +203,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 filenames = [_this3.getSourceFilename()];
-                if (_this3.__P_508_6) {
-                  _this3.__P_508_6.forEach(function (asset) {
+                if (_this3.__P_509_6) {
+                  _this3.__P_509_6.forEach(function (asset) {
                     return filenames.push(asset.getSourceFilename());
                   });
                 }
@@ -229,12 +229,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }());
               case 4:
                 needsIt = _context4.v;
-                if (!(!needsIt && _this3.__P_508_3)) {
+                if (!(!needsIt && _this3.__P_509_3)) {
                   _context4.n = 6;
                   break;
                 }
                 _context4.n = 5;
-                return qx.tool.utils.Promisify.some(_this3.__P_508_3, function (converter) {
+                return qx.tool.utils.Promisify.some(_this3.__P_509_3, function (converter) {
                   return converter.needsConvert(target, _this3, srcFilename, destFilename, _this3.isThemeFile());
                 });
               case 5:
@@ -249,17 +249,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context4.n = 8;
                 return qx.tool.utils.Utils.makeParentDir(destFilename);
               case 8:
-                if (!_this3.__P_508_3) {
+                if (!_this3.__P_509_3) {
                   _context4.n = 13;
                   break;
                 }
                 dependsOn = [];
-                if (!(_this3.__P_508_3.length == 1)) {
+                if (!(_this3.__P_509_3.length == 1)) {
                   _context4.n = 11;
                   break;
                 }
                 _context4.n = 9;
-                return _this3.__P_508_3[0].convert(target, _this3, srcFilename, destFilename, _this3.isThemeFile());
+                return _this3.__P_509_3[0].convert(target, _this3, srcFilename, destFilename, _this3.isThemeFile());
               case 9:
                 _t2 = _context4.v;
                 if (_t2) {
@@ -273,14 +273,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 break;
               case 11:
                 lastTempFilename = null;
-                qx.tool.utils.Promisify.each(_this3.__P_508_3, /*#__PURE__*/function () {
+                qx.tool.utils.Promisify.each(_this3.__P_509_3, /*#__PURE__*/function () {
                   var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(converter, index) {
                     var tmpSrc, tmpDest, tmpDependsOn, _t;
                     return _regenerator().w(function (_context3) {
                       while (1) switch (_context3.n) {
                         case 0:
                           tmpSrc = lastTempFilename ? lastTempFilename : srcFilename;
-                          tmpDest = index === _this3.__P_508_3.length - 1 ? destFilename : path.join(require("os").tmpdir(), path.basename(srcFilename) + "-pass" + (index + 1) + "-");
+                          tmpDest = index === _this3.__P_509_3.length - 1 ? destFilename : path.join(require("os").tmpdir(), path.basename(srcFilename) + "-pass" + (index + 1) + "-");
                           _context3.n = 1;
                           return converter.convert(target, _this3, tmpSrc, tmpDest, _this3.isThemeFile());
                         case 1:
@@ -325,7 +325,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       toUri: function toUri() {
-        return this.__P_508_0.getNamespace() + ":" + this.__filename;
+        return this.__P_509_0.getNamespace() + ":" + this.__filename;
       },
       toString: function toString() {
         return this.toUri();
@@ -335,4 +335,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.Asset.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Asset.js.map?dt=1792082790438
+//# sourceMappingURL=Asset.js.map?dt=1794845773859

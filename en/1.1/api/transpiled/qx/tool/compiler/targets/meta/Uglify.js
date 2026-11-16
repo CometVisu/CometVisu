@@ -56,7 +56,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(appMeta, jsMeta) {
       qx.tool.compiler.targets.meta.AbstractJavascriptMeta.constructor.call(this, appMeta, jsMeta.getFilename());
-      this.__P_523_0 = jsMeta;
+      this.__P_524_0 = jsMeta;
     },
     properties: {
       needsWriteToDisk: {
@@ -65,7 +65,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_523_0: null,
+      __P_524_0: null,
       /*
        * @Override
        */
@@ -101,7 +101,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context3.a(3, 5);
               case 5:
                 application = _this._appMeta.getApplication();
-                outJsFilename = _this.__P_523_0.getFilename();
+                outJsFilename = _this.__P_524_0.getFilename();
                 baseJsFilename = path.basename(outJsFilename);
                 _context3.n = 6;
                 return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
@@ -120,7 +120,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                                 case 0:
                                   ws.on("finish", resolve);
                                   _context.n = 1;
-                                  return _this.__P_523_0.writeSourceCodeToStream(ws);
+                                  return _this.__P_524_0.writeSourceCodeToStream(ws);
                                 case 1:
                                   ws.end();
                                 case 2:
@@ -140,7 +140,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 6:
                 inSourceCode = _context3.v;
                 _context3.n = 7;
-                return _this.__P_523_0.getSourceMap();
+                return _this.__P_524_0.getSourceMap();
               case 7:
                 inSourceMap = _context3.v;
                 _this.fireDataEvent("minifyingApplication", {
@@ -205,4 +205,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.Uglify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Uglify.js.map?dt=1792082791563
+//# sourceMappingURL=Uglify.js.map?dt=1794845775039

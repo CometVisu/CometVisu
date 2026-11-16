@@ -96,6 +96,19 @@ Der MQTT-Broker muss Websocket Verbindungen unterstützen, damit die CometVisu d
 Sofern der Broker Zugangsdaten benötigt können diese über die ``username`` und ``password`` Attribute angegeben werden.
 
 
+Verbindung zu ioBroker
+----------------------
+
+.. code:: xml
+
+    <cv-backend type="iobroker" uri="ws://iobroker-host:8084"/>
+
+Die Adresse zeigt auf einen ioBroker-Server mit Websocket-Schnittstelle: den Web-Adapter (``iobroker.web``) oder den
+"Web socket" Adapter (``iobroker.ws``). Die CometVisu lädt die passende Programmbibliothek von diesem Server, es spielt
+daher keine Rolle, welches Protokoll er dafür verwendet.
+Sofern die ioBroker Instanz Zugangsdaten benötigt, können diese über die ``username`` und ``password`` Attribute angegeben werden.
+
+
 .. _tile-backend-system:
 
 Zugriff auf interne Stati und Funktionen

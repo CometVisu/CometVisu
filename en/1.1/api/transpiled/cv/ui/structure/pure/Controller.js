@@ -98,8 +98,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_63_0 = '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
-      this.__P_63_1 = {
+      this.__P_64_0 = '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer" class="clearfix"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>';
+      this.__P_64_1 = {
         cache: true
       };
 
@@ -135,13 +135,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     ***********************************************
     */
     members: {
-      __P_63_1: null,
-      __P_63_0: null,
+      __P_64_1: null,
+      __P_64_0: null,
       main_scroll: null,
       old_scroll: '',
       pagePartsHandler: null,
       getHtmlStructure: function getHtmlStructure() {
-        return this.__P_63_0;
+        return this.__P_64_0;
       },
       parseBackendSettings: function parseBackendSettings(xml) {
         var settings = cv.Config.configSettings;
@@ -168,6 +168,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           if (!defaultBackendName) {
             defaultBackendName = 'mqtt';
           }
+        }
+        if (pagesElement.getAttribute('backend-iobroker-url') !== null) {
+          settings.backendIoBrokerUrl = pagesElement.getAttribute('backend-iobroker-url');
         }
         if (pagesElement.getAttribute('backend-openhab-url') !== null) {
           settings.backendOpenHABUrl = pagesElement.getAttribute('backend-openhab-url');
@@ -337,10 +340,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return ret_val + '</div>';
       },
       supports: function supports(feature, subfeature) {
-        if (Object.prototype.hasOwnProperty.call(this.__P_63_1, feature)) {
-          if (this.__P_63_1[feature] === true) {
+        if (Object.prototype.hasOwnProperty.call(this.__P_64_1, feature)) {
+          if (this.__P_64_1[feature] === true) {
             if (subfeature) {
-              return Object.prototype.hasOwnProperty.call(this.__P_63_1[feature], subfeature) && this.__P_63_1[feature][subfeature] === true;
+              return Object.prototype.hasOwnProperty.call(this.__P_64_1[feature], subfeature) && this.__P_64_1[feature][subfeature] === true;
             }
             return true;
           }
@@ -368,7 +371,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       initLayout: function initLayout() {
         this.initPagePartsHandler();
         if (!cv.Config.initialPage) {
-          this.__P_63_2();
+          this.__P_64_2();
         }
         var currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
         if (currentPage) {
@@ -508,14 +511,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context2.n = 1;
-                return _this4.__P_63_2();
+                return _this4.__P_64_2();
               case 1:
                 return _context2.a(2, cv.Config.initialPage);
             }
           }, _callee2);
         }))();
       },
-      __P_63_2: function __P_63_2() {
+      __P_64_2: function __P_64_2() {
         var _this5 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
           var startpage, req;
@@ -707,4 +710,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.pure.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1792082764288
+//# sourceMappingURL=Controller.js.map?dt=1794845748785

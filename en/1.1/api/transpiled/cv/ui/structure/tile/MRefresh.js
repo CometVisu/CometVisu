@@ -48,12 +48,12 @@
     ***********************************************
     */
     construct: function construct() {
-      this.__P_78_0 = qx.core.Init.getApplication() || null;
-      if (this.__P_78_0) {
-        this.__P_78_0.addListener('changeActive', this.__P_78_1, this);
+      this.__P_79_0 = qx.core.Init.getApplication() || null;
+      if (this.__P_79_0) {
+        this.__P_79_0.addListener('changeActive', this.__P_79_1, this);
       }
       if (qx.Class.hasMixin(this.constructor, cv.ui.structure.tile.MVisibility)) {
-        this.addListener('changeVisible', this.__P_78_2, this);
+        this.addListener('changeVisible', this.__P_79_2, this);
       }
     },
     /*
@@ -74,7 +74,7 @@
     ***********************************************
     */
     members: {
-      __P_78_0: null,
+      __P_79_0: null,
       _refreshTimer: null,
       _lastRefresh: null,
       _applyRefresh: function _applyRefresh(value) {
@@ -85,57 +85,57 @@
           }
         } else if (!this._refreshTimer) {
           this._refreshTimer = new qx.event.Timer(value * 1000);
-          this._refreshTimer.addListener('interval', this.__P_78_3, this);
-          if (this.__P_78_4()) {
+          this._refreshTimer.addListener('interval', this.__P_79_3, this);
+          if (this.__P_79_4()) {
             this._refreshTimer.start();
           }
-        } else if (!this.__P_78_4()) {
+        } else if (!this.__P_79_4()) {
           this._refreshTimer.stop();
         } else {
           this._refreshTimer.restartWith(value * 1000);
         }
       },
-      __P_78_2: function __P_78_2(ev) {
+      __P_79_2: function __P_79_2(ev) {
         if (ev.getData()) {
-          this.__P_78_5();
+          this.__P_79_5();
         } else {
-          this.__P_78_6();
+          this.__P_79_6();
         }
       },
-      __P_78_1: function __P_78_1(ev) {
+      __P_79_1: function __P_79_1(ev) {
         if (ev.getData()) {
-          this.__P_78_5();
+          this.__P_79_5();
         } else {
-          this.__P_78_6();
+          this.__P_79_6();
         }
       },
-      __P_78_4: function __P_78_4() {
-        return this.__P_78_7() && (typeof this.isVisible !== 'function' || this.isVisible());
+      __P_79_4: function __P_79_4() {
+        return this.__P_79_7() && (typeof this.isVisible !== 'function' || this.isVisible());
       },
-      __P_78_7: function __P_78_7() {
-        return !this.__P_78_0 || this.__P_78_0.isActive();
+      __P_79_7: function __P_79_7() {
+        return !this.__P_79_0 || this.__P_79_0.isActive();
       },
-      __P_78_5: function __P_78_5() {
-        if (!this.__P_78_4()) {
+      __P_79_5: function __P_79_5() {
+        if (!this.__P_79_4()) {
           return;
         }
         if (this._refreshTimer) {
           this._refreshTimer.start();
           if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
             // last execution time too old, refresh now
-            this.__P_78_3();
+            this.__P_79_3();
           }
         } else if (!this._lastRefresh) {
           // refresh once when the item becomes visible or the app becomes active again
-          this.__P_78_3();
+          this.__P_79_3();
         }
       },
-      __P_78_6: function __P_78_6() {
+      __P_79_6: function __P_79_6() {
         if (this._refreshTimer) {
           this._refreshTimer.stop();
         }
       },
-      __P_78_3: function __P_78_3() {
+      __P_79_3: function __P_79_3() {
         if (typeof this.refresh === 'function') {
           this.refresh();
           this._lastRefresh = Date.now();
@@ -168,9 +168,9 @@
     ***********************************************
     */
     destruct: function destruct() {
-      if (this.__P_78_0) {
-        this.__P_78_0.removeListener('changeActive', this.__P_78_1, this);
-        this.__P_78_0 = null;
+      if (this.__P_79_0) {
+        this.__P_79_0.removeListener('changeActive', this.__P_79_1, this);
+        this.__P_79_0 = null;
       }
       this._disposeObjects('_refreshTimer');
     }
@@ -178,4 +178,4 @@
   cv.ui.structure.tile.MRefresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRefresh.js.map?dt=1792082765163
+//# sourceMappingURL=MRefresh.js.map?dt=1794845749609

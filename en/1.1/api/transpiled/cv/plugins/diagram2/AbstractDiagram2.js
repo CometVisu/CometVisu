@@ -18,6 +18,7 @@
       "cv.data.Model": {},
       "cv.plugins.diagram2.Plot": {},
       "cv.io.BackendConnections": {},
+      "cv.io.timeseries.IoBrokerSource": {},
       "cv.io.timeseries.DemoSource": {},
       "cv.io.timeseries.OpenhabPersistenceSource": {},
       "cv.io.timeseries.FluxSource": {},
@@ -255,8 +256,10 @@
           axesNameIndex[elem.textContent] = retVal.axesnum;
         }, this);
 
-        // each backend gets the default of its own vocabulary
+        // each backend gets the default of its own vocabulary, ioBroker uses the default
+        // of its history adapters
         var defaultCFunc = {
+          iobroker: 'MINMAX',
           influx: 'MEAN'
         };
 
@@ -266,7 +269,7 @@
         if (client && client.getType) {
           clientType = client.getType();
         }
-        xmlElement.querySelectorAll('demo,rrd,influx,openhab').forEach(function (elem) {
+        xmlElement.querySelectorAll('iobroker,demo,rrd,influx,openhab').forEach(function (elem) {
           // influx names its data in an attribute, the others carry it as content - and accept the
           // attribute as well, the way the data sets of the tile structure are written
           var src = (elem.getAttribute('measurement') || elem.textContent || '').trim();
@@ -277,6 +280,9 @@
             src: src,
             // the connection to read the history from, the default one when not set
             backend: elem.getAttribute('backend'),
+            // the recording adapter instance, e.g. sql.0. Without it ioBroker picks the one
+            // configured on the state itself, which fails when that is not the one holding the data
+            instance: elem.getAttribute('instance'),
             color: elem.getAttribute('color'),
             label: elem.getAttribute('label') || src,
             axisIndex: axesNameIndex[elem.getAttribute('yaxis')] || 1,
@@ -348,20 +354,27 @@
       getTimeSeriesSource: function getTimeSeriesSource(ts) {
         if (!ts.source) {
           switch (ts.tsType) {
+            case 'iobroker':
+              {
+                var backend = ts.backend ? ts.backend + '@' : '';
+                // state ids may contain characters that are structural in the resource url ("#", "?", "/")
+                ts.source = new cv.io.timeseries.IoBrokerSource('iobroker://' + backend + encodeURIComponent(ts.src));
+                break;
+              }
             case 'demo':
               // the demo data always comes from the mockup client, it has no backend of its own
               ts.source = new cv.io.timeseries.DemoSource('demo://' + ts.src);
               break;
             case 'openhab':
               {
-                var backend = ts.backend ? ts.backend + '@' : '';
-                ts.source = new cv.io.timeseries.OpenhabPersistenceSource('openhab://' + backend + ts.src);
+                var _backend = ts.backend ? ts.backend + '@' : '';
+                ts.source = new cv.io.timeseries.OpenhabPersistenceSource('openhab://' + _backend + ts.src);
                 break;
               }
             case 'influx':
               {
-                var _backend = ts.backend ? ts.backend + '@' : '';
-                ts.source = new cv.io.timeseries.FluxSource('influx://' + _backend + ts.src);
+                var _backend2 = ts.backend ? ts.backend + '@' : '';
+                ts.source = new cv.io.timeseries.FluxSource('influx://' + _backend2 + ts.src);
                 if (ts.source.isInline()) {
                   ts.source.setQueryTemplate(ts.filter);
                 }
@@ -397,6 +410,7 @@
         if (typeof source.setHistoryOptions === 'function') {
           source.setHistoryOptions({
             aggregate: ts.cFunc,
+            instance: ts.instance || undefined,
             fill: ts.fillTs,
             // res is the resolution in seconds, either from the data set or from the series
             step: Number.isFinite(res) && res > 0 ? res * 1000 : undefined
@@ -622,7 +636,7 @@
       plot: null,
       plotted: null,
       _timerPopup: null,
-      __P_23_0: false,
+      __P_24_0: false,
       // property apply
       _applyTitle: function _applyTitle(value) {
         if (value) {
@@ -755,7 +769,7 @@
           return;
         }
         this._init = false;
-        isPopup = isPopup || this.__P_23_0;
+        isPopup = isPopup || this.__P_24_0;
         var element = this._getPlotElement(isPopup);
         if (!element) {
           // nothing to draw into, try again the next time the widget appears
@@ -936,4 +950,4 @@
   cv.plugins.diagram2.AbstractDiagram2.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram2.js.map?dt=1792082761259
+//# sourceMappingURL=AbstractDiagram2.js.map?dt=1794845745972

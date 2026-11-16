@@ -48,7 +48,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       fullscreen: {
         check: 'Boolean',
         init: false,
-        apply: "__P_77_0",
+        apply: "__P_78_0",
         event: 'changeFullscreen'
       }
     },
@@ -58,42 +58,42 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_77_1: null,
-      __P_77_2: null,
-      __P_77_3: null,
-      __P_77_4: null,
-      __P_77_5: null,
-      __P_77_6: null,
-      __P_77_7: null,
+      __P_78_1: null,
+      __P_78_2: null,
+      __P_78_3: null,
+      __P_78_4: null,
+      __P_78_5: null,
+      __P_78_6: null,
+      __P_78_7: null,
       getUuid: function getUuid() {
-        if (!this.__P_77_1) {
-          this.__P_77_1 = qx.util.Uuid.createUuidV4();
+        if (!this.__P_78_1) {
+          this.__P_78_1 = qx.util.Uuid.createUuidV4();
         }
-        return this.__P_77_1;
+        return this.__P_78_1;
       },
       getPopupAddress: function getPopupAddress() {
-        if (!this.__P_77_2) {
-          this.__P_77_2 = "state:".concat(this.getUuid(), "-popup");
+        if (!this.__P_78_2) {
+          this.__P_78_2 = "state:".concat(this.getUuid(), "-popup");
         }
-        return this.__P_77_2;
+        return this.__P_78_2;
       },
-      __P_77_0: function __P_77_0(value) {
+      __P_78_0: function __P_78_0(value) {
         if (typeof this._applyFullscreen === 'function') {
           // call the original apply function
           this._applyFullscreen(value);
         } else {
           var sendValue = value ? '1' : '0';
-          this.__P_77_3.setAttribute('data-value', sendValue);
+          this.__P_78_3.setAttribute('data-value', sendValue);
           cv.data.Model.getInstance().onUpdate(this.getPopupAddress(), sendValue, 'system');
         }
       },
       _initFullscreenSwitch: function _initFullscreenSwitch() {
         var _this = this;
-        this.__P_77_8();
+        this.__P_78_8();
 
         // add fullscreen button + address
-        var button = this.__P_77_3 && this.__P_77_3.isConnected ? this.__P_77_3 : this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
-        this.__P_77_3 = button;
+        var button = this.__P_78_3 && this.__P_78_3.isConnected ? this.__P_78_3 : this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
+        this.__P_78_3 = button;
         button.setAttribute('data-value', '0');
         if (!button.isConnected) {
           button.addEventListener('click', function () {
@@ -106,43 +106,43 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           parent = parent.parentElement;
         }
         if (parent) {
-          this.__P_77_7 = parent.getInstance();
-          this.__P_77_6 = function () {
+          this.__P_78_7 = parent.getInstance();
+          this.__P_78_6 = function () {
             return _this.setFullscreen(false);
           };
-          this.__P_77_7.addListener('closed', this.__P_77_6, this);
+          this.__P_78_7.addListener('closed', this.__P_78_6, this);
         }
         if (typeof this._applyFullscreen === 'undefined') {
-          if (!this.__P_77_4) {
-            this.__P_77_4 = document.createElement('cv-address');
-            this.__P_77_4.setAttribute('mode', 'read');
-            this.__P_77_4.setAttribute('target', 'fullscreen-popup');
-            this.__P_77_4.setAttribute('backend', 'system');
-            this.__P_77_4.setAttribute('send-mode', 'always');
-            this.__P_77_4.textContent = this.getPopupAddress();
+          if (!this.__P_78_4) {
+            this.__P_78_4 = document.createElement('cv-address');
+            this.__P_78_4.setAttribute('mode', 'read');
+            this.__P_78_4.setAttribute('target', 'fullscreen-popup');
+            this.__P_78_4.setAttribute('backend', 'system');
+            this.__P_78_4.setAttribute('send-mode', 'always');
+            this.__P_78_4.textContent = this.getPopupAddress();
           }
-          if (this.__P_77_4.parentElement !== this._element.parentElement) {
-            this._element.parentElement.appendChild(this.__P_77_4);
+          if (this.__P_78_4.parentElement !== this._element.parentElement) {
+            this._element.parentElement.appendChild(this.__P_78_4);
           }
-          if (this.__P_77_7) {
-            this.__P_77_5 = function (ev) {
-              _this.__P_77_7.onStateUpdate(ev);
+          if (this.__P_78_7) {
+            this.__P_78_5 = function (ev) {
+              _this.__P_78_7.onStateUpdate(ev);
               ev.stopPropagation();
             };
-            this.__P_77_4.addEventListener('stateUpdate', this.__P_77_5);
+            this.__P_78_4.addEventListener('stateUpdate', this.__P_78_5);
           }
         }
       },
-      __P_77_8: function __P_77_8() {
-        if (this.__P_77_7 && this.__P_77_6) {
-          this.__P_77_7.removeListener('closed', this.__P_77_6, this);
+      __P_78_8: function __P_78_8() {
+        if (this.__P_78_7 && this.__P_78_6) {
+          this.__P_78_7.removeListener('closed', this.__P_78_6, this);
         }
-        if (this.__P_77_4 && this.__P_77_5) {
-          this.__P_77_4.removeEventListener('stateUpdate', this.__P_77_5);
+        if (this.__P_78_4 && this.__P_78_5) {
+          this.__P_78_4.removeEventListener('stateUpdate', this.__P_78_5);
         }
-        this.__P_77_7 = null;
-        this.__P_77_6 = null;
-        this.__P_77_5 = null;
+        this.__P_78_7 = null;
+        this.__P_78_6 = null;
+        this.__P_78_5 = null;
       },
       _buttonFactory: function _buttonFactory(icon, classes) {
         var _button$classList;
@@ -162,12 +162,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_77_8();
-      this.__P_77_3 = null;
-      this.__P_77_4 = null;
+      this.__P_78_8();
+      this.__P_78_3 = null;
+      this.__P_78_4 = null;
     }
   });
   cv.ui.structure.tile.MFullscreen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MFullscreen.js.map?dt=1792082765132
+//# sourceMappingURL=MFullscreen.js.map?dt=1794845749579

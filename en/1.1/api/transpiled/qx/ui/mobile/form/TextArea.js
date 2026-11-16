@@ -123,7 +123,7 @@
       _fixChildElementsHeight: function _fixChildElementsHeight(evt) {
         this.getContentElement().style.height = "auto";
         this.getContentElement().style.height = this.getContentElement().scrollHeight + "px";
-        var scroll = this.__P_648_0();
+        var scroll = this.__P_649_0();
         if (scroll) {
           scroll.refresh();
         }
@@ -132,7 +132,7 @@
        * Returns the parent scroll container of this widget.
        * @return {qx.ui.mobile.container.Scroll} the parent scroll container or <code>null</code>
        */
-      __P_648_0: function __P_648_0() {
+      __P_649_0: function __P_649_0() {
         var scroll = this;
         while (!(scroll instanceof qx.ui.mobile.container.Scroll)) {
           if (scroll.getLayoutParent) {
@@ -159,4 +159,4 @@
   qx.ui.mobile.form.TextArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextArea.js.map?dt=1792082796990
+//# sourceMappingURL=TextArea.js.map?dt=1794845780433

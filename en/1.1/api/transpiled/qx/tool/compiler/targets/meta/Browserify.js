@@ -60,10 +60,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       this.setNeedsWriteToDisk(true);
     },
     members: {
-      __P_518_0: null,
-      __P_518_1: null,
-      __P_518_2: function __P_518_2() {
-        if (this.__P_518_0 === null) {
+      __P_519_0: null,
+      __P_519_1: null,
+      __P_519_2: function __P_519_2() {
+        if (this.__P_519_0 === null) {
           var commonjsModules = new Set();
           var references = {};
           var db = this.getAppMeta().getAnalyser().getDatabase();
@@ -90,12 +90,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           for (var className in db.classInfo) {
             _loop();
           }
-          this.__P_518_0 = _toConsumableArray(commonjsModules);
-          this.__P_518_1 = references;
+          this.__P_519_0 = _toConsumableArray(commonjsModules);
+          this.__P_519_1 = references;
         }
         return {
-          commonjsModules: this.__P_518_0,
-          references: this.__P_518_1
+          commonjsModules: this.__P_519_0,
+          references: this.__P_519_1
         };
       },
       /**
@@ -105,13 +105,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
           var _db$modulesInfo2;
-          var localModules, db, _this$__P_518_, commonjsModules, modules, modulesInfo, doIt, requireName, _db$modulesInfo, stat, _t, _t2;
+          var localModules, db, _this$__P_519_, commonjsModules, modules, modulesInfo, doIt, requireName, _db$modulesInfo, stat, _t, _t2;
           return _regenerator().w(function (_context) {
             while (1) switch (_context.n) {
               case 0:
                 localModules = _this.getAppMeta().getApplication().getLocalModules();
                 db = _this.getAppMeta().getAnalyser().getDatabase();
-                _this$__P_518_ = _this.__P_518_2(), commonjsModules = _this$__P_518_.commonjsModules;
+                _this$__P_519_ = _this.__P_519_2(), commonjsModules = _this$__P_519_.commonjsModules;
                 modules = [];
                 modulesInfo = {};
                 _context.n = 1;
@@ -168,7 +168,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-          var localModules, _this2$__P_518_, commonjsModules, references;
+          var localModules, _this2$__P_519_, commonjsModules, references;
           return _regenerator().w(function (_context2) {
             while (1) switch (_context2.n) {
               case 0:
@@ -177,13 +177,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   break;
                 }
                 localModules = _this2.getAppMeta().getApplication().getLocalModules();
-                _this2$__P_518_ = _this2.__P_518_2(), commonjsModules = _this2$__P_518_.commonjsModules, references = _this2$__P_518_.references;
+                _this2$__P_519_ = _this2.__P_519_2(), commonjsModules = _this2$__P_519_.commonjsModules, references = _this2$__P_519_.references;
                 if (!(commonjsModules.length > 0 || localModules)) {
                   _context2.n = 1;
                   break;
                 }
                 _context2.n = 1;
-                return _this2.__P_518_3(commonjsModules, references, localModules, ws);
+                return _this2.__P_519_3(commonjsModules, references, localModules, ws);
               case 1:
                 _context2.n = 2;
                 return new Promise(function (resolve) {
@@ -195,7 +195,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }, _callee2);
         }))();
       },
-      __P_518_3: function __P_518_3(commonjsModules, references, localModules, ws) {
+      __P_519_3: function __P_519_3(commonjsModules, references, localModules, ws) {
         var _this3 = this;
         var babelify = require("babelify");
         var preset = require("@babel/preset-env");
@@ -294,4 +294,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.tool.compiler.targets.meta.Browserify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Browserify.js.map?dt=1792082791219
+//# sourceMappingURL=Browserify.js.map?dt=1794845774888

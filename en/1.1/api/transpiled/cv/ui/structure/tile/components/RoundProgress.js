@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -103,15 +103,15 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_88_0: null,
-      __P_88_1: null,
-      __P_88_2: null,
-      __P_88_3: null,
-      __P_88_4: null,
-      __P_88_5: null,
-      __P_88_6: null,
-      __P_88_7: null,
-      __P_88_8: null,
+      __P_89_0: null,
+      __P_89_1: null,
+      __P_89_2: null,
+      __P_89_3: null,
+      __P_89_4: null,
+      __P_89_5: null,
+      __P_89_6: null,
+      __P_89_7: null,
+      __P_89_8: null,
       _queuedFitText: null,
       _init: function _init() {
         var _this = this;
@@ -123,10 +123,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         var getRadius = function getRadius(cellWidth) {
           return Math.min(cellWidth, cellHeight || cellWidth);
         };
-        var radius = this.__P_88_4 = element.getAttribute('radius') || getRadius(parseFloat(style.getPropertyValue('--tileCellWidth')) || 56);
+        var radius = this.__P_89_4 = element.getAttribute('radius') || getRadius(parseFloat(style.getPropertyValue('--tileCellWidth')) || 56);
         var strokeWidth = element.getAttribute('stroke') || 8;
-        var normalizedRadius = this.__P_88_3 = radius - strokeWidth / 2;
-        this.__P_88_1 = normalizedRadius * 2 * Math.PI;
+        var normalizedRadius = this.__P_89_3 = radius - strokeWidth / 2;
+        this.__P_89_1 = normalizedRadius * 2 * Math.PI;
         if (element.hasAttribute('min')) {
           var min = parseInt(element.getAttribute('min'));
           if (!isNaN(min)) {
@@ -169,8 +169,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           bar.setAttribute('cx', '50%');
           bar.setAttribute('cy', '50%');
           bar.setAttribute('stroke-width', strokeWidth);
-          bar.setAttribute('stroke-dasharray', "".concat(this.__P_88_1, " ").concat(this.__P_88_1));
-          bar.setAttribute('stroke-dashoffset', this.__P_88_1);
+          bar.setAttribute('stroke-dasharray', "".concat(this.__P_89_1, " ").concat(this.__P_89_1));
+          bar.setAttribute('stroke-dashoffset', this.__P_89_1);
           if (element.hasAttribute('foreground-color')) {
             bar.style.stroke = element.getAttribute('foreground-color');
           }
@@ -187,7 +187,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             }
             svg.appendChild(_bg);
           }
-          this.__P_88_2 = {
+          this.__P_89_2 = {
             x: strokeWidth / 2,
             y: radius
           };
@@ -202,34 +202,34 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           svg.appendChild(_bar);
         }
         element.replaceChildren(svg, document.createElement('label'));
-        this.__P_88_7 = radius * 2 - strokeWidth * 2 - 24;
+        this.__P_89_7 = radius * 2 - strokeWidth * 2 - 24;
         if (!hasFixedRadius) {
           qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', function (ev) {
-            _this.__P_88_4 = getRadius(ev.getData());
-            _this.__P_88_3 = _this.__P_88_4 - strokeWidth / 2;
-            _this.__P_88_1 = _this.__P_88_3 * 2 * Math.PI;
-            _this.__P_88_7 = _this.__P_88_4 * 2 - strokeWidth * 2 - 24;
-            height = type === 'semiCircle' ? _this.__P_88_4 : _this.__P_88_4 * 2;
+            _this.__P_89_4 = getRadius(ev.getData());
+            _this.__P_89_3 = _this.__P_89_4 - strokeWidth / 2;
+            _this.__P_89_1 = _this.__P_89_3 * 2 * Math.PI;
+            _this.__P_89_7 = _this.__P_89_4 * 2 - strokeWidth * 2 - 24;
+            height = type === 'semiCircle' ? _this.__P_89_4 : _this.__P_89_4 * 2;
             var svg = element.querySelector(':scope > svg');
             svg.setAttribute('height', '' + height);
-            svg.setAttribute('width', '' + _this.__P_88_4 * 2);
+            svg.setAttribute('width', '' + _this.__P_89_4 * 2);
             if (type === 'circle') {
               _this._element.querySelectorAll(':scope > svg > circle').forEach(function (circle) {
-                circle.setAttribute('r', '' + _this.__P_88_3);
+                circle.setAttribute('r', '' + _this.__P_89_3);
                 if (circle.classList.contains('bar')) {
-                  circle.setAttribute('stroke-dasharray', _this.__P_88_1 + ' ' + _this.__P_88_1);
-                  circle.setAttribute('stroke-dashoffset', '' + _this.__P_88_1);
+                  circle.setAttribute('stroke-dasharray', _this.__P_89_1 + ' ' + _this.__P_89_1);
+                  circle.setAttribute('stroke-dashoffset', '' + _this.__P_89_1);
                 }
               });
             } else if (type === 'semiCircle') {
-              _this.__P_88_2.y = _this.__P_88_4;
+              _this.__P_89_2.y = _this.__P_89_4;
               var _bg2 = _this._element.querySelector(':scope > svg > path.bg');
               if (_bg2) {
-                _bg2.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(_this.__P_88_4, " A ").concat(_this.__P_88_3, " ").concat(_this.__P_88_3, " 0 0 1 ").concat(_this.__P_88_4 * 2 - strokeWidth / 2, " ").concat(_this.__P_88_4));
+                _bg2.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(_this.__P_89_4, " A ").concat(_this.__P_89_3, " ").concat(_this.__P_89_3, " 0 0 1 ").concat(_this.__P_89_4 * 2 - strokeWidth / 2, " ").concat(_this.__P_89_4));
               }
             }
             _this._applyProgress(_this.isPropertyInitialized('progress') ? _this.getProgress() : 0);
-            if (_this.__P_88_5 && _this.__P_88_5.textContent) {
+            if (_this.__P_89_5 && _this.__P_89_5.textContent) {
               _this._fitText();
             }
           });
@@ -240,11 +240,11 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           this._applyText(this.getText());
         }
       },
-      __P_88_9: function __P_88_9(angle) {
+      __P_89_9: function __P_89_9(angle) {
         var angleRad = angle * (Math.PI / 180.0);
         return {
-          x: this.__P_88_4 - this.__P_88_3 * Math.cos(angleRad),
-          y: this.__P_88_4 - this.__P_88_3 * Math.sin(angleRad)
+          x: this.__P_89_4 - this.__P_89_3 * Math.cos(angleRad),
+          y: this.__P_89_4 - this.__P_89_3 * Math.sin(angleRad)
         };
       },
       _applyProgress: function _applyProgress(value) {
@@ -259,36 +259,36 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
               if (!valueElement) {
                 return;
               }
-              valueElement.setAttribute('stroke-dashoffset', '' + this.__P_88_1 - percent / 100 * this.__P_88_1);
+              valueElement.setAttribute('stroke-dashoffset', '' + this.__P_89_1 - percent / 100 * this.__P_89_1);
               break;
             case 'semiCircle':
               valueElement = this._element.querySelector(':scope > svg > path.bar');
               if (!valueElement) {
                 return;
               }
-              end = this.__P_88_9(1.8 * percent);
-              valueElement.setAttribute('d', ['M', this.__P_88_2.x, this.__P_88_2.y, 'A', this.__P_88_3, this.__P_88_3, 0, 0, 1, end.x, end.y].join(' '));
+              end = this.__P_89_9(1.8 * percent);
+              valueElement.setAttribute('d', ['M', this.__P_89_2.x, this.__P_89_2.y, 'A', this.__P_89_3, this.__P_89_3, 0, 0, 1, end.x, end.y].join(' '));
               break;
           }
         }
       },
       _fitText: function _fitText() {
-        if (this.__P_88_5 && this.__P_88_5.textContent) {
+        if (this.__P_89_5 && this.__P_89_5.textContent) {
           if (this.isVisible()) {
-            if (!this.__P_88_6) {
-              this.__P_88_6 = document.createElement('canvas');
-              this.__P_88_10 = this.__P_88_6.getContext('2d');
-              var compStyle = window.getComputedStyle(this.__P_88_5);
-              this.__P_88_10.font = compStyle.getPropertyValue('font');
-              this.__P_88_8 = compStyle.getPropertyValue('font-size');
+            if (!this.__P_89_6) {
+              this.__P_89_6 = document.createElement('canvas');
+              this.__P_89_10 = this.__P_89_6.getContext('2d');
+              var compStyle = window.getComputedStyle(this.__P_89_5);
+              this.__P_89_10.font = compStyle.getPropertyValue('font');
+              this.__P_89_8 = compStyle.getPropertyValue('font-size');
             }
-            var metrics = this.__P_88_10.measureText(this.__P_88_5.textContent);
-            if (metrics.width > this.__P_88_7) {
+            var metrics = this.__P_89_10.measureText(this.__P_89_5.textContent);
+            if (metrics.width > this.__P_89_7) {
               // adjust font-size
-              var factor = this.__P_88_7 / metrics.width;
-              this.__P_88_5.style.fontSize = Math.floor(parseInt(this.__P_88_8) * factor) + 'px';
+              var factor = this.__P_89_7 / metrics.width;
+              this.__P_89_5.style.fontSize = Math.floor(parseInt(this.__P_89_8) * factor) + 'px';
             } else {
-              this.__P_88_5.style.fontSize = this.__P_88_8;
+              this.__P_89_5.style.fontSize = this.__P_89_8;
             }
             this._queuedFitText = false;
           } else {
@@ -303,17 +303,17 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       },
       _applyText: function _applyText(value) {
         if (this.isConnected()) {
-          if (!this.__P_88_5) {
-            this.__P_88_5 = this._element.querySelector(':scope > label');
+          if (!this.__P_89_5) {
+            this.__P_89_5 = this._element.querySelector(':scope > label');
           }
-          if (!this.__P_88_5) {
+          if (!this.__P_89_5) {
             return;
           }
-          this.__P_88_5.textContent = value;
+          this.__P_89_5.textContent = value;
           if (!value) {
             // empty text, just reset to default font size
-            if (this.__P_88_8) {
-              this.__P_88_5.style.fontSize = this.__P_88_8;
+            if (this.__P_89_8) {
+              this.__P_89_5.style.fontSize = this.__P_89_8;
             }
           } else {
             this._fitText();
@@ -327,7 +327,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_88_5 = null;
+      this.__P_89_5 = null;
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'round-progress', /*#__PURE__*/function (_QxConnector) {
@@ -345,4 +345,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.RoundProgress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundProgress.js.map?dt=1792082766130
+//# sourceMappingURL=RoundProgress.js.map?dt=1794845750555

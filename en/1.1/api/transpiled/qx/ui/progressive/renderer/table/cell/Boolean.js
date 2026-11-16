@@ -64,7 +64,7 @@
 
       // dynamic theme switch
       {
-        this.__P_669_0 = qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._resolveImages, this);
+        this.__P_670_0 = qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._resolveImages, this);
       }
     },
     properties: {
@@ -144,12 +144,12 @@
       this._iconUrlTrue = this._iconUrlFalse = null;
 
       // remove dynamic theme listener
-      if (true && this.__P_669_0) {
-        qx.theme.manager.Meta.getInstance().removeListenerById(this.__P_669_0);
+      if (true && this.__P_670_0) {
+        qx.theme.manager.Meta.getInstance().removeListenerById(this.__P_670_0);
       }
     }
   });
   qx.ui.progressive.renderer.table.cell.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1792082797676
+//# sourceMappingURL=Boolean.js.map?dt=1794845781093

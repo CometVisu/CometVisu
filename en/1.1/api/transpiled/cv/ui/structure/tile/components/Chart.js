@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -127,7 +127,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       currentPeriod: {
         check: 'Number',
         init: 0,
-        apply: "__P_81_0"
+        apply: "__P_82_0"
       },
       startTime: {
         check: 'Number',
@@ -140,13 +140,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       minY: {
         check: 'Number',
         nullable: true,
-        apply: "__P_81_1",
+        apply: "__P_82_1",
         event: 'changeMinY'
       },
       maxY: {
         check: 'Number',
         nullable: true,
-        apply: "__P_81_1",
+        apply: "__P_82_1",
         event: 'changeMaxY'
       },
       /** Margin of the widget (top) */
@@ -233,16 +233,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _datasets: null,
       _initializing: null,
       _navigationEnabled: null,
-      __P_81_2: null,
-      __P_81_3: false,
-      __P_81_4: null,
-      __P_81_5: null,
-      __P_81_6: null,
-      __P_81_7: null,
-      __P_81_8: false,
-      __P_81_9: null,
-      __P_81_10: null,
-      __P_81_11: null,
+      __P_82_2: null,
+      __P_82_3: false,
+      __P_82_4: null,
+      __P_82_5: null,
+      __P_82_6: null,
+      __P_82_7: null,
+      __P_82_8: false,
+      __P_82_9: null,
+      __P_82_10: null,
+      __P_82_11: null,
       _yFormat: null,
       /**
       * @type {d3.Selection}
@@ -421,7 +421,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
                   _this._initFullscreenSwitch();
                   _this.addListener('changeFullscreen', function (ev) {
-                    return _this.__P_81_12(ev.getData());
+                    return _this.__P_82_12(ev.getData());
                   });
                 }
                 if (element.hasAttribute('refresh')) {
@@ -535,7 +535,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _this._initAxes();
                 _this._initChartContent();
                 _this._initializing = false;
-                _this.__P_81_13();
+                _this.__P_82_13();
                 qx.locale.Manager.getInstance().addListener('changeLocale', _this._onLocaleChanged, _this);
 
                 // check if we have a read address for live updates
@@ -578,7 +578,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         d3.select(this._element).select('svg').attr('viewBox', "0, 0, ".concat(this.getWidth(), ", ").concat(this.getHeight()));
       },
       _applyMargin: function _applyMargin() {},
-      __P_81_1: function __P_81_1(value, oldValue, name) {
+      __P_82_1: function __P_82_1(value, oldValue, name) {
         if (!this.isPropertyInitialized('yAxis')) {
           return;
         }
@@ -732,7 +732,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         this._chartElements = chartElements;
       },
       _onLocaleChanged: function _onLocaleChanged() {
-        this.__P_81_13();
+        this.__P_82_13();
         var popup = this._headerFooterParent.querySelector('div.popup.series');
         if (popup) {
           var _iterator3 = _createForOfIteratorHelper(popup.querySelectorAll('cv-option')),
@@ -791,7 +791,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return;
         }
         this._loaded = false;
-        this.__P_81_0();
+        this.__P_82_0();
         this._loadData();
       },
       // triggered after a change os series or period
@@ -808,7 +808,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           this._loaded = false;
           this._loadData();
         }
-        this.__P_81_13();
+        this.__P_82_13();
       },
       _applyCurrentSeries: function _applyCurrentSeries(series) {
         var currentSelection = this.getHeader('.popup.series > cv-option[selected="selected"]');
@@ -826,9 +826,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             newSelection.setAttribute('selected', 'selected');
           }
         }
-        this.__P_81_0();
+        this.__P_82_0();
       },
-      __P_81_0: function __P_81_0() {
+      __P_82_0: function __P_82_0() {
         if (this.isDisposed() || !this._element) {
           return;
         }
@@ -890,21 +890,21 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return;
         }
         if (!client.isConnected()) {
-          if (!this.__P_81_11 || this.__P_81_10 !== client) {
-            this.__P_81_14();
-            this.__P_81_10 = client;
-            this.__P_81_11 = function () {
-              _this2.__P_81_11 = null;
-              _this2.__P_81_10 = null;
+          if (!this.__P_82_11 || this.__P_82_10 !== client) {
+            this.__P_82_14();
+            this.__P_82_10 = client;
+            this.__P_82_11 = function () {
+              _this2.__P_82_11 = null;
+              _this2.__P_82_10 = null;
               if (!_this2.isDisposed()) {
                 _this2._loadData();
               }
             };
-            client.addListenerOnce('changeConnected', this.__P_81_11, this);
+            client.addListenerOnce('changeConnected', this.__P_82_11, this);
           }
           return;
         }
-        this.__P_81_14();
+        this.__P_82_14();
         var promises = [];
         var options = {
           ttl: this.getRefresh()
@@ -925,25 +925,25 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _onSuccess: function _onSuccess(chartData) {
         var _this3 = this;
         // wait some time to let the element size settle
-        this.__P_81_5 = setTimeout(function () {
+        this.__P_82_5 = setTimeout(function () {
           if (!_this3.isDisposed()) {
             // append all dataset fetched data to a single flat array
             _this3._onRendered(chartData.flat());
           }
         }, 100);
       },
-      __P_81_14: function __P_81_14() {
-        if (this.__P_81_10 && this.__P_81_11) {
-          this.__P_81_10.removeListener('changeConnected', this.__P_81_11, this);
+      __P_82_14: function __P_82_14() {
+        if (this.__P_82_10 && this.__P_82_11) {
+          this.__P_82_10.removeListener('changeConnected', this.__P_82_11, this);
         }
-        this.__P_81_10 = null;
-        this.__P_81_11 = null;
+        this.__P_82_10 = null;
+        this.__P_82_11 = null;
       },
       _onRendered: function _onRendered(chartData, retries) {
         var _this4 = this;
-        if (this.__P_81_5) {
-          clearTimeout(this.__P_81_5);
-          this.__P_81_5 = null;
+        if (this.__P_82_5) {
+          clearTimeout(this.__P_82_5);
+          this.__P_82_5 = null;
         }
         if (this.isDisposed()) {
           return;
@@ -955,7 +955,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             height = _this$_getSize2[1];
           if ((width < 20 || height <= 10) && (!retries || retries <= 5)) {
             // this makes no sense
-            this.__P_81_5 = setTimeout(function () {
+            this.__P_82_5 = setTimeout(function () {
               _this4._onRendered(chartData, retries > 0 ? retries + 1 : 1);
             }, 150);
           }
@@ -973,23 +973,23 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
         }
       },
-      __P_81_12: function __P_81_12(isFullscreen) {
+      __P_82_12: function __P_82_12(isFullscreen) {
         var _this5 = this;
-        if (this.__P_81_9) {
-          window.cancelAnimationFrame(this.__P_81_9);
-          this.__P_81_9 = null;
+        if (this.__P_82_9) {
+          window.cancelAnimationFrame(this.__P_82_9);
+          this.__P_82_9 = null;
         }
-        if (!isFullscreen && this.__P_81_8) {
+        if (!isFullscreen && this.__P_82_8) {
           this._element.style.height = '';
-          this.__P_81_8 = false;
+          this.__P_82_8 = false;
         }
         if (isFullscreen) {
           this._onRendered();
           return;
         }
-        this.__P_81_9 = window.requestAnimationFrame(function () {
-          _this5.__P_81_9 = window.requestAnimationFrame(function () {
-            _this5.__P_81_9 = null;
+        this.__P_82_9 = window.requestAnimationFrame(function () {
+          _this5.__P_82_9 = window.requestAnimationFrame(function () {
+            _this5.__P_82_9 = null;
             if (!_this5.isDisposed()) {
               _this5._onRendered();
             }
@@ -1014,13 +1014,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
         }
         var isFullscreenContainer = parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' || this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen');
-        if (isFullscreenContainer && (!this._element.style.height || this.__P_81_8)) {
+        if (isFullscreenContainer && (!this._element.style.height || this.__P_82_8)) {
           // the parent container has height: auto, so we need to have one
           this._element.style.height = height + this.getMarginTop() + this.getMarginBottom() + 'px';
-          this.__P_81_8 = true;
-        } else if (!isFullscreenContainer && this.__P_81_8) {
+          this.__P_82_8 = true;
+        } else if (!isFullscreenContainer && this.__P_82_8) {
           this._element.style.height = '';
-          this.__P_81_8 = false;
+          this.__P_82_8 = false;
         }
         return [width, height];
       },
@@ -1095,7 +1095,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           var y = this.getYPos(0.0, true);
           zero.attr('x1', x1).attr('x2', x2).attr('y1', y).attr('y2', y);
         }
-        this.__P_81_15();
+        this.__P_82_15();
       },
       /**
        * @param data
@@ -1162,7 +1162,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
 
         // add fixed/calculated lines
-        this.__P_81_15();
+        this.__P_82_15();
 
         // tooltipIndicator must be added last
         var tti = svg.select('g.tooltip-indicator');
@@ -1175,7 +1175,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           this._tooltipIndicator = svg.select('g.tooltip-indicator');
         }
       },
-      __P_81_15: function __P_81_15() {
+      __P_82_15: function __P_82_15() {
         var _this6 = this;
         var _loop = function _loop() {
             var ds = _this6._datasets[key];
@@ -1322,24 +1322,24 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _onPointerEntered: function _onPointerEntered(ev) {
         var _this7 = this;
         if (this._loaded) {
-          this.__P_81_2 = setTimeout(function () {
-            _this7.__P_81_16(true, ev);
-            _this7.__P_81_2 = null;
+          this.__P_82_2 = setTimeout(function () {
+            _this7.__P_82_16(true, ev);
+            _this7.__P_82_2 = null;
           }, 500);
         }
       },
       _onPointerLeft: function _onPointerLeft(ev) {
-        if (this.__P_81_2) {
-          clearTimeout(this.__P_81_2);
+        if (this.__P_82_2) {
+          clearTimeout(this.__P_82_2);
         }
         if (this._loaded) {
           if (ev.relatedTarget !== this._tooltip) {
-            this.__P_81_16(false);
+            this.__P_82_16(false);
           }
         }
       },
-      __P_81_16: function __P_81_16(val, ev) {
-        this.__P_81_3 = val;
+      __P_82_16: function __P_82_16(val, ev) {
+        this.__P_82_3 = val;
         if (val) {
           if (this._tooltipIndicator) {
             this._tooltipIndicator.attr('display', null);
@@ -1361,7 +1361,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       _onPointerMoved: function _onPointerMoved(event, center) {
         var _this8 = this;
-        if (this._loaded && this.__P_81_3) {
+        if (this._loaded && this.__P_82_3) {
           var xm = 0;
           var ym = 0;
           if (event) {
@@ -1467,7 +1467,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         return null;
       },
-      __P_81_13: function __P_81_13() {
+      __P_82_13: function __P_82_13() {
         if (this._navigationEnabled) {
           var title = this.getHeader('label.title span');
           if (title) {
@@ -1547,19 +1547,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       _disconnected: function _disconnected() {
         cv.ui.structure.tile.components.Chart.superclass.prototype._disconnected.call(this);
-        this.__P_81_14();
+        this.__P_82_14();
         qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
-        if (this.__P_81_5) {
-          clearTimeout(this.__P_81_5);
-          this.__P_81_5 = null;
+        if (this.__P_82_5) {
+          clearTimeout(this.__P_82_5);
+          this.__P_82_5 = null;
         }
-        if (this.__P_81_9) {
-          window.cancelAnimationFrame(this.__P_81_9);
-          this.__P_81_9 = null;
+        if (this.__P_82_9) {
+          window.cancelAnimationFrame(this.__P_82_9);
+          this.__P_82_9 = null;
         }
-        if (this.__P_81_2) {
-          clearTimeout(this.__P_81_2);
-          this.__P_81_2 = null;
+        if (this.__P_82_2) {
+          clearTimeout(this.__P_82_2);
+          this.__P_82_2 = null;
         }
         if (cv.Config.unitTesting && this._datasets) {
           this._disposeMap('_datasets');
@@ -1574,19 +1574,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     */
     destruct: function destruct() {
       this._disposeMap('_datasets');
-      this.__P_81_14();
+      this.__P_82_14();
       qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
-      if (this.__P_81_5) {
-        clearTimeout(this.__P_81_5);
-        this.__P_81_5 = null;
+      if (this.__P_82_5) {
+        clearTimeout(this.__P_82_5);
+        this.__P_82_5 = null;
       }
-      if (this.__P_81_9) {
-        window.cancelAnimationFrame(this.__P_81_9);
-        this.__P_81_9 = null;
+      if (this.__P_82_9) {
+        window.cancelAnimationFrame(this.__P_82_9);
+        this.__P_82_9 = null;
       }
-      if (this.__P_81_2) {
-        clearTimeout(this.__P_81_2);
-        this.__P_81_2 = null;
+      if (this.__P_82_2) {
+        clearTimeout(this.__P_82_2);
+        this.__P_82_2 = null;
       }
     },
     defer: function defer(QxClass) {
@@ -1605,4 +1605,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1792082765531
+//# sourceMappingURL=Chart.js.map?dt=1794845749965

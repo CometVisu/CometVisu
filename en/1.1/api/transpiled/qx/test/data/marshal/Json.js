@@ -62,20 +62,20 @@
     extend: qx.dev.unit.TestCase,
     include: qx.dev.unit.MMock,
     members: {
-      __P_348_0: null,
-      __P_348_1: null,
-      __P_348_2: null,
+      __P_349_0: null,
+      __P_349_1: null,
+      __P_349_2: null,
       setUp: function setUp() {
-        this.__P_348_0 = new qx.data.marshal.Json();
-        this.__P_348_1 = {
+        this.__P_349_0 = new qx.data.marshal.Json();
+        this.__P_349_1 = {
           s: "String",
           n: 12,
           b: true
         };
-        this.__P_348_2 = ["s", "n", "b"];
+        this.__P_349_2 = ["s", "n", "b"];
       },
       tearDown: function tearDown() {
-        this.__P_348_0.dispose();
+        this.__P_349_0.dispose();
 
         // remove the former created classes
         qx.data.model = {};
@@ -89,7 +89,7 @@
         var data = {
           $$a: "b"
         };
-        this.__P_348_0.toClass(data);
+        this.__P_349_0.toClass(data);
 
         // check if the class is defined
         this.assertTrue(qx.Class.isDefined("qx.data.model.$$a"), "Class not created.");
@@ -106,14 +106,14 @@
         var data = {
           a: str
         };
-        this.__P_348_0.toClass(data);
-        var model = this.__P_348_0.toModel(data);
+        this.__P_349_0.toClass(data);
+        var model = this.__P_349_0.toModel(data);
         this.assertEquals(str, model.getA());
         model.dispose();
         qx.Class.undefine("qx.data.model.a");
       },
       testClassCreationSingle: function testClassCreationSingle() {
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
 
         // check if the class is defined
         this.assertTrue(qx.Class.isDefined("qx.data.model.b|n|s"), "Class not created.");
@@ -121,16 +121,16 @@
         // check for the properties
         var i = 0;
         for (var name in clazz.$$properties) {
-          this.assertEquals(this.__P_348_2[i], name, "Property " + i + "does have the wrong name.");
-          this.assertEquals("change" + qx.lang.String.firstUp(this.__P_348_2[i]), clazz.$$properties[name].event, "event has a wrong name.");
+          this.assertEquals(this.__P_349_2[i], name, "Property " + i + "does have the wrong name.");
+          this.assertEquals("change" + qx.lang.String.firstUp(this.__P_349_2[i]), clazz.$$properties[name].event, "event has a wrong name.");
           i++;
         }
       },
       testClassCreationArray: function testClassCreationArray() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: ["a", "b", "c"]
         };
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
 
         // check if the class is defined
         this.assertTrue(qx.Class.isDefined("qx.data.model.a"), "Class not created.");
@@ -139,12 +139,12 @@
         this.assertNotNull(clazz.$$properties.a, "Property does not exist.");
       },
       testClassCreationObject: function testClassCreationObject() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: {
             b: "test"
           }
         };
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
 
         // check if the classes are defined
         this.assertTrue(qx.Class.isDefined("qx.data.model.a"), "Class not created.");
@@ -156,14 +156,14 @@
         this.assertNotNull(clazz2.$$properties.b, "Property does not exist.");
       },
       testClassCreationArrayWithObject: function testClassCreationArrayWithObject() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [{
             b: "test"
           }, {
             b: "test"
           }]
         };
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
 
         // check if the classes are defined
         this.assertTrue(qx.Class.isDefined("qx.data.model.a"), "Class not created.");
@@ -175,7 +175,7 @@
         this.assertNotNull(clazz2.$$properties.b, "Property does not exist.");
       },
       testClassCreationAllSmoke: function testClassCreationAllSmoke() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [{
             b: "test",
             c: ["f", "x", "e"]
@@ -189,18 +189,18 @@
             q: true
           }
         };
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
       },
       testModelWithNumber: function testModelWithNumber() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: 10,
           b: -15,
           c: 10.5e10
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         this.assertEquals(10, model.getA(), "getA does not work.");
@@ -209,14 +209,14 @@
         model.dispose();
       },
       testModelWithBoolean: function testModelWithBoolean() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: true,
           b: false
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         this.assertEquals(true, model.getA(), "getA does not work.");
@@ -224,14 +224,14 @@
         model.dispose();
       },
       testModelWithString: function testModelWithString() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: "affe",
           b: "AFFE"
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         this.assertEquals("affe", model.getA(), "getA does not work.");
@@ -239,15 +239,15 @@
         model.dispose();
       },
       testModelWithPrimitive: function testModelWithPrimitive() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: "affe",
           b: true,
           c: 156
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         this.assertEquals("affe", model.getA(), "getA does not work.");
@@ -256,13 +256,13 @@
         model.dispose();
       },
       testModelWithArrayPrimitive: function testModelWithArrayPrimitive() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: ["affe", "affen", "AFFE"]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         var a = model.getA();
@@ -274,14 +274,14 @@
         model.dispose();
       },
       testModelWithArrayArray: function testModelWithArrayArray() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [[true, false], [10, 15]]
         };
 
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         var a = model.getA();
@@ -298,7 +298,7 @@
         model.dispose();
       },
       testModelWithObjectPrimitive: function testModelWithObjectPrimitive() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: {
             b: true,
             bb: false
@@ -309,9 +309,9 @@
           }
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         var a = model.getA();
@@ -325,15 +325,15 @@
         model.dispose();
       },
       testModelWithObjectArray: function testModelWithObjectArray() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: {
             b: ["affe", "AFFE"]
           }
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         var a = model.getA();
@@ -346,7 +346,7 @@
         model.dispose();
       },
       testModelWithArrayObject: function testModelWithArrayObject() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [{
             a: 15
           }, {
@@ -354,9 +354,9 @@
           }]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         var a = model.getA();
@@ -372,7 +372,7 @@
         model.dispose();
       },
       testModelWithObjectObject: function testModelWithObjectObject() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: {
             a: {
               a: "affe"
@@ -380,16 +380,16 @@
           }
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         this.assertEquals("affe", model.getA().getA().getA(), "No affe is there!");
         model.dispose();
       },
       testModelWithAllSmoke: function testModelWithAllSmoke() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [{
             aa: ["affe"],
             ab: false,
@@ -404,22 +404,22 @@
         };
 
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
         this.assertNotNull(model, "No model set.");
         model.dispose();
       },
       testBubbleEventsDepth1: function testBubbleEventsDepth1() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: 10,
           b: -15,
           c: 10.5e10
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for a
         var self = this;
@@ -446,16 +446,16 @@
         model.dispose();
       },
       testBubbleEventsDepth2: function testBubbleEventsDepth2() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: {
             b: 10,
             c: 20
           }
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for b
         var self = this;
@@ -481,7 +481,7 @@
         model.dispose();
       },
       testBubbleEventsDepth3: function testBubbleEventsDepth3() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: {
             b: {
               c: 10
@@ -489,9 +489,9 @@
           }
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for c
         var self = this;
@@ -507,13 +507,13 @@
         model.dispose();
       },
       testBubbleEventsArrayDepth1: function testBubbleEventsArrayDepth1() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [12, 23, 34]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for the first array element
         var self = this;
@@ -528,7 +528,7 @@
         model.dispose();
       },
       testBubbleEventsArrayDepth2: function testBubbleEventsArrayDepth2() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [{
             b: 10
           }, {
@@ -536,9 +536,9 @@
           }]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for the first array element
         var self = this;
@@ -553,15 +553,15 @@
         model.dispose();
       },
       testBubbleEventsArrayDepthAlot: function testBubbleEventsArrayDepthAlot() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [[[[{
             b: 10
           }]]]]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for the first array element
         var self = this;
@@ -576,7 +576,7 @@
         model.dispose();
       },
       testBubbleEventsArrayDepthAlotMix: function testBubbleEventsArrayDepthAlotMix() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [{
             b: [[{
               c: {
@@ -586,9 +586,9 @@
           }]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for the first array element
         var self = this;
@@ -603,13 +603,13 @@
         model.dispose();
       },
       testBubbleEventsArrayLong: function testBubbleEventsArrayLong() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the event for the first array element
         var self = this;
@@ -624,13 +624,13 @@
         model.dispose();
       },
       testBubbleEventsArrayReorder: function testBubbleEventsArrayReorder() {
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: [11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         };
         // first create the classes before setting the data
-        this.__P_348_0.toClass(this.__P_348_1, true);
+        this.__P_349_0.toClass(this.__P_349_1, true);
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
         model.getA().sort();
 
         // check the event for the first array element
@@ -767,10 +767,10 @@
             propertiesSaved = properties;
           }
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(this.__P_348_1);
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(this.__P_349_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check for the right class hash
         this.assertEquals("b|n|s", propertiesSaved);
@@ -796,9 +796,9 @@
             }).join("") + (includeBubbleEvents === true ? "#" : "");
           }
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass({
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass({
           custom: 1,
           props: true
         });
@@ -806,15 +806,15 @@
       },
       testQooxdooObject: function testQooxdooObject() {
         var qxObject = new qx.core.Object();
-        this.__P_348_1 = {
+        this.__P_349_1 = {
           a: {
             b: qxObject
           }
         };
-        this.__P_348_0.toClass(this.__P_348_1);
+        this.__P_349_0.toClass(this.__P_349_1);
 
         // set the data
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
 
         // check the model
         this.assertEquals(qxObject, model.getA().getB(), "wrong qx object!");
@@ -854,10 +854,10 @@
             return qx.test.model.C;
           }
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(this.__P_348_1);
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(this.__P_349_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
         this.assertTrue(model instanceof qx.test.model.C);
         this.assertEquals("String", model.getS());
         this.assertEquals(12, model.getN());
@@ -887,7 +887,7 @@
             }
           }.bind(this)
         };
-        this.__P_348_0.dispose();
+        this.__P_349_0.dispose();
         var data = {
           a: {
             b: [{
@@ -895,10 +895,10 @@
             }]
           }
         };
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(data);
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(data);
         this.assertEquals(3, called);
-        var model = this.__P_348_0.toModel(data);
+        var model = this.__P_349_0.toModel(data);
         this.assertEquals(6, called);
         model.dispose();
       },
@@ -918,10 +918,10 @@
             return qx.test.model.C;
           }
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(this.__P_348_1);
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(this.__P_349_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
         this.assertTrue(model instanceof qx.test.model.C);
         this.assertUndefined(model.getS);
         this.assertUndefined(model.getN);
@@ -948,7 +948,7 @@
             }
           }.bind(this)
         };
-        this.__P_348_0.dispose();
+        this.__P_349_0.dispose();
         var data = {
           a: {
             b: [{
@@ -956,8 +956,8 @@
             }]
           }
         };
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(data);
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(data);
         this.assertEquals(3, called);
       },
       testGetModelMixins: function testGetModelMixins() {
@@ -979,7 +979,7 @@
             }
           }.bind(this)
         };
-        this.__P_348_0.dispose();
+        this.__P_349_0.dispose();
         var data = {
           a: {
             b: [{
@@ -987,8 +987,8 @@
             }]
           }
         };
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(data);
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(data);
         this.assertEquals(3, called);
       },
       testGetPropertyMapping: function testGetPropertyMapping() {
@@ -997,10 +997,10 @@
             return property + property + property;
           }
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(this.__P_348_1);
-        var model = this.__P_348_0.toModel(this.__P_348_1);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(this.__P_349_1);
+        var model = this.__P_349_0.toModel(this.__P_349_1);
         this.assertEquals("String", model.getSss());
         this.assertEquals(12, model.getNnn());
         this.assertTrue(model.getBbb());
@@ -1025,7 +1025,7 @@
             }
           }.bind(this)
         };
-        this.__P_348_0.dispose();
+        this.__P_349_0.dispose();
         var data = {
           a: {
             b: [{
@@ -1033,8 +1033,8 @@
             }]
           }
         };
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
-        this.__P_348_0.toClass(data);
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.toClass(data);
         this.assertEquals(3, called);
       },
       testIgnoreDepth: function testIgnoreDepth() {
@@ -1043,8 +1043,8 @@
             return depth >= 1;
           }
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
         var data = {
           a: [0],
           b: {
@@ -1054,8 +1054,8 @@
             y: 2
           }
         };
-        this.__P_348_0.toClass(data);
-        var model = this.__P_348_0.toModel(data);
+        this.__P_349_0.toClass(data);
+        var model = this.__P_349_0.toModel(data);
         this.assertEquals(0, model.getA()[0]);
         this.assertEquals(1, model.getB().x);
         this.assertEquals(2, model.getC().y);
@@ -1067,8 +1067,8 @@
             return properties == "x";
           }
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
         var data = {
           a: [],
           b: {
@@ -1078,8 +1078,8 @@
             y: 2
           }
         };
-        this.__P_348_0.toClass(data);
-        var model = this.__P_348_0.toModel(data);
+        this.__P_349_0.toClass(data);
+        var model = this.__P_349_0.toModel(data);
         this.assertInstance(model.getA(), qx.data.Array);
         this.assertEquals(1, model.getB().x);
         this.assertInstance(model.getC(), qx.core.Object);
@@ -1109,11 +1109,11 @@
             return qx.test.Array;
           }.bind(this)
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
         var data = ["a", "b"];
-        this.__P_348_0.toClass(data);
-        var model = this.__P_348_0.toModel(data);
+        this.__P_349_0.toClass(data);
+        var model = this.__P_349_0.toModel(data);
         this.assertInstance(model, qx.test.Array);
         model.dispose();
         qx.Class.undefine("qx.test.Array");
@@ -1143,8 +1143,8 @@
             }
           }.bind(this)
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json(delegate);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json(delegate);
         var data = {
           a: [],
           b: [],
@@ -1154,8 +1154,8 @@
             f: []
           }
         };
-        this.__P_348_0.toClass(data);
-        var model = this.__P_348_0.toModel(data);
+        this.__P_349_0.toClass(data);
+        var model = this.__P_349_0.toModel(data);
         this.assertInstance(model.getA(), qx.data.Array);
         this.assertInstance(model.getB(), qx.test.Array);
         this.assertInstance(model.getC().getE(), qx.test.Array);
@@ -1175,10 +1175,10 @@
           name: "Michael",
           nonPojo: new NativeClass()
         };
-        this.__P_348_0.dispose();
-        this.__P_348_0 = new qx.data.marshal.Json();
-        this.__P_348_0.toClass(data);
-        var model = this.__P_348_0.toModel(data);
+        this.__P_349_0.dispose();
+        this.__P_349_0 = new qx.data.marshal.Json();
+        this.__P_349_0.toClass(data);
+        var model = this.__P_349_0.toModel(data);
         this.assertEquals("Michael", model.getName());
         if (qx.core.Environment.get("qx.data.marshal.Json.breakOnNonPojos")) {
           this.assertEquals("method", model.getNonPojo().myMethod());
@@ -1192,4 +1192,4 @@
   qx.test.data.marshal.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1792082779883
+//# sourceMappingURL=Json.js.map?dt=1794845763733

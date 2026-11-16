@@ -38,54 +38,54 @@
   qx.Class.define("qx.test.mobile.form.SingleRenderer", {
     extend: qx.test.mobile.MobileTestCase,
     members: {
-      __P_373_0: null,
-      __P_373_1: null,
-      __P_373_2: null,
-      __P_373_3: null,
+      __P_374_0: null,
+      __P_374_1: null,
+      __P_374_2: null,
+      __P_374_3: null,
       setUp: function setUp() {
         qx.test.mobile.form.SingleRenderer.superclass.prototype.setUp.call(this);
-        this.__P_373_0 = new qx.ui.mobile.form.Form();
-        this.__P_373_1 = new qx.ui.mobile.form.Button("a");
-        this.__P_373_0.addButton(this.__P_373_1);
-        this.__P_373_2 = new qx.ui.mobile.form.TextField("test");
-        this.__P_373_0.add(this.__P_373_2, "label");
+        this.__P_374_0 = new qx.ui.mobile.form.Form();
+        this.__P_374_1 = new qx.ui.mobile.form.Button("a");
+        this.__P_374_0.addButton(this.__P_374_1);
+        this.__P_374_2 = new qx.ui.mobile.form.TextField("test");
+        this.__P_374_0.add(this.__P_374_2, "label");
         var dd = new qx.data.Array(["1"]);
-        this.__P_373_3 = new qx.ui.mobile.form.SelectBox();
-        this.__P_373_3.setModel(dd);
-        this.__P_373_0.add(this.__P_373_3, "select");
-        this.__P_373_4 = new qx.ui.mobile.form.renderer.Single(this.__P_373_0);
-        this.getRoot().add(this.__P_373_4);
+        this.__P_374_3 = new qx.ui.mobile.form.SelectBox();
+        this.__P_374_3.setModel(dd);
+        this.__P_374_0.add(this.__P_374_3, "select");
+        this.__P_374_4 = new qx.ui.mobile.form.renderer.Single(this.__P_374_0);
+        this.getRoot().add(this.__P_374_4);
       },
       tearDown: function tearDown() {
-        this.__P_373_1.dispose();
-        this.__P_373_2.dispose();
-        this.__P_373_3.dispose();
-        this.__P_373_0.dispose();
-        this.__P_373_4.dispose();
+        this.__P_374_1.dispose();
+        this.__P_374_2.dispose();
+        this.__P_374_3.dispose();
+        this.__P_374_0.dispose();
+        this.__P_374_4.dispose();
         qx.test.mobile.form.SingleRenderer.superclass.prototype.tearDown.call(this);
       },
       testShowHideRow: function testShowHideRow() {
-        this.__P_373_4.hideItem(this.__P_373_1);
-        var isHidden = this.__P_373_1.getLayoutParent().hasCssClass("exclude");
+        this.__P_374_4.hideItem(this.__P_374_1);
+        var isHidden = this.__P_374_1.getLayoutParent().hasCssClass("exclude");
         this.assertTrue(isHidden, "Buttons parent is expected to contain 'exclude' class");
-        this.__P_373_4.showItem(this.__P_373_1);
-        isHidden = this.__P_373_1.getLayoutParent().hasCssClass("exclude");
+        this.__P_374_4.showItem(this.__P_374_1);
+        isHidden = this.__P_374_1.getLayoutParent().hasCssClass("exclude");
         this.assertFalse(isHidden, "Button parent is expected to not contain 'exclude' class anymore");
       },
       testItemRow: function testItemRow() {
-        this.assertNotNull(this.__P_373_4._getChildren()[0]);
-        this.assertTrue(2 === this.__P_373_4._getChildren()[1]._getChildren().length);
+        this.assertNotNull(this.__P_374_4._getChildren()[0]);
+        this.assertTrue(2 === this.__P_374_4._getChildren()[1]._getChildren().length);
 
         // we have a label and a form element in the row
       },
       testButtonRow: function testButtonRow() {
-        this.assertNotNull(this.__P_373_4._getChildren()[5]);
-        var buttonRowLength = this.__P_373_4._getChildren()[5]._getChildren().length;
+        this.assertNotNull(this.__P_374_4._getChildren()[5]);
+        var buttonRowLength = this.__P_374_4._getChildren()[5]._getChildren().length;
         this.assertTrue(1 === buttonRowLength); // we have only the button in the row
       },
       testTwoLinesRow: function testTwoLinesRow() {
-        this.assertNotNull(this.__P_373_4._getChildren()[3]);
-        var rowLength = this.__P_373_4._getChildren()[3]._getChildren().length;
+        this.assertNotNull(this.__P_374_4._getChildren()[3]);
+        var rowLength = this.__P_374_4._getChildren()[3]._getChildren().length;
         this.assertTrue(2 === rowLength);
       }
     }
@@ -93,4 +93,4 @@
   qx.test.mobile.form.SingleRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleRenderer.js.map?dt=1792082782121
+//# sourceMappingURL=SingleRenderer.js.map?dt=1794845765893

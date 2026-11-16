@@ -84,9 +84,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
      */
     construct: function construct(win, registration) {
       // Assign window object
-      this.__P_221_0 = win;
-      this.__P_221_1 = qx.core.ObjectRegistry.toHashCode(win);
-      this.__P_221_2 = registration;
+      this.__P_222_0 = win;
+      this.__P_222_1 = qx.core.ObjectRegistry.toHashCode(win);
+      this.__P_222_2 = registration;
 
       // Register to the page unload event.
       // Only for iframes and other secondary documents.
@@ -102,16 +102,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       }
 
       // Registry for event listeners
-      this.__P_221_3 = new Map();
+      this.__P_222_3 = new Map();
 
       // The handler and dispatcher instances
-      this.__P_221_4 = {};
-      this.__P_221_5 = {};
-      this.__P_221_6 = {};
-      this.__P_221_7 = new qx.util.DeferredCall(function () {
-        this.__P_221_8 = null;
+      this.__P_222_4 = {};
+      this.__P_222_5 = {};
+      this.__P_222_6 = {};
+      this.__P_222_7 = new qx.util.DeferredCall(function () {
+        this.__P_222_8 = null;
       }, this);
-      this.__P_221_7.$$blackListCleaner = true;
+      this.__P_222_7.$$blackListCleaner = true;
     },
     /*
     *****************************************************************************
@@ -121,7 +121,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
     statics: {
       /** @type {Integer} Last used ID for an event */
-      __P_221_9: 0,
+      __P_222_9: 0,
       /**
        * Returns an unique ID which may be used in combination with a target and
        * a type to identify an event entry.
@@ -129,12 +129,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {String} The next free identifier (auto-incremented)
        */
       getNextUniqueId: function getNextUniqueId() {
-        return this.__P_221_9++ + "";
+        return this.__P_222_9++ + "";
       },
       /**
        * @type {Array} private list of global event monitor functions
        */
-      __P_221_10: [],
+      __P_222_10: [],
       /**
        * Adds a global event monitor function which is called for each event fired
        * anywhere in the application. The function is called with the signature
@@ -148,7 +148,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       addGlobalEventMonitor: function addGlobalEventMonitor(fn, context) {
         qx.core.Assert.assertFunction(fn);
         fn.$$context = context;
-        this.__P_221_10.push(fn);
+        this.__P_222_10.push(fn);
       },
       /**
        * Removes a global event monitor function that had
@@ -157,13 +157,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       removeGlobalEventMonitor: function removeGlobalEventMonitor(fn) {
         qx.core.Assert.assertFunction(fn);
-        qx.lang.Array.remove(this.__P_221_10, fn);
+        qx.lang.Array.remove(this.__P_222_10, fn);
       },
       /**
        * Remove all registered event monitors
        */
       resetGlobalEventMonitors: function resetGlobalEventMonitors() {
-        qx.event.Manager.__P_221_10 = [];
+        qx.event.Manager.__P_222_10 = [];
       },
       /**
        * Returns the global event monitor. Not compatible with the {@link
@@ -173,7 +173,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {Function?} the global monitor function
        */
       getGlobalEventMonitor: function getGlobalEventMonitor() {
-        return this.__P_221_10[0];
+        return this.__P_222_10[0];
       },
       /**
        * Sets the global event monitor. Not compatible with the {@link
@@ -185,7 +185,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       setGlobalEventMonitor: function setGlobalEventMonitor(fn) {
         qx.core.Assert.assertFunction(fn);
-        this.__P_221_10[0] = fn;
+        this.__P_222_10[0] = fn;
       }
     },
     /*
@@ -195,16 +195,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
 
     members: {
-      __P_221_2: null,
-      __P_221_3: null,
-      __P_221_5: null,
-      __P_221_11: null,
-      __P_221_4: null,
-      __P_221_6: null,
-      __P_221_0: null,
-      __P_221_1: null,
-      __P_221_8: null,
-      __P_221_7: null,
+      __P_222_2: null,
+      __P_222_3: null,
+      __P_222_5: null,
+      __P_222_11: null,
+      __P_222_4: null,
+      __P_222_6: null,
+      __P_222_0: null,
+      __P_222_1: null,
+      __P_222_8: null,
+      __P_222_7: null,
       /*
       ---------------------------------------------------------------------------
         HELPERS
@@ -216,7 +216,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {Window} DOM window instance
        */
       getWindow: function getWindow() {
-        return this.__P_221_0;
+        return this.__P_222_0;
       },
       /**
        * Get the hashcode of the manager's window
@@ -224,7 +224,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {String} The window's hashcode
        */
       getWindowId: function getWindowId() {
-        return this.__P_221_1;
+        return this.__P_222_1;
       },
       /**
        * Returns an instance of the given handler class for this manager(window).
@@ -233,11 +233,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {Object} The instance used by this manager
        */
       getHandler: function getHandler(clazz) {
-        var handler = this.__P_221_4[clazz.classname];
+        var handler = this.__P_222_4[clazz.classname];
         if (handler) {
           return handler;
         }
-        return this.__P_221_4[clazz.classname] = new clazz(this);
+        return this.__P_222_4[clazz.classname] = new clazz(this);
       },
       /**
        * Returns an instance of the given dispatcher class for this manager(window).
@@ -246,11 +246,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {Object} The instance used by this manager
        */
       getDispatcher: function getDispatcher(clazz) {
-        var dispatcher = this.__P_221_5[clazz.classname];
+        var dispatcher = this.__P_222_5[clazz.classname];
         if (dispatcher) {
           return dispatcher;
         }
-        return this.__P_221_5[clazz.classname] = new clazz(this, this.__P_221_2);
+        return this.__P_222_5[clazz.classname] = new clazz(this, this.__P_222_2);
       },
       /*
       ---------------------------------------------------------------------------
@@ -273,7 +273,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       getListeners: function getListeners(target, type, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (!targetMap) {
           return null;
         }
@@ -312,7 +312,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {Object} All registered listeners. The key is the hash code for an object.
        */
       getAllListeners: function getAllListeners() {
-        return Object.fromEntries(this.__P_221_3.entries().map(function (_ref) {
+        return Object.fromEntries(this.__P_222_3.entries().map(function (_ref) {
           var _ref2 = _slicedToArray(_ref, 2),
             targetKey = _ref2[0],
             targetMap = _ref2[1];
@@ -354,7 +354,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       serializeListeners: function serializeListeners(target) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         var result = [];
         if (targetMap) {
           var indexOf, type, capture;
@@ -400,7 +400,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       toggleAttachedEvents: function toggleAttachedEvents(target, enable) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (targetMap) {
           var indexOf, type, capture;
           var _iterator2 = _createForOfIteratorHelper(targetMap.keys()),
@@ -413,9 +413,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               capture = entryKey.charCodeAt(indexOf + 1) === 99; // checking for character "c".
 
               if (enable) {
-                this.__P_221_12(target, type, capture);
+                this.__P_222_12(target, type, capture);
               } else {
-                this.__P_221_13(target, type, capture);
+                this.__P_222_13(target, type, capture);
               }
             }
           } catch (err) {
@@ -437,7 +437,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       hasListener: function hasListener(target, type, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (!targetMap) {
           return false;
         }
@@ -462,10 +462,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       importListeners: function importListeners(target, list) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (!targetMap) {
           targetMap = new Map();
-          this.__P_221_3.set(targetKey, targetMap);
+          this.__P_222_3.set(targetKey, targetMap);
         }
         for (var listKey in list) {
           var item = list[listKey];
@@ -479,7 +479,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             // This is the first event listener for this type and target
             // Inform the event handler about the new event
             // they perform the event registration at DOM level if needed
-            this.__P_221_12(target, item.type, item.capture);
+            this.__P_222_12(target, item.type, item.capture);
           }
 
           // Add listener to map
@@ -513,10 +513,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       addListener: function addListener(target, type, listener, self, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (!targetMap) {
           targetMap = new Map();
-          this.__P_221_3.set(targetKey, targetMap);
+          this.__P_222_3.set(targetKey, targetMap);
         }
         var entryKey = type + (capture ? "|capture" : "|bubble");
         var entryMap = targetMap.get(entryKey);
@@ -528,7 +528,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           // This is the first event listener for this type and target
           // Inform the event handler about the new event
           // they perform the event registration at DOM level if needed
-          this.__P_221_12(target, type, capture);
+          this.__P_222_12(target, type, capture);
         }
 
         // Add listener to map
@@ -565,7 +565,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         // Please note:
         // Identical operator does not work in IE (as of version 7) because
         // document.parentWindow is not identical to window. Crazy stuff.
-        else if (target == this.__P_221_0) {
+        else if (target == this.__P_222_0) {
           isWindow = true;
           key = "WIN_" + type;
         } else if (target.classname) {
@@ -574,11 +574,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } else {
           key = "UNKNOWN_" + target + "_" + type;
         }
-        var cache = this.__P_221_6;
+        var cache = this.__P_222_6;
         if (cache[key]) {
           return cache[key];
         }
-        var classes = this.__P_221_2.getHandlers();
+        var classes = this.__P_222_2.getHandlers();
         var IEventHandler = qx.event.IEventHandler;
         var clazz, instance, supportedTypes, targetCheck;
         for (var i = 0, l = classes.length; i < l; i++) {
@@ -626,7 +626,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        *         capturing phase or the bubbling phase of the event.
        * @throws {Error} if there is no handler for the event
        */
-      __P_221_12: function __P_221_12(target, type, capture) {
+      __P_222_12: function __P_222_12(target, type, capture) {
         var handler = this.findHandler(target, type);
         if (handler) {
           handler.registerEvent(target, type, capture);
@@ -648,7 +648,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       removeListener: function removeListener(target, type, listener, self, capture) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (!targetMap) {
           return false;
         }
@@ -672,9 +672,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               entry = _step3$value[1];
             deleted = true;
             entryMap["delete"](_entryKey);
-            this.__P_221_14(_entryKey);
+            this.__P_222_14(_entryKey);
             if (entryMap.size === 0) {
-              this.__P_221_13(target, type, capture);
+              this.__P_222_13(target, type, capture);
             }
           }
         } catch (err) {
@@ -698,7 +698,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var capture = split[1].charCodeAt(0) === 99; // detect leading "c"
         var unique = split[2];
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (!targetMap) {
           return false;
         }
@@ -710,9 +710,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var entry = entryMap.get(unique);
         if (entry) {
           entryMap["delete"](unique);
-          this.__P_221_14(entry.unique);
+          this.__P_222_14(entry.unique);
           if (entryMap.size === 0) {
-            this.__P_221_13(target, type, capture);
+            this.__P_222_13(target, type, capture);
           }
           return true;
         }
@@ -726,7 +726,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       removeAllListeners: function removeAllListeners(target) {
         var targetKey = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var targetMap = this.__P_221_3.get(targetKey);
+        var targetMap = this.__P_222_3.get(targetKey);
         if (!targetMap) {
           return false;
         }
@@ -748,7 +748,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               try {
                 for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
                   var uniqueKey = _step5.value;
-                  this.__P_221_14(uniqueKey);
+                  this.__P_222_14(uniqueKey);
                 }
               } catch (err) {
                 _iterator5.e(err);
@@ -758,7 +758,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               entryMap.clear();
               type = split[0];
               capture = split[1] === "capture";
-              this.__P_221_13(target, type, capture);
+              this.__P_222_13(target, type, capture);
             }
           }
         } catch (err) {
@@ -766,7 +766,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } finally {
           _iterator4.f();
         }
-        this.__P_221_3["delete"](targetKey);
+        this.__P_222_3["delete"](targetKey);
         return true;
       },
       /**
@@ -779,7 +779,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @internal
        */
       deleteAllListeners: function deleteAllListeners(targetKey) {
-        this.__P_221_3["delete"](targetKey);
+        this.__P_222_3["delete"](targetKey);
       },
       /**
        * This method is called each time the an event listener for one of the
@@ -792,7 +792,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        *         capturing phase or the bubbling phase of the event.
        * @throws {Error} if there is no handler for the event
        */
-      __P_221_13: function __P_221_13(target, type, capture) {
+      __P_222_13: function __P_222_13(target, type, capture) {
         var handler = this.findHandler(target, type);
         if (handler) {
           handler.unregisterEvent(target, type, capture);
@@ -820,7 +820,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       dispatchEvent: function dispatchEvent(target, event) {
         // Show the decentrally fired events to one or more global monitor functions
-        var monitors = qx.event.Manager.__P_221_10;
+        var monitors = qx.event.Manager.__P_222_10;
         if (monitors.length) {
           for (var i = 0; i < monitors.length; i++) {
             var preventDefault = event.getDefaultPrevented();
@@ -850,7 +850,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
 
         // Interacion data
-        var classes = this.__P_221_2.getDispatchers();
+        var classes = this.__P_222_2.getDispatchers();
         var instance;
 
         // Loop through the dispatchers
@@ -883,25 +883,25 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       dispose: function dispose() {
         // Remove from manager list
-        this.__P_221_2.removeManager(this);
-        qx.util.DisposeUtil.disposeMap(this, "__P_221_4");
-        qx.util.DisposeUtil.disposeMap(this, "__P_221_5");
+        this.__P_222_2.removeManager(this);
+        qx.util.DisposeUtil.disposeMap(this, "__P_222_4");
+        qx.util.DisposeUtil.disposeMap(this, "__P_222_5");
 
         // Dispose data fields
-        this.__P_221_3 = this.__P_221_0 = this.__P_221_11 = null;
-        this.__P_221_2 = this.__P_221_6 = null;
+        this.__P_222_3 = this.__P_222_0 = this.__P_222_11 = null;
+        this.__P_222_2 = this.__P_222_6 = null;
       },
       /**
        * Add event to blacklist.
        *
        * @param uid {String} unique event id
        */
-      __P_221_14: function __P_221_14(uid) {
-        if (this.__P_221_8 === null) {
-          this.__P_221_8 = {};
-          this.__P_221_7.schedule();
+      __P_222_14: function __P_222_14(uid) {
+        if (this.__P_222_8 === null) {
+          this.__P_222_8 = {};
+          this.__P_222_7.schedule();
         }
-        this.__P_221_8[uid] = true;
+        this.__P_222_8[uid] = true;
       },
       /**
        * Check if the event with the given id has been removed and is therefore blacklisted for event handling
@@ -910,11 +910,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {boolean}
        */
       isBlacklisted: function isBlacklisted(uid) {
-        return this.__P_221_8 !== null && this.__P_221_8[uid] === true;
+        return this.__P_222_8 !== null && this.__P_222_8[uid] === true;
       }
     }
   });
   qx.event.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1792082773092
+//# sourceMappingURL=Manager.js.map?dt=1794845757228

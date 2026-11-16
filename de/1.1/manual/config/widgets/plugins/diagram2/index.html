@@ -175,17 +175,21 @@ trotzdem in der Hauptkonfiguration stehen.</p>
 verwendeten Backend ab:</p>
 <table class="docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;iobroker&gt;</span></code></p></td>
+<td><p>Zustand aus der ioBroker-History. Der Inhalt ist die State-ID, <code class="docutils literal notranslate"><span class="pre">instance</span></code> wählt
+die History-Instanz (z.B. <code class="docutils literal notranslate"><span class="pre">influxdb.0</span></code>), <code class="docutils literal notranslate"><span class="pre">backend</span></code> einen benannten Backend-Eintrag.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code></p></td>
 <td><p>RRD-Datei auf dem Server, wie beim alten Plugin. Der Inhalt ist der Name ohne die
 Endung <code class="docutils literal notranslate"><span class="pre">.rrd</span></code>, <code class="docutils literal notranslate"><span class="pre">datasourceIndex</span></code> wählt die Spalte innerhalb der Datei.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code></p></td>
 <td><p>Messreihe aus einer InfluxDB, gefiltert über <code class="docutils literal notranslate"><span class="pre">&lt;and&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;or&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&lt;tag&gt;</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code></p></td>
 <td><p>Item aus der openHAB-Persistenz. Der Inhalt ist der Item-Name.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;demo&gt;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;demo&gt;</span></code></p></td>
 <td><p>Erzeugte Daten, nur in einer Demo-Konfiguration sinnvoll.</p></td>
 </tr>
 </tbody>
@@ -196,7 +200,7 @@ Reihe einer Achse zu — der Wert ist der <strong>Name</strong> der Achse, also 
 bestimmen Farbe und Beschriftung in der Legende, <code class="docutils literal notranslate"><span class="pre">scaling</span></code> und <code class="docutils literal notranslate"><span class="pre">offset</span></code> rechnen die Rohwerte
 um, <code class="docutils literal notranslate"><span class="pre">style</span></code> wählt zwischen <code class="docutils literal notranslate"><span class="pre">lines</span></code>, <code class="docutils literal notranslate"><span class="pre">bars</span></code> und <code class="docutils literal notranslate"><span class="pre">points</span></code>, <code class="docutils literal notranslate"><span class="pre">fill</span></code>, <code class="docutils literal notranslate"><span class="pre">steps</span></code>, <code class="docutils literal notranslate"><span class="pre">barWidth</span></code>
 und <code class="docutils literal notranslate"><span class="pre">align</span></code> bestimmen die Darstellung, und <code class="docutils literal notranslate"><span class="pre">resolution</span></code> sowie <code class="docutils literal notranslate"><span class="pre">consolidationFunction</span></code>
-(bei <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>) steuern, wie die Werte für den dargestellten
+(bei <code class="docutils literal notranslate"><span class="pre">&lt;iobroker&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code> und <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>) steuern, wie die Werte für den dargestellten
 Zeitraum zusammengefasst werden. <code class="docutils literal notranslate"><span class="pre">fillMissing</span></code> schließt Lücken — bei <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code> gibt es dieses
 Attribut nicht.</p>
 <p>Die möglichen Werte von <code class="docutils literal notranslate"><span class="pre">consolidationFunction</span></code> und <code class="docutils literal notranslate"><span class="pre">fillMissing</span></code> sowie die Filter-Elemente und
@@ -206,8 +210,8 @@ gelten unverändert: <a class="reference internal" href="../diagram/index.html#d
 <span class="w">  </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"12"</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">"6"</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">unit=</span><span class="s">" °C"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Temperatur"</span><span class="w"> </span><span class="na">position=</span><span class="s">"left"</span><span class="w"> </span><span class="na">decimals=</span><span class="s">"1"</span><span class="nt">&gt;</span>temperature<span class="nt">&lt;/axis&gt;</span>
 <span class="w">  </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">unit=</span><span class="s">" %"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Feuchte"</span><span class="w"> </span><span class="na">position=</span><span class="s">"right"</span><span class="w"> </span><span class="na">min=</span><span class="s">"0"</span><span class="w"> </span><span class="na">max=</span><span class="s">"100"</span><span class="w"> </span><span class="na">decimals=</span><span class="s">"0"</span><span class="nt">&gt;</span>humidity<span class="nt">&lt;/axis&gt;</span>
-<span class="w">  </span><span class="nt">&lt;influx</span><span class="w"> </span><span class="na">measurement=</span><span class="s">"haus/temperatur"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Aussen [°C]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"temperature"</span><span class="nt">/&gt;</span>
-<span class="w">  </span><span class="nt">&lt;influx</span><span class="w"> </span><span class="na">measurement=</span><span class="s">"haus/feuchte"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#00A0FF"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Feuchte [%]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"humidity"</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;iobroker</span><span class="w"> </span><span class="na">instance=</span><span class="s">"influxdb.0"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Aussen [°C]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"temperature"</span><span class="nt">&gt;</span>hm-rpc.0.LEQ123456.1.TEMPERATURE<span class="nt">&lt;/iobroker&gt;</span>
+<span class="w">  </span><span class="nt">&lt;iobroker</span><span class="w"> </span><span class="na">instance=</span><span class="s">"influxdb.0"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#00A0FF"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Feuchte [%]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"humidity"</span><span class="nt">&gt;</span>hm-rpc.0.LEQ123456.1.HUMIDITY<span class="nt">&lt;/iobroker&gt;</span>
 <span class="nt">&lt;/diagram2&gt;</span>
 </pre></div>
 </div>
@@ -594,6 +598,102 @@ Legende, Tooltip, <code class="docutils literal notranslate"><span class="pre">r
 <tr class="row-odd"><td><dl class="simple">
 <dt>diagram2</dt><dd><ul class="simple">
 <li><p>axis</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="15"><dl class="simple">
+<dt>diagram2</dt><dd><ul class="simple">
+<li><p>iobroker</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>backend</p></td>
+<td><p>Text</p></td>
+<td><p>Name der Backend-Verbindung, aus der die Historie gelesen wird. Standard ist die Standard-Backend-Verbindung.</p></td>
+</tr>
+<tr class="row-even"><td><p>instance</p></td>
+<td><p>Text</p></td>
+<td><p>Instanz des ioBroker History-Adapters, welcher die Daten enthält, z.B. sql.0. Ohne diese Angabe verwendet ioBroker die am Datenpunkt hinterlegte Instanz.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yaxis</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>label</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>scaling</p></td>
+<td><p>Zahl</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>steps</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>fill</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>offset</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>resolution</p></td>
+<td><p>integer</p></td>
+<td><p>Auflösung in Sekunden. Legt die Aggregations-Schrittweite der ioBroker History-Abfrage fest.</p></td>
+</tr>
+<tr class="row-odd"><td><p>consolidationFunction</p></td>
+<td><p><em>AVERAGE</em>, <em>MIN</em>, <em>MAX</em>, <em>TOTAL</em>, <em>COUNT</em>, <em>INTEGRAL</em>, <em>MINMAX</em> oder <em>NONE</em></p></td>
+<td><p>Wie die Werte je Schritt vom ioBroker History-Adapter aggregiert werden. Nicht jeder Adapter implementiert alle Verfahren, NONE liefert die gespeicherten Werte unaggregiert.</p></td>
+</tr>
+<tr class="row-even"><td><p>fillMissing</p></td>
+<td><p><em>previous</em>, <em>linear</em> oder <em>none</em></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p><em>lines</em>, <em>bars</em> oder <em>points</em></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>barWidth</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>align</p></td>
+<td><p><em>left</em>, <em>right</em> oder <em>center</em></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>diagram2</dt><dd><ul class="simple">
+<li><p>iobroker</p>
 <ul>
 <li><p>#text</p></li>
 </ul>
@@ -1091,6 +1191,9 @@ Legende, Tooltip, <code class="docutils literal notranslate"><span class="pre">r
         </dd>
         
         <dd><a href="../../../../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

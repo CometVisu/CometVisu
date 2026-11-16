@@ -112,7 +112,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
       },
       parseIcons: function parseIcons(elem) {
-        var icon = this.__P_9_0(elem);
+        var icon = this.__P_10_0(elem);
         cv.Config.configSettings.iconsFromConfig.push(icon);
         cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
       },
@@ -131,7 +131,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           for (var i = 0; i < origin.length; i++) {
             var v = origin[i];
             if (v && v.nodeType === 1 && v.nodeName.toLowerCase() === 'icon') {
-              var iconDefinition = this.__P_9_0(v);
+              var iconDefinition = this.__P_10_0(v);
               var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
               icon.definition = iconDefinition;
               value.push(icon);
@@ -327,7 +327,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         });
         return pluginsToLoad;
       },
-      __P_9_0: function __P_9_0(elem) {
+      __P_10_0: function __P_10_0(elem) {
         var nullIsUndefined = function nullIsUndefined(x) {
           return x === null ? undefined : x;
         };
@@ -409,14 +409,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       parseTemplates: function parseTemplates(xml) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-          var __P_9_1;
+          var __P_10_1;
           return _regenerator().w(function (_context2) {
             while (1) switch (_context2.n) {
               case 0:
-                __P_9_1 = new qx.data.Array();
+                __P_10_1 = new qx.data.Array();
                 return _context2.a(2, new Promise(function (done, reject) {
                   var check = function check() {
-                    if (__P_9_1.length === 0 && done) {
+                    if (__P_10_1.length === 0 && done) {
                       done();
                     }
                   };
@@ -432,7 +432,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                       if (ref) {
                         // load template fom external file
                         var areq = new qx.io.request.Xhr(ref);
-                        __P_9_1.push(ref);
+                        __P_10_1.push(ref);
                         qx.log.Logger.debug(this, 'loading template from file:', ref);
                         areq.set({
                           accept: 'text/plain',
@@ -443,7 +443,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           cv.parser.pure.WidgetParser.addTemplate(templateName,
                           // templates can only have one single root element, so we wrap it here
                           '<root>' + req.getResponseText() + '</root>');
-                          __P_9_1.remove(areq.getUrl());
+                          __P_10_1.remove(areq.getUrl());
                           qx.log.Logger.debug(_this3, 'DONE loading template from file:', ref);
                           check();
                         });
@@ -478,4 +478,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.parser.pure.MetaParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaParser.js.map?dt=1792082760144
+//# sourceMappingURL=MetaParser.js.map?dt=1794845744888

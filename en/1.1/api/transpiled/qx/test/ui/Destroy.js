@@ -176,7 +176,7 @@
         }
         this.assertDestroy(function () {
           var widget = new qx.ui.form.MenuButton();
-          var menu = this.__P_390_0();
+          var menu = this.__P_391_0();
           widget.setMenu(menu);
           this.getRoot().add(widget);
           this.flush();
@@ -287,7 +287,7 @@
         }
         this.assertDestroy(function () {
           var widget = new qx.ui.toolbar.MenuButton("juhu");
-          var menu = this.__P_390_0();
+          var menu = this.__P_391_0();
           widget.setMenu(menu);
           this.getRoot().add(widget);
           this.flush();
@@ -296,7 +296,7 @@
         }, this, "Dispose toolbar menu button");
         this.assertDestroy(function () {
           var widget = new qx.ui.toolbar.SplitButton("Juhu");
-          var menu = this.__P_390_0();
+          var menu = this.__P_391_0();
           widget.setMenu(menu);
           this.getRoot().add(widget);
           this.flush();
@@ -356,7 +356,7 @@
           widget.destroy();
         }, this, "Dispose window");
       },
-      __P_390_0: function __P_390_0() {
+      __P_391_0: function __P_391_0() {
         var menu = new qx.ui.menu.Menu();
         menu.add(new qx.ui.menu.Button("Juhu"));
         menu.add(new qx.ui.menu.CheckBox("Juhu"));
@@ -369,4 +369,4 @@
   qx.test.ui.Destroy.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Destroy.js.map?dt=1792082782964
+//# sourceMappingURL=Destroy.js.map?dt=1794845766688

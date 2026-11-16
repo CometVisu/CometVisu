@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -77,7 +77,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_82_0: null,
+      __P_83_0: null,
       _init: function _init() {
         var _this = this;
         var element = this._element;
@@ -140,10 +140,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               address: addresses
             };
             cv.parser.pure.widgets.ColorChooser.parseAttributes(element, props);
-            this.__P_82_0 = new cv.ui.structure.pure.ColorChooser(props);
-            this.__P_82_0.addListener('colorChanged', this._onColorChanged, this);
+            this.__P_83_0 = new cv.ui.structure.pure.ColorChooser(props);
+            this.__P_83_0.addListener('colorChanged', this._onColorChanged, this);
             this._onColorChanged();
-            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_82_0.getDomString(), "</div>");
+            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_83_0.getDomString(), "</div>");
             element.appendChild(popup);
             element.addEventListener('click', function (ev) {
               var path = ev.path || ev.composedPath && ev.composedPath();
@@ -152,22 +152,22 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               }
             });
             qx.event.Timer.once(function () {
-              _this.__P_82_0._onDomReady();
+              _this.__P_83_0._onDomReady();
             }, this, 0);
             this.setResizeTarget(popup);
             this.addListener('resized', function () {
-              _this.__P_82_0.invalidateScreensize();
+              _this.__P_83_0.invalidateScreensize();
             });
           }
         }
       },
       _onColorChanged: function _onColorChanged() {
-        var color = this.__P_82_0.getColor();
+        var color = this.__P_83_0.getColor();
         var rgb = color.getComponent('rgb');
         var v = color.getComponent('v');
-        this.setValue("#".concat(this.__P_82_1(rgb.r)).concat(this.__P_82_1(rgb.g)).concat(this.__P_82_1(rgb.b)).concat(this.__P_82_1(v)));
+        this.setValue("#".concat(this.__P_83_1(rgb.r)).concat(this.__P_83_1(rgb.g)).concat(this.__P_83_1(rgb.b)).concat(this.__P_83_1(v)));
       },
-      __P_82_1: function __P_82_1(v) {
+      __P_83_1: function __P_83_1(v) {
         return Math.round(v * 255).toString(16).padStart(2, '0');
       },
       _updateValue: function _updateValue(mappedValue, value) {
@@ -194,7 +194,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_82_0");
+      this._disposeObjects("__P_83_0");
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'color', /*#__PURE__*/function (_QxConnector) {
@@ -212,4 +212,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1792082765561
+//# sourceMappingURL=Color.js.map?dt=1794845749993

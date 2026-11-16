@@ -151,8 +151,8 @@ neben dem Default-Backend eine Verbindung zu einem MQTT-Broker aufzubauen und di
 <tbody>
 <tr class="row-odd"><td rowspan="6"><p>cv-backend</p></td>
 <td><p><abbr title="Pflichtangabe">type</abbr></p></td>
-<td><p><em>knxd</em>, <em>openhab</em>, <em>mqtt</em> oder <em>simulated</em></p></td>
-<td><p>Typ des Backends: <code class="docutils literal notranslate"><span class="pre">knxd</span></code> = KNXD, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> = openHAB Server, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code> = MQTT-Broker, <code class="docutils literal notranslate"><span class="pre">simulated</span></code> = Simuliertes Backend zu Testzwecken.</p></td>
+<td><p><em>knxd</em>, <em>openhab</em>, <em>mqtt</em>, <em>iobroker</em> oder <em>simulated</em></p></td>
+<td><p>Typ des Backends: <code class="docutils literal notranslate"><span class="pre">knxd</span></code> = KNXD, <code class="docutils literal notranslate"><span class="pre">openhab</span></code> = openHAB Server, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code> = MQTT-Broker <code class="docutils literal notranslate"><span class="pre">iobroker</span></code> = ioBroker, <code class="docutils literal notranslate"><span class="pre">simulated</span></code> = Simuliertes Backend zu Testzwecken.</p></td>
 </tr>
 <tr class="row-even"><td><p>name</p></td>
 <td><p>Text</p></td>
@@ -244,6 +244,16 @@ in der UI eine kleine visuelle Rückmeldung zu geben, wenn die Szene geklickt wi
 </div>
 <p>Der MQTT-Broker muss Websocket Verbindungen unterstützen, damit die CometVisu damit kommunizieren kann.
 Sofern der Broker Zugangsdaten benötigt können diese über die <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> Attribute angegeben werden.</p>
+</section>
+<section id="verbindung-zu-iobroker">
+<h2>Verbindung zu ioBroker<a class="headerlink" href="#verbindung-zu-iobroker" title="Link to this heading"></a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">"iobroker"</span><span class="w"> </span><span class="na">uri=</span><span class="s">"ws://iobroker-host:8084"</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Die Adresse zeigt auf einen ioBroker-Server mit Websocket-Schnittstelle: den Web-Adapter (<code class="docutils literal notranslate"><span class="pre">iobroker.web</span></code>) oder den
+„Web socket“ Adapter (<code class="docutils literal notranslate"><span class="pre">iobroker.ws</span></code>). Die CometVisu lädt die passende Programmbibliothek von diesem Server, es spielt
+daher keine Rolle, welches Protokoll er dafür verwendet.
+Sofern die ioBroker Instanz Zugangsdaten benötigt, können diese über die <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> Attribute angegeben werden.</p>
 </section>
 <section id="zugriff-auf-interne-stati-und-funktionen">
 <span id="tile-backend-system"></span><h2>Zugriff auf interne Stati und Funktionen<a class="headerlink" href="#zugriff-auf-interne-stati-und-funktionen" title="Link to this heading"></a></h2>
@@ -415,6 +425,9 @@ eines <a class="reference internal" href="../components/image.html#tile-componen
         </dd>
         
         <dd><a href="../../../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

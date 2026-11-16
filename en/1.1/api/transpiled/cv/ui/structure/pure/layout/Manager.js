@@ -257,7 +257,7 @@
               if (ourColspan > 0) {
                 w = Math.min(100, ourColspan / areaColspan * 100) + '%';
               }
-              this.__P_73_0(child, w);
+              this.__P_74_0(child, w);
             }, this);
           }
 
@@ -283,11 +283,11 @@
               }
               w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
             }
-            this.__P_73_0(e, w);
+            this.__P_74_0(e, w);
           }, this);
         }, this);
       },
-      __P_73_0: function __P_73_0(elem, widthClassSuffix) {
+      __P_74_0: function __P_74_0(elem, widthClassSuffix) {
         if (widthClassSuffix === 'auto') {
           elem.style.width = widthClassSuffix;
         } else {
@@ -312,4 +312,4 @@
   cv.ui.structure.pure.layout.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1792082764847
+//# sourceMappingURL=Manager.js.map?dt=1794845749296

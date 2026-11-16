@@ -69,7 +69,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(metaDb) {
       qx.core.Object.constructor.call(this);
-      this.__P_514_0 = metaDb;
+      this.__P_515_0 = metaDb;
     },
     properties: {
       outputTo: {
@@ -79,16 +79,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type {qx.tool.compiler.MetaDatabase} */
-      __P_514_0: null,
+      __P_515_0: null,
       /** @type {Stream} where to write the .d.ts */
-      __P_514_1: null,
-      __P_514_2: null,
+      __P_515_1: null,
+      __P_515_2: null,
       /** @type {qx.tool.compiler.MetaExtraction} */
-      __P_514_3: null,
+      __P_515_3: null,
       /** @type {object} */
-      __P_514_4: null,
+      __P_515_4: null,
       /** Current indent */
-      __P_514_5: "    ",
+      __P_515_5: "    ",
       /**
        * Opens the stream to write to
        */
@@ -100,10 +100,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context.n) {
               case 0:
                 time = new Date();
-                _this.__P_514_1 = fs.createWriteStream(_this.getOutputTo());
-                _this.__P_514_2 = new qx.Promise();
-                _this.__P_514_1.on("close", function () {
-                  return _this.__P_514_2.resolve();
+                _this.__P_515_1 = fs.createWriteStream(_this.getOutputTo());
+                _this.__P_515_2 = new qx.Promise();
+                _this.__P_515_1.on("close", function () {
+                  return _this.__P_515_2.resolve();
                 });
                 _this.write("// Generated declaration file at ".concat(time, "\n"));
                 str = path.join(qx.tool.utils.Utils.getTemplateDir(), "TypeScriptWriter-base_declaration.d.ts");
@@ -129,13 +129,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context2.n) {
               case 0:
                 _context2.n = 1;
-                return _this2.__P_514_1.end();
+                return _this2.__P_515_1.end();
               case 1:
-                _this2.__P_514_1 = null;
+                _this2.__P_515_1 = null;
                 _context2.n = 2;
-                return _this2.__P_514_2;
+                return _this2.__P_515_2;
               case 2:
-                _this2.__P_514_2 = null;
+                _this2.__P_515_2 = null;
 
                 // add global declaration file for tooling (eg, text editor) support
                 globalFile = path.join(process.cwd(), "source", "global.d.ts");
@@ -162,7 +162,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context3.n = 1;
                 return _this3.open();
               case 1:
-                classnames = _this3.__P_514_0.getClassnames();
+                classnames = _this3.__P_515_0.getClassnames();
                 classnames.sort();
                 lastPackageName = null;
                 declared = false;
@@ -175,7 +175,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 classname = _step.value;
-                metaData = _this3.__P_514_0.getMetaData(classname);
+                metaData = _this3.__P_515_0.getMetaData(classname);
                 pos = classname.lastIndexOf(".");
                 packageName = "";
                 if (pos > -1) {
@@ -227,7 +227,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Write a piece of code to the declaration file
        */
       write: function write(msg) {
-        this.__P_514_1.write(msg);
+        this.__P_515_1.write(msg);
       },
       /**
        * Write the class or interface declaration
@@ -246,8 +246,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 return _context4.a(2);
               case 1:
-                _this4.__P_514_3 = meta;
-                _this4.__P_514_4 = _this4.__P_514_0.getHierarchyFlat(meta);
+                _this4.__P_515_3 = meta;
+                _this4.__P_515_4 = _this4.__P_515_0.getHierarchyFlat(meta);
                 // qx.tool.compiler.Console.info("Processing class " + meta.packageName + "." + meta.name);
                 extendsClause = "";
                 if (meta.superClass && meta.superClass !== "Object" && meta.superClass !== "Array" && meta.superClass !== "Error") {
@@ -277,7 +277,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (!declared) {
                   type = "declare " + type;
                 }
-                _this4.__P_514_6((_meta$jsdoc = meta.jsdoc) === null || _meta$jsdoc === void 0 ? void 0 : _meta$jsdoc.raw, meta.location);
+                _this4.__P_515_6((_meta$jsdoc = meta.jsdoc) === null || _meta$jsdoc === void 0 ? void 0 : _meta$jsdoc.raw, meta.location);
                 _this4.write("  // " + meta.className + "\n");
                 name = meta.className;
                 pos = name.lastIndexOf(".");
@@ -296,8 +296,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _this4.writeClassBody(meta);
                 _this4.write("\n  }\n");
-                _this4.__P_514_3 = null;
-                _this4.__P_514_4 = null;
+                _this4.__P_515_3 = null;
+                _this4.__P_515_4 = null;
               case 2:
                 return _context4.a(2);
             }
@@ -338,7 +338,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           var propertyMeta = meta.properties[propertyName];
           if ((_propertyMeta$appears = propertyMeta.appearsIn) !== null && _propertyMeta$appears !== void 0 && _propertyMeta$appears.length) {
             var superLikeName = propertyMeta.appearsIn.slice(-1)[0];
-            var superLikeMeta = this.__P_514_0.getMetaData(superLikeName);
+            var superLikeMeta = this.__P_515_0.getMetaData(superLikeName);
             var superLikeProperty = superLikeMeta.properties[propertyName];
             superLikeProperty.jsdoc = propertyMeta.jsdoc;
             propertyMeta = superLikeProperty;
@@ -357,7 +357,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           types.push(type);
           if (!((_propertyMeta$json2 = propertyMeta.json) !== null && _propertyMeta$json2 !== void 0 && _propertyMeta$json2.group)) {
-            this.__P_514_7("get" + upname, {
+            this.__P_515_7("get" + upname, {
               location: propertyMeta.location,
               returnType: type,
               jsdoc: {
@@ -366,7 +366,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               override: propertyMeta.override
             });
             if (typeof type === "string" && type.toLowerCase() === "boolean") {
-              this.__P_514_7("is" + upname, {
+              this.__P_515_7("is" + upname, {
                 location: propertyMeta.location,
                 returnType: type,
                 jsdoc: {
@@ -376,7 +376,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               });
             }
           }
-          this.__P_514_7("set" + upname, {
+          this.__P_515_7("set" + upname, {
             location: propertyMeta.location,
             parameters: [{
               name: "value",
@@ -388,7 +388,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             },
             override: propertyMeta.override
           });
-          this.__P_514_7("reset" + upname, {
+          this.__P_515_7("reset" + upname, {
             location: propertyMeta.location,
             jsdoc: {
               raw: ["Resets the ".concat(propertyName, " property")]
@@ -396,7 +396,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             override: propertyMeta.override
           });
           if ((_propertyMeta$json3 = propertyMeta.json) !== null && _propertyMeta$json3 !== void 0 && _propertyMeta$json3.async) {
-            this.__P_514_7("get" + upname + "Async", {
+            this.__P_515_7("get" + upname + "Async", {
               location: propertyMeta.location,
               returnType: "Promise<".concat(type, ">"),
               jsdoc: {
@@ -405,7 +405,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               override: propertyMeta.override
             });
             if (typeof type === "string" && type.toLowerCase() === "boolean") {
-              this.__P_514_7("is" + upname + "Async", {
+              this.__P_515_7("is" + upname + "Async", {
                 location: propertyMeta.location,
                 returnType: "Promise<".concat(type, ">"),
                 jsdoc: {
@@ -414,7 +414,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 override: propertyMeta.override
               });
             }
-            this.__P_514_7("set" + upname + "Async", {
+            this.__P_515_7("set" + upname + "Async", {
               location: propertyMeta.location,
               parameters: [{
                 name: "value",
@@ -431,14 +431,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (!names.length) {
           return;
         }
-        var override = this.__P_514_8(meta);
-        var superIsQxClass = !!this.__P_514_0.getMetaData(meta.superClass);
+        var override = this.__P_515_8(meta);
+        var superIsQxClass = !!this.__P_515_0.getMetaData(meta.superClass);
         var objType = "{";
         for (var i = 0; i < Math.min(names.length, types.length); i++) {
-          objType += "\n".concat(this.__P_514_5, "  ").concat(names[i], "?: ").concat(types[i], ";");
+          objType += "\n".concat(this.__P_515_5, "  ").concat(names[i], "?: ").concat(types[i], ";");
         }
-        objType += "\n".concat(this.__P_514_5, "}");
-        this.__P_514_7("set", {
+        objType += "\n".concat(this.__P_515_5, "}");
+        this.__P_515_7("set", {
           parameters: [{
             name: "data",
             type: objType + (superIsQxClass ? " & Parameters<globalThis.".concat(meta.superClass, "[\"set\"]>[0]") : "")
@@ -449,7 +449,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           },
           override: override
         });
-        this.__P_514_7("get", {
+        this.__P_515_7("get", {
           parameters: [{
             name: "prop",
             type: names.map(function (name) {
@@ -468,7 +468,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {qx.tool.compiler.MetaExtraction} meta
        * @returns {Boolean}
        */
-      __P_514_8: function __P_514_8(meta) {
+      __P_515_8: function __P_515_8(meta) {
         var _arguments$,
           _this5 = this;
         var firstpass = (_arguments$ = arguments[1]) !== null && _arguments$ !== void 0 ? _arguments$ : true;
@@ -479,14 +479,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           if (meta !== null && meta !== void 0 && meta.mixins) {
             return meta.mixins.some(function (mixin) {
-              var mixinMeta = _this5.__P_514_0.getMetaData(mixin);
-              return _this5.__P_514_8(mixinMeta, false);
+              var mixinMeta = _this5.__P_515_0.getMetaData(mixin);
+              return _this5.__P_515_8(mixinMeta, false);
             });
           }
         }
         if (meta !== null && meta !== void 0 && meta.superClass) {
-          var superClassMeta = this.__P_514_0.getMetaData(meta.superClass);
-          return this.__P_514_8(superClassMeta, false);
+          var superClassMeta = this.__P_515_0.getMetaData(meta.superClass);
+          return this.__P_515_8(superClassMeta, false);
         }
         return false;
       },
@@ -541,7 +541,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         typename = typename.replace(/\?.*$/, "");
 
         // handle global types
-        if (this.__P_514_0.getMetaData(typename) && typename.indexOf(".") != -1 || this.__P_514_0.getMetaData(typename.replace(/\[\]/g, "")) && typename.replace(/\[\]/g, "").indexOf(".") != -1) {
+        if (this.__P_515_0.getMetaData(typename) && typename.indexOf(".") != -1 || this.__P_515_0.getMetaData(typename.replace(/\[\]/g, "")) && typename.replace(/\[\]/g, "").indexOf(".") != -1) {
           return "globalThis." + typename;
         }
         typename = typename.replace("Promise<", "globalThis.Promise<");
@@ -558,7 +558,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Write a constructor
        */
       writeConstructor: function writeConstructor(methodMeta) {
-        this.write(this.__P_514_5 + "constructor (" + this.__P_514_9(methodMeta.params) + ");\n");
+        this.write(this.__P_515_5 + "constructor (" + this.__P_515_9(methodMeta.params) + ");\n");
       },
       /**
        * @typedef {Object} MemberConfig
@@ -575,7 +575,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {string} methodName
        * @param {MemberConfig} config
        */
-      __P_514_7: function __P_514_7(methodName, config) {
+      __P_515_7: function __P_515_7(methodName, config) {
         var _config$jsdoc;
         var declaration = "";
         if (config.access === "protected" || config.access === "public") {
@@ -592,9 +592,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (config.override) {
           declaration += "override ";
         }
-        declaration += this.__P_514_10(methodName) + "(";
+        declaration += this.__P_515_10(methodName) + "(";
         if (config.parameters) {
-          declaration += this.__P_514_9(config.parameters);
+          declaration += this.__P_515_9(config.parameters);
         }
         declaration += ")";
         var returnType = "void";
@@ -602,9 +602,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           returnType = this.getType(config.returnType);
         }
         declaration += ": " + returnType;
-        this.__P_514_6((_config$jsdoc = config.jsdoc) === null || _config$jsdoc === void 0 ? void 0 : _config$jsdoc.raw, config.location);
-        this.write(this.__P_514_5 + "// ".concat(this.__P_514_3.className).concat(config["static"] ? "#" : ".").concat(methodName, "\n"));
-        this.write(this.__P_514_5 + declaration + ";" + "\n");
+        this.__P_515_6((_config$jsdoc = config.jsdoc) === null || _config$jsdoc === void 0 ? void 0 : _config$jsdoc.raw, config.location);
+        this.write(this.__P_515_5 + "// ".concat(this.__P_515_3.className).concat(config["static"] ? "#" : ".").concat(methodName, "\n"));
+        this.write(this.__P_515_5 + declaration + ";" + "\n");
       },
       /**
        * @typedef {Object} FieldConfig
@@ -620,7 +620,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {string} fieldName
        * @param {FieldConfig} config
        */
-      __P_514_11: function __P_514_11(fieldName, config) {
+      __P_515_11: function __P_515_11(fieldName, config) {
         var _config$jsdoc2;
         var declaration = "";
         if (config.access === "protected" || config.access === "public") {
@@ -637,22 +637,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (config.override) {
           declaration += "override ";
         }
-        declaration += this.__P_514_10(fieldName) + ": " + config.type;
-        this.__P_514_6((_config$jsdoc2 = config.jsdoc) === null || _config$jsdoc2 === void 0 ? void 0 : _config$jsdoc2.raw, config.location);
-        this.write(this.__P_514_5 + "// ".concat(this.__P_514_3.className).concat(config["static"] ? "#" : ".").concat(fieldName, "\n"));
-        this.write(this.__P_514_5 + declaration + ";" + "\n");
+        declaration += this.__P_515_10(fieldName) + ": " + config.type;
+        this.__P_515_6((_config$jsdoc2 = config.jsdoc) === null || _config$jsdoc2 === void 0 ? void 0 : _config$jsdoc2.raw, config.location);
+        this.write(this.__P_515_5 + "// ".concat(this.__P_515_3.className).concat(config["static"] ? "#" : ".").concat(fieldName, "\n"));
+        this.write(this.__P_515_5 + declaration + ";" + "\n");
       },
       /**
        * Writes the JSDoc content and adds a link to the source code
        * @param {string[]} jsdoc
        * @param {object} location
        */
-      __P_514_6: function __P_514_6(jsdoc, location) {
+      __P_515_6: function __P_515_6(jsdoc, location) {
         var _this7 = this;
         var fixup = function fixup(source) {
           source = source
           // to ensure that links work correctly, include the full class path
-          .replace(/\{@link #([^}]+)\}/g, "{@link ".concat(_this7.__P_514_3.className, ".$1}"));
+          .replace(/\{@link #([^}]+)\}/g, "{@link ".concat(_this7.__P_515_3.className, ".$1}"));
           if (source.match(/@param|@return/)) {
             var typeExpr = qx.tool.compiler.jsdoc.Parser.getTypeExpression(source);
             if (typeExpr) {
@@ -670,7 +670,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (jsdoc.length) {
           jsdoc.push("*");
         }
-        var sourceCodePath = path.join(process.cwd(), this.__P_514_0.getRootDir(), this.__P_514_3.classFilename);
+        var sourceCodePath = path.join(process.cwd(), this.__P_515_0.getRootDir(), this.__P_515_3.classFilename);
 
         // currently, VSCode does not support the use of `%file:%line:%column` in
         // in-file links, though it supports them in all other contexts.
@@ -679,11 +679,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         //   ? `:${location.start.line}:${location.start.column}`
         //   : "";
 
-        this.write("".concat(this.__P_514_5, "/**\n") + [].concat(_toConsumableArray(jsdoc), ["* [source code](".concat(sourceCodePath).concat(locationSpecifier, ")"), "*/\n"]).map(function (line) {
-          return "".concat(_this7.__P_514_5, " ").concat(line);
+        this.write("".concat(this.__P_515_5, "/**\n") + [].concat(_toConsumableArray(jsdoc), ["* [source code](".concat(sourceCodePath).concat(locationSpecifier, ")"), "*/\n"]).map(function (line) {
+          return "".concat(_this7.__P_515_5, " ").concat(line);
         }).join("\n"));
       },
-      __P_514_9: function __P_514_9(params) {
+      __P_515_9: function __P_515_9(params) {
         var _this8 = this;
         var forceOptional = false;
         var arr = params.map(function (paramMeta) {
@@ -739,14 +739,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           if ((_memberMeta$appearsIn = memberMeta.appearsIn) !== null && _memberMeta$appearsIn !== void 0 && _memberMeta$appearsIn.length) {
             var superLikeName = memberMeta.appearsIn.slice(-1)[0];
-            var superLikeMeta = this.__P_514_0.getMetaData(superLikeName);
+            var superLikeMeta = this.__P_515_0.getMetaData(superLikeName);
             var superLikeMember = superLikeMeta[access][name];
             superLikeMember.jsdoc = memberMeta.jsdoc;
             memberMeta = superLikeMember;
           }
           if (memberMeta.type === "function") {
             var _memberMeta$jsdoc;
-            this.__P_514_7(name, {
+            this.__P_515_7(name, {
               location: memberMeta.location,
               access: classMeta.type !== "interface" && memberMeta.access,
               "abstract": classMeta.type !== "interface" && memberMeta["abstract"],
@@ -771,7 +771,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             } else if (!!((_memberMeta$jsdoc5 = memberMeta.jsdoc) !== null && _memberMeta$jsdoc5 !== void 0 && _memberMeta$jsdoc5["@type"])) {
               type = this.getType(memberMeta.jsdoc["@type"][0].type);
             }
-            this.__P_514_11(name, {
+            this.__P_515_11(name, {
               location: memberMeta.location,
               access: classMeta.type !== "interface" && memberMeta.access,
               "abstract": classMeta.type !== "interface" && memberMeta["abstract"],
@@ -790,7 +790,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *          {String} the name to escape
        * @return {String} the escaped (if necessary) name
        */
-      __P_514_10: function __P_514_10(name) {
+      __P_515_10: function __P_515_10(name) {
         if (!name.match(/^[$a-zA-Z_][$a-zA-Z0-9_]*$/)) {
           return '"' + name + '"';
         }
@@ -838,4 +838,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.TypeScriptWriter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TypeScriptWriter.js.map?dt=1792082791037
+//# sourceMappingURL=TypeScriptWriter.js.map?dt=1794845774712

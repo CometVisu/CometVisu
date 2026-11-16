@@ -78,7 +78,7 @@
       getBackend: function getBackend() {},
       /**
        * Returns the backend type
-       * @return {string} e.g. openhab, mqtt or knxd
+       * @return {string} e.g. openhab, mqtt, iobroker or knxd
        */
       getType: function getType() {},
       /**
@@ -101,7 +101,7 @@
        */
       getProviderData: function getProviderData(name, format) {},
       /**
-       * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
+       * Mapping function to convert the data from the backend to a format the CometVisu data provider consumer can process.
        * @param name {String}
        * @param format {String} 'monaco' for texteditor and 'dp' for Tree editor
        */
@@ -221,4 +221,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1792082803934
+//# sourceMappingURL=IClient.js.map?dt=1794845787294

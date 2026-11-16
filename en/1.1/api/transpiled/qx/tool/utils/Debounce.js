@@ -30,7 +30,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(fn, timeout) {
       qx.core.Object.constructor.call(this);
-      this.__P_526_0 = fn;
+      this.__P_527_0 = fn;
       if (timeout) {
         this.setTimeout(timeout);
       }
@@ -59,17 +59,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type{Function} the function to call */
-      __P_526_0: null,
+      __P_527_0: null,
       /** @type{Boolean} that there is a repeated invocation queued */
-      __P_526_1: false,
+      __P_527_1: false,
       /**
        * Apply for `repeatedTrigger`
        *
        * @param {Boolean} value
        */
       _applyQueueRepeats: function _applyQueueRepeats(value) {
-        if (!value && this.__P_526_1) {
-          this.__P_526_1 = false;
+        if (!value && this.__P_527_1) {
+          this.__P_527_1 = false;
         }
       },
       /**
@@ -85,7 +85,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context) {
             while (1) switch (_context.n) {
               case 0:
-                promise = _this.__P_526_2;
+                promise = _this.__P_527_2;
                 if (!promise) {
                   _context.n = 2;
                   break;
@@ -93,12 +93,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 repeatedTrigger = _this.getRepeatedTrigger();
                 if (repeatedTrigger == "restart") {
                   // If there is a timer id then  we can restart it, otherwise it is already executing
-                  if (_this.__P_526_3) {
+                  if (_this.__P_527_3) {
                     _this._cancelTimer();
                     _this._startTimer();
                   }
                 } else if (repeatedTrigger == "queue" || repeatedTrigger == "immediate") {
-                  _this.__P_526_1 = true;
+                  _this.__P_527_1 = true;
                 }
                 _context.n = 1;
                 return promise;
@@ -106,7 +106,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context.a(2, _context.v);
               case 2:
                 _this._startTimer();
-                promise = _this.__P_526_2 = new qx.Promise();
+                promise = _this.__P_527_2 = new qx.Promise();
                 _context.n = 3;
                 return promise;
               case 3:
@@ -120,7 +120,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _startTimer: function _startTimer() {
         var _this2 = this;
-        this.__P_526_3 = setTimeout(function () {
+        this.__P_527_3 = setTimeout(function () {
           return _this2._onTimeout();
         }, this.getTimeout());
       },
@@ -128,9 +128,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Cancels the timer
        */
       _cancelTimer: function _cancelTimer() {
-        if (this.__P_526_3) {
-          clearTimeout(this.__P_526_3);
-          this.__P_526_3 = null;
+        if (this.__P_527_3) {
+          clearTimeout(this.__P_527_3);
+          this.__P_527_3 = null;
         }
       },
       /**
@@ -143,8 +143,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context2) {
             while (1) switch (_context2.p = _context2.n) {
               case 0:
-                _this3.__P_526_3 = null;
-                promise = _this3.__P_526_2;
+                _this3.__P_527_3 = null;
+                promise = _this3.__P_527_2;
                 _context2.p = 1;
                 result = null;
               case 2:
@@ -156,7 +156,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _this3._runImpl();
               case 3:
                 result = _context2.v;
-                if (!_this3.__P_526_1) {
+                if (!_this3.__P_527_1) {
                   _context2.n = 5;
                   break;
                 }
@@ -175,7 +175,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context2.n = 2;
                 break;
               case 7:
-                _this3.__P_526_2 = null;
+                _this3.__P_527_2 = null;
                 promise.resolve(result);
                 _context2.n = 9;
                 break;
@@ -199,7 +199,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context3.n) {
               case 0:
                 _context3.n = 1;
-                return _this4.__P_526_0();
+                return _this4.__P_527_0();
               case 1:
                 return _context3.a(2);
             }
@@ -211,4 +211,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.utils.Debounce.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Debounce.js.map?dt=1792082792031
+//# sourceMappingURL=Debounce.js.map?dt=1794845775487

@@ -42,27 +42,27 @@
     members: {
       icon_closed: "qx/icon/Oxygen/22/emotes/face-plain.png",
       icon_opened: "qx/icon/Oxygen/22/emotes/face-smile.png",
-      __P_448_0: null,
-      __P_448_1: null,
-      __P_448_2: null,
-      __P_448_3: null,
-      __P_448_4: null,
+      __P_449_0: null,
+      __P_449_1: null,
+      __P_449_2: null,
+      __P_449_3: null,
+      __P_449_4: null,
       setUp: function setUp() {
         // Build tree that looks like this:
         //
         // A ("root")
         // - AA ("item")
         // - BB
-        var tree = this.__P_448_0 = new qx.ui.tree.Tree();
-        var root = this.__P_448_1 = new qx.ui.tree.TreeFolder("A");
+        var tree = this.__P_449_0 = new qx.ui.tree.Tree();
+        var root = this.__P_449_1 = new qx.ui.tree.TreeFolder("A");
         tree.setRoot(root);
         root.setOpen(true);
-        var aa = this.__P_448_2 = new qx.ui.tree.TreeFolder("AA");
-        var ab = this.__P_448_3 = new qx.ui.tree.TreeFolder("AB");
+        var aa = this.__P_449_2 = new qx.ui.tree.TreeFolder("AA");
+        var ab = this.__P_449_3 = new qx.ui.tree.TreeFolder("AB");
         root.add(aa, ab);
 
         // Reference to "aa" as "item"
-        this.__P_448_4 = this.__P_448_2;
+        this.__P_449_4 = this.__P_449_2;
 
         // Render to set theme values
         this.getRoot().add(tree);
@@ -72,40 +72,40 @@
       // Icon for when "closed" with all variations of "icon" and "iconClosed" property
       //
       testIconWhenClosed: function testIconWhenClosed() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         this.flush();
-        this.__P_448_5(item, this.__P_448_6(item));
+        this.__P_449_5(item, this.__P_449_6(item));
       },
       testIconWhenClosedWithIcon: function testIconWhenClosedWithIcon() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIcon(this.icon_closed);
         this.flush();
-        this.__P_448_5(item, this.icon_closed);
+        this.__P_449_5(item, this.icon_closed);
       },
       testIconWhenClosedWithIconOpened: function testIconWhenClosedWithIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIconOpened(this.icon_opened);
         this.flush();
-        this.__P_448_5(item, this.__P_448_6(item));
+        this.__P_449_5(item, this.__P_449_6(item));
       },
       testIconWhenClosedWithIconAndIconOpened: function testIconWhenClosedWithIconAndIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIcon(this.icon_closed);
         item.setIconOpened(this.icon_opened);
         this.flush();
-        this.__P_448_5(item, this.icon_closed);
+        this.__P_449_5(item, this.icon_closed);
       },
       //
       // Icon when "opened" with all variations of "icon" and "iconClosed" property
       //
       testIconWhenOpened: function testIconWhenOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setOpen(true);
         this.flush();
-        this.__P_448_5(item, this.__P_448_7(item));
+        this.__P_449_5(item, this.__P_449_7(item));
       },
       testIconWhenOpenedWithIcon: function testIconWhenOpenedWithIcon() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setOpen(true);
         item.setIcon(this.icon_closed);
         this.flush();
@@ -119,72 +119,72 @@
         //     before the property "openIcon" was introduced
         //
         // Expect user-defined value of property "icon"
-        this.__P_448_5(item, this.icon_closed);
+        this.__P_449_5(item, this.icon_closed);
       },
       testIconWhenOpenedWithIconOpened: function testIconWhenOpenedWithIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setOpen(true);
         item.setIconOpened(this.icon_opened);
         this.flush();
-        this.__P_448_5(item, this.icon_opened);
+        this.__P_449_5(item, this.icon_opened);
       },
       testIconWhenOpenedWithIconAndIconOpened: function testIconWhenOpenedWithIconAndIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setOpen(true);
         item.setIcon(this.icon_closed);
         item.setIconOpened(this.icon_opened);
         this.flush();
-        this.__P_448_5(item, this.icon_opened);
+        this.__P_449_5(item, this.icon_opened);
       },
       //
       // Icon when "opened", then "closed" with all variations of "icon" and
       // "iconClosed" property
       //
       testIconWhenOpenedThenClosed: function testIconWhenOpenedThenClosed() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setOpen(true);
         item.setOpen(false);
         this.flush();
-        this.__P_448_5(item, this.__P_448_6(item));
+        this.__P_449_5(item, this.__P_449_6(item));
       },
       testIconWhenOpenedThenClosedWithIcon: function testIconWhenOpenedThenClosedWithIcon() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIcon(this.icon_closed);
         item.setOpen(true);
         item.setOpen(false);
         this.flush();
-        this.__P_448_5(item, this.icon_closed);
+        this.__P_449_5(item, this.icon_closed);
       },
       testIconWhenOpenedThenClosedWithIconOpened: function testIconWhenOpenedThenClosedWithIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIconOpened(this.icon_closed);
         item.setOpen(true);
         item.setOpen(false);
         this.flush();
-        this.__P_448_5(item, this.__P_448_6(item));
+        this.__P_449_5(item, this.__P_449_6(item));
       },
       testIconWhenOpenedThenClosedWithIconAndIconOpened: function testIconWhenOpenedThenClosedWithIconAndIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIcon(this.icon_closed);
         item.setIconOpened(this.icon_opened);
         item.setOpen(true);
         item.setOpen(false);
         this.flush();
-        this.__P_448_5(item, this.icon_closed);
+        this.__P_449_5(item, this.icon_closed);
       },
       //
       // Icon when "closed", then "opened" with all variations of "icon" and
       // "iconClosed" property
       //
       testIconWhenClosedThenOpened: function testIconWhenClosedThenOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setOpen(false);
         item.setOpen(true);
         this.flush();
-        this.__P_448_5(item, this.__P_448_7(item));
+        this.__P_449_5(item, this.__P_449_7(item));
       },
       testIconWhenClosedThenOpenedWithIcon: function testIconWhenClosedThenOpenedWithIcon() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIcon(this.icon_closed);
         item.setOpen(false);
         item.setOpen(true);
@@ -199,53 +199,53 @@
         //     before the property "openIcon" was introduced
         //
         // Expect user-defined value of property "icon"
-        this.__P_448_5(item, this.icon_closed);
+        this.__P_449_5(item, this.icon_closed);
       },
       testIconWhenClosedThenOpenedWithIconOpened: function testIconWhenClosedThenOpenedWithIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIconOpened(this.icon_opened);
         item.setOpen(false);
         item.setOpen(true);
         this.flush();
-        this.__P_448_5(item, this.icon_opened);
+        this.__P_449_5(item, this.icon_opened);
       },
       testIconWhenClosedThenOpenedWithIconAndIconOpened: function testIconWhenClosedThenOpenedWithIconAndIconOpened() {
-        var item = this.__P_448_4;
+        var item = this.__P_449_4;
         item.setIcon(this.icon_closed);
         item.setIconOpened(this.icon_opened);
         item.setOpen(false);
         item.setOpen(true);
         this.flush();
-        this.__P_448_5(item, this.icon_opened);
+        this.__P_449_5(item, this.icon_opened);
       },
       testRemoveAll: function testRemoveAll() {
-        var removed = this.__P_448_1.removeAll();
+        var removed = this.__P_449_1.removeAll();
         this.assertEquals(2, removed.length);
-        this.assertEquals(this.__P_448_2, removed[0]);
-        this.assertEquals(this.__P_448_3, removed[1]);
+        this.assertEquals(this.__P_449_2, removed[0]);
+        this.assertEquals(this.__P_449_3, removed[1]);
       },
       //
       // Helper methods
       //
-      __P_448_6: function __P_448_6(item) {
+      __P_449_6: function __P_449_6(item) {
         return qx.util.PropertyUtil.getThemeValue(item, "icon");
       },
-      __P_448_7: function __P_448_7(item) {
+      __P_449_7: function __P_449_7(item) {
         return qx.util.PropertyUtil.getThemeValue(item, "iconOpened");
       },
-      __P_448_5: function __P_448_5(item, expected) {
+      __P_449_5: function __P_449_5(item, expected) {
         this.assertEquals(expected, item.getChildControl("icon").getSource(), "Unexpected source for icon child control");
       },
       tearDown: function tearDown() {
         qx.test.ui.tree.TreeFolder.superclass.prototype.tearDown.call(this);
-        this.__P_448_0.destroy();
-        this.__P_448_1.destroy();
-        this.__P_448_2.destroy();
-        this.__P_448_3.destroy();
+        this.__P_449_0.destroy();
+        this.__P_449_1.destroy();
+        this.__P_449_2.destroy();
+        this.__P_449_3.destroy();
       }
     }
   });
   qx.test.ui.tree.TreeFolder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TreeFolder.js.map?dt=1792082785274
+//# sourceMappingURL=TreeFolder.js.map?dt=1794845768898

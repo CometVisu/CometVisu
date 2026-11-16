@@ -56,13 +56,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct(maker) {
       qx.core.Object.constructor.call(this);
-      this.__P_476_0 = maker;
-      this.__P_476_1 = {
+      this.__P_477_0 = maker;
+      this.__P_477_1 = {
         classesCompiled: 0
       };
-      this.__P_476_2 = {};
-      this.__P_476_3 = [];
-      this.__P_476_4 = {};
+      this.__P_477_2 = {};
+      this.__P_477_3 = [];
+      this.__P_477_4 = {};
       maker.addListener("writtenApplication", this._onWrittenApplication, this);
     },
     properties: {
@@ -87,20 +87,20 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       fileChanged: "qx.event.type.Data"
     },
     members: {
-      __P_476_5: null,
-      __P_476_6: null,
-      __P_476_7: false,
-      __P_476_0: null,
-      __P_476_1: null,
-      __P_476_8: null,
-      __P_476_9: false,
-      __P_476_10: null,
-      __P_476_11: null,
-      __P_476_2: null,
-      __P_476_3: null,
-      __P_476_12: null,
+      __P_477_5: null,
+      __P_477_6: null,
+      __P_477_7: false,
+      __P_477_0: null,
+      __P_477_1: null,
+      __P_477_8: null,
+      __P_477_9: false,
+      __P_477_10: null,
+      __P_477_11: null,
+      __P_477_2: null,
+      __P_477_3: null,
+      __P_477_12: null,
       /** @type{Map<String,Object>} list of runWhenWatching configurations, indexed by app name */
-      __P_476_4: null,
+      __P_477_4: null,
       setConfigFilenames: function setConfigFilenames(arr) {
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
@@ -108,9 +108,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context.n) {
               case 0:
                 if (!arr) {
-                  _this.__P_476_3 = [];
+                  _this.__P_477_3 = [];
                 } else {
-                  _this.__P_476_3 = arr.map(function (filename) {
+                  _this.__P_477_3 = arr.map(function (filename) {
                     return path.resolve(filename);
                   });
                 }
@@ -121,7 +121,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       setRunWhenWatching: function setRunWhenWatching(appName, config) {
-        this.__P_476_4[appName] = config;
+        this.__P_477_4[appName] = config;
         var arr = qx.tool.utils.Utils.parseCommand(config.command);
         config._cmd = arr.shift();
         config._args = arr;
@@ -135,7 +135,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 appInfo = evt.getData();
                 name = appInfo.application.getName();
-                config = _this2.__P_476_4[name];
+                config = _this2.__P_477_4[name];
                 if (config) {
                   _context2.n = 1;
                   break;
@@ -196,14 +196,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (this.isDebug()) {
           qx.tool.compiler.Console.debug("DEBUG: Starting watch");
         }
-        if (this.__P_476_5) {
+        if (this.__P_477_5) {
           throw new Error("Cannot start watching more than once");
         }
-        this.__P_476_5 = qx.tool.utils.Utils.newExternalPromise();
+        this.__P_477_5 = qx.tool.utils.Utils.newExternalPromise();
         var dirs = [];
-        var analyser = this.__P_476_0.getAnalyser();
+        var analyser = this.__P_477_0.getAnalyser();
         analyser.addListener("compiledClass", function () {
-          _this3.__P_476_1.classesCompiled++;
+          _this3.__P_477_1.classesCompiled++;
         });
         dirs.push(qx.tool.config.Compile.config.fileName);
         dirs.push("compile.js");
@@ -218,8 +218,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (analyser.getProxySourcePath()) {
           dirs.push(path.resolve(analyser.getProxySourcePath()));
         }
-        var applications = this.__P_476_6 = [];
-        this.__P_476_0.getApplications().forEach(function (application) {
+        var applications = this.__P_477_6 = [];
+        this.__P_477_0.getApplications().forEach(function (application) {
           var data = {
             application: application,
             dependsOn: {},
@@ -270,31 +270,31 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           if (_this3.isDebug()) {
             qx.tool.compiler.Console.debug("DEBUG: confirmed=".concat(JSON.stringify(confirmed, 2)));
           }
-          _this3.__P_476_13().then(function () {
+          _this3.__P_477_13().then(function () {
             var watcher = _this3._watcher = chokidar.watch(confirmed, {
               //ignored: /(^|[\/\\])\../
             });
             watcher.on("change", function (filename) {
-              return _this3.__P_476_14("change", filename);
+              return _this3.__P_477_14("change", filename);
             });
             watcher.on("add", function (filename) {
-              return _this3.__P_476_14("add", filename);
+              return _this3.__P_477_14("add", filename);
             });
             watcher.on("unlink", function (filename) {
-              return _this3.__P_476_14("unlink", filename);
+              return _this3.__P_477_14("unlink", filename);
             });
             watcher.on("ready", function () {
               qx.tool.compiler.Console.log("Start watching ...");
-              _this3.__P_476_7 = true;
+              _this3.__P_477_7 = true;
             });
             watcher.on("error", function (err) {
               qx.tool.compiler.Console.print(err.code == "ENOSPC" ? "qx.tool.cli.watch.enospcError" : "qx.tool.cli.watch.watchError", err);
             });
           });
         });
-        process.on("beforeExit", this.__P_476_15.bind(this));
-        process.on("exit", this.__P_476_15.bind(this));
-        return this.__P_476_5;
+        process.on("beforeExit", this.__P_477_15.bind(this));
+        process.on("exit", this.__P_477_15.bind(this));
+        return this.__P_477_5;
       },
       stop: function stop() {
         var _this4 = this;
@@ -302,41 +302,41 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context3) {
             while (1) switch (_context3.n) {
               case 0:
-                _this4.__P_476_9 = true;
+                _this4.__P_477_9 = true;
                 _this4._watcher.close();
-                if (!_this4.__P_476_8) {
+                if (!_this4.__P_477_8) {
                   _context3.n = 1;
                   break;
                 }
                 _context3.n = 1;
-                return _this4.__P_476_8;
+                return _this4.__P_477_8;
               case 1:
                 return _context3.a(2);
             }
           }, _callee3);
         }))();
       },
-      __P_476_13: function __P_476_13() {
+      __P_477_13: function __P_477_13() {
         var _this5 = this;
-        if (this.__P_476_8) {
-          this.__P_476_16 = true;
-          return this.__P_476_8;
+        if (this.__P_477_8) {
+          this.__P_477_16 = true;
+          return this.__P_477_8;
         }
         this.fireEvent("making");
         var t = this;
         var Console = qx.tool.compiler.Console;
         function make() {
           Console.print("qx.tool.cli.watch.makingApplications");
-          t.__P_476_12 = null;
+          t.__P_477_12 = null;
           var startTime = new Date().getTime();
-          t.__P_476_1.classesCompiled = 0;
-          t.__P_476_10 = false;
-          return t.__P_476_0.make().then(function () {
-            if (t.__P_476_9) {
+          t.__P_477_1.classesCompiled = 0;
+          t.__P_477_10 = false;
+          return t.__P_477_0.make().then(function () {
+            if (t.__P_477_9) {
               Console.print("qx.tool.cli.watch.makeStopping");
               return null;
             }
-            if (t.__P_476_10) {
+            if (t.__P_477_10) {
               return new qx.Promise(function (resolve) {
                 setImmediate(function () {
                   Console.print("qx.tool.cli.watch.restartingMake");
@@ -345,10 +345,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 });
               });
             }
-            var analyser = t.__P_476_0.getAnalyser();
+            var analyser = t.__P_477_0.getAnalyser();
             var db = analyser.getDatabase();
             var promises = [];
-            t.__P_476_6.forEach(function (data) {
+            t.__P_477_6.forEach(function (data) {
               data.dependsOn = {};
               var deps = data.application.getDependencies();
               deps.forEach(function (classname) {
@@ -370,47 +370,47 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             });
             return Promise.all(promises).then(function () {
               var endTime = new Date().getTime();
-              Console.print("qx.tool.cli.watch.compiledClasses", t.__P_476_1.classesCompiled, qx.tool.utils.Utils.formatTime(endTime - startTime));
+              Console.print("qx.tool.cli.watch.compiledClasses", t.__P_477_1.classesCompiled, qx.tool.utils.Utils.formatTime(endTime - startTime));
               t.fireEvent("made");
             });
           }).then(function () {
-            t.__P_476_8 = null;
+            t.__P_477_8 = null;
           })["catch"](function (err) {
             Console.print("qx.tool.cli.watch.compileFailed", err);
-            t.__P_476_8 = null;
+            t.__P_477_8 = null;
             t.fireEvent("made");
           });
         }
         var _runIt = function runIt() {
           return make().then(function () {
-            if (_this5.__P_476_16) {
-              delete _this5.__P_476_16;
+            if (_this5.__P_477_16) {
+              delete _this5.__P_477_16;
               return _runIt();
             }
             return null;
           });
         };
-        this.__P_476_8 = _runIt();
-        return this.__P_476_8;
+        this.__P_477_8 = _runIt();
+        return this.__P_477_8;
       },
-      __P_476_17: function __P_476_17() {
+      __P_477_17: function __P_477_17() {
         var _this6 = this;
-        if (this.__P_476_8) {
-          this.__P_476_16 = true;
-          return this.__P_476_8;
+        if (this.__P_477_8) {
+          this.__P_477_16 = true;
+          return this.__P_477_8;
         }
-        if (this.__P_476_11) {
-          clearTimeout(this.__P_476_11);
+        if (this.__P_477_11) {
+          clearTimeout(this.__P_477_11);
         }
-        this.__P_476_11 = setTimeout(function () {
-          return _this6.__P_476_13();
+        this.__P_477_11 = setTimeout(function () {
+          return _this6.__P_477_13();
         });
         return null;
       },
-      __P_476_14: function __P_476_14(type, filename) {
+      __P_477_14: function __P_477_14(type, filename) {
         var _this7 = this;
         var Console = qx.tool.compiler.Console;
-        if (!this.__P_476_7) {
+        if (!this.__P_477_7) {
           return null;
         }
         filename = path.normalize(filename);
@@ -421,7 +421,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               while (1) switch (_context4.p = _context4.n) {
                 case 0:
                   outOfDate = false;
-                  if (!_this7.__P_476_3.find(function (str) {
+                  if (!_this7.__P_477_3.find(function (str) {
                     return str == filename;
                   })) {
                     _context4.n = 1;
@@ -434,7 +434,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   return _context4.a(2);
                 case 1:
                   outOfDateApps = {};
-                  _this7.__P_476_6.forEach(function (data) {
+                  _this7.__P_477_6.forEach(function (data) {
                     if (data.dependsOn[filename]) {
                       outOfDateApps[data.application.getName()] = data.application;
                       outOfDate = true;
@@ -455,7 +455,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                       Console.debug("DEBUG: onFileChange: ".concat(filename, " impacted applications: ").concat(JSON.stringify(outOfDateAppNames, 2)));
                     }
                   }
-                  analyser = _this7.__P_476_0.getAnalyser();
+                  analyser = _this7.__P_477_0.getAnalyser();
                   fName = "";
                   fileType = null;
                   fileLibrary = null;
@@ -522,7 +522,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     break;
                   }
                   rm = analyser.getResourceManager();
-                  target = _this7.__P_476_0.getTarget();
+                  target = _this7.__P_477_0.getTarget();
                   if (_this7.isDebug()) {
                     Console.debug("DEBUG: onFileChange: ".concat(filename, " is a resource"));
                   }
@@ -545,8 +545,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   }));
                 case 12:
                   if (outOfDate) {
-                    _this7.__P_476_10 = true;
-                    _this7.__P_476_17();
+                    _this7.__P_477_10 = true;
+                    _this7.__P_477_17();
                   }
                 case 13:
                   return _context4.a(2);
@@ -566,9 +566,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return null;
           });
         };
-        var dbc = this.__P_476_2[filename];
+        var dbc = this.__P_477_2[filename];
         if (!dbc) {
-          dbc = this.__P_476_2[filename] = {
+          dbc = this.__P_477_2[filename] = {
             types: {}
           };
         }
@@ -589,13 +589,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         dbc.timerId = setTimeout(function () {
           dbc.promise = _runIt2(dbc).then(function () {
-            return delete _this7.__P_476_2[filename];
+            return delete _this7.__P_477_2[filename];
           });
         }, 150);
         return null;
       },
-      __P_476_15: function __P_476_15() {
-        this.__P_476_5.resolve();
+      __P_477_15: function __P_477_15() {
+        this.__P_477_5.resolve();
       }
     },
     defer: function defer() {
@@ -615,4 +615,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.Watch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watch.js.map?dt=1792082787602
+//# sourceMappingURL=Watch.js.map?dt=1794845771053

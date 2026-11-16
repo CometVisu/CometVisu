@@ -55,11 +55,11 @@
       qx.ui.form.MenuButton.constructor.call(this);
 
       // add blocker
-      this.__P_687_0 = new qx.ui.core.Blocker(this);
+      this.__P_688_0 = new qx.ui.core.Blocker(this);
     },
     members: {
-      __P_687_1: null,
-      __P_687_0: null,
+      __P_688_1: null,
+      __P_688_0: null,
       // Documented in qx.ui.table.IColumnMenu
       factory: function factory(item, options) {
         switch (item) {
@@ -90,7 +90,7 @@
        * @return {qx.ui.core.Blocker} the blocker.
        */
       getBlocker: function getBlocker() {
-        return this.__P_687_0;
+        return this.__P_688_0;
       },
       // Documented in qx.ui.table.IColumnMenu
       empty: function empty() {
@@ -107,10 +107,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_687_0.dispose();
+      this.__P_688_0.dispose();
     }
   });
   qx.ui.table.columnmenu.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1792082798426
+//# sourceMappingURL=Button.js.map?dt=1794845781793

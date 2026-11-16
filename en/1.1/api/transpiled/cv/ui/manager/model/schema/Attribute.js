@@ -168,11 +168,11 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_51_0 = null;
-      this.__P_51_1 = null;
+      this.__P_52_0 = null;
+      this.__P_52_1 = null;
     }
   });
   cv.ui.manager.model.schema.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1792082763545
+//# sourceMappingURL=Attribute.js.map?dt=1794845748090

@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -74,41 +74,41 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
      */
     members: {
       _closeButton: null,
-      __P_106_0: null,
-      __P_106_1: null,
-      __P_106_2: null,
-      __P_106_3: null,
-      __P_106_4: null,
-      __P_106_5: function __P_106_5(isOpen) {
+      __P_107_0: null,
+      __P_107_1: null,
+      __P_107_2: null,
+      __P_107_3: null,
+      __P_107_4: null,
+      __P_107_5: function __P_107_5(isOpen) {
         var clippingParent = this._element.closest('[hide-on-scroll="true"]');
         if (clippingParent) {
           clippingParent.classList.toggle('popup-open', isOpen);
         }
       },
-      __P_106_6: function __P_106_6() {
+      __P_107_6: function __P_107_6() {
         return this._element.getAttribute('modal') === 'true';
       },
-      __P_106_7: function __P_106_7() {
-        if (!this.__P_106_6() || this.__P_106_3 || this._element.parentElement === document.body) {
+      __P_107_7: function __P_107_7() {
+        if (!this.__P_107_6() || this.__P_107_3 || this._element.parentElement === document.body) {
           return;
         }
-        this.__P_106_2 = this._element.parentElement;
-        this.__P_106_4 = this._element.nextSibling;
-        this.__P_106_3 = document.createComment('cv-popup-placeholder');
-        this.__P_106_2.insertBefore(this.__P_106_3, this._element);
+        this.__P_107_2 = this._element.parentElement;
+        this.__P_107_4 = this._element.nextSibling;
+        this.__P_107_3 = document.createComment('cv-popup-placeholder');
+        this.__P_107_2.insertBefore(this.__P_107_3, this._element);
         document.body.appendChild(this._element);
       },
-      __P_106_8: function __P_106_8() {
-        if (!this.__P_106_3 || !this.__P_106_2) {
+      __P_107_8: function __P_107_8() {
+        if (!this.__P_107_3 || !this.__P_107_2) {
           return;
         }
-        if (this.__P_106_3.parentNode === this.__P_106_2) {
-          this.__P_106_2.insertBefore(this._element, this.__P_106_3);
-          this.__P_106_3.remove();
+        if (this.__P_107_3.parentNode === this.__P_107_2) {
+          this.__P_107_2.insertBefore(this._element, this.__P_107_3);
+          this.__P_107_3.remove();
         }
-        this.__P_106_3 = null;
-        this.__P_106_2 = null;
-        this.__P_106_4 = null;
+        this.__P_107_3 = null;
+        this.__P_107_2 = null;
+        this.__P_107_4 = null;
       },
       _init: function _init() {
         var _this = this;
@@ -125,22 +125,22 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             this._closeButton.appendChild(icon);
             popup.insertBefore(this._closeButton, popup.firstChild);
           }
-          if (!this.__P_106_0) {
-            this.__P_106_0 = function (ev) {
+          if (!this.__P_107_0) {
+            this.__P_107_0 = function (ev) {
               ev.stopPropagation();
               _this.close();
             };
           }
-          this._closeButton.removeEventListener('click', this.__P_106_0);
-          this._closeButton.addEventListener('click', this.__P_106_0);
+          this._closeButton.removeEventListener('click', this.__P_107_0);
+          this._closeButton.addEventListener('click', this.__P_107_0);
         }
-        if (!this.__P_106_1) {
-          this.__P_106_1 = function () {
+        if (!this.__P_107_1) {
+          this.__P_107_1 = function () {
             _this.close();
           };
         }
-        popup.removeEventListener('close', this.__P_106_1);
-        popup.addEventListener('close', this.__P_106_1);
+        popup.removeEventListener('close', this.__P_107_1);
+        popup.addEventListener('close', this.__P_107_1);
         if (popup.hasAttribute('title')) {
           var header = popup.querySelector(':scope > header');
           if (!header) {
@@ -168,11 +168,11 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
       },
       _disconnected: function _disconnected() {
-        this.__P_106_5(false);
-        if (this._closeButton && this.__P_106_0) {
-          this._closeButton.removeEventListener('click', this.__P_106_0);
+        this.__P_107_5(false);
+        if (this._closeButton && this.__P_107_0) {
+          this._closeButton.removeEventListener('click', this.__P_107_0);
         }
-        this._element.removeEventListener('close', this.__P_106_1);
+        this._element.removeEventListener('close', this.__P_107_1);
         if (this._autoCloseTimer) {
           this._autoCloseTimer.stop();
         }
@@ -181,10 +181,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       open: function open() {
         var popup = this._element;
         if (!popup.hasAttribute('open')) {
-          this.__P_106_7();
+          this.__P_107_7();
           popup.setAttribute('open', '');
-          if (!this.__P_106_3) {
-            this.__P_106_5(true);
+          if (!this.__P_107_3) {
+            this.__P_107_5(true);
           }
           if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
             this.registerModalPopup();
@@ -198,14 +198,14 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         var popup = this._element;
         if (popup) {
           popup.removeAttribute('open');
-          this.__P_106_5(false);
+          this.__P_107_5(false);
           if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
             this.unregisterModalPopup();
           }
           if (this._autoCloseTimer) {
             this._autoCloseTimer.stop();
           }
-          this.__P_106_8();
+          this.__P_107_8();
           popup.dispatchEvent(new CustomEvent('closed'));
         }
       },
@@ -279,4 +279,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1792082767108
+//# sourceMappingURL=Popup.js.map?dt=1794845751495

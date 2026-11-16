@@ -54,8 +54,8 @@
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
-      this.__P_771_0 = {};
-      this.__P_771_1 = {};
+      this.__P_772_0 = {};
+      this.__P_772_1 = {};
     },
     /*
     ***********************************************
@@ -81,7 +81,7 @@
         return this._type;
       },
       /**
-       * Returns true, when the backend provides a special data provider for this kins of data
+       * Returns true, when the backend provides a special data provider for this kind of data
        * @param name {String}
        * @return {Boolean}
        */
@@ -97,7 +97,7 @@
         return null;
       },
       /**
-       * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
+       * Mapping function to convert the data from the backend to a format the CometVisu data provider consumer can process.
        * @param name {String}
        */
       getProviderConvertFunction: function getProviderConvertFunction(name) {
@@ -209,12 +209,12 @@
           self.update(update);
         };
         this._clientOptions = options;
-        this.__P_771_2();
+        this.__P_772_2();
       },
       /**
        * Connect to the MQTT server
        */
-      __P_771_2: function __P_771_2() {
+      __P_772_2: function __P_772_2() {
         try {
           if (!cv.report.Record.REPLAYING) {
             this._client.connect(this._clientOptions);
@@ -284,7 +284,7 @@
        */
       restart: function restart(full) {
         this.terminate();
-        this.__P_771_2();
+        this.__P_772_2();
       },
       /**
        * Handle the incoming state updates. This method is not implemented by the client itself.
@@ -324,4 +324,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1792082802118
+//# sourceMappingURL=Client.js.map?dt=1794845785433

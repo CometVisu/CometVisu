@@ -22,8 +22,9 @@
       "cv.data.Model": {},
       "cv.io.BackendConnections": {},
       "qx.io.request.Xhr": {},
-      "qx.locale.Manager": {},
+      "cv.io.timeseries.IoBrokerSource": {},
       "cv.core.notifications.Router": {},
+      "qx.locale.Manager": {},
       "qx.event.Timer": {},
       "qx.dom.Element": {},
       "cv.ui.PopupHandler": {},
@@ -222,8 +223,15 @@
           retVal.axesnum++;
           axesNameIndex[elem.textContent] = retVal.axesnum;
         }, this);
-        xmlElement.querySelectorAll('influx,rrd').forEach(function (elem) {
-          var src = elem.tagName === 'rrd' ? elem.textContent : elem.getAttribute('measurement');
+
+        // each backend gets the default of its own vocabulary, ioBroker uses the default
+        // of its history adapters
+        var defaultCFunc = {
+          influx: 'MEAN',
+          iobroker: 'MINMAX'
+        };
+        xmlElement.querySelectorAll('influx,rrd,iobroker').forEach(function (elem) {
+          var src = elem.tagName === 'influx' ? elem.getAttribute('measurement') : elem.textContent;
           var steps = (elem.getAttribute('steps') || 'false') === 'true';
           var fillMissing = elem.getAttribute('fillMissing');
           retVal.ts[retVal.tsnum] = {
@@ -235,7 +243,7 @@
             steps: steps,
             fill: (elem.getAttribute('fill') || 'false') === 'true',
             scaling: parseFloat(elem.getAttribute('scaling')) || 1.0,
-            cFunc: elem.getAttribute('consolidationFunction') || (elem.tagName === 'rrd' ? 'AVERAGE' : 'MEAN'),
+            cFunc: elem.getAttribute('consolidationFunction') || defaultCFunc[elem.tagName] || 'AVERAGE',
             fillTs: fillMissing === null ? steps ? 'previous' : 'linear' : fillMissing,
             resol: parseInt(elem.getAttribute('resolution')),
             offset: parseInt(elem.getAttribute('offset')),
@@ -243,7 +251,13 @@
             align: elem.getAttribute('align') || 'center',
             barWidth: elem.getAttribute('barWidth') || 1
           };
-          if (elem.tagName === 'influx') {
+          if (elem.tagName === 'iobroker') {
+            // the connection to read the history from, the default one when not set
+            retVal.ts[retVal.tsnum].backend = elem.getAttribute('backend');
+            // the recording adapter instance, e.g. sql.0. Without it ioBroker picks the one
+            // configured on the state itself, which fails when that is not the one holding the data
+            retVal.ts[retVal.tsnum].instance = elem.getAttribute('instance');
+          } else if (elem.tagName === 'influx') {
             retVal.ts[retVal.tsnum].filter = this.getInfluxFilter(elem, 'AND');
             retVal.ts[retVal.tsnum].field = elem.getAttribute('field');
             retVal.ts[retVal.tsnum].authentication = elem.getAttribute('authentication');
@@ -306,6 +320,25 @@
        */
       lookupTsCache: function lookupTsCache(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
         var _this = this;
+        var source = this.getTimeSeriesSource(ts);
+        if (source) {
+          // this source retrieves the data itself, there is no url to request
+          var _key = ts.tsType + '://' + ts.src;
+          // res is the resolution in seconds, either from the data set or from the series
+          source.setHistoryOptions({
+            aggregate: ts.cFunc,
+            instance: ts.instance || undefined,
+            fill: ts.fillTs,
+            step: Number.isFinite(res) && res > 0 ? res * 1000 : undefined
+          });
+          source.fetchData(start, end).then(function (data) {
+            var tsdata = _this._addNowDatapoint(_this._scaleTsData(ts, source.processResponse(data)), forceNowDatapoint);
+            callback(tsdata, callbackParameter);
+          })["catch"](function (err) {
+            _this._onSourceError(ts, _key, err, callback, callbackParameter);
+          });
+          return;
+        }
         var client = cv.io.BackendConnections.getClient();
         var key;
         var url;
@@ -356,6 +389,73 @@
           callback(this.cache[key].data, callbackParameter);
         }
       },
+      /**
+       * The time series source for this data set, if its type provides one. Such a source
+       * retrieves the data itself, e.g. over an already established backend connection,
+       * so no request url is built for it.
+       * @param ts {Map} data set configuration
+       * @return {cv.io.timeseries.AbstractTimeSeriesSource|null}
+       */
+      getTimeSeriesSource: function getTimeSeriesSource(ts) {
+        if (ts.tsType !== 'iobroker') {
+          return null;
+        }
+        if (!ts.source) {
+          var backend = ts.backend ? ts.backend + '@' : '';
+          // state ids may contain characters that are structural in the resource url ("#", "?", "/")
+          ts.source = new cv.io.timeseries.IoBrokerSource('iobroker://' + backend + encodeURIComponent(ts.src));
+        }
+        return ts.source;
+      },
+      /**
+       * Applies the configured time offset and scaling to the raw values.
+       * @param ts {Map} data set configuration
+       * @param tsdata {Array} raw [timestamp, value] pairs
+       * @return {Array}
+       */
+      _scaleTsData: function _scaleTsData(ts, tsdata) {
+        var millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
+
+        // a null value marks a gap in the data and has to stay one, parseFloat would
+        // turn it into NaN and the graph would not be interrupted there
+        return ts.tsType === 'rrd' ? tsdata.map(function (x) {
+          return [x[0] + millisOffset, x[1] === null ? null : parseFloat(x[1][ts.dsIndex]) * ts.scaling];
+        }) : tsdata.map(function (x) {
+          return [x[0] + millisOffset, x[1] === null ? null : parseFloat(x[1]) * ts.scaling];
+        });
+      },
+      /**
+       * Repeats the last value at the current time, so that the graph is drawn up to now.
+       * @param tsdata {Array} [timestamp, value] pairs
+       * @param forceNowDatapoint {Boolean}
+       * @return {Array}
+       */
+      _addNowDatapoint: function _addNowDatapoint(tsdata, forceNowDatapoint) {
+        if (forceNowDatapoint && tsdata.length > 0) {
+          var last = Array.from(tsdata[tsdata.length - 1]); // force copy
+          last[0] = Date.now();
+          tsdata.push(last);
+        }
+        return tsdata;
+      },
+      /**
+       * A source that retrieves its data itself failed, there is no response to show.
+       * @param ts {Map} data set configuration
+       * @param key {String} identifies the data set in the error message
+       * @param err {Error|var} what went wrong
+       * @param callback {Function} call when the data has arrived
+       * @param callbackParameter {var}
+       */
+      _onSourceError: function _onSourceError(ts, key, err, callback, callbackParameter) {
+        var text = '' + (err && err.message ? err.message : err);
+        cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
+          title: qx.locale.Manager.tr('Diagram communication error'),
+          severity: 'urgent',
+          message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), text.replaceAll('<', '&lt;').replaceAll('>', '&gt;'))
+        });
+        window.console.error('Diagram _onSourceError', ts, key, err);
+        callback([], callbackParameter);
+      },
       _onSuccess: function _onSuccess(ts, key, ev, forceNowDatapoint) {
         if (ev.getTarget().getResponseContentType() !== 'application/json') {
           this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Bad MIME type. Expected "application/json", got "%1".', ev.getTarget().getResponseContentType()));
@@ -372,20 +472,10 @@
               this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Data is not in an array.'));
               return; // early exit
             }
-            // calculate timestamp offset and scaling
-            var millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
-            tsdata = ts.tsType === 'rrd' ? tsdata.map(function (x) {
-              return [x[0] + millisOffset, parseFloat(x[1][ts.dsIndex]) * ts.scaling];
-            }) : tsdata.map(function (x) {
-              return [x[0] + millisOffset, parseFloat(x[1]) * ts.scaling];
-            });
+            tsdata = this._scaleTsData(ts, tsdata);
           }
           var now = Date.now();
-          if (forceNowDatapoint && tsdata.length > 0) {
-            var last = Array.from(tsdata[tsdata.length - 1]); // force copy
-            last[0] = now;
-            tsdata.push(last);
-          }
+          tsdata = this._addNowDatapoint(tsdata, forceNowDatapoint);
           this.cache[key].data = tsdata;
           this.cache[key].timestamp = now;
           this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
@@ -506,7 +596,7 @@
       plot: null,
       plotted: null,
       _timerPopup: null,
-      __P_21_0: false,
+      __P_22_0: false,
       // property apply
       _applyTitle: function _applyTitle(value) {
         if (value) {
@@ -616,7 +706,7 @@
           return;
         }
         this._init = false;
-        isPopup = isPopup || this.__P_21_0;
+        isPopup = isPopup || this.__P_22_0;
         var options = {
           canvas: true,
           tooltip: this.getTooltip(),
@@ -920,4 +1010,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1792082761155
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1794845745873

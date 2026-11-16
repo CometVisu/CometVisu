@@ -170,6 +170,7 @@ Es wäre jedoch möglich ein neues auf Qooxdoo-UI basierendes Widgetpaket zu imp
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-Name</span></code>: Der Name des zu verwendenden Backends.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-KNXD-Url</span></code>: URL für die knxd Login-Ressource</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-MQTT-Url</span></code>: URL für die MQTT Login-Ressource</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-ioBroker-Url</span></code>: URL für die ioBroker websocket API</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-OpenHAB-Url</span></code>: Nur openHAB: Pfad zur REST-API</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X-CometVisu-Backend-LoginUrl</span></code>: Veraltet: Pfad unter der der Client das Login ausführen kann.</p></li>
 </ul>
@@ -255,6 +256,8 @@ Konfigurations-Optionen.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.error</span></code>: Allgemeine Fehler</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.config.error</span></code>: Fehler die beim Einlesen der Config-Datei aufgetreten sind</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace für alle in den <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> benutzten Nachrichten</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.client.connection.&lt;backend&gt;</span></code>: Die Verbindung zum Backend ist verloren</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv.client.knxd.&lt;backend&gt;</span></code>: Das Backend hat die Verbindung zu knxd (dem KNX-Bus) verloren</p></li>
 </ul>
 <p>Ein Nachrichtenempfänger (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) kann sich nun für eines oder mehrere solcher Topics registrieren:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
@@ -370,6 +373,9 @@ solange das Problem besteht und verschwinden automatisch, sobald das Problem beh
         </dd>
         
         <dd><a href="../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

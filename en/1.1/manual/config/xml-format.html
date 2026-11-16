@@ -183,7 +183,7 @@ element can accept values. Some of these attributes must be assigned.</p>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend=&quot;mqtt&quot;</span></code></p></td>
 <td><p>This option sets the backend to use - overriding the information sent from the server</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">openhab</span></code>, <code class="docutils literal notranslate"><span class="pre">mqtt</span></code>, <code class="docutils literal notranslate"><span class="pre">iobroker</span></code></p></td>
 <td><p>NO</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-knxd-url=&quot;&quot;</span></code></p></td>
@@ -196,27 +196,32 @@ element can accept values. Some of these attributes must be assigned.</p>
 <td></td>
 <td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-openhab-url=&quot;&quot;</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-iobroker-url=&quot;&quot;</span></code></p></td>
+<td><p>URL of the ioBroker login resource</p></td>
+<td></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend-openhab-url=&quot;&quot;</span></code></p></td>
 <td><p>Path to the openHAB REST-API</p></td>
 <td><p>Usually <code class="docutils literal notranslate"><span class="pre">/rest/</span></code></p></td>
 <td><p>NO</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">backend-url=&quot;/rest/&quot;</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">backend-url=&quot;/rest/&quot;</span></code></p></td>
 <td><p>Deprecated, only for openHAB: URL of the connection to the MQTT broker web sockets</p></td>
 <td></td>
 <td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">username=&quot;user&quot;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">username=&quot;user&quot;</span></code></p></td>
 <td><p>Deprecated, only for openHAB: user name</p></td>
 <td></td>
 <td><p>NO</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">password=&quot;secret&quot;</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">password=&quot;secret&quot;</span></code></p></td>
 <td><p>Deprecated, only for openHAB: password</p></td>
 <td></td>
 <td><p>NO</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lib_version=&quot;9&quot;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lib_version=&quot;9&quot;</span></code></p></td>
 <td><p>Version of the CometVisu-library. This value is only required for the upgrade script.</p></td>
 <td><p>The CometVisu version 0.12.0 uses the value <code class="docutils literal notranslate"><span class="pre">9</span></code></p></td>
 <td><p>YES</p></td>
@@ -700,6 +705,9 @@ following entry has to be inserted at the end of the file:</p>
         </dd>
         
         <dd><a href="../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../1.1/manual">1.1.0-dev</a>
         </dd>
         
       </dl>

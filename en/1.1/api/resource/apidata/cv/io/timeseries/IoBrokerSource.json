@@ -1,0 +1,743 @@
+{
+  "version": 0.3,
+  "lastModified": 1794845538736,
+  "lastModifiedIso": "2026-11-16T16:12:18.736Z",
+  "classFilename": "../../source/class/cv/io/timeseries/IoBrokerSource.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 1251
+    },
+    "end": {
+      "line": 392,
+      "column": 3,
+      "index": 13415
+    }
+  },
+  "className": "cv.io.timeseries.IoBrokerSource",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Time series source for the ioBroker backend. In contrast to the other sources the",
+      " * data is not fetched from an URL, it is requested over the already established backend",
+      " * connection, therefore the builtin fetching is disabled and fetchData() is used.",
+      " *",
+      " * The resource url is <code>iobroker://&lt;state.id&gt;</code>, the backend connection to",
+      " * use can be named in front of it: <code>iobroker://&lt;backend&gt;@&lt;state.id&gt;</code>.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Time series source for the ioBroker backend. In contrast to the other sources the\n data is not fetched from an URL, it is requested over the already established backend\n connection, therefore the builtin fetching is disabled and fetchData() is used.\n The resource url is <code>iobroker://&amp;lt;state.id&amp;gt;</code>, the backend connection to\n use can be named in front of it: <code>iobroker://&amp;lt;backend&amp;gt;@&amp;lt;state.id&amp;gt;</code>.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.io.timeseries.AbstractTimeSeriesSource",
+  "statics": {
+    "AGGREGATIONS": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maps the consolidationFunction values the diagrams use to the aggregate values",
+          "     * of the ioBroker history adapters.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maps the consolidationFunction values the diagrams use to the aggregate values\n of the ioBroker history adapters.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1640
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1881
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_historyOptions": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 2027
+        },
+        "end": {
+          "line": 61,
+          "column": 25,
+          "index": 2048
+        }
+      },
+      "appearsIn": []
+    },
+    "__warnedAboutText": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 62,
+          "column": 28,
+          "index": 2078
+        }
+      },
+      "appearsIn": []
+    },
+    "setHistoryOptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Options for the next getHistory requests, e.g. aggregate and step. They are merged",
+          "     * over the parameters of the resource url.",
+          "     * @param options {Map?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Options for the next getHistory requests, e.g. aggregate and step. They are merged\n over the parameters of the resource url.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "options {Map?}",
+            "paramName": "options",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2268
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2340
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getAggregate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translates a consolidationFunction into the aggregate value of the ioBroker history",
+          "     * adapters. Values that are already ioBroker names are passed through.",
+          "     * @param cFunc {String}",
+          "     * @return {String|undefined}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translates a consolidationFunction into the aggregate value of the ioBroker history\n adapters. Values that are already ioBroker names are passed through.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cFunc {String}",
+            "paramName": "cFunc",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|undefined}",
+            "type": "String|undefined",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2593
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 3182
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cFunc",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String|undefined"
+      },
+      "appearsIn": []
+    },
+    "_getHistoryOptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The options for a getHistory request, built from the resource url parameters and",
+          "     * the options set by the chart.",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The options for a getHistory request, built from the resource url parameters and\n the options set by the chart.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3351
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 4818
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getRequestConfig": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The data is requested over the backend connection, this disables the builtin",
+          "     * fetching of the chart components and makes them call fetchData() instead.",
+          "     * @param start {String} start time",
+          "     * @param end {String?} end time",
+          "     * @param series {String?} series name",
+          "     * @param offset {Number?} series offset",
+          "     * @return {{fetch: boolean}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The data is requested over the backend connection, this disables the builtin\n fetching of the chart components and makes them call fetchData() instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "start {String} start time",
+            "paramName": "start",
+            "description": " start time",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "end {String?} end time",
+            "paramName": "end",
+            "description": " end time",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "series {String?} series name",
+            "paramName": "series",
+            "description": " series name",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "offset {Number?} series offset",
+            "paramName": "offset",
+            "description": " series offset",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{fetch: boolean}}",
+            "type": "{fetch: boolean}",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 5205
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 5362
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "string"
+        },
+        {
+          "name": "end",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "series",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "offset",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "{fetch: boolean}"
+      },
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "getClient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The connection this source reads from. It is the one named in the resource url,",
+          "     * the default backend connection when none is named.",
+          "     * @return {cv.io.IClient?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The connection this source reads from. It is the one named in the resource url,\n the default backend connection when none is named.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.io.IClient?}",
+            "type": "cv.io.IClient?",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 5562
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 5842
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "cv.io.IClient?"
+      },
+      "appearsIn": []
+    },
+    "getStateId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The state id this source reads. It is percent encoded in the resource url, as it",
+          "     * may contain characters that are structural there (\"#\", \"?\", \"/\").",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The state id this source reads. It is percent encoded in the resource url, as it\n may contain characters that are structural there (\"#\", \"?\", \"/\").</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6050
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 6345
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_whenConnected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resolves once the client is connected. The history can only be requested over an",
+          "     * established connection, and the charts usually ask for their data while the backend",
+          "     * connection is still being set up.",
+          "     * @param client {cv.io.IClient}",
+          "     * @param timeout {Number} how long to wait in milliseconds",
+          "     * @return {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resolves once the client is connected. The history can only be requested over an\n established connection, and the charts usually ask for their data while the backend\n connection is still being set up.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "client {cv.io.IClient}",
+            "paramName": "client",
+            "type": "cv.io.IClient"
+          },
+          {
+            "name": "@param",
+            "body": "timeout {Number} how long to wait in milliseconds",
+            "paramName": "timeout",
+            "description": " how long to wait in milliseconds",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 6714
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 8541
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "client",
+          "type": "cv.io.IClient"
+        },
+        {
+          "name": "timeout",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "fetchData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Request the recorded values from the ioBroker backend.",
+          "     * @param start {String} start time, e.g. \"end-3day\" or a unix timestamp",
+          "     * @param end {String?} end time, \"now\" when not set",
+          "     * @param series {String?} series name, unused",
+          "     * @param offset {Number?} series offset, unused",
+          "     * @return {Promise<Array>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Request the recorded values from the ioBroker backend.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "start {String} start time, e.g. \"end-3day\" or a unix timestamp",
+            "paramName": "start",
+            "description": " start time, e.g. \"end-3day\" or a unix timestamp",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "end {String?} end time, \"now\" when not set",
+            "paramName": "end",
+            "description": " end time, \"now\" when not set",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "series {String?} series name, unused",
+            "paramName": "series",
+            "description": " series name, unused",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "offset {Number?} series offset, unused",
+            "paramName": "offset",
+            "description": " series offset, unused",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Array>}",
+            "type": "Promise<Array>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 8896
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 10987
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "string"
+        },
+        {
+          "name": "end",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "series",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "offset",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Promise<Array>"
+      },
+      "appearsIn": []
+    },
+    "processResponse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the ioBroker history entries into the [timestamp, value] pairs the charts use.",
+          "     * @param data {Array} entries with a \"ts\" and a \"val\"",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the ioBroker history entries into the [timestamp, value] pairs the charts use.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Array} entries with a \"ts\" and a \"val\"",
+            "paramName": "data",
+            "description": " entries with a \"ts\" and a \"val\"",
+            "type": "Array<any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4,
+          "index": 11187
+        },
+        "end": {
+          "line": 345,
+          "column": 5,
+          "index": 11860
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "_toNumber": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A chart can only draw numbers, while an ioBroker datapoint may deliver a boolean or",
+          "     * a string. Booleans and the usual textual spellings of them are converted, everything",
+          "     * else that is not a number becomes a gap, which is still readable in the graph, while",
+          "     * a NaN from parseFloat would not be.",
+          "     * @param value {var} value of a history entry",
+          "     * @return {Number|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A chart can only draw numbers, while an ioBroker datapoint may deliver a boolean or\n a string. Booleans and the usual textual spellings of them are converted, everything\n else that is not a number becomes a gap, which is still readable in the graph, while\n a NaN from parseFloat would not be.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value of a history entry",
+            "paramName": "value",
+            "description": " value of a history entry",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number|null}",
+            "type": "Number|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 4,
+          "index": 12281
+        },
+        "end": {
+          "line": 390,
+          "column": 5,
+          "index": 13407
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Number|null"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

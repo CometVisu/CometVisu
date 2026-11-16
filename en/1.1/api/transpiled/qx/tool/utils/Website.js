@@ -116,15 +116,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     },
     members: {
       /** @type {chokidar} watcher */
-      __P_530_0: null,
+      __P_531_0: null,
       /** @type {Boolean} whether the watcher is ready yet */
-      __P_530_1: false,
+      __P_531_1: false,
       /** @type {Integer} setTimeout timer ID for debouncing builds */
-      __P_530_2: null,
+      __P_531_2: null,
       /** @type {Boolean} Whether the build is currently taking place */
-      __P_530_3: false,
+      __P_531_3: false,
       /** @type {Boolean} Whether a rebuild is needed ASAP */
-      __P_530_4: false,
+      __P_531_4: false,
       /**
        * Starts the watcher for files in the source directory and compiles as needed
        */
@@ -144,13 +144,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 sourceDir = _context2.v;
                 _this._watcher = chokidar.watch([sourceDir], {});
                 _this._watcher.on("change", function (filename) {
-                  return _this.__P_530_5("change", filename);
+                  return _this.__P_531_5("change", filename);
                 });
                 _this._watcher.on("add", function (filename) {
-                  return _this.__P_530_5("add", filename);
+                  return _this.__P_531_5("add", filename);
                 });
                 _this._watcher.on("unlink", function (filename) {
-                  return _this.__P_530_5("unlink", filename);
+                  return _this.__P_531_5("unlink", filename);
                 });
                 _this._watcher.on("ready", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
                   return _regenerator().w(function (_context) {
@@ -159,7 +159,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                         _context.n = 1;
                         return _this.triggerRebuild(true);
                       case 1:
-                        _this.__P_530_1 = true;
+                        _this.__P_531_1 = true;
                       case 2:
                         return _context.a(2);
                     }
@@ -191,7 +191,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 return _this2._watcher.stop();
               case 1:
                 _this2._watcher = null;
-                _this2.__P_530_1 = false;
+                _this2.__P_531_1 = false;
               case 2:
                 return _context3.a(2);
             }
@@ -215,12 +215,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           return _regenerator().w(function (_context4) {
             while (1) switch (_context4.n) {
               case 0:
-                if (!_this3.__P_530_6) {
+                if (!_this3.__P_531_6) {
                   _context4.n = 1;
                   break;
                 }
                 _context4.n = 1;
-                return _this3.__P_530_6;
+                return _this3.__P_531_6;
               case 1:
                 return _context4.a(2);
             }
@@ -253,8 +253,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param type {String} type of change, one of "change", "add", "unlink"
        * @param filename {String} the file that changed
        */
-      __P_530_5: function __P_530_5(type, filename) {
-        if (this.__P_530_1) {
+      __P_531_5: function __P_531_5(type, filename) {
+        if (this.__P_531_1) {
           if (!filename.toLowerCase().startsWith(this.getTargetDir().toLowerCase())) {
             this.triggerRebuild(false);
           }
@@ -270,8 +270,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       triggerRebuild: function triggerRebuild(immediate) {
         var _this5 = this;
-        if (this.__P_530_3) {
-          this.__P_530_4 = true;
+        if (this.__P_531_3) {
+          this.__P_531_4 = true;
           return;
         }
         var _rebuilderImpl = /*#__PURE__*/function () {
@@ -282,11 +282,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   _context6.n = 1;
                   return _this5.rebuildAll();
                 case 1:
-                  if (!_this5.__P_530_4) {
+                  if (!_this5.__P_531_4) {
                     _context6.n = 2;
                     break;
                   }
-                  _this5.__P_530_4 = false;
+                  _this5.__P_531_4 = false;
                   _context6.n = 2;
                   return _rebuilderImpl();
                 case 2:
@@ -303,16 +303,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             return _regenerator().w(function (_context7) {
               while (1) switch (_context7.p = _context7.n) {
                 case 0:
-                  _this5.__P_530_3 = true;
+                  _this5.__P_531_3 = true;
                   _context7.p = 1;
-                  _this5.__P_530_6 = _rebuilderImpl();
+                  _this5.__P_531_6 = _rebuilderImpl();
                   _context7.n = 2;
-                  return _this5.__P_530_6;
+                  return _this5.__P_531_6;
                 case 2:
-                  _this5.__P_530_6 = null;
+                  _this5.__P_531_6 = null;
                 case 3:
                   _context7.p = 3;
-                  _this5.__P_530_3 = false;
+                  _this5.__P_531_3 = false;
                   return _context7.f(3);
                 case 4:
                   return _context7.a(2);
@@ -323,11 +323,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             return _ref3.apply(this, arguments);
           };
         }();
-        if (this.__P_530_2) {
-          clearTimeout(this.__P_530_2);
-          this.__P_530_2 = null;
+        if (this.__P_531_2) {
+          clearTimeout(this.__P_531_2);
+          this.__P_531_2 = null;
         }
-        this.__P_530_2 = setTimeout(rebuilder, immediate ? 1 : 250);
+        this.__P_531_2 = setTimeout(rebuilder, immediate ? 1 : 250);
       },
       /**
        * Metalsmith Plugin that collates a list of pages that are to be included in the site navigation
@@ -603,4 +603,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.tool.utils.Website.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Website.js.map?dt=1792082792343
+//# sourceMappingURL=Website.js.map?dt=1794845775799

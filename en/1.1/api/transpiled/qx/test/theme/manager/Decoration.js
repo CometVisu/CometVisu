@@ -40,15 +40,15 @@
   qx.Class.define("qx.test.theme.manager.Decoration", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_383_0: null,
-      __P_383_1: null,
+      __P_384_0: null,
+      __P_384_1: null,
       setUp: function setUp() {
         this.manager = qx.theme.manager.Decoration.getInstance();
-        this.__P_383_0 = this.manager.getTheme();
+        this.__P_384_0 = this.manager.getTheme();
         var eventMgr = qx.event.Registration.getManager(this.manager);
 
         // Serialize listeners (Array of {handler, self, type, capture})
-        this.__P_383_1 = eventMgr.serializeListeners(this.manager);
+        this.__P_384_1 = eventMgr.serializeListeners(this.manager);
 
         // Remove all listeners
         eventMgr.removeAllListeners(this.manager);
@@ -56,15 +56,15 @@
       tearDown: function tearDown() {
         var _this = this;
         qx.test.Theme.themes = null;
-        this.manager.setTheme(this.__P_383_0);
-        this.__P_383_0 = null;
+        this.manager.setTheme(this.__P_384_0);
+        this.__P_384_0 = null;
 
         // Restore all listeners
-        if (this.__P_383_1) {
-          this.__P_383_1.forEach(function (entry) {
+        if (this.__P_384_1) {
+          this.__P_384_1.forEach(function (entry) {
             qx.event.Registration.addListener(_this.manager, entry.type, entry.handler, entry.self, entry.capture);
           });
-          this.__P_383_1 = null;
+          this.__P_384_1 = null;
         }
         qx.ui.core.queue.Manager.flush();
       },
@@ -202,4 +202,4 @@
   qx.test.theme.manager.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1792082782621
+//# sourceMappingURL=Decoration.js.map?dt=1794845766355

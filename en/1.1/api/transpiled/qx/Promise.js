@@ -113,39 +113,39 @@
      */
     construct: function construct(fn, context) {
       qx.core.Object.constructor.call(this);
-      qx.Promise.__P_114_0();
+      qx.Promise.__P_115_0();
       if (fn instanceof qx.Promise.Impl) {
-        this.__P_114_1 = fn;
+        this.__P_115_1 = fn;
       } else if (fn) {
         if (context !== undefined && context !== null) {
           fn = fn.bind(context);
         }
-        this.__P_114_1 = new qx.Promise.Impl(fn);
+        this.__P_115_1 = new qx.Promise.Impl(fn);
       } else {
-        this.__P_114_1 = new qx.Promise.Impl(this.__P_114_2.bind(this));
+        this.__P_115_1 = new qx.Promise.Impl(this.__P_115_2.bind(this));
       }
-      qx.core.Assert.assertTrue(!this.__P_114_1.$$qxPromise);
-      this.__P_114_1.$$qxPromise = this;
+      qx.core.Assert.assertTrue(!this.__P_115_1.$$qxPromise);
+      this.__P_115_1.$$qxPromise = this;
       if (context !== undefined && context !== null) {
-        this.__P_114_1 = this.__P_114_1.bind(context);
+        this.__P_115_1 = this.__P_115_1.bind(context);
       }
     },
     /**
      * Destructor
      */
     destruct: function destruct() {
-      delete this.__P_114_1.$$qxPromise;
-      delete this.__P_114_1;
+      delete this.__P_115_1.$$qxPromise;
+      delete this.__P_115_1;
     },
     members: {
       /** The Promise */
-      __P_114_1: null,
+      __P_115_1: null,
       /** Stores data for completing the promise externally */
-      __P_114_3: null,
+      __P_115_3: null,
       /**
        * Whether the depracation warning of qx.Promise#cancel has been shown
        */
-      __P_114_4: false,
+      __P_115_4: false,
       /* *********************************************************************************
        *
        * Promise API methods
@@ -189,7 +189,7 @@
        * @return {qx.Promise} the new promise
        */
       bind: function bind(context) {
-        return qx.Promise.__P_114_5(this.__P_114_1.bind(context));
+        return qx.Promise.__P_115_5(this.__P_115_1.bind(context));
       },
       /**
        * Like calling <code>.then</code>, but the fulfillment value must be an array, which is flattened
@@ -378,8 +378,8 @@
       /**
        * External promise handler
        */
-      __P_114_2: function __P_114_2(resolve, reject) {
-        this.__P_114_3 = {
+      __P_115_2: function __P_115_2(resolve, reject) {
+        this.__P_115_3 = {
           resolve: resolve,
           reject: reject,
           complete: false
@@ -388,27 +388,27 @@
       /**
        * Returns the data stored by __externalPromise, throws an exception once processed
        */
-      __P_114_6: function __P_114_6() {
-        if (!this.__P_114_3) {
+      __P_115_6: function __P_115_6() {
+        if (!this.__P_115_3) {
           throw new Error("Promise cannot be resolved externally");
         }
-        if (this.__P_114_3.complete) {
+        if (this.__P_115_3.complete) {
           throw new Error("Promise has already been resolved or rejected");
         }
-        this.__P_114_3.complete = true;
-        return this.__P_114_3;
+        this.__P_115_3.complete = true;
+        return this.__P_115_3;
       },
       /**
        * Resolves an external promise
        */
       resolve: function resolve(value) {
-        this.__P_114_6().resolve(value);
+        this.__P_115_6().resolve(value);
       },
       /**
        * Rejects an external promise
        */
       reject: function reject(reason) {
-        this.__P_114_6().reject(reason);
+        this.__P_115_6().reject(reason);
       },
       /* *********************************************************************************
        *
@@ -419,18 +419,18 @@
        * Helper method used to call Promise methods which iterate over an array
        */
       _callIterableMethod: function _callIterableMethod(methodName, args) {
-        args = qx.Promise.__P_114_7(args);
-        return qx.Promise.__P_114_5(this.__P_114_1.then(function (value) {
+        args = qx.Promise.__P_115_7(args);
+        return qx.Promise.__P_115_5(this.__P_115_1.then(function (value) {
           var newP = qx.Promise.Impl.resolve(value instanceof qx.data.Array ? value.toArray() : value);
-          return qx.Promise.__P_114_5(newP[methodName].apply(newP, args));
+          return qx.Promise.__P_115_5(newP[methodName].apply(newP, args));
         }));
       },
       /**
        * Helper method used to call a Promise method
        */
       _callMethod: function _callMethod(methodName, args) {
-        args = qx.Promise.__P_114_7(args);
-        return qx.Promise.__P_114_5(this.__P_114_1[methodName].apply(this.__P_114_1, args));
+        args = qx.Promise.__P_115_7(args);
+        return qx.Promise.__P_115_5(this.__P_115_1[methodName].apply(this.__P_115_1, args));
       },
       /**
        * Returns the actual Promise implementation.
@@ -445,7 +445,7 @@
        * @deprecated {6.0} this API method is subject to change
        */
       toPromise: function toPromise() {
-        return this.__P_114_1;
+        return this.__P_115_1;
       }
     },
     statics: {
@@ -457,7 +457,7 @@
       /** This is used to suppress warnings about rejections without an Error object, only used if
        * the reason is undefined
        */
-      __P_114_8: new Error("Default Error"),
+      __P_115_8: new Error("Default Error"),
       /* *********************************************************************************
        *
        * Promise API methods
@@ -501,7 +501,7 @@
         if (value instanceof qx.Promise) {
           promise = value;
         } else {
-          promise = qx.Promise.__P_114_5(qx.Promise.Impl.resolve(value));
+          promise = qx.Promise.__P_115_5(qx.Promise.Impl.resolve(value));
         }
         if (context !== undefined) {
           promise = promise.bind(context);
@@ -518,11 +518,11 @@
         var args = qx.lang.Array.fromArguments(arguments);
         if (reason === undefined) {
           args.shift();
-          args.unshift(qx.Promise.__P_114_8);
+          args.unshift(qx.Promise.__P_115_8);
         } else if (!(reason instanceof Error)) {
           qx.log.Logger.warn("Rejecting a promise with a non-Error value");
         }
-        var promise = qx.Promise.__P_114_9("reject", args, 0);
+        var promise = qx.Promise.__P_115_9("reject", args, 0);
         if (context !== undefined) {
           promise = promise.bind(context);
         }
@@ -564,7 +564,7 @@
        * @return {qx.Promise}
        */
       all: function all(iterable) {
-        return qx.Promise.__P_114_9("all", arguments);
+        return qx.Promise.__P_115_9("all", arguments);
       },
       /**
        * Returns a promise that resolves or rejects as soon as one of the promises in the iterable resolves
@@ -573,7 +573,7 @@
        * @return {qx.Promise}
        */
       race: function race(iterable) {
-        return qx.Promise.__P_114_9("race", arguments);
+        return qx.Promise.__P_115_9("race", arguments);
       },
       /* *********************************************************************************
        *
@@ -588,7 +588,7 @@
        * @return {qx.Promise}
        */
       any: function any(iterable) {
-        return qx.Promise.__P_114_9("any", arguments);
+        return qx.Promise.__P_115_9("any", arguments);
       },
       /**
        * Given an Iterable (arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix
@@ -601,7 +601,7 @@
        * @return {qx.Promise}
        */
       some: function some(iterable, count) {
-        return qx.Promise.__P_114_9("some", arguments);
+        return qx.Promise.__P_115_9("some", arguments);
       },
       /**
        * Iterate over an array, or a promise of an array, which contains promises (or a mix of promises and values)
@@ -618,7 +618,7 @@
        * @return {qx.Promise}
        */
       forEach: function forEach(iterable, iterator) {
-        return qx.Promise.__P_114_9("each", arguments);
+        return qx.Promise.__P_115_9("each", arguments);
       },
       /**
        * Given an Iterable(arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix of
@@ -645,7 +645,7 @@
        * @return {qx.Promise}
        */
       filter: function filter(iterable, iterator, options) {
-        return qx.Promise.__P_114_9("filter", arguments);
+        return qx.Promise.__P_115_9("filter", arguments);
       },
       /**
        * Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an
@@ -689,7 +689,7 @@
        * @return {qx.Promise}
        */
       map: function map(iterable, iterator, options) {
-        return qx.Promise.__P_114_9("map", arguments);
+        return qx.Promise.__P_115_9("map", arguments);
       },
       /**
        * Given an <code>Iterable</code>(arrays are <code>Iterable</code>), or a promise of an
@@ -727,7 +727,7 @@
        * @return {qx.Promise}
        */
       mapSeries: function mapSeries(iterable, iterator) {
-        return qx.Promise.__P_114_9("mapSeries", arguments);
+        return qx.Promise.__P_115_9("mapSeries", arguments);
       },
       /**
        * Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an
@@ -766,7 +766,7 @@
        * @return {qx.Promise}
        */
       reduce: function reduce(iterable, reducer, initialValue) {
-        return qx.Promise.__P_114_9("reduce", arguments);
+        return qx.Promise.__P_115_9("reduce", arguments);
       },
       /**
        * Returns a new function that wraps the given function fn. The new function will always return a promise that is
@@ -777,7 +777,7 @@
       method: function method(cb) {
         var wrappedCb = qx.Promise.Impl.method(cb);
         return function () {
-          return qx.Promise.__P_114_5(wrappedCb.apply(this, arguments));
+          return qx.Promise.__P_115_5(wrappedCb.apply(this, arguments));
         };
       },
       /**
@@ -795,7 +795,7 @@
        * @return {qx.Promise}
        */
       props: function props(input) {
-        return qx.Promise.__P_114_9("props", arguments);
+        return qx.Promise.__P_115_9("props", arguments);
       },
       /**
        * Returns a new function that wraps a function that is in node.js
@@ -876,27 +876,27 @@
        */
 
       /** Whether one-time initialisaton has happened */
-      __P_114_10: false,
+      __P_115_10: false,
       /**
        * One-time initializer
        */
-      __P_114_0: function __P_114_0() {
-        if (qx.Promise.__P_114_10) {
+      __P_115_0: function __P_115_0() {
+        if (qx.Promise.__P_115_10) {
           return;
         }
-        qx.Promise.__P_114_10 = true;
+        qx.Promise.__P_115_10 = true;
         var isNode = typeof process !== "undefined";
         if (isNode) {
-          process.on("unhandledRejection", qx.Promise.__P_114_11.bind(this));
+          process.on("unhandledRejection", qx.Promise.__P_115_11.bind(this));
         } else {
-          qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__P_114_11.bind(this));
+          qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__P_115_11.bind(this));
         }
       },
       /**
        * Handles unhandled errors and passes them through to Qooxdoo's global error handler
        * @param e {NativeEvent}
        */
-      __P_114_11: function __P_114_11(e) {
+      __P_115_11: function __P_115_11(e) {
         if (qx.lang.Type.isFunction(e.preventDefault)) {
           e.preventDefault();
         }
@@ -916,7 +916,7 @@
        * @param value {Object}
        * @return {Object}
        */
-      __P_114_5: function __P_114_5(value) {
+      __P_115_5: function __P_115_5(value) {
         if (value instanceof qx.Promise.Impl) {
           if (value.$$qxPromise) {
             value = value.$$qxPromise;
@@ -935,7 +935,7 @@
        * 	this is used to determine whether the last value is for binding (default is 1)
        * @return {Array} array of new arguments with functions bound as necessary
        */
-      __P_114_7: function __P_114_7(args, minArgs) {
+      __P_115_7: function __P_115_7(args, minArgs) {
         args = qx.lang.Array.fromArguments(args);
         if (minArgs === undefined) {
           minArgs = 1;
@@ -960,15 +960,15 @@
        * @param minArgs {Integer?} {@see __bindArgs}
        * @return {Object?}
        */
-      __P_114_9: function __P_114_9(methodName, args, minArgs) {
-        args = qx.Promise.__P_114_7(args, minArgs);
-        return qx.Promise.__P_114_5(qx.Promise.Impl[methodName].apply(qx.Promise.Impl, qx.Promise.__P_114_12(args)));
+      __P_115_9: function __P_115_9(methodName, args, minArgs) {
+        args = qx.Promise.__P_115_7(args, minArgs);
+        return qx.Promise.__P_115_5(qx.Promise.Impl[methodName].apply(qx.Promise.Impl, qx.Promise.__P_115_12(args)));
       },
       /**
        * Maps all arguments ready for passing to a Bluebird function; qx.data.Array are
        * translated to native arrays and qx.Promise to Promise.  This is not recursive.
        */
-      __P_114_12: function __P_114_12(args) {
+      __P_115_12: function __P_115_12(args) {
         var dest = [];
         args.forEach(function (arg) {
           if (arg instanceof qx.data.Array) {
@@ -1005,4 +1005,4 @@
   qx.Promise.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Promise.js.map?dt=1792082767525
+//# sourceMappingURL=Promise.js.map?dt=1794845751877

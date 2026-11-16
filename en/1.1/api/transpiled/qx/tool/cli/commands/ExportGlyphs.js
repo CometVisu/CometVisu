@@ -167,4 +167,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.ExportGlyphs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ExportGlyphs.js.map?dt=1792082788277
+//# sourceMappingURL=ExportGlyphs.js.map?dt=1794845771712

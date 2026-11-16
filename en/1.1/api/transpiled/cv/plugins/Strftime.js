@@ -70,9 +70,9 @@
     ******************************************************
     */
     statics: {
-      __P_18_0: {},
-      __P_18_1: 0,
-      __P_18_2: null,
+      __P_19_0: {},
+      __P_19_1: 0,
+      __P_19_2: null,
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -96,14 +96,14 @@
         };
       },
       uniqid: function uniqid() {
-        return this.__P_18_1++;
+        return this.__P_19_1++;
       },
       startTimer: function startTimer() {
-        if (!this.__P_18_2) {
-          this.__P_18_2 = new qx.event.Timer(1000);
+        if (!this.__P_19_2) {
+          this.__P_19_2 = new qx.event.Timer(1000);
         }
-        if (!this.__P_18_2.isEnabled()) {
-          this.__P_18_2.start();
+        if (!this.__P_19_2.isEnabled()) {
+          this.__P_19_2.start();
         }
       }
     },
@@ -113,24 +113,24 @@
     ******************************************************
     */
     members: {
-      __P_18_3: false,
-      __P_18_4: null,
+      __P_19_3: false,
+      __P_19_4: null,
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="strftime_value"></div>';
       },
       // overridden
       getValueElement: function getValueElement() {
-        if (!this.__P_18_4) {
-          this.__P_18_4 = this.getDomElement().querySelector('.strftime_value');
+        if (!this.__P_19_4) {
+          this.__P_19_4 = this.getDomElement().querySelector('.strftime_value');
         }
-        return this.__P_18_4;
+        return this.__P_19_4;
       },
       // overridden
       _onDomReady: function _onDomReady() {
         cv.plugins.Strftime.startTimer();
-        cv.plugins.Strftime.__P_18_2.addListener('interval', this.__P_18_5, this);
+        cv.plugins.Strftime.__P_19_2.addListener('interval', this.__P_19_5, this);
       },
-      __P_18_5: function __P_18_5() {
+      __P_19_5: function __P_19_5() {
         var elem = this.getValueElement();
         var d = new Date();
         d.locale = this.getLocale();
@@ -143,7 +143,7 @@
     ******************************************************
     */
     destruct: function destruct() {
-      cv.plugins.Strftime.__P_18_2.removeListener('interval', this.__P_18_5, this);
+      cv.plugins.Strftime.__P_19_2.removeListener('interval', this.__P_19_5, this);
     },
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
@@ -179,4 +179,4 @@
   cv.plugins.Strftime.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Strftime.js.map?dt=1792082761003
+//# sourceMappingURL=Strftime.js.map?dt=1794845745725

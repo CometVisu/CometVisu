@@ -2,7 +2,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
 function _possibleConstructorReturn(t, e) { if (e && ("object" == _typeof(e) || "function" == typeof e)) return e; if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined"); return _assertThisInitialized(t); }
@@ -79,8 +79,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_92_0: null,
-      __P_92_1: null,
+      __P_93_0: null,
+      __P_93_1: null,
       _init: function _init() {
         cv.ui.structure.tile.components.Value.superclass.prototype._init.call(this);
         var target = this._element.querySelector('.value');
@@ -91,27 +91,27 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
       },
       _disconnected: function _disconnected() {
-        this.__P_92_2();
+        this.__P_93_2();
         cv.ui.structure.tile.components.Value.superclass.prototype._disconnected.call(this);
       },
-      __P_92_2: function __P_92_2() {
-        if (this.__P_92_0 !== null) {
-          window.clearTimeout(this.__P_92_0);
-          this.__P_92_0 = null;
+      __P_93_2: function __P_93_2() {
+        if (this.__P_93_0 !== null) {
+          window.clearTimeout(this.__P_93_0);
+          this.__P_93_0 = null;
         }
         this.removeListener('resized', this._scheduleDetectOverflow, this);
-        if (this.__P_92_1 !== null) {
-          window.cancelAnimationFrame(this.__P_92_1);
-          this.__P_92_1 = null;
+        if (this.__P_93_1 !== null) {
+          window.cancelAnimationFrame(this.__P_93_1);
+          this.__P_93_1 = null;
         }
       },
       _scheduleDetectOverflow: function _scheduleDetectOverflow() {
         var _this = this;
-        if (this.__P_92_0 !== null) {
-          window.clearTimeout(this.__P_92_0);
+        if (this.__P_93_0 !== null) {
+          window.clearTimeout(this.__P_93_0);
         }
-        this.__P_92_0 = window.setTimeout(function () {
-          _this.__P_92_0 = null;
+        this.__P_93_0 = window.setTimeout(function () {
+          _this.__P_93_0 = null;
           if (!_this.isDisposed() && _this.isConnected()) {
             _this._detectOverflow();
           }
@@ -137,7 +137,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
         }
       },
-      __P_92_3: function __P_92_3(target, mappedValue, styleClass) {
+      __P_93_3: function __P_93_3(target, mappedValue, styleClass) {
         var _this2 = this;
         var attempt = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
         if (target._instance && !target.textContent.trim()) {
@@ -145,16 +145,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           target._instance.setStyleClass(styleClass);
           return;
         }
-        if (this.__P_92_1 !== null) {
-          window.cancelAnimationFrame(this.__P_92_1);
+        if (this.__P_93_1 !== null) {
+          window.cancelAnimationFrame(this.__P_93_1);
         }
-        this.__P_92_1 = window.requestAnimationFrame(function () {
-          _this2.__P_92_1 = null;
+        this.__P_93_1 = window.requestAnimationFrame(function () {
+          _this2.__P_93_1 = null;
           if (!_this2.isConnected() || !target.isConnected) {
             return;
           }
           if (attempt < 5) {
-            _this2.__P_92_3(target, mappedValue, styleClass, attempt + 1);
+            _this2.__P_93_3(target, mappedValue, styleClass, attempt + 1);
           } else if (target._instance) {
             target._instance.setId('' + mappedValue);
             target._instance.setStyleClass(styleClass);
@@ -176,7 +176,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 if (this._element.hasAttribute('styling')) {
                   styleClass = this._getStyleClass(value);
                 }
-                this.__P_92_3(target, mappedValue, styleClass);
+                this.__P_93_3(target, mappedValue, styleClass);
                 break;
               case 'meter':
                 target.setAttribute('value', value);
@@ -202,7 +202,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       }
     },
     destruct: function destruct() {
-      this.__P_92_2();
+      this.__P_93_2();
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'value', /*#__PURE__*/function (_QxConnector) {
@@ -220,4 +220,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Value.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Value.js.map?dt=1792082766245
+//# sourceMappingURL=Value.js.map?dt=1794845750671

@@ -144,7 +144,7 @@
         this.setValue(value);
       }
       {
-        this.__P_539_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+        this.__P_540_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
       }
     },
     /*
@@ -261,10 +261,10 @@
     */
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __P_539_1: null,
-      __P_539_2: null,
-      __P_539_3: null,
-      __P_539_4: null,
+      __P_540_1: null,
+      __P_540_2: null,
+      __P_540_3: null,
+      __P_540_4: null,
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -272,13 +272,13 @@
       */
       // overridden
       _getContentHint: function _getContentHint() {
-        if (this.__P_539_2) {
-          this.__P_539_5 = this.__P_539_6();
-          delete this.__P_539_2;
+        if (this.__P_540_2) {
+          this.__P_540_5 = this.__P_540_6();
+          delete this.__P_540_2;
         }
         return {
-          width: this.__P_539_5.width,
-          height: this.__P_539_5.height
+          width: this.__P_540_5.width,
+          height: this.__P_540_5.height
         };
       },
       // overridden
@@ -302,7 +302,7 @@
         if (!this.getRich() && !this.getWrap()) {
           return null;
         }
-        return this.__P_539_6(width).height;
+        return this.__P_540_6(width).height;
       },
       // overridden
       _createContentElement: function _createContentElement() {
@@ -331,16 +331,16 @@
        *
        * @lint ignoreReferenceField(__contentSize)
        */
-      __P_539_5: {
+      __P_540_5: {
         width: 0,
         height: 0
       },
       // property apply
       _applyFont: function _applyFont(value, old) {
         var _this = this;
-        if (old && this.__P_539_1 && this.__P_539_4) {
-          this.__P_539_1.removeListenerById(this.__P_539_4);
-          this.__P_539_4 = null;
+        if (old && this.__P_540_1 && this.__P_540_4) {
+          this.__P_540_1.removeListenerById(this.__P_540_4);
+          this.__P_540_4 = null;
         }
         // Apply
         var styles;
@@ -348,18 +348,18 @@
           if (qx.lang.Type.isString(value)) {
             value = qx.theme.manager.Font.getInstance().resolve(value);
           }
-          this.__P_539_1 = value;
-          if (this.__P_539_1 instanceof qx.bom.webfonts.WebFont && !this.__P_539_1.isValid()) {
-            this.__P_539_4 = this.__P_539_1.addListener("changeStatus", function (evt) {
+          this.__P_540_1 = value;
+          if (this.__P_540_1 instanceof qx.bom.webfonts.WebFont && !this.__P_540_1.isValid()) {
+            this.__P_540_4 = this.__P_540_1.addListener("changeStatus", function (evt) {
               if (evt.getData().valid) {
-                _this.__P_539_2 = true;
+                _this.__P_540_2 = true;
                 qx.ui.core.queue.Layout.add(_this);
               }
             });
           }
-          styles = this.__P_539_1.getStyles();
+          styles = this.__P_540_1.getStyles();
         } else {
-          this.__P_539_1 = null;
+          this.__P_540_1 = null;
           styles = qx.bom.Font.getDefaultStyles();
         }
 
@@ -370,7 +370,7 @@
         this.getContentElement().setStyles(styles);
 
         // Invalidate text size
-        this.__P_539_2 = true;
+        this.__P_540_2 = true;
 
         // Update layout
         qx.ui.core.queue.Layout.add(this);
@@ -381,14 +381,14 @@
        * @param width {Integer?null} Optional width constraint
        * @return {Map} Map with <code>width</code> and <code>height</code> keys
        */
-      __P_539_6: function __P_539_6(width) {
+      __P_540_6: function __P_540_6(width) {
         var Label = qx.bom.Label;
         var font = this.getFont();
-        var styles = font ? this.__P_539_1.getStyles() : qx.bom.Font.getDefaultStyles();
+        var styles = font ? this.__P_540_1.getStyles() : qx.bom.Font.getDefaultStyles();
         var content = this.getValue() || "A";
         var rich = this.getRich();
-        if (this.__P_539_4) {
-          this.__P_539_7();
+        if (this.__P_540_4) {
+          this.__P_540_7();
         }
         if (rich && this.getBreakWithinWords()) {
           styles = qx.lang.Object.clone(styles);
@@ -401,7 +401,7 @@
        * though there is enough space for the text. Re-applying the content forces
        * a recalculation and fixes the problem. See qx bug #6293
        */
-      __P_539_7: function __P_539_7() {
+      __P_540_7: function __P_540_7() {
         if (!this.getContentElement()) {
           return;
         }
@@ -422,12 +422,12 @@
       _applyBuddy: function _applyBuddy(value, old) {
         if (old != null) {
           this.removeRelatedBindings(old);
-          this.removeListenerById(this.__P_539_3);
-          this.__P_539_3 = null;
+          this.removeListenerById(this.__P_540_3);
+          this.__P_540_3 = null;
         }
         if (value != null) {
           value.bind("enabled", this, "enabled");
-          this.__P_539_3 = this.addListener("tap", function () {
+          this.__P_540_3 = this.addListener("tap", function () {
             // only focus focusable elements [BUG #3555]
             if (value.isFocusable()) {
               value.focus.apply(value);
@@ -445,7 +445,7 @@
         this.getContentElement().setRich(value);
 
         // Mark text size cache as invalid
-        this.__P_539_2 = true;
+        this.__P_540_2 = true;
 
         // Update layout
         qx.ui.core.queue.Layout.add(this);
@@ -490,7 +490,7 @@
           }
 
           // Mark text size cache as invalid
-          this.__P_539_2 = true;
+          this.__P_540_2 = true;
 
           // Update layout
           qx.ui.core.queue.Layout.add(this);
@@ -499,7 +499,7 @@
           this.getContentElement().setValue(value);
 
           // Mark text size cache as invalid
-          this.__P_539_2 = true;
+          this.__P_540_2 = true;
 
           // Update layout
           qx.ui.core.queue.Layout.add(this);
@@ -512,16 +512,16 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (true && this.__P_539_0) {
-        qx.locale.Manager.getInstance().removeListenerById(this.__P_539_0);
+      if (true && this.__P_540_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_540_0);
       }
-      if (this.__P_539_1 && this.__P_539_4) {
-        this.__P_539_1.removeListenerById(this.__P_539_4);
+      if (this.__P_540_1 && this.__P_540_4) {
+        this.__P_540_1.removeListenerById(this.__P_540_4);
       }
-      this.__P_539_1 = null;
+      this.__P_540_1 = null;
     }
   });
   qx.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1792082792753
+//# sourceMappingURL=Label.js.map?dt=1794845776219

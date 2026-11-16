@@ -45,8 +45,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       TEST_ENDPOINT: "ws.postman-echo.com/raw/"
     },
     members: {
-      __P_365_0: false,
-      __P_365_1: "Skipping test as endpoint is not available.",
+      __P_366_0: false,
+      __P_366_1: "Skipping test as endpoint is not available.",
       setUp: function setUp() {
         this.transport = new qx.io.transport.Websocket("wss://" + this.constructor.TEST_ENDPOINT);
       },
@@ -61,7 +61,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context.n = 1;
                 return _this.transport.send("test");
               case 1:
-                _this.__P_365_0 = true;
+                _this.__P_366_0 = true;
                 _context.n = 3;
                 break;
               case 2:
@@ -81,11 +81,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context2) {
             while (1) switch (_context2.n) {
               case 0:
-                if (_this2.__P_365_0) {
+                if (_this2.__P_366_0) {
                   _context2.n = 1;
                   break;
                 }
-                return _context2.a(2, _this2.skip(_this2.__P_365_1));
+                return _context2.a(2, _this2.skip(_this2.__P_366_1));
               case 1:
                 message = "Hello World!";
                 _context2.n = 2;
@@ -106,4 +106,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.transport.Websocket.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Websocket.js.map?dt=1792082781371
+//# sourceMappingURL=Websocket.js.map?dt=1794845765177

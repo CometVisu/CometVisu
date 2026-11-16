@@ -47,6 +47,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
       "cv.io.Mockup": {},
       "cv.io.openhab.Rest": {},
       "cv.io.mqtt.Client": {},
+      "cv.io.iobroker.Client": {},
       "qx.bom.Blocker": {},
       "cv.ConfigCache": {},
       "qx.event.GlobalError": {
@@ -253,6 +254,8 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           }
         } else if (args[0] === 'mqtt') {
           Client = cv.io.mqtt.Client;
+        } else if (args[0] === 'iobroker') {
+          Client = cv.io.iobroker.Client;
         }
         return _construct(Client, args);
       },
@@ -1296,9 +1299,13 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                 _this1.debug('done');
                 if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
                   // cache dom + data when everything is ready
-                  qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+                  if (cv.TemplateEngine.getInstance().isDomFinished()) {
                     cv.ConfigCache.dump(xml, _engine.getConfigHash());
-                  }, _this1);
+                  } else {
+                    qx.event.message.Bus.subscribe('setup.dom.finished', function () {
+                      cv.ConfigCache.dump(xml, _engine.getConfigHash());
+                    }, _this1);
+                  }
                 }
               case 4:
                 _this1.__P_2_0 = true;
@@ -1641,4 +1648,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1792082759397
+//# sourceMappingURL=Application.js.map?dt=1794845744174

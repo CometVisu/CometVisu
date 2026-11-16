@@ -35,18 +35,18 @@
   qx.Class.define("qx.test.event.message.Bus", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_360_0: null,
-      __P_360_1: null,
-      __P_360_2: null,
+      __P_361_0: null,
+      __P_361_1: null,
+      __P_361_2: null,
       setUp: function setUp() {
-        this.__P_360_0 = new qx.core.Object();
-        this.__P_360_1 = new qx.core.Object();
-        this.__P_360_2 = new qx.core.Object();
+        this.__P_361_0 = new qx.core.Object();
+        this.__P_361_1 = new qx.core.Object();
+        this.__P_361_2 = new qx.core.Object();
       },
       tearDown: function tearDown() {
-        this.__P_360_0.dispose();
-        this.__P_360_1.dispose();
-        this.__P_360_2.dispose();
+        this.__P_361_0.dispose();
+        this.__P_361_1.dispose();
+        this.__P_361_2.dispose();
         var subscribers = qx.event.message.Bus.getSubscriptions();
         for (var key in subscribers) {
           delete subscribers[key];
@@ -61,15 +61,15 @@
           calls++;
           that.assertEquals("MyMessage", message.getName());
           that.assertEquals(10, message.getData());
-        }, this.__P_360_0);
+        }, this.__P_361_0);
         bus.subscribe("MyMessage2", function (message) {
           that.assertFalse(true, "Wrong subscriber called!");
-        }, this.__P_360_1);
+        }, this.__P_361_1);
         bus.subscribe("MyMessage", function (message) {
           calls++;
           that.assertEquals("MyMessage", message.getName());
           that.assertEquals(10, message.getData());
-        }, this.__P_360_2);
+        }, this.__P_361_2);
         var msg = new qx.event.message.Message("MyMessage", 10);
         this.assertTrue(bus.dispatch(msg), "Message not dispatched");
         this.assertEquals(2, calls, "Wrong callbacks!");
@@ -83,16 +83,16 @@
           calls++;
           that.assertEquals("MyMessage", message.getName());
           that.assertEquals(10, message.getData());
-        }, this.__P_360_0);
-        this.__P_360_1.dispose();
+        }, this.__P_361_0);
+        this.__P_361_1.dispose();
         bus.subscribe("MyMessage", function (message) {
           that.assertFalse(true, "Wrong subscriber called!");
-        }, this.__P_360_1);
+        }, this.__P_361_1);
         bus.subscribe("MyMessage", function (message) {
           calls++;
           that.assertEquals("MyMessage", message.getName());
           that.assertEquals(10, message.getData());
-        }, this.__P_360_2);
+        }, this.__P_361_2);
         var msg = new qx.event.message.Message("MyMessage", 10);
         this.assertTrue(bus.dispatch(msg), "Message not dispatched");
         this.assertEquals(2, calls, "Wrong callbacks!");
@@ -213,4 +213,4 @@
   qx.test.event.message.Bus.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bus.js.map?dt=1792082780568
+//# sourceMappingURL=Bus.js.map?dt=1794845764397

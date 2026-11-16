@@ -73,10 +73,10 @@
     */
     construct: function construct(props) {
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
-      this.__P_14_0 = {};
+      this.__P_15_0 = {};
       Object.keys(props).forEach(function (key) {
         if (props[key]) {
-          this.__P_14_0[key] = props[key];
+          this.__P_15_0[key] = props[key];
         }
       }, this);
       if (props.refresh === 0) {
@@ -201,7 +201,7 @@
     ******************************************************
     */
     members: {
-      __P_14_0: null,
+      __P_15_0: null,
       _beforePropsApplied: function _beforePropsApplied(props) {
         props.refresh *= 60;
         return props;
@@ -222,7 +222,7 @@
       },
       _refreshAction: function _refreshAction() {
         var elem = $(this.getDomElement());
-        elem.openweathermap(this.__P_14_0);
+        elem.openweathermap(this.__P_15_0);
       }
     },
     defer: function defer(statics) {
@@ -238,4 +238,4 @@
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1792082760831
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1794845745571

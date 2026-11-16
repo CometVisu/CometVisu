@@ -53,7 +53,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Internal implementation of the transport
        * @var {qx.io.request.Xhr}
        */
-      __P_287_0: null,
+      __P_288_0: null,
       /**
        * Returns the object which implements the transport on the
        * underlying level, so that transport-specific configuration
@@ -64,8 +64,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.io.request.Xhr}
        */
       getTransportImpl: function getTransportImpl() {
-        this.__P_287_0 = this._createTransportImpl();
-        return this.__P_287_0;
+        this.__P_288_0 = this._createTransportImpl();
+        return this.__P_288_0;
       },
       /**
        * Transport the given message to the endpoint
@@ -84,9 +84,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context.p = _context.n) {
               case 0:
                 qx.core.Assert.assertString(message);
-                req = _this.__P_287_0 || _this.getTransportImpl();
+                req = _this.__P_288_0 || _this.getTransportImpl();
                 req.setRequestData(message);
-                _this.__P_287_0 = null; // free the internal reference for the next request
+                _this.__P_288_0 = null; // free the internal reference for the next request
                 _context.p = 1;
                 _context.n = 2;
                 return req.sendWithPromise();
@@ -174,4 +174,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.io.transport.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1792082775634
+//# sourceMappingURL=Xhr.js.map?dt=1794845759616

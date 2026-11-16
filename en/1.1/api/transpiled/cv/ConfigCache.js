@@ -56,12 +56,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _parseCacheData: null,
       _valid: null,
       replayCache: null,
-      __P_772_0: null,
+      __P_774_0: null,
       failed: null,
       DB: null,
       init: function init() {
-        if (!this.__P_772_0) {
-          this.__P_772_0 = new Promise(function (resolve, reject) {
+        if (!this.__P_774_0) {
+          this.__P_774_0 = new Promise(function (resolve, reject) {
             if (!cv.ConfigCache.DB && !cv.ConfigCache.failed) {
               var request = indexedDB.open('cvCache', 1);
               request.onerror = function () {
@@ -95,7 +95,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             }
           });
         }
-        return this.__P_772_0;
+        return this.__P_774_0;
       },
       dump: function dump(xml, hash) {
         var model = cv.data.Model.getInstance();
@@ -134,41 +134,39 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           if (cv.Config.configSettings.mappings) {
             Object.keys(cv.Config.configSettings.mappings).forEach(function (name) {
               var mapping = cv.Config.configSettings.mappings[name];
-              if (mapping && mapping.formulaSource) {
-                mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
-              } else {
-                Object.keys(mapping).forEach(function (key) {
-                  if (key === 'range') {
-                    Object.keys(mapping.range).forEach(function (rangeMin) {
-                      mapping.range[rangeMin][1].forEach(function (valueElement, i) {
-                        var iconDefinition = valueElement.definition;
-                        if (iconDefinition) {
-                          var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
-                          icon.definition = iconDefinition;
-                          mapping.range[rangeMin][1][i] = icon;
-                        }
-                      });
-                    });
-                  } else if (Array.isArray(mapping[key])) {
-                    var contents = mapping[key];
-                    for (var i = 0; i < contents.length; i++) {
-                      var iconDefinition = contents[i].definition;
+              Object.keys(mapping).forEach(function (key) {
+                if (key === 'formulaSource') {
+                  mapping.formula = new Function('x', 'var y;' + mapping.formulaSource + '; return y;');
+                } else if (key === 'range') {
+                  Object.keys(mapping.range).forEach(function (rangeMin) {
+                    mapping.range[rangeMin][1].forEach(function (valueElement, i) {
+                      var iconDefinition = valueElement.definition;
                       if (iconDefinition) {
                         var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
                         icon.definition = iconDefinition;
-                        contents[i] = icon;
+                        mapping.range[rangeMin][1][i] = icon;
                       }
-                    }
-                  } else {
-                    var _iconDefinition = mapping[key].definition;
-                    if (_iconDefinition) {
-                      var _icon = cv.IconHandler.getInstance().getIconElement(_iconDefinition.name, _iconDefinition.type, _iconDefinition.flavour, _iconDefinition.color, _iconDefinition.styling, _iconDefinition['class']);
-                      _icon.definition = _iconDefinition;
-                      mapping[key] = _icon;
+                    });
+                  });
+                } else if (Array.isArray(mapping[key])) {
+                  var contents = mapping[key];
+                  for (var i = 0; i < contents.length; i++) {
+                    var iconDefinition = contents[i].definition;
+                    if (iconDefinition) {
+                      var icon = cv.IconHandler.getInstance().getIconElement(iconDefinition.name, iconDefinition.type, iconDefinition.flavour, iconDefinition.color, iconDefinition.styling, iconDefinition['class']);
+                      icon.definition = iconDefinition;
+                      contents[i] = icon;
                     }
                   }
-                });
-              }
+                } else {
+                  var _iconDefinition = mapping[key].definition;
+                  if (_iconDefinition) {
+                    var _icon = cv.IconHandler.getInstance().getIconElement(_iconDefinition.name, _iconDefinition.type, _iconDefinition.flavour, _iconDefinition.color, _iconDefinition.styling, _iconDefinition['class']);
+                    _icon.definition = _iconDefinition;
+                    mapping[key] = _icon;
+                  }
+                }
+              });
             }, _this);
           }
           model.setWidgetDataModel(cache.data);
@@ -348,4 +346,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1792082802164
+//# sourceMappingURL=ConfigCache.js.map?dt=1794845785546

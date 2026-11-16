@@ -86,4 +86,4 @@
   qx.io.jsonrpc.protocol.Error.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Error.js.map?dt=1792082774960
+//# sourceMappingURL=Error.js.map?dt=1794845758952

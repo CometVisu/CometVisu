@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1792082547828,
-  "lastModifiedIso": "2026-10-15T16:42:27.828Z",
+  "lastModified": 1794845538736,
+  "lastModifiedIso": "2026-11-16T16:12:18.736Z",
   "classFilename": "../../source/class/cv/io/rest/Client.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 824
     },
     "end": {
-      "line": 312,
+      "line": 339,
       "column": 3,
-      "index": 9542
+      "index": 10633
     }
   },
   "className": "cv.io.rest.Client",
@@ -206,9 +206,9 @@
           "index": 3328
         },
         "end": {
-          "line": 192,
+          "line": 219,
           "column": 5,
-          "index": 5742
+          "index": 6833
         }
       },
       "type": "function",
@@ -220,14 +220,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 194,
+          "line": 221,
           "column": 4,
-          "index": 5749
+          "index": 6840
         },
         "end": {
-          "line": 240,
+          "line": 267,
           "column": 5,
-          "index": 6997
+          "index": 8088
         }
       },
       "type": "function",
@@ -239,14 +239,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 242,
+          "line": 269,
           "column": 4,
-          "index": 7004
+          "index": 8095
         },
         "end": {
-          "line": 292,
+          "line": 319,
           "column": 5,
-          "index": 8821
+          "index": 9912
         }
       },
       "type": "function",
@@ -265,14 +265,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 294,
+          "line": 321,
           "column": 4,
-          "index": 8828
+          "index": 9919
         },
         "end": {
-          "line": 301,
+          "line": 328,
           "column": 5,
-          "index": 9179
+          "index": 10270
         }
       },
       "type": "function",
@@ -288,14 +288,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 303,
+          "line": 330,
           "column": 4,
-          "index": 9186
+          "index": 10277
         },
         "end": {
-          "line": 310,
+          "line": 337,
           "column": 5,
-          "index": 9534
+          "index": 10625
         }
       },
       "type": "function",
