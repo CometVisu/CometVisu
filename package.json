@@ -49,7 +49,7 @@
     "libraryVersionTile": 1
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.41.0",
+    "@openapitools/openapi-generator-cli": "^2.42.2",
     "@rollup/plugin-terser": "^1.0.0",
     "@playwright/test": "^1.60.0",
     "@prettier/plugin-php": "^0.26.0",
@@ -58,7 +58,7 @@
     "chmodr": "^2.0.2",    
     "deasync": "^0.1.31",
     "esbuild": "^0.28.1",
-    "eslint": "^10.3.0",
+    "eslint": "^10.15.0",
     "eslint-plugin-custom-elements": "^0.0.8",
     "eslint-plugin-jasmine": "^4.2.2",
     "eslint-plugin-jsdoc": "^65.4.2",
