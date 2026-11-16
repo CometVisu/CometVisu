@@ -277,8 +277,79 @@ describe('testing cv.io.transport.LongPolling', () => {
     });
   });
 
+  describe('knxd outage handling', () => {
+    var knxdStatus = { ok: false, since: 1763000000, lastOk: 1762990000 };
+    var knxdResponse = { d: { '1/2/3': 1 }, i: 42, knxd: knxdStatus };
+
+    beforeEach(function () {
+      spyOn(mockClient, 'reportKnxdStatus').and.returnValue(null);
+      spyOn(mockClient, 'setConnected');
+      spyOn(mockClient, 'setDataReceived');
+      spyOn(mockClient, 'update');
+    });
+
+    it('should keep the connection alive when the backend reports a knxd outage', function () {
+      mockClient.reportKnxdStatus.and.returnValue('outage');
+      transport.running = true;
+      transport.xhr = mockXhr;
+
+      var ev = createStatusErrorEvent(503, 4, knxdResponse);
+      transport.handleError(ev);
+
+      // no connection problem -> no restart
+      expect(transport.restart).not.toHaveBeenCalled();
+      expect(ev.getTarget().serverErrorHandled).toBe(true);
+      expect(mockClient.reportKnxdStatus).toHaveBeenCalledWith(knxdResponse);
+      expect(mockClient.setConnected).toHaveBeenCalledWith(true);
+      // the values sent by the backend are used and the index is kept in sync
+      expect(mockClient.update).toHaveBeenCalledWith({ '1/2/3': 1 });
+      expect(transport.lastIndex).toBe(42);
+    });
+
+    it('should not apply the cached values again while the outage persists', function () {
+      transport.running = true;
+      transport.xhr = mockXhr;
+
+      transport.handleError(createStatusErrorEvent(503, 4, knxdResponse));
+
+      expect(mockClient.reportKnxdStatus).toHaveBeenCalled();
+      expect(mockClient.update).not.toHaveBeenCalled();
+    });
+
+    it('should report the recovery and reload all data when knxd is back', function () {
+      transport.running = true;
+      transport.doRestart = false;
+      transport.xhr = createMockXhr();
+      mockClient.reportKnxdStatus.and.returnValue('recovery');
+
+      spyOn(mockClient, 'getResponse').and.returnValue({ v: '0.2', i: 43, d: {} });
+      spyOn(mockClient, 'buildRequest').and.returnValue({});
+      spyOn(mockClient, 'getQueryString').and.returnValue('i=43');
+
+      transport.handleRead();
+
+      expect(mockClient.reportKnxdStatus).toHaveBeenCalled();
+      // all values are reloaded as they might have changed while knxd was gone
+      expect(transport.restart).toHaveBeenCalledWith(true);
+    });
+
+    it('should not touch the connection when knxd is available', function () {
+      transport.running = true;
+      transport.doRestart = false;
+      transport.xhr = createMockXhr();
+
+      spyOn(mockClient, 'getResponse').and.returnValue({ v: '0.2', i: 43, d: {} });
+      spyOn(mockClient, 'buildRequest').and.returnValue({});
+      spyOn(mockClient, 'getQueryString').and.returnValue('i=43');
+
+      transport.handleRead();
+
+      expect(transport.restart).not.toHaveBeenCalled();
+    });
+  });
+
   describe('isConnectionRunning', () => {
-    it('should return false when transport is not running', () => {
+    it('should return false when transport is not running', function () {
       transport.running = false;
 
       expect(transport.isConnectionRunning()).toBe(false);

@@ -24,9 +24,13 @@
       const args = Array.from(arguments);
       const callback = args.pop();
       const waiting = {};
+      let called = false;
 
       const check = function () {
-        if (Object.keys(waiting).length === 0) {
+        // multiple events (`load`, `readystatechange`, `error`) may fire for
+        // the same script, so make sure the callback runs exactly once
+        if (!called && Object.keys(waiting).length === 0) {
+          called = true;
           callback();
         }
       }
@@ -138,6 +142,20 @@
             return data;
           }
         });
+
+        // Workaround for the Sentry XHR instrumentation, see
+        // https://github.com/CometVisu/CometVisu/issues/1514 :
+        // on every open() it wraps `setRequestHeader` of that XHR instance with
+        // a new Proxy, which piles up on qooxdoo's reused XHRs (long polling,
+        // RSS refresh, ...) until the call stack overflows. Dropping the
+        // per-instance wrapper keeps the chain at depth 1.
+        const originalOpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function (...args) {
+          if (Object.prototype.hasOwnProperty.call(this, 'setRequestHeader')) {
+            delete this.setRequestHeader;
+          }
+          return originalOpen.apply(this, args);
+        };
       })
     }
     ${preBootJs}

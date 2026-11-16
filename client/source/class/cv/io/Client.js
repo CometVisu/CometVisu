@@ -128,12 +128,49 @@ qx.Class.define('cv.io.Client', {
     },
 
     /**
+     * Interval in ms used to refresh the outage duration of the knxd message
+     */
+    KNXD_STATUS_REFRESH_INTERVAL: 10000,
+
+    /**
      * Stop all running clients
      */
     stopAll() {
       this.CLIENTS.forEach(function (client) {
         client.stop();
       });
+    },
+
+    /**
+     * Extract the knxd availability report from a backend response.
+     *
+     * While the connection of the backend to the KNX bus (knxd) is lost, the
+     * knxd based backend (cometvisu-knxd-fcgi) adds a "knxd" field to its /r
+     * and /w responses:
+     *
+     *   "knxd": {"ok": false, "since": <unix time of the outage start>,
+     *            "lastOk": <unix time of the last successful connection>}
+     *
+     * The field is absent as long as knxd is reachable. The backend answers
+     * read requests with HTTP 503 in that state, but the body still contains
+     * the last values it has received.
+     *
+     * @param response {Object|String|null} parsed or raw response body
+     * @return {Object|null} the knxd status or `null` if no outage is reported
+     */
+    getKnxdStatus(response) {
+      let json = response;
+      if (typeof json === 'string') {
+        try {
+          json = JSON.parse(json);
+        } catch (e) {
+          return null;
+        }
+      }
+      if (json && typeof json === 'object' && json.knxd && json.knxd.ok === false) {
+        return json.knxd;
+      }
+      return null;
     },
 
     // used for backwards compability
@@ -251,6 +288,12 @@ qx.Class.define('cv.io.Client', {
     headers: null,
     resendHeaders: null,
     __lastError: null,
+    __knxdUnavailable: false,
+    __knxdReported: null,
+    __knxdTimeFormat: null,
+
+    /** timer that keeps the knxd outage duration up to date */
+    _knxdTimer: null,
 
     getType() {
       return this._type;
@@ -707,9 +750,190 @@ qx.Class.define('cv.io.Client', {
         null,
         null,
         {
-          accept: 'application/json, text/javascript, */*; q=0.01'
+          accept: 'application/json, text/javascript, */*; q=0.01',
+          listeners: {
+            error: this._onWriteError.bind(this)
+          }
         }
       );
+    },
+
+    /**
+     * Report the knxd availability contained in a backend response. Both the
+     * transports (read requests) and the write requests use this, therefore
+     * the state is kept here. Notifications are only sent when the state
+     * changes, i.e. when an outage starts or when knxd is back.
+     *
+     * @param response {Object|String|null} parsed or raw response body
+     * @return {String|null} 'outage' if a new outage has been reported,
+     *   'recovery' if knxd is reachable again, `null` if nothing changed
+     */
+    reportKnxdStatus(response) {
+      const knxd = cv.io.Client.getKnxdStatus(response);
+      const wasUnavailable = this.__knxdUnavailable;
+      this.__knxdUnavailable = !!knxd;
+      if (!knxd) {
+        if (wasUnavailable) {
+          // the "knxd" field is absent while knxd is reachable
+          this.__knxdReported = null;
+          this.__hideKnxdOutage();
+          return 'recovery';
+        }
+        return null;
+      }
+      // the backend repeats the same status until knxd is back, report it once
+      const reported = this.__knxdReported;
+      if (!reported || reported.since !== knxd.since || reported.lastOk !== knxd.lastOk) {
+        const since = Number(knxd.since);
+        this.__knxdReported = {
+          since: Number.isFinite(since) && since > 0 ? since : Math.floor(Date.now() / 1000),
+          lastOk: Number(knxd.lastOk) || 0
+        };
+        this.__showKnxdOutage();
+        return 'outage';
+      }
+      return null;
+    },
+
+    /**
+     * Get the notification topic used for the knxd availability of this client.
+     *
+     * @return {String}
+     */
+    _getKnxdTopic() {
+      return 'cv.client.knxd.' + (this.getName() || 'main');
+    },
+
+    /**
+     * Show the knxd outage message in the notification center and keep it
+     * updated, so that the user can see for how long the connection to the bus
+     * is already lost. The message heals itself: it is removed as soon as the
+     * backend reports knxd again (see {@link #__hideKnxdOutage}).
+     */
+    __showKnxdOutage() {
+      this.__dispatchKnxdMessage();
+      if (!this._knxdTimer) {
+        const refreshTimer = new qx.event.Timer(cv.io.Client.KNXD_STATUS_REFRESH_INTERVAL);
+        refreshTimer.addListener('interval', () => this.__dispatchKnxdMessage());
+        refreshTimer.start();
+        this._knxdTimer = refreshTimer;
+      }
+    },
+
+    /**
+     * Remove the knxd outage message from the notification center.
+     */
+    __hideKnxdOutage() {
+      if (this._knxdTimer) {
+        this._knxdTimer.stop();
+        this._knxdTimer.dispose();
+        this._knxdTimer = null;
+      }
+      // dispatching the message with a false condition removes it
+      const topic = this._getKnxdTopic();
+      cv.core.notifications.Router.dispatchMessage(topic, {
+        topic: topic,
+        unique: true,
+        condition: false
+      });
+    },
+
+    /**
+     * Build and dispatch the notification center message for the current knxd
+     * outage. Dispatching it again with the same topic replaces the already
+     * shown message (see `unique`).
+     */
+    __dispatchKnxdMessage() {
+      const status = this.__knxdReported;
+      if (!status) {
+        return;
+      }
+      const downSince = status.since * 1000;
+      const duration = Math.max(0, (Date.now() - downSince) / 1000);
+      const topic = this._getKnxdTopic();
+      cv.core.notifications.Router.dispatchMessage(topic, {
+        topic: topic,
+        title: qx.locale.Manager.tr('KNX bus connection lost'),
+        message:
+          qx.locale.Manager.tr(
+            'The backend "%1" has lost the connection to the KNX bus (knxd). The values shown are the last ones that have been received.',
+            this.getName() || 'main'
+          ) +
+          '<br/><br/><strong>' +
+          qx.locale.Manager.tr(
+            'No connection to knxd since %1 (%2 ago).',
+            this.__getTimeFormat().format(new Date(downSince)),
+            this._formatDuration(duration)
+          ) +
+          '</strong>',
+        severity: 'high',
+        unique: true,
+        deletable: false,
+        condition: true
+      });
+    },
+
+    /**
+     * Format a duration in seconds for the message text, e.g. "1 h 5 min 3 s".
+     *
+     * @param seconds {Number} duration in seconds
+     * @return {String}
+     * @protected
+     */
+    _formatDuration(seconds) {
+      const total = Math.max(0, Math.round(seconds));
+      const hours = Math.floor(total / 3600);
+      const minutes = Math.floor((total % 3600) / 60);
+      const parts = [];
+      if (hours > 0) {
+        parts.push(qx.locale.Manager.tr('%1 h', hours));
+      }
+      if (hours > 0 || minutes > 0) {
+        parts.push(qx.locale.Manager.tr('%1 min', minutes));
+      }
+      parts.push(qx.locale.Manager.tr('%1 s', total % 60));
+      return parts.join(' ');
+    },
+
+    /**
+     * Get the (lazily created) formatter for the outage start time.
+     *
+     * @return {qx.util.format.DateFormat}
+     */
+    __getTimeFormat() {
+      if (!this.__knxdTimeFormat) {
+        this.__knxdTimeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('short'));
+      }
+      return this.__knxdTimeFormat;
+    },
+
+    /**
+     * Handle errors of write requests. When the backend cannot reach knxd it
+     * answers with HTTP 503 and reports the knxd outage in the response body.
+     * That is no connection problem of the CometVisu itself, so it must not
+     * be reported as such but as a knxd outage instead.
+     *
+     * @param ev {qx.event.type.Event|Object} the 'statusError' event (qooxdoo)
+     *   or the XHR object (jQuery)
+     * @protected
+     */
+    _onWriteError(ev) {
+      const isEvent = ev && typeof ev.getTarget === 'function';
+      const req = isEvent ? ev.getTarget() : ev;
+      let response = null;
+      if (req) {
+        if (typeof req.getResponse === 'function') {
+          response = req.getResponse();
+        } else if (req.responseJSON) {
+          response = req.responseJSON;
+        } else if (typeof req.responseText === 'string') {
+          response = req.responseText;
+        }
+      }
+      if (cv.io.Client.getKnxdStatus(response)) {
+        req.serverErrorHandled = true; // keep the connection alive
+        this.reportKnxdStatus(response);
+      }
     },
 
     // this client does not implement an authorization
@@ -768,6 +992,15 @@ qx.Class.define('cv.io.Client', {
   ******************************************************
   */
   destruct() {
+    if (this._knxdTimer) {
+      this._knxdTimer.stop();
+      this._knxdTimer.dispose();
+      this._knxdTimer = null;
+    }
+    if (this.__knxdTimeFormat) {
+      this.__knxdTimeFormat.dispose();
+      this.__knxdTimeFormat = null;
+    }
     this.stop();
   }
 });

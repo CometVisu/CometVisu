@@ -1240,6 +1240,30 @@ msgstr ""
 msgid "Connection to backend \"%1\" is lost."
 msgstr ""
 
+#: cv/io/Client.js
+msgid "KNX bus connection lost"
+msgstr ""
+
+#: cv/io/Client.js
+msgid "The backend \"%1\" has lost the connection to the KNX bus (knxd). The values shown are the last ones that have been received."
+msgstr ""
+
+#: cv/io/Client.js
+msgid "No connection to knxd since %1 (%2 ago)."
+msgstr ""
+
+#: cv/io/Client.js
+msgid "%1 h"
+msgstr ""
+
+#: cv/io/Client.js
+msgid "%1 min"
+msgstr ""
+
+#: cv/io/Client.js
+msgid "%1 s"
+msgstr ""
+
 #: cv/ui/manager/control/FileController.js
 msgid "File \"%1\" has been renamed to \"%2\""
 msgstr ""

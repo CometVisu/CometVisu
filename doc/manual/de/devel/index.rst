@@ -138,6 +138,8 @@ Folgenden *Topics* werden zur Zeit genutzt:
 * ``cv.error``: Allgemeine Fehler
 * ``cv.config.error``: Fehler die beim Einlesen der Config-Datei aufgetreten sind
 * ``cv.state.*``: Namespace für alle in den :ref:`Benachrichtigungen <notifications>` benutzten Nachrichten
+* ``cv.client.connection.<backend>``: Die Verbindung zum Backend ist verloren
+* ``cv.client.knxd.<backend>``: Das Backend hat die Verbindung zu knxd (dem KNX-Bus) verloren
 
 Ein Nachrichtenempfänger (``NotificationHandler``) kann sich nun für eines oder mehrere solcher Topics registrieren:
 
