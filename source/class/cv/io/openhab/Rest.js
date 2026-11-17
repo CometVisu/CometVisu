@@ -54,6 +54,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     __memberLookup: null,
     __subscribedAddresses: null,
     __retries: 0,
+    __retryTimer: null,
 
     getBackend() {
       return {};
@@ -307,21 +308,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
           // add additional listeners
           //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
-          this.eventSource.onerror = function () {
-            this.error('connection lost');
-            this.setConnected(false);
-            let retryIn = 5000;
-            if (this.__retries > 10) {
-              retryIn = 60000;
-            }
-            this.__retries++;
-            this.debug(`retrying connection in ${retryIn/1000} seconds`);
-            setTimeout(function () {
-              this.eventSource.close();
-              this.eventSource = null;
-              this.subscribe(this.__subscribedAddresses);
-            }.bind(this), retryIn);
-          }.bind(this);
+          this.eventSource.onerror = this.__onEventSourceError.bind(this);
           this.eventSource.onopen = function () {
             this.debug('connection established');
             this.setConnected(true);
@@ -329,6 +316,26 @@ qx.Class.define('cv.io.openhab.Rest', {
           }.bind(this);
         }
       }
+    },
+
+    __onEventSourceError() {
+      this.error('connection lost');
+      this.setConnected(false);
+      if (this.__retryTimer) {
+        // a reconnect is already scheduled
+        return;
+      }
+      const retryIn = this.__retries > 10 ? 60000 : 5000;
+      this.__retries++;
+      this.debug(`retrying connection in ${retryIn / 1000} seconds`);
+      this.__retryTimer = setTimeout(() => {
+        this.__retryTimer = null;
+        if (this.eventSource) {
+          this.eventSource.close();
+          this.eventSource = null;
+          this.subscribe(this.__subscribedAddresses);
+        }
+      }, retryIn);
     },
 
     addSubscription(address) {
@@ -341,6 +348,10 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     terminate() {
       this.debug('terminating connection');
+      if (this.__retryTimer) {
+        clearTimeout(this.__retryTimer);
+        this.__retryTimer = null;
+      }
       if (this.eventSource) {
         this.eventSource.close();
         this.eventSource = null;

@@ -200,6 +200,13 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         if (this.__waitForProperties.length === 0) {
           this.setInitialized(true);
         }
+        // inherited values might arrive after the page has been entered (e.g. when loading from cache)
+        const controller = cv.Application.structureController;
+        if (controller && controller.getCurrentPage() === this) {
+          const manager = cv.ui.structure.pure.layout.Manager;
+          manager.currentPageNavbarVisibility = null;
+          manager.updateNavbarVisibility();
+        }
       }
     },
 
