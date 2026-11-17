@@ -364,10 +364,8 @@ qx.Class.define('cv.io.BackendConnections', {
           this.__disconnectTimer = new qx.event.Timer(60000);
           this.__disconnectTimer.addListener('interval', () => {
             Object.getOwnPropertyNames(this.__clients).forEach(name => {
-              const client = this.getClient(name);
-              if (client.isConnected()) {
-                client.terminate();
-              }
+              // also stop clients that are stuck in a reconnect loop while the page is hidden
+              this.getClient(name).terminate();
             });
             this.__disconnectTimer.dispose();
             this.__disconnectTimer = null;
