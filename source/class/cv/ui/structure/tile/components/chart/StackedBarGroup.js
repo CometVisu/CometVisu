@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.StackedBarGroup', {
       const maxY = d3.max(stack, d => d3.max(d, d => d[1]));
       this._chart.setMinY(minY || null);
       this._chart.setMaxY(maxY || null);
-      this._xBarScale.domain(new d3.InternSet(this._chart.data.times));
+      this._xBarScale.domain(new d3.InternSet([...this._chart.data.times].sort((a, b) => a - b)));
 
       this._element
         .selectAll('g')
