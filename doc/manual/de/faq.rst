@@ -28,7 +28,7 @@ einem Webserver. Der Zugriff auf den KNX-Bus erfolgt über das
 FastCGI-Backend ``cometvisu-knx-fcgi`` (siehe
 :doc:`install/backends/install-fcgi`), das mit den Transporten
 ``ip-tunnel`` und ``ip-routing`` überhaupt keinen *eibd* oder *knxd*
-benötigt, diesn mit ``knxd`` aber auch nutzen kann. Das CometVisu-Protokoll
+benötigt, diesen mit ``knxd`` aber auch nutzen kann. Das CometVisu-Protokoll
 lässt sich natürlich auch auf anderen Systemen oder auf Systemen ohne
 KNX-Anbindung implementieren.
 
