@@ -93,6 +93,7 @@ KNX connection (FastCGI backend)
    * - ``KNX_TRANSPORT``
      - ``knxd``
      - Transport to the KNX bus: ``knxd``, ``ip-tunnel`` or ``ip-routing``.
+       An empty value means ``knxd``; an unknown value stops the container.
    * - ``FCGI_SOCKET``
      - ``/run/cometvisu-fcgi.sock``
      - FastCGI listen socket of the backend. Apache forwards
@@ -113,14 +114,16 @@ KNX connection (FastCGI backend)
      - Set to ``1`` to enable the debug logging of the FastCGI backend.
    * - ``NO_ENTRYPOINT_KNXD``
      - ``false``
-     - ``false``: the container starts the bundled ``knxd``. ``extern``: do
-       **not** start the ``knxd`` and use the socket of an external ``knxd``
-       (see ``KNXD_SOCKET``). ``true``: start neither the ``knxd`` nor the
+     - **Only for ``KNX_TRANSPORT=knxd``:** ``false``: the container starts
+       the bundled ``knxd``. ``extern``: do **not** start the ``knxd`` and
+       use the socket of an external ``knxd`` (see ``KNXD_SOCKET``).
+       ``true``: start neither the ``knxd`` nor the FastCGI backend. The
+       ``ip-*`` transports ignore this variable and always start the
        FastCGI backend.
    * - ``KNXD_SOCKET``
      - ``/run/knx``
-     - Path to the Unix socket of an external ``knxd``. Only used with
-       ``NO_ENTRYPOINT_KNXD=extern``.
+     - **Only for ``KNX_TRANSPORT=knxd``:** path to the Unix socket of an
+       external ``knxd``. Only used with ``NO_ENTRYPOINT_KNXD=extern``.
 
 Since version 2.0 the FastCGI backend uses exactly **one** connection to
 the ``knxd`` for all workers. ``FCGI_WORKERS`` is therefore independent of
@@ -205,16 +208,22 @@ Notes for this mode:
   external ``knxd`` brings its own configuration. Its group cache must be
   enabled for reads.
 - ``NO_ENTRYPOINT_KNXD=true`` starts neither the ``knxd`` nor the FastCGI
-  backend. Use it only when the backend is provided completely from
-  outside.
+  backend. Use it only when you provide the FastCGI backend yourself (e.g.
+  as a socket mounted into the container); otherwise the ``knxd`` backend
+  is unavailable and ``/cgi-bin/l`` fails.
 
 Transport ``ip-tunnel`` - no knxd
 .................................
 
 With ``KNX_TRANSPORT=ip-tunnel`` the container does **not** start the
-bundled ``knxd``. The FastCGI backend connects directly to a KNX IP
-interface or KNX IP router as a tunneling client, i.e. the CometVisu
-behaves like a classical KNX device.
+bundled ``knxd`` (regardless of ``NO_ENTRYPOINT_KNXD``). The FastCGI backend
+connects directly to a KNX IP interface or KNX IP router as a tunneling
+client, i.e. the CometVisu behaves like a classical KNX device.
+
+The image ships the ``KNX_IP_*`` variables empty; the defaults shown below
+are the defaults of the FastCGI backend. The container only passes on the
+variables that are set, so an empty value never overrides a backend
+default.
 
 .. list-table::
    :header-rows: 1
@@ -248,7 +257,8 @@ behaves like a classical KNX device.
 
 ``KNX_INTERFACE``, ``KNX_PA``, ``KNX_CLIENT_PAS``,
 ``KNX_INTERFACE_OPTIONS``, ``KNXD_PARAMETERS`` and ``KNXD_SOCKET`` are
-ignored in this mode.
+ignored in this mode. ``NO_ENTRYPOINT_KNXD`` has no effect - the FastCGI
+backend is always started.
 
 Example:
 
@@ -263,7 +273,8 @@ Example:
 Notes:
 
 - A KNX IP interface usually only offers a small number of tunneling
-  connections (often 4). One of them is used by the CometVisu.
+  connections (often 4). One of them is used by the CometVisu. When all
+  slots are taken the container cannot connect to the bus.
 - With the default Docker bridge network the container is behind NAT, so
   either set ``KNX_IP_NAT=1`` (the device has to support NAT) or run the
   container with ``--network host``.
@@ -274,8 +285,14 @@ Transport ``ip-routing`` - no knxd
 ..................................
 
 With ``KNX_TRANSPORT=ip-routing`` the container does **not** start the
-bundled ``knxd``. The FastCGI backend joins the KNXnet/IP multicast group
-and participates in the routing like a KNX IP router.
+bundled ``knxd`` (regardless of ``NO_ENTRYPOINT_KNXD``). The FastCGI
+backend joins the KNXnet/IP multicast group and participates in the
+routing like a KNX IP router.
+
+``KNX_INTERFACE``, ``KNX_PA``, ``KNX_CLIENT_PAS``,
+``KNX_INTERFACE_OPTIONS``, ``KNXD_PARAMETERS`` and ``KNXD_SOCKET`` are
+ignored in this mode. ``NO_ENTRYPOINT_KNXD`` has no effect - the FastCGI
+backend is always started.
 
 .. list-table::
    :header-rows: 1
@@ -292,8 +309,9 @@ and participates in the routing like a KNX IP router.
      - Network interface for the multicast group.
    * - ``KNX_IP_INDIVIDUAL_ADDR``
      - ``15.15.250``
-     - Individual address used as the source of the routing telegrams.
-       This must be a free physical address of the installation.
+     - Individual address (``A.B.C``, A and B in ``0..15``, C in ``0..255``,
+       not ``0.0.0``) used as the source of the routing telegrams. It must
+       be a free physical address of the installation.
    * - ``KNX_IP_PORT``
      - ``3671``
      - KNXnet/IP UDP port.
