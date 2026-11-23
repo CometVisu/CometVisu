@@ -36,16 +36,30 @@ Damit die CometVisu auf die Geräte zugreifen kann wird ein "Backend" benötigt.
 
 Für die Backend-Verbindung gibt es verschiedene Möglichkeiten:
 
-knxd / eibd
-~~~~~~~~~~~
+KNX-Bus
+~~~~~~~
 
-Um direkt auf den KNX Bus zuzugreifen wird der knxd verwendet.
-Die Installation dieses Backends wird unter
-:doc:`backends/install-eibd` beschrieben.
+Der empfohlene Weg, um die CometVisu mit dem KNX-Bus zu verbinden, ist
+das FastCGI-Backend ``cometvisu-knx-fcgi``. Es wird seit der CometVisu
+Version 1.0.0 verwendet und implementiert das CometVisu-Protokoll. Das
+Backend unterstützt drei Transporte:
+
+- ``knxd``: ein lokaler knxd-Daemon
+- ``ip-tunnel``: direktes KNXnet/IP-Tunneling - kein knxd nötig
+- ``ip-routing``: direktes KNXnet/IP-Routing - kein knxd nötig
+
+Die Installation, die Anbindung des Webservers und alle Einstellungen
+werden unter :doc:`backends/install-fcgi` beschrieben.
+
+Das alte Backend mit den CGI-Programmen ``eibread-cgi`` und
+``eibwrite-cgi`` von eibd bzw. knxd funktioniert weiterhin, ist aber nicht
+mehr empfehlenswert. Es wird unter :doc:`backends/install-eibd`
+beschrieben.
 
 .. toctree::
     :hidden:
 
+    backends/install-fcgi
     backends/install-eibd
 
 openHAB
@@ -175,8 +189,27 @@ unterstützt und benötigt (außer PHP Unterstützung) keine weitere Software.
 Webserver
 ---------
 
-Der notwendigen Dateien unter ``/usr/lib/cgi-bin/`` müssen für das Konto,
-unter dem der Webserver läuft, ausführbar sein:
+Bei Verwendung des FastCGI-Backends werden für den KNX-Zugriff keine
+CGI-Programme benötigt. Stattdessen müssen die drei URL-Pfade
+``/cgi-bin/l``, ``/cgi-bin/r`` und ``/cgi-bin/w`` an den FastCGI-Socket des
+Backends weitergeleitet werden - siehe :doc:`backends/install-fcgi`.
+
+Das Programm ``rrdfetch`` für das :ref:`Diagramm-Plugin <diagram>` ist
+weiterhin ein normales CGI-Programm und liegt üblicherweise unter
+``/usr/lib/cgi-bin/``. Es muss für das Konto, unter dem der Webserver
+läuft, ausführbar sein:
+
+.. code-block:: bash
+
+    chmod +x /usr/lib/cgi-bin/rrdfetch
+
+Wenn diese Datei ein symbolischer Link ist, muss entsprechend auch die
+verlinkte Datei ausführbar sein.
+
+Die CGI-Programme ``r``, ``l`` und ``w`` (üblicherweise symbolische Links
+auf ``eibread-cgi`` und ``eibwrite-cgi``) werden nur für das alte Backend
+aus :doc:`backends/install-eibd` benötigt. In diesem Fall müssen alle
+davon ausführbar sein:
 
 .. code-block:: bash
 
@@ -274,6 +307,20 @@ Um unter Debian/Ubuntu lighttpd zu installieren:
     ### Add cgi for cometvisu
     alias.url += ( "/cgi-bin/" => "/usr/lib/cgi-bin/" )
     compress.filetype += ("application/javascript", "application/xml", "application/octet-stream")
+
+Für die Nutzung des FastCGI-Backends wird in derselben Datei zusätzlich
+der FastCGI-Server bekannt gemacht:
+
+.. code-block:: lighttpd
+
+    ### FastCGI socket of the cometvisu-knx-fcgi backend
+    server.modules += ( "mod_fastcgi" )
+    fastcgi.server = (
+        "/cgi-bin/" => ((
+            "socket"      => "/run/cometvisu-fcgi/fcgi.sock",
+            "check-local" => "disable"
+        ))
+    )
 
 CometVisu installieren
 ----------------------

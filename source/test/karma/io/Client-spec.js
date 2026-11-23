@@ -20,7 +20,7 @@
 /**
  * Unit tests for the knxd (CometVisu protocol) client
  *
- * Tests the knxd availability handling: the cometvisu-knxd-fcgi backend
+ * Tests the knxd availability handling: the cometvisu-knx-fcgi backend
  * reports a lost connection to knxd with a "knxd" field in its /r and /w
  * responses. That must be shown in the notification center with the outage
  * duration and removed again when knxd is back.
