@@ -45,7 +45,11 @@ Connection to KNXD / EIBD
 
     <cv-backend type="knxd" />
 
-The KNXD/EIBD does not yet require any access data, so the attributes “username” and “password” are not used here.
+The backend type ``knxd`` is served by the ``cometvisu-knx-fcgi`` FastCGI
+backend. The name is independent of the transport that backend uses
+(``knxd``, ``ip-tunnel`` or ``ip-routing``).
+
+The KNX backend does not require any access data, so the attributes “username” and “password” are not used here.
 If you use CometVisu in the official Docker container, you also do not need to define the ``uri`` attribute
 because this value is determined there differently.
 

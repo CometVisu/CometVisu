@@ -1,5 +1,14 @@
 .. replaces:: CometVisu/Installation/Backend/de
 
+.. note::
+
+    Die Installation von ``eibd`` bzw. ``knxd`` wird nur benötigt, wenn das
+    :doc:`FastCGI-Backend <install-fcgi>` mit dem Transport ``knxd``
+    verwendet wird. Seine Transporte ``ip-tunnel`` und ``ip-routing``
+    benötigen keinen knxd. Für eine neue Installation ist das
+    FastCGI-Backend mit einem der KNXnet/IP-Transporte die empfohlene
+    Variante.
+
 Installation von eibd
 ---------------------
 Der eibd Service verbindet den Computer mit dem KNX/EIB Bus
