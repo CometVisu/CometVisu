@@ -63,6 +63,7 @@
         'dockerenvironment': '/develop/manual/install/docker.html#dockerenvironment',
         'editor': '/develop/manual/config/editor.html#editor',
         'enablecache': '/develop/manual/config/url-params.html#enablecache',
+        'fcgi': '/develop/manual/install/backends/install-fcgi.html#fcgi',
         'flavour': '/develop/manual/config/flavour.html#flavour',
         'format': '/develop/manual/config/format.html#format',
         'gauge': '/develop/manual/config/widgets/plugins/gauge/index.html#gauge',
@@ -194,4 +195,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1794845748143
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1795864182892

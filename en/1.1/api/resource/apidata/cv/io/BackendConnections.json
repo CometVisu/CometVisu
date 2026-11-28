@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1794845538735,
-  "lastModifiedIso": "2026-11-16T16:12:18.735Z",
+  "lastModified": 1795863971039,
+  "lastModifiedIso": "2026-11-28T11:06:11.039Z",
   "classFilename": "../../source/class/cv/io/BackendConnections.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 876
     },
     "end": {
-      "line": 556,
+      "line": 554,
       "column": 3,
-      "index": 19293
+      "index": 19291
     }
   },
   "className": "cv.io.BackendConnections",
@@ -606,9 +606,9 @@
           "index": 10756
         },
         "end": {
-          "line": 378,
+          "line": 376,
           "column": 5,
-          "index": 12675
+          "index": 12673
         }
       },
       "type": "function",
@@ -620,14 +620,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 380,
+          "line": 378,
           "column": 4,
-          "index": 12682
+          "index": 12680
         },
         "end": {
-          "line": 418,
+          "line": 416,
           "column": 5,
-          "index": 13944
+          "index": 13942
         }
       },
       "type": "function",
@@ -643,14 +643,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 420,
+          "line": 418,
           "column": 4,
-          "index": 13951
+          "index": 13949
         },
         "end": {
-          "line": 426,
+          "line": 424,
           "column": 5,
-          "index": 14161
+          "index": 14159
         }
       },
       "type": "function",
@@ -666,14 +666,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 428,
+          "line": 426,
           "column": 4,
-          "index": 14168
+          "index": 14166
         },
         "end": {
-          "line": 554,
+          "line": 552,
           "column": 5,
-          "index": 19285
+          "index": 19283
         }
       },
       "type": "function",

@@ -117,4 +117,4 @@
   qx.ui.mobile.form.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1794845780266
+//# sourceMappingURL=Group.js.map?dt=1795864216097

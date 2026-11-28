@@ -233,4 +233,4 @@
   qx.test.bom.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1794845761969
+//# sourceMappingURL=Font.js.map?dt=1795864197071

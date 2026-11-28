@@ -185,10 +185,11 @@ file is writable by it.</p>
 the CometVisu tree is located in different places:</p>
 <ul class="simple">
 <li><p>If the CometVisu should be connected directly to the KNX bus telegram
-traffic with the help of the knxd daemon (KNX is then the backend),
-the CometVisu is manually added to the directory tree
-“/var/www/visu…” of the web server (e.g. Apache or Lighttpd)
-The web server usually listens on port 80 in the default setting.</p></li>
+traffic with the help of the <code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span></code> FastCGI backend
+(KNX is then the backend), the CometVisu is manually added to the
+directory tree “/var/www/visu…” of the web server (e.g. Apache or
+Lighttpd) The web server usually listens on port 80 in the default
+setting.</p></li>
 <li><p>Since version 0.12 the special binding is no longer needed to use openHAB as a backend for the CometVisu.
 It is recommended to use the CometVisu docker container.
 Information on how to install and configure the container to use openHAB as backend can be found <a class="reference internal" href="../install/docker_openhab.html#docker-openhab-installation"><span class="std std-ref">here</span></a></p></li>

@@ -1048,4 +1048,4 @@
   cv.plugins.diagram2.Plot.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plot.js.map?dt=1794845746110
+//# sourceMappingURL=Plot.js.map?dt=1795864180719

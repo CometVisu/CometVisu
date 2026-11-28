@@ -82,4 +82,4 @@
   qx.util.LibraryManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LibraryManager.js.map?dt=1794845784632
+//# sourceMappingURL=LibraryManager.js.map?dt=1795864220677

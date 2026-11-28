@@ -24,7 +24,7 @@
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
     <link rel="next" title="Installation der RRD Unterstützung" href="../install-rrd.html" />
-    <link rel="prev" title="Voraussetzungen für die Installation" href="../allgemein.html" /> 
+    <link rel="prev" title="FastCGI-Backend (cometvisu-knx-fcgi)" href="install-fcgi.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,7 +79,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Installation der CometVisu</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../allgemein.html">Voraussetzungen für die Installation</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../allgemein.html#backend">Backend</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../allgemein.html#knxd-eibd">knxd / eibd</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../allgemein.html#knx-bus">KNX-Bus</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../allgemein.html#openhab">openHAB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../allgemein.html#mqtt">MQTT</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../allgemein.html#iobroker">ioBroker</a></li>
@@ -141,6 +141,15 @@
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Installation von <code class="docutils literal notranslate"><span class="pre">eibd</span></code> bzw. <code class="docutils literal notranslate"><span class="pre">knxd</span></code> wird nur benötigt, wenn das
+<a class="reference internal" href="install-fcgi.html"><span class="doc">FastCGI-Backend</span></a> mit dem Transport <code class="docutils literal notranslate"><span class="pre">knxd</span></code>
+verwendet wird. Seine Transporte <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> und <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code>
+benötigen keinen knxd. Für eine neue Installation ist das
+FastCGI-Backend mit einem der KNXnet/IP-Transporte die empfohlene
+Variante.</p>
+</div>
 <section id="installation-von-eibd">
 <h1>Installation von eibd<a class="headerlink" href="#installation-von-eibd" title="Link to this heading"></a></h1>
 <p>Der eibd Service verbindet den Computer mit dem KNX/EIB Bus
@@ -175,7 +184,7 @@ zu finden.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../allgemein.html" class="btn btn-neutral float-left" title="Voraussetzungen für die Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="install-fcgi.html" class="btn btn-neutral float-left" title="FastCGI-Backend (cometvisu-knx-fcgi)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
         <a href="../install-rrd.html" class="btn btn-neutral float-right" title="Installation der RRD Unterstützung" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

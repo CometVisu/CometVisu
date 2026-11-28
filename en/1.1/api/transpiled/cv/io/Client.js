@@ -179,8 +179,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * Extract the knxd availability report from a backend response.
        *
        * While the connection of the backend to the KNX bus (knxd) is lost, the
-       * knxd based backend (cometvisu-knxd-fcgi) adds a "knxd" field to its /r
-       * and /w responses:
+       * backend (cometvisu-knx-fcgi with KNX_TRANSPORT=knxd) adds a "knxd"
+       * field to its /r and /w responses:
        *
        *   "knxd": {"ok": false, "since": <unix time of the outage start>,
        *            "lastOk": <unix time of the last successful connection>}
@@ -974,4 +974,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1794845785319
+//# sourceMappingURL=Client.js.map?dt=1795864221442

@@ -22,7 +22,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install eibd" href="backends/install-eibd.html" />
+    <link rel="next" title="FastCGI backend (cometvisu-knx-fcgi)" href="backends/install-fcgi.html" />
     <link rel="prev" title="Installation of the CometVisu" href="index.html" /> 
 </head>
 
@@ -78,7 +78,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation of the CometVisu</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Prerequisites for the installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#backend">Backend</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#knxd-eibd">knxd / eibd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#knx-bus">KNX bus</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#openhab">openHAB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mqtt">MQTT</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#iobroker">ioBroker</a></li>
@@ -175,11 +175,22 @@ without PHP though.</p>
 connection to multiple backends is not supported.</p>
 </div>
 <p>There are different possibilities:</p>
-<section id="knxd-eibd">
-<h3>knxd / eibd<a class="headerlink" href="#knxd-eibd" title="Link to this heading"></a></h3>
-<p>For a direct connection to the KNX bus the knxd is used.
-The installation of the backend is described under
-<a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a>.</p>
+<section id="knx-bus">
+<h3>KNX bus<a class="headerlink" href="#knx-bus" title="Link to this heading"></a></h3>
+<p>The recommended way to connect the CometVisu to the KNX bus is the
+FastCGI backend <code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span></code>. It has been used since CometVisu
+1.0.0 and implements the CometVisu protocol. The backend supports three
+transports:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code>: a local knxd daemon</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code>: direct KNXnet/IP tunneling - no knxd needed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ip-routing</span></code>: direct KNXnet/IP routing - no knxd needed</p></li>
+</ul>
+<p>The installation, the web server wiring and all settings are described in
+<a class="reference internal" href="backends/install-fcgi.html"><span class="doc">FastCGI backend (cometvisu-knx-fcgi)</span></a>.</p>
+<p>The old backend with the CGI programs <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code> and <code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code>
+of eibd or knxd still works, but is no longer recommended. It is described
+in <a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -328,9 +339,23 @@ external software, only PHP is required.</p>
 </section>
 <section id="web-server">
 <h2>Web server<a class="headerlink" href="#web-server" title="Link to this heading"></a></h2>
-<p>The relevant files to connect via eibd/knxd are CGI programs, usually
-located at <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code>. They must be executable for the account
-of the web server. This could be enforced by:</p>
+<p>When the FastCGI backend is used, no CGI programs are needed for the KNX
+access. Instead the three URL paths <code class="docutils literal notranslate"><span class="pre">/cgi-bin/l</span></code>, <code class="docutils literal notranslate"><span class="pre">/cgi-bin/r</span></code> and
+<code class="docutils literal notranslate"><span class="pre">/cgi-bin/w</span></code> have to be forwarded to the FastCGI socket of the backend -
+see <a class="reference internal" href="backends/install-fcgi.html"><span class="doc">FastCGI backend (cometvisu-knx-fcgi)</span></a>.</p>
+<p>The program <code class="docutils literal notranslate"><span class="pre">rrdfetch</span></code> for the <a class="reference internal" href="../config/widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">diagram plugin</span></a> is still
+an ordinary CGI program and is usually located at <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code>. It
+must be executable for the account of the web server. This could be
+enforced by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/lib/cgi-bin/rrdfetch
+</pre></div>
+</div>
+<p>When this file is a symbolic link also the link target must be executable
+as well.</p>
+<p>The CGI programs <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">l</span></code> and <code class="docutils literal notranslate"><span class="pre">w</span></code> (which usually are symbolic links to
+<code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code> and <code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code>) are only required for the legacy
+backend of <a class="reference internal" href="backends/install-eibd.html"><span class="doc">Install eibd</span></a>. In that case all of them must be
+executable:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/lib/cgi-bin/r
 chmod<span class="w"> </span>+x<span class="w"> </span>/usr/lib/cgi-bin/l
 chmod<span class="w"> </span>+x<span class="w"> </span>/usr/lib/cgi-bin/w
@@ -413,6 +438,17 @@ changing the example parameters to fit your need.</p>
 <span class="k">compress.filetype</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="s2">"application/javascript"</span><span class="p">,</span><span class="w"> </span><span class="s2">"application/xml"</span><span class="p">,</span><span class="w"> </span><span class="s2">"application/octet-stream"</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>For the FastCGI backend the FastCGI server is announced in the same file:</p>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="c1">### FastCGI socket of the cometvisu-knx-fcgi backend</span>
+<span class="k">server.modules</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">"mod_fastcgi"</span><span class="w"> </span><span class="p">)</span>
+<span class="k">fastcgi.server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s2">"/cgi-bin/"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">((</span>
+<span class="w">        </span><span class="s2">"socket"</span><span class="w">      </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"/run/cometvisu-fcgi/fcgi.sock"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"check-local"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"disable"</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="installing-cometvisu">
@@ -438,7 +474,7 @@ available under <a class="reference internal" href="raspberry.html"><span class=
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Installation of the CometVisu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="backends/install-eibd.html" class="btn btn-neutral float-right" title="Install eibd" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="backends/install-fcgi.html" class="btn btn-neutral float-right" title="FastCGI backend (cometvisu-knx-fcgi)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

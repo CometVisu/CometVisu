@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1794845538748,
-  "lastModifiedIso": "2026-11-16T16:12:18.748Z",
+  "lastModified": 1795863971052,
+  "lastModifiedIso": "2026-11-28T11:06:11.052Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/Page.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 941
     },
     "end": {
-      "line": 394,
+      "line": 401,
       "column": 3,
-      "index": 13134
+      "index": 13538
     }
   },
   "className": "cv.ui.structure.pure.Page",
@@ -1069,9 +1069,9 @@
           "index": 5434
         },
         "end": {
-          "line": 204,
+          "line": 211,
           "column": 5,
-          "index": 5774
+          "index": 6178
         }
       },
       "type": "function",
@@ -1114,14 +1114,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 210,
+          "line": 217,
           "column": 4,
-          "index": 5888
+          "index": 6292
         },
         "end": {
-          "line": 219,
+          "line": 226,
           "column": 5,
-          "index": 6203
+          "index": 6607
         }
       },
       "type": "function",
@@ -1150,14 +1150,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 224,
+          "line": 231,
           "column": 4,
-          "index": 6260
+          "index": 6664
         },
         "end": {
-          "line": 228,
+          "line": 235,
           "column": 5,
-          "index": 6457
+          "index": 6861
         }
       },
       "type": "function",
@@ -1173,14 +1173,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 231,
+          "line": 238,
           "column": 4,
-          "index": 6482
+          "index": 6886
         },
         "end": {
-          "line": 312,
+          "line": 319,
           "column": 5,
-          "index": 9926
+          "index": 10330
         }
       },
       "type": "function",
@@ -1196,14 +1196,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 314,
+          "line": 321,
           "column": 4,
-          "index": 9933
+          "index": 10337
         },
         "end": {
-          "line": 373,
+          "line": 380,
           "column": 5,
-          "index": 12514
+          "index": 12918
         }
       },
       "type": "function",
@@ -1222,14 +1222,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 375,
+          "line": 382,
           "column": 4,
-          "index": 12521
+          "index": 12925
         },
         "end": {
-          "line": 388,
+          "line": 395,
           "column": 5,
-          "index": 13015
+          "index": 13419
         }
       },
       "type": "function",

@@ -24,7 +24,8 @@ Am einfachsten greift man auf die verschiedenen Konfigurationsdateien über den
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
-- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden
+- Soll die CometVisu mit Hilfe des FastCGI-Backends ``cometvisu-knx-fcgi`` unmittelbar an den
+  KNX-Bus-Telegrammverkehr angebunden werden
   (KNX ist dann das Backend), wird die CometVisu manuell in den Verzeichnisbaum "/var/www/visu…" des Webservers
   (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
 

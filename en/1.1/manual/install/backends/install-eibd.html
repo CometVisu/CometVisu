@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Installation of RRD support" href="../install-rrd.html" />
-    <link rel="prev" title="Prerequisites for the installation" href="../generic.html" /> 
+    <link rel="prev" title="FastCGI backend (cometvisu-knx-fcgi)" href="install-fcgi.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,7 +78,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Installation of the CometVisu</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../generic.html">Prerequisites for the installation</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../generic.html#backend">Backend</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../generic.html#knxd-eibd">knxd / eibd</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../generic.html#knx-bus">KNX bus</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../generic.html#openhab">openHAB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../generic.html#mqtt">MQTT</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../generic.html#iobroker">ioBroker</a></li>
@@ -143,6 +143,14 @@ It is possible that some of the described features are not yet available in the 
 <p>Also there might be lots of errors in this documentation as some parts of the content have been translated
 by an online translation service.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The installation of <code class="docutils literal notranslate"><span class="pre">eibd</span></code> or <code class="docutils literal notranslate"><span class="pre">knxd</span></code> is only needed when the
+<a class="reference internal" href="install-fcgi.html"><span class="doc">FastCGI backend</span></a> is used with the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>
+transport. Its transports <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> and <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> do not need
+a knxd at all. For a new installation the FastCGI backend with one of
+the KNXnet/IP transports is the recommended setup.</p>
+</div>
 <section id="install-eibd">
 <h1>Install eibd<a class="headerlink" href="#install-eibd" title="Link to this heading"></a></h1>
 <p>The eibd service connects the server with the KNX/EIB Bus and supports
@@ -172,7 +180,7 @@ be found on the <cite>knxd github page &lt;https://github.com/knxd/knxd&gt;</cit
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../generic.html" class="btn btn-neutral float-left" title="Prerequisites for the installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install-fcgi.html" class="btn btn-neutral float-left" title="FastCGI backend (cometvisu-knx-fcgi)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../install-rrd.html" class="btn btn-neutral float-right" title="Installation of RRD support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

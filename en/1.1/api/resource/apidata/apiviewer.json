@@ -12480,6 +12480,12 @@
           292
         ]
       ],
+      "#__onEventSourceError": [
+        [
+          7,
+          57
+        ]
+      ],
       "#handleError": [
         [
           3,

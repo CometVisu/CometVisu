@@ -203,7 +203,10 @@ und alle <code class="docutils literal notranslate"><span class="pre">cv-address
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">"knxd"</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
-<p>Der KNXD/EIBD benötigt bisher keine Zugangsdaten, daher werden die Attribute <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> hier nicht
+<p>Der Backend-Typ <code class="docutils literal notranslate"><span class="pre">knxd</span></code> wird vom FastCGI-Backend <code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span></code>
+bereitgestellt. Der Name ist unabhängig von dem Transport, den das Backend
+verwendet (<code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> oder <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code>).</p>
+<p>Das KNX-Backend benötigt keine Zugangsdaten, daher werden die Attribute <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> hier nicht
 benötigt. Sofern man die CometVisu in dem offiziellen Docker Container benutzt muss man auch das <code class="docutils literal notranslate"><span class="pre">uri</span></code>-Attribut
 nicht angeben, da dieser Wert dort anderweitig bestimmt wird.</p>
 </section>

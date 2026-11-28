@@ -140,12 +140,14 @@ der kompatiblen Browsern findet sich hier: <a class="reference internal" href="i
 <section id="kann-die-cometvisu-auf-beliebigen-servern-oder-hardware-betrieben-werden">
 <h2>Kann die CometVisu auf beliebigen Servern oder Hardware betrieben werden?<a class="headerlink" href="#kann-die-cometvisu-auf-beliebigen-servern-oder-hardware-betrieben-werden" title="Link to this heading"></a></h2>
 <p>JA. Dazu ist aber einiges an Linux-Kenntnissen erforderlich.
-Grundsätzlich läuft die CometVisu auf jeder Linux basierten Hardware für
-die es einen <em>eibd</em> und einen Webserver gibt.
-Grundsätzlich lässt sich das CometVisu-Protokoll auch auf Systemen
-implementieren, auf denen kein eibd läuft, oder die gar nicht mit KNX in
-Verbindung stehen. Fertige Lösungen sind uns dafür aber zur Zeit nicht
-bekannt.</p>
+Grundsätzlich läuft die CometVisu auf jeder Linux basierten Hardware mit
+einem Webserver. Der Zugriff auf den KNX-Bus erfolgt über das
+FastCGI-Backend <code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span></code> (siehe
+<a class="reference internal" href="install/backends/install-fcgi.html"><span class="doc">FastCGI-Backend (cometvisu-knx-fcgi)</span></a>), das mit den Transporten
+<code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> und <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> überhaupt keinen <em>eibd</em> oder <em>knxd</em>
+benötigt, diesen mit <code class="docutils literal notranslate"><span class="pre">knxd</span></code> aber auch nutzen kann. Das CometVisu-Protokoll
+lässt sich natürlich auch auf anderen Systemen oder auf Systemen ohne
+KNX-Anbindung implementieren.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Die einfachste Möglichkeit die CometVisu zu installieren und später

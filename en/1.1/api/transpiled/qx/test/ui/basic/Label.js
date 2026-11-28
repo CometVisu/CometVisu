@@ -305,4 +305,4 @@ function _toPrimitive(t, e) { if ("object" != _typeof(t) || !t) return t; var r;
   qx.test.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1794845766885
+//# sourceMappingURL=Label.js.map?dt=1795864201906

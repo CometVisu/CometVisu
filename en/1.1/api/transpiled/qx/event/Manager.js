@@ -917,4 +917,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.event.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1794845757228
+//# sourceMappingURL=Manager.js.map?dt=1795864192418

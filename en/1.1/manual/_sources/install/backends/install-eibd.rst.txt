@@ -1,4 +1,12 @@
 
+.. note::
+
+    The installation of ``eibd`` or ``knxd`` is only needed when the
+    :doc:`FastCGI backend <install-fcgi>` is used with the ``knxd``
+    transport. Its transports ``ip-tunnel`` and ``ip-routing`` do not need
+    a knxd at all. For a new installation the FastCGI backend with one of
+    the KNXnet/IP transports is the recommended setup.
+
 Install eibd
 ---------------------
 The eibd service connects the server with the KNX/EIB Bus and supports

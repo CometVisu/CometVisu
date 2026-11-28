@@ -368,10 +368,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             this.__P_782_2 = new qx.event.Timer(60000);
             this.__P_782_2.addListener('interval', function () {
               Object.getOwnPropertyNames(_this3.__P_782_0).forEach(function (name) {
-                var client = _this3.getClient(name);
-                if (client.isConnected()) {
-                  client.terminate();
-                }
+                // also stop clients that are stuck in a reconnect loop while the page is hidden
+                _this3.getClient(name).terminate();
               });
               _this3.__P_782_2.dispose();
               _this3.__P_782_2 = null;
@@ -506,4 +504,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.io.BackendConnections.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackendConnections.js.map?dt=1794845785871
+//# sourceMappingURL=BackendConnections.js.map?dt=1795864222011

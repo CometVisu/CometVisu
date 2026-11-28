@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FastCGI-Backend (cometvisu-knx-fcgi) &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=c8d00f07" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/docs/de/1.1/manual/install/backends/install-fcgi.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=245627df"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=9bf55d28"></script>
+      <script src="../../_static/versions.js?v=17c2187a"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Installation von eibd" href="install-eibd.html" />
+    <link rel="prev" title="Voraussetzungen für die Installation" href="../allgemein.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
+            <li><a href="../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../../en/1.1/manual/install/backends/install-fcgi.html" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Installation der CometVisu</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../allgemein.html">Voraussetzungen für die Installation</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../allgemein.html#backend">Backend</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../allgemein.html#knx-bus">KNX-Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../allgemein.html#openhab">openHAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../allgemein.html#mqtt">MQTT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../allgemein.html#iobroker">ioBroker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../allgemein.html#backend-konfigurieren">Backend konfigurieren</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../allgemein.html#graphentool-rrdtool">Graphentool - RRDtool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../allgemein.html#webserver">Webserver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../allgemein.html#cometvisu-installieren">CometVisu installieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../allgemein.html#cometvisu-testen">CometVisu testen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openhab.html">Installation auf einem Debian System mit openHAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker.html">Installation mittels Docker-Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker_openhab.html">Installation auf einem Ubuntu System mit openHAB und Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#update-der-cometvisu">Update der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#installation-auf-mobilen-geraten">Installation auf mobilen Geräten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Installation der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../allgemein.html">Voraussetzungen für die Installation</a></li>
+      <li class="breadcrumb-item active">FastCGI-Backend (cometvisu-knx-fcgi)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<section id="fastcgi-backend-cometvisu-knx-fcgi">
+<span id="fcgi"></span><h1>FastCGI-Backend (cometvisu-knx-fcgi)<a class="headerlink" href="#fastcgi-backend-cometvisu-knx-fcgi" title="Link to this heading"></a></h1>
+<p>Seit der CometVisu Version 1.0.0 ist das FastCGI-Backend
+<code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span></code> der empfohlene Weg, um die CometVisu mit dem KNX-Bus
+zu verbinden. Bis zur Version 1.2.1 hieß es <code class="docutils literal notranslate"><span class="pre">cometvisu-knxd-fcgi</span></code>.</p>
+<p>Das Backend implementiert das CometVisu-Protokoll mit den Endpunkten <code class="docutils literal notranslate"><span class="pre">l</span></code>
+(Login), <code class="docutils literal notranslate"><span class="pre">r</span></code> (Lesen) und <code class="docutils literal notranslate"><span class="pre">w</span></code> (Schreiben) und stellt es über einen
+FastCGI-Socket bereit, den es selbst öffnet. Der Webserver muss nur noch
+die drei URL-Pfade an diesen Socket weiterleiten - CGI-Programme werden
+nicht mehr benötigt.</p>
+<p>Das Protokoll selbst ist im CometVisu-Wiki spezifiziert
+(<a class="reference external" href="https://github.com/CometVisu/CometVisu/wiki/Protokoll">Protokoll</a>).</p>
+<section id="transporte">
+<h2>Transporte<a class="headerlink" href="#transporte" title="Link to this heading"></a></h2>
+<p>Das Backend unterstützt drei Transporte für den Zugriff auf den KNX-Bus.
+Der Transport muss explizit ausgewählt werden, einen Standard gibt es
+nicht.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT</span></code></p></th>
+<th class="head"><p>Bus-Zugriff</p></th>
+<th class="head"><p>Voraussetzung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code></p></td>
+<td><p>ein lokaler <code class="docutils literal notranslate"><span class="pre">knxd</span></code>-Daemon über dessen Unix-Socket</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code> installiert und gestartet</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code></p></td>
+<td><p>KNXnet/IP-Tunneling-Client</p></td>
+<td><p>eine KNX IP-Schnittstelle oder ein KNX IP-Router mit einem freien
+Tunnel</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ip-routing</span></code></p></td>
+<td><p>KNXnet/IP-Multicast-Routing-Teilnehmer</p></td>
+<td><p>ein KNX IP-Router im selben Netzwerksegment (Multicast)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Die Transporte <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> und <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> benötigen <strong>keinen knxd</strong>.
+Damit verhält sich die CometVisu wie ein klassisches KNX-Gerät:</p>
+<ul class="simple">
+<li><p>Bei <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> verbindet sich das Backend als Tunneling-Client mit
+der KNX IP-Schnittstelle bzw. dem KNX IP-Router und erhält von dort eine
+physikalische Adresse zugewiesen.</p></li>
+<li><p>Bei <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> tritt das Backend der KNXnet/IP-Multicast-Gruppe bei
+und nimmt am Routing wie ein KNX IP-Router teil. Es verwendet eine eigene
+physikalische Adresse (<code class="docutils literal notranslate"><span class="pre">KNX_IP_INDIVIDUAL_ADDR</span></code>), die eine freie
+Adresse der Installation sein muss.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Das alte Backend mit den CGI-Programmen <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code> und
+<code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code> von <code class="docutils literal notranslate"><span class="pre">eibd</span></code>/<code class="docutils literal notranslate"><span class="pre">knxd</span></code> funktioniert weiterhin, ist aber
+nicht mehr empfehlenswert. Es wird unter <a class="reference internal" href="install-eibd.html"><span class="doc">Installation von eibd</span></a>
+beschrieben.</p>
+</div>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<section id="voraussetzungen">
+<h3>Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Link to this heading"></a></h3>
+<p>Das Backend ist in C++ geschrieben und muss aus den Quellen gebaut werden.
+Auf einem Debian- oder Ubuntu-System werden die Build-Abhängigkeiten mit</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libfcgi-dev<span class="w"> </span>cmake<span class="w"> </span>g++
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>knxd-dev<span class="w">     </span><span class="c1"># nur für KNX_TRANSPORT=knxd</span>
+</pre></div>
+</div>
+<p>installiert. <code class="docutils literal notranslate"><span class="pre">knxd-dev</span></code> wird nur benötigt, wenn der <code class="docutils literal notranslate"><span class="pre">knxd</span></code>-Transport
+mit kompiliert wird - für <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> und <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> ist es nicht
+erforderlich.</p>
+</section>
+<section id="bauen">
+<h3>Bauen<a class="headerlink" href="#bauen" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CometVisu/cometvisu-knx-fcgi.git
+<span class="nb">cd</span><span class="w"> </span>cometvisu-knx-fcgi
+cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+sudo<span class="w"> </span>cmake<span class="w"> </span>--install<span class="w"> </span>build<span class="w"> </span>--prefix<span class="w"> </span>/usr/local
+</pre></div>
+</div>
+<p>Damit wird das Programm <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/cometvisu-knx-fcgi</span></code> installiert.</p>
+<p>Ein Programm ohne jegliche <code class="docutils literal notranslate"><span class="pre">knxd</span></code>-Abhängigkeit wird mit</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DKNX_BUILD_KNXD_TRANSPORT<span class="o">=</span>OFF
+</pre></div>
+</div>
+<p>gebaut.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p><code class="docutils literal notranslate"><span class="pre">--help</span></code> listet alle Umgebungsvariablen auf. Beim Start protokolliert
+das Backend die tatsächlich verwendete Transport-Konfiguration und die
+wichtigsten Limits.</p>
+</div>
+</section>
+<section id="backend-starten">
+<h3>Backend starten<a class="headerlink" href="#backend-starten" title="Link to this heading"></a></h3>
+<p>Das Backend muss dauerhaft im Hintergrund laufen. Es öffnet den
+FastCGI-Socket selbst und bedient ihn mit einem Pool von
+Arbeiterprozessen. Eine systemd-Unit für einen lokalen <code class="docutils literal notranslate"><span class="pre">knxd</span></code> auf
+derselben Maschine sieht so aus:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">CometVisu KNX FastCGI Backend</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network-online.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">KNX_TRANSPORT=knxd</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">FCGI_SOCKET=/run/cometvisu-fcgi/fcgi.sock</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">FCGI_WORKERS=9</span>
+<span class="na">RuntimeDirectory</span><span class="o">=</span><span class="s">cometvisu-fcgi</span>
+<span class="na">RuntimeDirectoryMode</span><span class="o">=</span><span class="s">0750</span>
+<span class="na">User</span><span class="o">=</span><span class="s">www-data</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">www-data</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/cometvisu-knx-fcgi</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+<p>Die Variablen im Abschnitt <code class="docutils literal notranslate"><span class="pre">[Service]</span></code> werden unter <a class="reference internal" href="#einstellungen">Einstellungen</a>
+beschrieben. Wenn der Dienst unter dem Benutzer des Webservers läuft,
+kann der Webserver direkt auf den Unix-Socket zugreifen. Andernfalls muss
+der Benutzer des Webservers Mitglied der Gruppe des Sockets sein, denn der
+Socket wird mit dem Modus <code class="docutils literal notranslate"><span class="pre">0660</span></code> angelegt.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>cometvisu-fcgi
+</pre></div>
+</div>
+<p>Für einen KNXnet/IP-Transport ändern sich nur <code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT</span></code> und die
+passenden <code class="docutils literal notranslate"><span class="pre">KNX_IP_*</span></code>-Variablen, z.B.:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># KNX IP-Schnittstelle / -Router als Tunnel</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">KNX_TRANSPORT=ip-tunnel</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">KNX_IP_HOST=192.168.0.10</span>
+
+<span class="c1"># KNX IP-Router im lokalen Netzwerk (Multicast)</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">KNX_TRANSPORT=ip-routing</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">KNX_IP_IFACE=eth0</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">KNX_IP_INDIVIDUAL_ADDR=15.15.250</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="webserver">
+<h2>Webserver<a class="headerlink" href="#webserver" title="Link to this heading"></a></h2>
+<p>Die CometVisu verwendet die Standard-Backend-URL <code class="docutils literal notranslate"><span class="pre">/cgi-bin/</span></code> mit den
+Ressourcen <code class="docutils literal notranslate"><span class="pre">l</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code> und <code class="docutils literal notranslate"><span class="pre">w</span></code>. Diese drei Pfade müssen an den
+FastCGI-Socket des Backends weitergeleitet werden.</p>
+<section id="apache">
+<h3>Apache<a class="headerlink" href="#apache" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>a2enmod<span class="w"> </span>proxy_fcgi
+sudo<span class="w"> </span>a2enconf<span class="w"> </span>cometvisu-fcgi
+</pre></div>
+</div>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c"># /etc/apache2/conf-available/cometvisu-fcgi.conf</span>
+<span class="nb">ProxyPass</span><span class="w"> </span><span class="s2">"/cgi-bin/l"</span><span class="w"> </span><span class="s2">"unix:/run/cometvisu-fcgi/fcgi.sock|fcgi://localhost/l"</span>
+<span class="nb">ProxyPass</span><span class="w"> </span><span class="s2">"/cgi-bin/r"</span><span class="w"> </span><span class="s2">"unix:/run/cometvisu-fcgi/fcgi.sock|fcgi://localhost/r"</span>
+<span class="nb">ProxyPass</span><span class="w"> </span><span class="s2">"/cgi-bin/w"</span><span class="w"> </span><span class="s2">"unix:/run/cometvisu-fcgi/fcgi.sock|fcgi://localhost/w"</span>
+</pre></div>
+</div>
+<p>Wenn das Backend statt auf einem Unix-Socket auf einem TCP-Port lauscht,
+wird <code class="docutils literal notranslate"><span class="pre">fcgi://127.0.0.1:9000</span></code> als Ziel verwendet.</p>
+</section>
+<section id="nginx">
+<h3>nginx<a class="headerlink" href="#nginx" title="Link to this heading"></a></h3>
+<div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="k">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">^/cgi-bin/(l|r|w)$</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="s">fastcgi_params</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">fastcgi_pass</span><span class="w"> </span><span class="s">unix:/run/cometvisu-fcgi/fcgi.sock</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="lighttpd">
+<h3>lighttpd<a class="headerlink" href="#lighttpd" title="Link to this heading"></a></h3>
+<div class="highlight-lighttpd notranslate"><div class="highlight"><pre><span></span><span class="k">server.modules</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s2">"mod_fastcgi"</span><span class="w"> </span><span class="p">)</span>
+
+<span class="k">fastcgi.server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s2">"/cgi-bin/"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">((</span>
+<span class="w">        </span><span class="s2">"socket"</span><span class="w">       </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"/run/cometvisu-fcgi/fcgi.sock"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"check-local"</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"disable"</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Das Programm <code class="docutils literal notranslate"><span class="pre">rrdfetch</span></code> für das <a class="reference internal" href="../../config/widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Diagramm-Plugin</span></a> ist
+weiterhin ein normales CGI-Programm in <code class="docutils literal notranslate"><span class="pre">/usr/lib/cgi-bin/</span></code> und wird
+unabhängig vom FastCGI-Backend an dieses Verzeichnis weitergeleitet.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Das Backend führt selbst keine Authentifizierung durch - die Zugangsdaten
+an <code class="docutils literal notranslate"><span class="pre">/l</span></code> werden nicht geprüft. Die Authentifizierung muss der Webserver
+(bzw. der vorgeschaltete Proxy) übernehmen. Das Backend darf
+niemals direkt aus einem nicht vertrauenswürdigen Netzwerk erreichbar
+sein.</p>
+</div>
+</section>
+</section>
+<section id="einstellungen">
+<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link to this heading"></a></h2>
+<p>Das Backend wird über Umgebungsvariablen konfiguriert. Der Transport wird
+mit <code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT</span></code> gewählt; ein nicht gesetzter oder unbekannter Wert
+führt zu einem Startfehler.</p>
+<section id="allgemeine-einstellungen">
+<h3>Allgemeine Einstellungen<a class="headerlink" href="#allgemeine-einstellungen" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Standard</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT</span></code></p></td>
+<td><p><em>(erforderlich)</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> oder <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FCGI_SOCKET</span></code></p></td>
+<td><p><em>(erforderlich)</em></p></td>
+<td><p>Listen-Socket: ein Dateipfad für einen Unix-Socket oder
+<code class="docutils literal notranslate"><span class="pre">host:port</span></code> für TCP. Das Backend öffnet den Socket selbst. Ein
+Unix-Socket erhält den Modus <code class="docutils literal notranslate"><span class="pre">0660</span></code>. Ein TCP-Socket hat keine
+Authentifizierung und sollte deshalb an eine Loopback-Adresse
+(<code class="docutils literal notranslate"><span class="pre">127.0.0.1:9000</span></code>) gebunden werden.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FCGI_WORKERS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">20</span></code></p></td>
+<td><p>Anzahl der Arbeiterprozesse (1 - 256). Zwei Arbeiter bleiben für
+<code class="docutils literal notranslate"><span class="pre">/w</span></code> und <code class="docutils literal notranslate"><span class="pre">/l</span></code> reserviert, so dass höchstens
+<code class="docutils literal notranslate"><span class="pre">FCGI_WORKERS</span> <span class="pre">-</span> <span class="pre">2</span></code> Clients gleichzeitig warten können.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LONGPOLL_TIMEOUT_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">300</span></code></p></td>
+<td><p>Maximale Dauer eines Long-Polls von <code class="docutils literal notranslate"><span class="pre">/r</span></code> in Sekunden (1 - 330).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FCGI_CONNECTION_TIMEOUT_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">330</span></code></p></td>
+<td><p>Maximale Zeit, die eine FastCGI-Verbindung ohne Fortschritt
+verbringen darf.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_TX_MAX_PER_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td><p>Obergrenze für ausgehende KNX-Telegramme pro Sekunde über alle
+Clients hinweg (1 - 1000).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_CACHE_CAPACITY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">16384</span></code></p></td>
+<td><p>Anzahl der Gruppenadressen, die im gemeinsamen Cache gehalten
+werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SESSION_TTL_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1800</span></code></p></td>
+<td><p>Lebensdauer einer Session in Sekunden.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SESSION_MAX</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10000</span></code></p></td>
+<td><p>Maximale Anzahl gleichzeitiger Sessions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BASE_URL</span></code></p></td>
+<td><p><em>(nicht gesetzt)</em></p></td>
+<td><p>URL-Präfix, das das Backend in der Login-Antwort bekannt gibt.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ADDRESS_PREFIX</span></code></p></td>
+<td><p><em>(leer)</em></p></td>
+<td><p>Namensraum für Adressen ohne Namensraum (<code class="docutils literal notranslate"><span class="pre">ADDRESS_PREFIX=KNX</span></code>
+macht aus <code class="docutils literal notranslate"><span class="pre">1/2/3</span></code> die Adresse <code class="docutils literal notranslate"><span class="pre">KNX:1/2/3</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LOGIN_EXTRA_CONFIG</span></code></p></td>
+<td><p><em>(nicht gesetzt)</em></p></td>
+<td><p>Rohe JSON-Einträge, die an die Konfiguration der Login-Antwort
+angehängt werden.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DEBUG_BACKEND</span></code></p></td>
+<td><p><em>(nicht gesetzt)</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code> aktiviert die Debug-Ausgabe aller Anfragen und des
+Bus-Verkehrs auf stderr.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Die Variablen <code class="docutils literal notranslate"><span class="pre">FCGI_WORKERS</span></code>, <code class="docutils literal notranslate"><span class="pre">LONGPOLL_TIMEOUT_SEC</span></code> und
+<code class="docutils literal notranslate"><span class="pre">KNX_TX_MAX_PER_SEC</span></code> müssen im Wesentlichen an die Anzahl der
+gleichzeitigen Benutzer angepasst werden:</p>
+<ul class="simple">
+<li><p>Jeder Benutzer der CometVisu hält einen Long-Poll offen. Mit dem
+Standardwert von 20 Arbeitern sind 18 Long-Polls gleichzeitig möglich.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KNX_TX_MAX_PER_SEC</span></code> schützt den Bus vor zu vielen ausgehenden
+Telegrammen. Der KNX-Bus selbst wird oberhalb von etwa 20 bis 30
+Telegrammen pro Sekunde unzuverlässig.</p></li>
+</ul>
+</section>
+<section id="transport-knxd">
+<h3>Transport <code class="docutils literal notranslate"><span class="pre">knxd</span></code><a class="headerlink" href="#transport-knxd" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Standard</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNXD_SOCKET</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/run/knx</span></code></p></td>
+<td><p>Pfad zum Unix-Socket des <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Der Cache für Gruppenadressen des <code class="docutils literal notranslate"><span class="pre">knxd</span></code> muss aktiviert sein, da das
+Backend sonst die aktuellen Werte nicht vom Bus lesen kann. Das Backend verwendet
+für alle Arbeiter genau <strong>eine</strong> Client-Verbindung des <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, die
+Anzahl der Client-Verbindungen des <code class="docutils literal notranslate"><span class="pre">knxd</span></code> hängt also nicht mehr von
+<code class="docutils literal notranslate"><span class="pre">FCGI_WORKERS</span></code> ab. Sie muss nur Platz für diese Verbindung und
+gegebenenfalls für Werkzeuge wie <code class="docutils literal notranslate"><span class="pre">knxtool</span></code> lassen.</p>
+</section>
+<section id="transport-ip-tunnel">
+<h3>Transport <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code><a class="headerlink" href="#transport-ip-tunnel" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Standard</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_HOST</span></code></p></td>
+<td><p><em>(erforderlich)</em></p></td>
+<td><p>Adresse der KNX IP-Schnittstelle bzw. des KNX IP-Routers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_PORT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3671</span></code></p></td>
+<td><p>KNXnet/IP-UDP-Port.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_LOCAL_ADDR</span></code></p></td>
+<td><p><em>(Wahl des Betriebssystems)</em></p></td>
+<td><p>Lokale Adresse, die dem Gerät bekannt gegeben wird. Hilfreich, wenn
+das Backend hinter NAT oder auf einem Host mit mehreren Netzwerken
+läuft.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_NAT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code> aktiviert den NAT-Modus der Tunnel-Verbindung.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_HEARTBEAT_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">60</span></code></p></td>
+<td><p>Intervall der Verbindungsstatus-Abfrage (10 - 86400).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_ACK_TIMEOUT_MS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1000</span></code></p></td>
+<td><p>Zeitlimit, bevor ein Telegramm wiederholt wird (10 - 60000).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_RETRIES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p>Anzahl der Wiederholungen pro Telegramm (1 - 10).</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Eine KNX IP-Schnittstelle bietet üblicherweise nur eine kleine Anzahl
+an Tunnel-Verbindungen (oft 4). Eine davon wird von der CometVisu
+belegt. Andere ETS-Verbindungen müssen gegebenenfalls geschlossen
+werden oder das Gerät muss mehr Tunnel anbieten.</p>
+</div>
+</section>
+<section id="transport-ip-routing">
+<h3>Transport <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code><a class="headerlink" href="#transport-ip-routing" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Standard</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_MULTICAST</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">224.0.23.12</span></code></p></td>
+<td><p>Multicast-Gruppe des KNXnet/IP-Routings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_IFACE</span></code></p></td>
+<td><p><em>(Standard-Route)</em></p></td>
+<td><p>Netzwerk-Interface für den Beitritt zur Multicast-Gruppe.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_INDIVIDUAL_ADDR</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">15.15.250</span></code></p></td>
+<td><p>Physikalische Adresse, die als Quelle der Routing-Telegramme
+verwendet wird. Dies muss eine freie Adresse der Installation sein -
+ein Router weist die Adresse <code class="docutils literal notranslate"><span class="pre">0.0.0</span></code> zurück.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_PORT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3671</span></code></p></td>
+<td><p>KNXnet/IP-UDP-Port.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Bei <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> kann jeder Teilnehmer der Multicast-Gruppe
+Telegramme in den Bus senden und den gesamten Bus-Verkehr mitlesen. Das
+Backend gehört deshalb nur in ein vertrauenswürdiges Netzwerksegment
+(oder ein eigenes VLAN).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> ist die CometVisu ein vollwertiger
+Routing-Teilnehmer. Es sollte nur verwendet werden, wenn der KNX
+IP-Router entsprechend konfiguriert ist und keine andere Software auf
+demselben Host mit derselben physikalischen Adresse das Routing
+durchführt.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span> <span class="pre">--discover</span></code> werden alle KNXnet/IP-Geräte im
+lokalen Netzwerk mit ihrer physikalischen und ihrer Multicast-Adresse
+aufgelistet.</p>
+</div>
+</section>
+</section>
+<section id="diagnose">
+<h2>Diagnose<a class="headerlink" href="#diagnose" title="Link to this heading"></a></h2>
+<p>Der Zustand des Backends lässt sich mit einer einfachen Anfrage prüfen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">"http://localhost/cgi-bin/l"</span>
+</pre></div>
+</div>
+<p>Die Antwort enthält die Protokoll-Version, eine Session und - im normalen
+Betrieb - die Version des Backends.</p>
+<p>Solange die Bus-Verbindung verloren ist, hängt das Backend an die Antworten
+von <code class="docutils literal notranslate"><span class="pre">/r</span></code> und <code class="docutils literal notranslate"><span class="pre">/w</span></code> einen Ausfall-Block an. Der Schlüssel dieses Blocks
+ist <code class="docutils literal notranslate"><span class="pre">knxd</span></code> beim <code class="docutils literal notranslate"><span class="pre">knxd</span></code>-Transport und <code class="docutils literal notranslate"><span class="pre">bus</span></code> bei den
+KNXnet/IP-Transporten. Das aktuelle CometVisu-Frontend wertet nur den
+Schlüssel <code class="docutils literal notranslate"><span class="pre">knxd</span></code> aus, daher wird ein Ausfall einer <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code>- oder
+<code class="docutils literal notranslate"><span class="pre">ip-routing</span></code>-Verbindung noch nicht in der Oberfläche angezeigt - die
+Werte ändern sich dann einfach nicht mehr.</p>
+<p>Eine Debug-Ausgabe aller Anfragen und des Bus-Verkehrs wird mit
+<code class="docutils literal notranslate"><span class="pre">DEBUG_BACKEND=1</span></code> aktiviert:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Service]</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">DEBUG_BACKEND=1</span>
+</pre></div>
+</div>
+</section>
+<section id="aktualisierung-von-1-x">
+<h2>Aktualisierung von 1.x<a class="headerlink" href="#aktualisierung-von-1-x" title="Link to this heading"></a></h2>
+<p>Version 2.0 ändert vier Dinge, die eine Installation nachvollziehen muss:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>1.x</p></th>
+<th class="head"><p>2.0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Programm <code class="docutils literal notranslate"><span class="pre">cometvisu-knxd-fcgi</span></code></p></td>
+<td><p>Programm <code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Transport implizit <code class="docutils literal notranslate"><span class="pre">knxd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT</span></code> muss explizit gesetzt werden</p></td>
+</tr>
+<tr class="row-even"><td><p>Start über <code class="docutils literal notranslate"><span class="pre">spawn-fcgi</span></code> mit stdin/stdout</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FCGI_SOCKET</span></code> ist erforderlich, das Backend öffnet den Socket
+selbst</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/r</span></code> und <code class="docutils literal notranslate"><span class="pre">/w</span></code> funktionierten ohne den Session-Parameter <code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>beide benötigen die Session aus <code class="docutils literal notranslate"><span class="pre">/l</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Installationen, die das Programm noch unter dem alten Namen starten, können
+einen symbolischen Link <code class="docutils literal notranslate"><span class="pre">cometvisu-knxd-fcgi</span> <span class="pre">-&gt;</span> <span class="pre">cometvisu-knx-fcgi</span></code>
+anlegen. Alles andere benötigt eine explizite Einstellung:
+<code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT=knxd</span></code> behält den alten Bus-Zugriff bei, und der Webserver
+muss wie oben beschrieben von CGI auf den FastCGI-Socket umgestellt werden.</p>
+</section>
+<section id="docker-container">
+<h2>Docker-Container<a class="headerlink" href="#docker-container" title="Link to this heading"></a></h2>
+<p>Der offizielle CometVisu-Docker-Container enthält das FastCGI-Backend
+bereits und konfiguriert es automatisch. Die Anschlussvarianten werden in
+<a class="reference internal" href="../docker.html"><span class="doc">Installation mittels Docker-Container</span></a> beschrieben.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../allgemein.html" class="btn btn-neutral float-left" title="Voraussetzungen für die Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="install-eibd.html" class="btn btn-neutral float-right" title="Installation von eibd" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 1.1.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versionen</dt>
+        
+        <dd><a href="../../../../0.10/manual">0.10.2</a>
+        </dd>
+        
+        <dd><a href="../../../../0.11/manual">0.11.2</a>
+        </dd>
+        
+        <dd><a href="../../../../0.12/manual">0.12.6</a>
+        </dd>
+        
+        <dd><a href="../../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+        <dd><a href="../../../../1.1/manual">1.1.0-dev</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

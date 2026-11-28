@@ -1,3 +1,9 @@
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -113,7 +119,9 @@
         });
         this._chart.setMinY(minY || null);
         this._chart.setMaxY(maxY || null);
-        this._xBarScale.domain(new d3.InternSet(this._chart.data.times));
+        this._xBarScale.domain(new d3.InternSet(_toConsumableArray(this._chart.data.times).sort(function (a, b) {
+          return a - b;
+        })));
         this._element.selectAll('g').data(stack).join('g').attr('fill', function (d) {
           return cv.util.Color.opacify(_this2._colorScale(d.key), _this2._chart.getDatasetOpacity());
         }).selectAll('rect')
@@ -133,4 +141,4 @@
   cv.ui.structure.tile.components.chart.StackedBarGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StackedBarGroup.js.map?dt=1794845750887
+//# sourceMappingURL=StackedBarGroup.js.map?dt=1795864185684

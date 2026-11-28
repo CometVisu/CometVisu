@@ -213,4 +213,4 @@
   cv.plugins.Speech.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Speech.js.map?dt=1794845745710
+//# sourceMappingURL=Speech.js.map?dt=1795864180293

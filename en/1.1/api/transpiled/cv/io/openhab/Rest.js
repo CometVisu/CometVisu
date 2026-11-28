@@ -72,6 +72,7 @@
       __P_771_1: null,
       __P_771_4: null,
       __P_771_5: 0,
+      __P_771_6: null,
       getBackend: function getBackend() {
         return {};
       },
@@ -95,7 +96,7 @@
             params.push('serviceId=' + parts[0]);
           }
           if (map.start) {
-            var endTime = map.end ? this.__P_771_6(map.end) : new Date();
+            var endTime = map.end ? this.__P_771_7(map.end) : new Date();
             var startTime = new Date();
             var match = /^end-([\d]*)([\w]+)$/.exec(map.start);
             if (match) {
@@ -138,7 +139,7 @@
         }
         return null;
       },
-      __P_771_6: function __P_771_6(time) {
+      __P_771_7: function __P_771_7(time) {
         if (time === 'now') {
           return new Date();
         } else if (/^[\d]+$/.test(time)) {
@@ -195,7 +196,7 @@
         this.authorize(req);
         return req;
       },
-      __P_771_7: function __P_771_7(type, state) {
+      __P_771_8: function __P_771_8(type, state) {
         switch (type.toLowerCase()) {
           case 'decimal':
           case 'percent':
@@ -241,7 +242,7 @@
                 };
                 // register member addresses in model
                 model.addAddress(obj.name, null, _this.getName());
-                if (_this.__P_771_7(obj.type, obj.state)) {
+                if (_this.__P_771_8(obj.type, obj.state)) {
                   active++;
                   map[obj.name].active = true;
                 }
@@ -303,21 +304,7 @@
 
             // add additional listeners
             //Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
-            this.eventSource.onerror = function () {
-              this.error('connection lost');
-              this.setConnected(false);
-              var retryIn = 5000;
-              if (this.__P_771_5 > 10) {
-                retryIn = 60000;
-              }
-              this.__P_771_5++;
-              this.debug("retrying connection in ".concat(retryIn / 1000, " seconds"));
-              setTimeout(function () {
-                this.eventSource.close();
-                this.eventSource = null;
-                this.subscribe(this.__P_771_4);
-              }.bind(this), retryIn);
-            }.bind(this);
+            this.eventSource.onerror = this.__P_771_9.bind(this);
             this.eventSource.onopen = function () {
               this.debug('connection established');
               this.setConnected(true);
@@ -325,6 +312,26 @@
             }.bind(this);
           }
         }
+      },
+      __P_771_9: function __P_771_9() {
+        var _this2 = this;
+        this.error('connection lost');
+        this.setConnected(false);
+        if (this.__P_771_6) {
+          // a reconnect is already scheduled
+          return;
+        }
+        var retryIn = this.__P_771_5 > 10 ? 60000 : 5000;
+        this.__P_771_5++;
+        this.debug("retrying connection in ".concat(retryIn / 1000, " seconds"));
+        this.__P_771_6 = setTimeout(function () {
+          _this2.__P_771_6 = null;
+          if (_this2.eventSource) {
+            _this2.eventSource.close();
+            _this2.eventSource = null;
+            _this2.subscribe(_this2.__P_771_4);
+          }
+        }, retryIn);
       },
       addSubscription: function addSubscription(address) {
         if (!this.__P_771_4) {
@@ -335,6 +342,10 @@
       },
       terminate: function terminate() {
         this.debug('terminating connection');
+        if (this.__P_771_6) {
+          clearTimeout(this.__P_771_6);
+          this.__P_771_6 = null;
+        }
         if (this.eventSource) {
           this.eventSource.close();
           this.eventSource = null;
@@ -342,7 +353,7 @@
         }
       },
       handleMessage: function handleMessage(payload) {
-        var _this2 = this;
+        var _this3 = this;
         if (payload.type === 'message') {
           this.record('read', {
             type: payload.type,
@@ -360,12 +371,12 @@
             if (Object.prototype.hasOwnProperty.call(this.__P_771_1, item)) {
               var groupNames = this.__P_771_1[item];
               groupNames.forEach(function (groupName) {
-                var group = _this2.__P_771_0[groupName];
+                var group = _this3.__P_771_0[groupName];
                 var active = 0;
                 group.members[item].state = change.value;
                 Object.keys(group.members).forEach(function (memberName) {
                   var member = group.members[memberName];
-                  if (_this2.__P_771_7(member.type, member.state)) {
+                  if (_this3.__P_771_8(member.type, member.state)) {
                     active++;
                     member.active = true;
                   } else {
@@ -409,7 +420,7 @@
         this.error(error);
       },
       login: function login(loginOnly, credentials, callback, context) {
-        var _this3 = this;
+        var _this4 = this;
         if (credentials && credentials.username) {
           // just saving the credentials for later use as we are using basic authentication
           this.__P_771_3 = 'Bearer ' + credentials.username;
@@ -419,7 +430,7 @@
         var req = this.createAuthorizedRequest();
         req.addListener('success', function (e) {
           var req = e.getTarget();
-          _this3.setServer(req.getResponseHeader('Server'));
+          _this4.setServer(req.getResponseHeader('Server'));
           if (callback) {
             callback.call(context);
           }
@@ -520,4 +531,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1794845785403
+//# sourceMappingURL=Rest.js.map?dt=1795864221527

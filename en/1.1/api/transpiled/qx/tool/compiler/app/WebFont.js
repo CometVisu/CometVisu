@@ -426,4 +426,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.WebFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFont.js.map?dt=1794845773635
+//# sourceMappingURL=WebFont.js.map?dt=1795864208981

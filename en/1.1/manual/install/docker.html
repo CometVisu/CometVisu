@@ -158,8 +158,12 @@ it will be overwritten with the newly created container.</p>
 <h2>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h2>
 <section id="environment-parameters">
 <span id="dockerenvironment"></span><h3>Environment parameters<a class="headerlink" href="#environment-parameters" title="Link to this heading"></a></h3>
-<p>The container gets its configuration by the environment variables.
-Available is:</p>
+<p>The container is configured by environment variables. For the connection to
+the KNX bus it contains the FastCGI backend <code class="docutils literal notranslate"><span class="pre">cometvisu-knx-fcgi</span></code> (up to
+FastCGI backend version 1.2.1: <code class="docutils literal notranslate"><span class="pre">cometvisu-knxd-fcgi</span></code>) together with Apache
+and PHP, so no additional software is needed.</p>
+<section id="backend-and-web-server">
+<h4>Backend and web server<a class="headerlink" href="#backend-and-web-server" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
@@ -168,50 +172,334 @@ Available is:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>KNX_INTERFACE</p></td>
-<td><p>iptn:172.17.0.1:3700</p></td>
-<td><p>Setting this to empty string, will prevent the knxd from being started</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BACKEND_NAME</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code></p></td>
+<td><p>Backend name: <code class="docutils literal notranslate"><span class="pre">knxd</span></code> (KNX), <code class="docutils literal notranslate"><span class="pre">openhab</span></code> or <code class="docutils literal notranslate"><span class="pre">mqtt</span></code>. For the KNX bus
+the name is <code class="docutils literal notranslate"><span class="pre">knxd</span></code> for all transports.</p></td>
 </tr>
-<tr class="row-odd"><td><p>KNX_PA</p></td>
-<td><p>1.1.238</p></td>
-<td><p>Physical address (PA) for the <code class="docutils literal notranslate"><span class="pre">knxd</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BACKEND_KNXD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;CGI_URL_PATH&gt;l</span></code></p></td>
+<td><p>URL of the <code class="docutils literal notranslate"><span class="pre">l</span></code> (login) resource of the KNX backend.</p></td>
 </tr>
-<tr class="row-even"><td><p>KNXD_PARAMETERS</p></td>
-<td><p>-u -d/var/log/eibd.log -c</p></td>
-<td><p>Additional parameters for the <code class="docutils literal notranslate"><span class="pre">knxd</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BACKEND_OPENHAB</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;CGI_URL_PATH&gt;</span></code></p></td>
+<td><p>Path to the openHAB REST-API.</p></td>
 </tr>
-<tr class="row-odd"><td><p>CGI_URL_PATH</p></td>
-<td><p>/cgi-bin/</p></td>
-<td><p>Set the URL prefix to find the <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code> resources</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BACKEND_MQTT</span></code></p></td>
+<td><p><em>(empty)</em></p></td>
+<td><p>URL of the MQTT broker (WebSocket interface).</p></td>
 </tr>
-<tr class="row-even"><td><p>BACKEND_PROXY_SOURCE</p></td>
-<td></td>
-<td><p>Proxy paths starting with this value, e.g. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> for openHAB
-backend</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CGI_URL_PATH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/cgi-bin/</span></code></p></td>
+<td><p><strong>Deprecated:</strong> URL prefix of the <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code> resources.</p></td>
 </tr>
-<tr class="row-odd"><td><p>BACKEND_PROXY_TARGET</p></td>
-<td></td>
-<td><p>Target URL for proxying the requests to BACKEND_PROXY_SOURCE, e.g.
-<cite>http://&lt;openhab-server-ip-address&gt;:8080/rest</cite> for openHAB backend</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_SOURCE</span></code></p></td>
+<td><p><em>(empty)</em></p></td>
+<td><p>Proxy paths starting with this value, e.g. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> for the openHAB
+backend.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_TARGET</span></code></p></td>
+<td><p><em>(empty)</em></p></td>
+<td><p>Target URL for proxying the requests to <code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_SOURCE</span></code>,
+e.g. <code class="docutils literal notranslate"><span class="pre">http://&lt;openhab-server-ip-address&gt;:8080/rest</span></code> for the openHAB
+backend.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">APACHE_PORT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">80</span></code></p></td>
+<td><p>Expert option: port Apache listens on inside the container. When
+changed, publish with <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">&lt;host-port&gt;:&lt;APACHE_PORT&gt;</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ACCESS_LOG</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>Show the access log of the web server when set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">STOP_ON_BAD_HEALTH</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>Stop the container on a failed health check when set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
-<section id="classiscal-knxd-with-eibread-cgi-eibwrite-cgi">
-<h4>Classiscal (<code class="docutils literal notranslate"><span class="pre">knxd</span></code> with <code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code>/<code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code>)<a class="headerlink" href="#classiscal-knxd-with-eibread-cgi-eibwrite-cgi" title="Link to this heading"></a></h4>
-<p>For the classical backend a <code class="docutils literal notranslate"><span class="pre">knxd</span></code> is used. It connects the CometVisu via
-<code class="docutils literal notranslate"><span class="pre">eibread-cgi</span></code> and <code class="docutils literal notranslate"><span class="pre">eibwrite-cgi</span></code> to the KNX bus.</p>
-<p>The most important environment parameter is <code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code> which must be
-adapted to the local system to connect to the KNX interface.
-The documentation for the currently used version 0.0.5.1 of the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>
-can be consulted at the
-<a class="reference external" href="https://github.com/knxd/knxd/wiki/Command-line-parameters/e49c9d1a2a81cb692cc88683920108f032d2b9bc">knxd wiki</a>.</p>
+</section>
+<section id="knx-connection-fastcgi-backend">
+<h4>KNX connection (FastCGI backend)<a class="headerlink" href="#knx-connection-fastcgi-backend" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">knxd</span></code></p></td>
+<td><p>Transport to the KNX bus: <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> or <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code>.
+An empty value means <code class="docutils literal notranslate"><span class="pre">knxd</span></code>; an unknown value stops the container.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FCGI_SOCKET</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/run/cometvisu-fcgi.sock</span></code></p></td>
+<td><p>FastCGI listen socket of the backend. Apache forwards
+<code class="docutils literal notranslate"><span class="pre">/cgi-bin/l</span></code>, <code class="docutils literal notranslate"><span class="pre">/cgi-bin/r</span></code> and <code class="docutils literal notranslate"><span class="pre">/cgi-bin/w</span></code> to it.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FCGI_WORKERS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">9</span></code></p></td>
+<td><p>Number of worker processes (2 - 256). Two workers are reserved for
+<code class="docutils literal notranslate"><span class="pre">/w</span></code> and <code class="docutils literal notranslate"><span class="pre">/l</span></code>, so <code class="docutils literal notranslate"><span class="pre">FCGI_WORKERS</span> <span class="pre">-</span> <span class="pre">2</span></code> clients can long-poll at
+the same time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LONGPOLL_TIMEOUT_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">300</span></code></p></td>
+<td><p>Maximum duration of a long-poll of <code class="docutils literal notranslate"><span class="pre">/r</span></code> in seconds.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_TX_MAX_PER_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td><p>Upper bound for outgoing KNX telegrams per second over all clients.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DEBUG_BACKEND</span></code></p></td>
+<td><p><em>(unset)</em></p></td>
+<td><p>Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> to enable the debug logging of the FastCGI backend.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p><strong>Only for ``KNX_TRANSPORT=knxd``:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code>: the container starts
+the bundled <code class="docutils literal notranslate"><span class="pre">knxd</span></code>. <code class="docutils literal notranslate"><span class="pre">extern</span></code>: do <strong>not</strong> start the <code class="docutils literal notranslate"><span class="pre">knxd</span></code> and
+use the socket of an external <code class="docutils literal notranslate"><span class="pre">knxd</span></code> (see <code class="docutils literal notranslate"><span class="pre">KNXD_SOCKET</span></code>).
+<code class="docutils literal notranslate"><span class="pre">true</span></code>: start neither the <code class="docutils literal notranslate"><span class="pre">knxd</span></code> nor the FastCGI backend. The
+<code class="docutils literal notranslate"><span class="pre">ip-*</span></code> transports ignore this variable and always start the
+FastCGI backend.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNXD_SOCKET</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/run/knx</span></code></p></td>
+<td><p><strong>Only for ``KNX_TRANSPORT=knxd``:</strong> path to the Unix socket of an
+external <code class="docutils literal notranslate"><span class="pre">knxd</span></code>. Only used with <code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD=extern</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Since version 2.0 the FastCGI backend uses exactly <strong>one</strong> connection to
+the <code class="docutils literal notranslate"><span class="pre">knxd</span></code> for all workers. <code class="docutils literal notranslate"><span class="pre">FCGI_WORKERS</span></code> is therefore independent of
+<code class="docutils literal notranslate"><span class="pre">KNX_CLIENT_PAS</span></code>; the number of client connections of the <code class="docutils literal notranslate"><span class="pre">knxd</span></code> only
+has to leave room for that one connection and, if needed, for tools like
+<code class="docutils literal notranslate"><span class="pre">knxtool</span></code>.</p>
+</section>
+<section id="transport-knxd-knxd-inside-the-container">
+<h4>Transport <code class="docutils literal notranslate"><span class="pre">knxd</span></code> (<code class="docutils literal notranslate"><span class="pre">knxd</span></code> inside the container)<a class="headerlink" href="#transport-knxd-knxd-inside-the-container" title="Link to this heading"></a></h4>
+<p>This is the default. The container starts a bundled <code class="docutils literal notranslate"><span class="pre">knxd</span></code> and the
+FastCGI backend. The most important parameter is <code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code> which
+has to be adapted to the local system.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code></p></td>
+<td><p><em>(empty)</em></p></td>
+<td><p>KNX interface for the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>, in the form
+<code class="docutils literal notranslate"><span class="pre">&lt;backend&gt;:&lt;address&gt;:&lt;port&gt;</span></code>. <strong>Required</strong> when the container
+starts the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>. <code class="docutils literal notranslate"><span class="pre">iptn:&lt;ip&gt;:&lt;port&gt;</span></code> selects KNXnet/IP
+tunneling, e.g. <code class="docutils literal notranslate"><span class="pre">iptn:192.168.0.10:3671</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_PA</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.1.238</span></code></p></td>
+<td><p>Physical address (PA) of the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_CLIENT_PAS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.1.239:10</span></code></p></td>
+<td><p>Physical address and number of client connections
+(<code class="docutils literal notranslate"><span class="pre">&lt;address&gt;:&lt;count&gt;</span></code>) that the <code class="docutils literal notranslate"><span class="pre">knxd</span></code> offers. At least 2
+connections are required.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE_OPTIONS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-B</span> <span class="pre">single</span> <span class="pre">-A</span> <span class="pre">retry-delay=1</span></code></p></td>
+<td><p>Additional parameters for the KNX interface of the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNXD_PARAMETERS</span></code></p></td>
+<td><p><em>(empty)</em></p></td>
+<td><p>Complete parameter set for the <code class="docutils literal notranslate"><span class="pre">knxd</span></code>. When set, all other
+<code class="docutils literal notranslate"><span class="pre">knxd</span></code> parameters are ignored.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The documentation of the bundled <code class="docutils literal notranslate"><span class="pre">knxd</span></code> version can be consulted at the
+<a class="reference external" href="https://github.com/knxd/knxd/wiki/Command-line-parameters">knxd wiki</a>.</p>
+<p>Example (a KNX IP interface at <code class="docutils literal notranslate"><span class="pre">192.168.0.10</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_INTERFACE</span><span class="o">=</span>iptn:192.168.0.10:3671<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_PA</span><span class="o">=</span><span class="m">1</span>.1.238<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>cometvisu/cometvisu:latest
+</pre></div>
+</div>
+</section>
+<section id="transport-knxd-external-knxd">
+<h4>Transport <code class="docutils literal notranslate"><span class="pre">knxd</span></code> (external <code class="docutils literal notranslate"><span class="pre">knxd</span></code>)<a class="headerlink" href="#transport-knxd-external-knxd" title="Link to this heading"></a></h4>
+<p>When a <code class="docutils literal notranslate"><span class="pre">knxd</span></code> already runs outside of the container (e.g. on the host or in
+another container) it must not be started twice. Set
+<code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD=extern</span></code> to skip starting the bundled <code class="docutils literal notranslate"><span class="pre">knxd</span></code>. The
+FastCGI backend is still started and connects to the socket given by
+<code class="docutils literal notranslate"><span class="pre">KNXD_SOCKET</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/run:/host-run:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">NO_ENTRYPOINT_KNXD</span><span class="o">=</span>extern<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNXD_SOCKET</span><span class="o">=</span>/host-run/knx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">BACKEND_NAME</span><span class="o">=</span>knxd<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">BACKEND_KNXD</span><span class="o">=</span>https://server.local/cgi-bin/l<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>cometvisu/cometvisu:latest
+</pre></div>
+</div>
+<p>Notes for this mode:</p>
+<ul class="simple">
+<li><p>Mount the <strong>directory</strong> containing the socket rather than the socket file
+itself. A bind mount of the socket file keeps pointing to the old inode
+when the external <code class="docutils literal notranslate"><span class="pre">knxd</span></code> is restarted and recreates the socket.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KNX_PA</span></code>, <code class="docutils literal notranslate"><span class="pre">KNX_CLIENT_PAS</span></code>, <code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code>,
+<code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE_OPTIONS</span></code> and <code class="docutils literal notranslate"><span class="pre">KNXD_PARAMETERS</span></code> are ignored - the
+external <code class="docutils literal notranslate"><span class="pre">knxd</span></code> brings its own configuration. Its group cache must be
+enabled for reads.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD=true</span></code> starts neither the <code class="docutils literal notranslate"><span class="pre">knxd</span></code> nor the FastCGI
+backend. Use it only when you provide the FastCGI backend yourself (e.g.
+as a socket mounted into the container); otherwise the <code class="docutils literal notranslate"><span class="pre">knxd</span></code> backend
+is unavailable and <code class="docutils literal notranslate"><span class="pre">/cgi-bin/l</span></code> fails.</p></li>
+</ul>
+</section>
+<section id="transport-ip-tunnel-no-knxd">
+<h4>Transport <code class="docutils literal notranslate"><span class="pre">ip-tunnel</span></code> - no knxd<a class="headerlink" href="#transport-ip-tunnel-no-knxd" title="Link to this heading"></a></h4>
+<p>With <code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT=ip-tunnel</span></code> the container does <strong>not</strong> start the
+bundled <code class="docutils literal notranslate"><span class="pre">knxd</span></code> (regardless of <code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD</span></code>). The FastCGI backend
+connects directly to a KNX IP interface or KNX IP router as a tunneling
+client, i.e. the CometVisu behaves like a classical KNX device.</p>
+<p>The image ships the <code class="docutils literal notranslate"><span class="pre">KNX_IP_*</span></code> variables empty; the defaults shown below
+are the defaults of the FastCGI backend. The container only passes on the
+variables that are set, so an empty value never overrides a backend
+default.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_HOST</span></code></p></td>
+<td><p><em>(empty)</em></p></td>
+<td><p>Address of the KNX IP interface or KNX IP router. <strong>Required</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_PORT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3671</span></code></p></td>
+<td><p>KNXnet/IP UDP port.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_LOCAL_ADDR</span></code></p></td>
+<td><p><em>(OS choice)</em></p></td>
+<td><p>Local address that is advertised to the device. Helpful when the
+container runs behind NAT or on a multi-homed host.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_NAT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code> enables the NAT mode of the tunnel connection.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_HEARTBEAT_SEC</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">60</span></code></p></td>
+<td><p>Interval of the connection state request.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_ACK_TIMEOUT_MS</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1000</span></code></p></td>
+<td><p>Timeout before a telegram is repeated.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_RETRIES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p>Number of repetitions per telegram.</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code>, <code class="docutils literal notranslate"><span class="pre">KNX_PA</span></code>, <code class="docutils literal notranslate"><span class="pre">KNX_CLIENT_PAS</span></code>,
+<code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE_OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">KNXD_PARAMETERS</span></code> and <code class="docutils literal notranslate"><span class="pre">KNXD_SOCKET</span></code> are
+ignored in this mode. <code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD</span></code> has no effect - the FastCGI
+backend is always started.</p>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_TRANSPORT</span><span class="o">=</span>ip-tunnel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_IP_HOST</span><span class="o">=</span><span class="m">192</span>.168.0.10<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_IP_NAT</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>cometvisu/cometvisu:latest
+</pre></div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>A KNX IP interface usually only offers a small number of tunneling
+connections (often 4). One of them is used by the CometVisu. When all
+slots are taken the container cannot connect to the bus.</p></li>
+<li><p>With the default Docker bridge network the container is behind NAT, so
+either set <code class="docutils literal notranslate"><span class="pre">KNX_IP_NAT=1</span></code> (the device has to support NAT) or run the
+container with <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code>.</p></li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> is used, <code class="docutils literal notranslate"><span class="pre">-p</span></code> cannot be used. If port 80 is
+already occupied on the host, set <code class="docutils literal notranslate"><span class="pre">APACHE_PORT</span></code> instead.</p></li>
+</ul>
+</section>
+<section id="transport-ip-routing-no-knxd">
+<h4>Transport <code class="docutils literal notranslate"><span class="pre">ip-routing</span></code> - no knxd<a class="headerlink" href="#transport-ip-routing-no-knxd" title="Link to this heading"></a></h4>
+<p>With <code class="docutils literal notranslate"><span class="pre">KNX_TRANSPORT=ip-routing</span></code> the container does <strong>not</strong> start the
+bundled <code class="docutils literal notranslate"><span class="pre">knxd</span></code> (regardless of <code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD</span></code>). The FastCGI
+backend joins the KNXnet/IP multicast group and participates in the
+routing like a KNX IP router.</p>
+<p><code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code>, <code class="docutils literal notranslate"><span class="pre">KNX_PA</span></code>, <code class="docutils literal notranslate"><span class="pre">KNX_CLIENT_PAS</span></code>,
+<code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE_OPTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">KNXD_PARAMETERS</span></code> and <code class="docutils literal notranslate"><span class="pre">KNXD_SOCKET</span></code> are
+ignored in this mode. <code class="docutils literal notranslate"><span class="pre">NO_ENTRYPOINT_KNXD</span></code> has no effect - the FastCGI
+backend is always started.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_MULTICAST</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">224.0.23.12</span></code></p></td>
+<td><p>Multicast group of the KNXnet/IP routing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_IFACE</span></code></p></td>
+<td><p><em>(default route)</em></p></td>
+<td><p>Network interface for the multicast group.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_INDIVIDUAL_ADDR</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">15.15.250</span></code></p></td>
+<td><p>Individual address (<code class="docutils literal notranslate"><span class="pre">A.B.C</span></code>, A and B in <code class="docutils literal notranslate"><span class="pre">0..15</span></code>, C in <code class="docutils literal notranslate"><span class="pre">0..255</span></code>,
+not <code class="docutils literal notranslate"><span class="pre">0.0.0</span></code>) used as the source of the routing telegrams. It must
+be a free physical address of the installation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_PORT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3671</span></code></p></td>
+<td><p>KNXnet/IP UDP port.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_TRANSPORT</span><span class="o">=</span>ip-routing<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_IP_IFACE</span><span class="o">=</span>eth0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">KNX_IP_INDIVIDUAL_ADDR</span><span class="o">=</span><span class="m">15</span>.15.250<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>cometvisu/cometvisu:latest
+</pre></div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> is required, because multicast traffic does not
+cross the default Docker bridge network.</p></li>
+<li><p>The KNX IP router has to be configured for routing and has to be in the
+same network segment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KNX_IP_INDIVIDUAL_ADDR</span></code> must be a free physical address. A router
+rejects the address <code class="docutils literal notranslate"><span class="pre">0.0.0</span></code>.</p></li>
+<li><p>When port 80 is already occupied on the host, set <code class="docutils literal notranslate"><span class="pre">APACHE_PORT</span></code>.</p></li>
+<li><p>Every participant of the multicast group can read the bus traffic and
+send telegrams. Use this mode only in a trusted network segment.</p></li>
+</ul>
 </section>
 <section id="openhab">
 <h4>OpenHAB<a class="headerlink" href="#openhab" title="Link to this heading"></a></h4>
 <p>Example configuration for the OpenHAB backend (assuming it is running on a
 server with the address <code class="docutils literal notranslate"><span class="pre">192.168.0.10</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">KNX_INTERFACE</span><span class="o">=</span>
-<span class="nv">CGI_URL_PATH</span><span class="o">=</span>/rest/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">BACKEND_NAME</span><span class="o">=</span>openhab
+<span class="nv">BACKEND_OPENHAB</span><span class="o">=</span>/rest/
 <span class="nv">BACKEND_PROXY_SOURCE</span><span class="o">=</span>/rest
 <span class="nv">BACKEND_PROXY_TARGET</span><span class="o">=</span>http://192.168.0.10:8080/rest
 </pre></div>

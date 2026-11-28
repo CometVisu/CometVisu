@@ -259,4 +259,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.io.listmodel.FritzCallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FritzCallList.js.map?dt=1794845744465
+//# sourceMappingURL=FritzCallList.js.map?dt=1795864178998

@@ -29,11 +29,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "qx.event.message.Bus": {
         "defer": "runtime"
       },
+      "cv.Application": {},
       "cv.ui.structure.pure.layout.Manager": {},
       "cv.ui.structure.pure.layout.ResizeHandler": {},
       "qx.util.ResourceManager": {},
       "cv.Config": {},
-      "cv.Application": {},
       "cv.io.BackendConnections": {},
       "cv.data.Model": {},
       "cv.Transform": {}
@@ -229,6 +229,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           if (this.__P_69_1.length === 0) {
             this.setInitialized(true);
           }
+          // inherited values might arrive after the page has been entered (e.g. when loading from cache)
+          var controller = cv.Application.structureController;
+          if (controller && controller.getCurrentPage() === this) {
+            var manager = cv.ui.structure.pure.layout.Manager;
+            manager.currentPageNavbarVisibility = null;
+            manager.updateNavbarVisibility();
+          }
         }
       },
       /**
@@ -417,4 +424,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1794845748972
+//# sourceMappingURL=Page.js.map?dt=1795864183726
